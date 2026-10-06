@@ -1,0 +1,76 @@
+name: Deploy promo.liniyasporta.ru to REG.RU
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'promo-site/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promo-liniyasporta-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate site files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f promo-site/index.html
+          test -f promo-site/graphite-start/index.html
+          test -f promo-site/graphite-start/rules/index.html
+
+      - name: Install SFTP tools
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy by SFTP
+        env:
+          PROMO_REG_PASSWORD: ${{ secrets.PROMO_REG_PASSWORD }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$PROMO_REG_PASSWORD"
+
+          cat > /tmp/deploy.sftp <<'SFTP_EOF'
+          cd www/promo.liniyasporta.ru
+          lcd promo-site
+          put -R *
+          bye
+          SFTP_EOF
+
+          sshpass -p "$PROMO_REG_PASSWORD" sftp \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            -o ConnectTimeout=20 \
+            -P 22 \
+            -b /tmp/deploy.sftp \
+            u3626198@server193.hosting.reg.ru
+
+      - name: Verify live site
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5 6; do
+            if curl -fsSL --connect-timeout 10 --max-time 45 \
+              -H 'Cache-Control: no-cache' \
+              "https://promo.liniyasporta.ru/graphite-start/?smoke=${GITHUB_SHA}" \
+              -o /tmp/live.html; then
+              break
+            fi
+            [ "$attempt" -eq 6 ] && exit 1
+            sleep 5
+          done
+          grep -Fqi 'Графитовый старт' /tmp/live.html
+          echo "Live promo site verified."
