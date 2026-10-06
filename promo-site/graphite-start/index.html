@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#061014">
+  <title>Графитовый старт — Линия спорта</title>
+  <meta name="description" content="Полноценная графитовая карта «Линии спорта» по специальной стоимости. Доступ во все действующие спортивные клубы сети.">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <style>
+    :root{
+      --bg:#061014;
+      --bg2:#081217;
+      --line:rgba(255,255,255,.10);
+      --line-soft:rgba(255,255,255,.07);
+      --text:#f6f8f7;
+      --muted:#a7b1ad;
+      --green:#28e46f;
+      --shadow:0 28px 60px rgba(0,0,0,.28);
+      --max:1280px;
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px),
+        linear-gradient(180deg, #061014 0%, #081217 100%);
+      background-size:150px 150px,150px 150px,auto;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    .shell{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:94px;
+      border-bottom:1px solid var(--line-soft);
+    }
+    .brand{display:inline-flex;align-items:center;text-decoration:none}
+    .brand img{width:248px;height:auto}
+    .top-link{
+      color:#d8dfdc;
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+      white-space:nowrap;
+    }
+
+    .hero-wrap{
+      padding:18px 0 10px;
+    }
+    .hero-stage{
+      position:relative;
+      min-height:560px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      background:#061014;
+      box-shadow:0 30px 80px rgba(0,0,0,.22);
+      isolation:isolate;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+    .hero-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:76% center;
+    }
+    .hero-bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,
+          rgba(4,9,9,.92) 0%,
+          rgba(4,9,9,.86) 28%,
+          rgba(4,9,9,.68) 46%,
+          rgba(4,9,9,.36) 62%,
+          rgba(4,9,9,.16) 80%,
+          rgba(4,9,9,.10) 100%),
+        linear-gradient(180deg,
+          rgba(3,8,8,.22) 0%,
+          rgba(3,8,8,.05) 32%,
+          rgba(3,8,8,.03) 54%,
+          rgba(3,8,8,.26) 100%);
+      pointer-events:none;
+    }
+    .hero-mobile-visual{
+      display:none;
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      min-height:560px;
+      display:flex;
+      align-items:center;
+      padding:42px 44px;
+    }
+    .hero-copy{
+      width:min(100%, 620px);
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      min-height:36px;
+      padding:0 16px;
+      border:1px solid rgba(40,228,111,.18);
+      border-radius:999px;
+      background:rgba(17,84,53,.26);
+      color:var(--green);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(6px);
+    }
+    .eyebrow::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 5px rgba(40,228,111,.10);
+    }
+    h1.hero-title-main{
+      margin:24px 0 8px;
+      font-size:clamp(58px, 6.6vw, 92px);
+      line-height:.92;
+      letter-spacing:-.055em;
+      font-weight:900;
+      color:#f6f8f7;
+      text-shadow:0 8px 34px rgba(0,0,0,.20);
+      white-space:nowrap;
+    }
+    .hero-title-accent{
+      margin:0 0 18px;
+      color:var(--green);
+      font-size:clamp(44px, 4.8vw, 64px);
+      line-height:.94;
+      letter-spacing:-.045em;
+      font-weight:900;
+      text-shadow:0 8px 34px rgba(0,0,0,.20);
+    }
+    .lead{
+      max-width:620px;
+      margin:0;
+      color:#edf1ef;
+      font-size:22px;
+      line-height:1.32;
+      letter-spacing:-.02em;
+      text-shadow:0 6px 26px rgba(0,0,0,.24);
+    }
+    .pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:30px 0 0;
+      padding:0;
+      list-style:none;
+    }
+    .pills li{
+      display:inline-flex;
+      align-items:center;
+      min-height:46px;
+      padding:0 18px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background:rgba(8,12,12,.34);
+      color:#f5f7f6;
+      font-size:16px;
+      font-weight:700;
+      backdrop-filter:blur(8px);
+    }
+    .pills li::before{
+      content:"✓";
+      margin-right:12px;
+      color:var(--green);
+      font-weight:900;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:32px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:56px;
+      padding:0 28px;
+      border-radius:18px;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:900;
+      box-shadow:var(--shadow);
+    }
+    .btn-primary{
+      color:#07110d;
+      background:linear-gradient(180deg, #39ee79 0%, #22d966 100%);
+    }
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(12,17,16,.40);
+      color:#fff;
+      box-shadow:none;
+    }
+
+    .section{padding:62px 0}
+    #plans.section{padding-top:26px}
+    .section-title{
+      margin:0 0 18px;
+      font-size:clamp(38px, 4vw, 56px);
+      line-height:1;
+      letter-spacing:-.05em;
+      font-weight:900;
+    }
+    .section-title small{
+      display:block;
+      margin-bottom:12px;
+      color:var(--green);
+      font-size:13px;
+      line-height:1;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    .plans{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:18px;
+    }
+    .plan{
+      position:relative;
+      overflow:hidden;
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:
+        radial-gradient(circle at top right, rgba(40,228,111,.08), transparent 34%),
+        linear-gradient(180deg, rgba(14,20,20,.84), rgba(10,15,16,.90));
+      box-shadow:var(--shadow);
+    }
+    .plan-badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(40,228,111,.12);
+      color:var(--green);
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .plan h3{
+      margin:18px 0 10px;
+      font-size:34px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.04em;
+    }
+    .price{
+      margin:0 0 14px;
+      font-size:56px;
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:-.06em;
+    }
+    .price small{font-size:22px;letter-spacing:0}
+    .plan p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+      margin-top:28px;
+    }
+    .fact{
+      min-height:158px;
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(10,16,17,.58);
+    }
+    .fact strong{
+      display:block;
+      margin-bottom:14px;
+      color:var(--green);
+      font-size:26px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .fact p{
+      margin:0;
+      color:#d8dfdc;
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:28px 30px;
+      border:1px solid rgba(40,228,111,.20);
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(40,228,111,.06), transparent 28%),
+        linear-gradient(180deg, rgba(12,20,20,.84), rgba(9,15,16,.94));
+    }
+    .cta h3{
+      margin:0 0 8px;
+      font-size:34px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .cta p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width:740px;
+    }
+
+    footer{
+      padding:34px 0 54px;
+      color:#8e9a96;
+      font-size:13px;
+      border-top:1px solid var(--line-soft);
+    }
+
+    @media (max-width: 980px){
+      .plans,.facts,.cta{
+        grid-template-columns:1fr;
+        display:grid;
+      }
+      .hero-stage{
+        min-height:auto;
+      }
+      .hero-content{
+        min-height:auto;
+        padding:42px 34px;
+      }
+    }
+
+    @media (max-width: 680px){
+      body{
+        background-size:110px 110px,110px 110px,auto;
+      }
+
+      .shell{
+        width:min(var(--max), calc(100% - 20px));
+      }
+
+      .topbar{
+        min-height:72px;
+        gap:12px;
+      }
+
+      .brand img{
+        width:min(184px, 50vw);
+      }
+
+      .top-link{
+        font-size:11px;
+      }
+
+      .hero-wrap{
+        padding:12px 0 6px;
+      }
+
+      .hero-stage{
+        min-height:0;
+        border-radius:20px;
+        background:
+          radial-gradient(circle at 85% 5%, rgba(40,228,111,.08), transparent 28%),
+          linear-gradient(180deg, #07110f 0%, #091412 100%);
+      }
+
+      /* On mobile the desktop background is removed completely:
+         text and card image no longer overlap. */
+      .hero-bg{
+        display:none;
+      }
+
+      .hero-content{
+        min-height:0;
+        display:block;
+        padding:20px 18px 0;
+      }
+
+      .hero-copy{
+        width:100%;
+      }
+
+      .eyebrow{
+        min-height:32px;
+        padding:0 13px;
+        font-size:10px;
+        letter-spacing:.06em;
+      }
+
+      .eyebrow::before{
+        width:8px;
+        height:8px;
+        box-shadow:0 0 0 4px rgba(40,228,111,.10);
+      }
+
+      h1.hero-title-main{
+        margin:18px 0 6px;
+        font-size:clamp(31px, 9vw, 38px);
+        line-height:.98;
+        letter-spacing:-.045em;
+        white-space:nowrap;
+      }
+
+      .hero-title-accent{
+        margin:0 0 14px;
+        font-size:clamp(27px, 7.6vw, 34px);
+        line-height:1;
+        letter-spacing:-.035em;
+      }
+
+      .lead{
+        max-width:none;
+        font-size:16px;
+        line-height:1.48;
+        letter-spacing:-.01em;
+        text-shadow:none;
+      }
+
+      .pills{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+        margin-top:18px;
+      }
+
+      .pills li{
+        width:100%;
+        min-height:40px;
+        padding:8px 13px;
+        font-size:13px;
+        line-height:1.25;
+        border-radius:14px;
+        background:rgba(9,15,14,.72);
+        backdrop-filter:none;
+      }
+
+      .pills li::before{
+        margin-right:9px;
+      }
+
+      .actions{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+        margin-top:18px;
+      }
+
+      .btn{
+        width:100%;
+        min-height:48px;
+        padding:0 12px;
+        border-radius:14px;
+        font-size:13px;
+        box-shadow:none;
+      }
+
+      .hero-mobile-visual{
+        display:block;
+        position:relative;
+        margin-top:20px;
+        height:210px;
+        overflow:hidden;
+        border-top:1px solid rgba(255,255,255,.06);
+      }
+
+      .hero-mobile-visual::after{
+        content:"";
+        position:absolute;
+        inset:0;
+        background:
+          linear-gradient(180deg, rgba(6,16,14,.08) 0%, rgba(6,16,14,0) 42%, rgba(6,16,14,.16) 100%);
+        pointer-events:none;
+      }
+
+      .hero-mobile-visual img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:75% center;
+      }
+
+      .section{
+        padding:44px 0;
+      }
+
+      #plans.section{
+        padding-top:18px;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .section-title small{
+        font-size:11px;
+        margin-bottom:9px;
+      }
+
+      .plans{
+        gap:12px;
+      }
+
+      .plan{
+        padding:20px;
+        border-radius:18px;
+      }
+
+      .plan h3{
+        font-size:27px;
+      }
+
+      .price{
+        font-size:42px;
+      }
+
+      .facts{
+        gap:10px;
+      }
+
+      .fact{
+        min-height:0;
+        padding:18px;
+        border-radius:17px;
+      }
+
+      .fact strong{
+        font-size:23px;
+        margin-bottom:8px;
+      }
+
+      .fact p{
+        font-size:14px;
+      }
+
+      .cta{
+        padding:20px;
+        border-radius:19px;
+      }
+
+      .cta h3{
+        font-size:27px;
+      }
+
+      .cta p{
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <div class="topbar">
+      <a class="brand" href="https://liniyasporta.ru/" aria-label="Линия спорта">
+        <img src="/assets/logo-liniya-sporta-clean.png" alt="Линия спорта">
+      </a>
+      <a class="top-link" href="/graphite-start/rules/">Правила акции ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-wrap">
+      <div class="shell">
+        <div class="hero-stage">
+          <div class="hero-bg" aria-hidden="true">
+            <img src="/assets/graphite-start-hero.png" alt="">
+          </div>
+
+          <div class="hero-content">
+            <div class="hero-copy">
+              <div class="eyebrow">продлено до 7 октября 2026</div>
+
+              <h1 class="hero-title-main">Графитовый старт</h1>
+
+              <div class="hero-title-accent">Новый уровень</div>
+
+              <p class="lead">
+                Полноценная графитовая карта «Линии спорта» по специальной стоимости.
+                Доступ во все действующие спортивные клубы сети — без специальных ограничений по карте.
+              </p>
+
+              <ul class="pills">
+                <li>Все действующие клубы</li>
+                <li>Полный формат карты</li>
+                <li>Активация с первого прохода</li>
+              </ul>
+
+              <div class="actions">
+                <a class="btn btn-primary" href="#plans">Выбрать карту</a>
+                <a class="btn btn-secondary" href="/graphite-start/rules/">Подробные условия</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-mobile-visual" aria-hidden="true">
+            <img src="/assets/graphite-start-hero.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="shell">
+        <h2 class="section-title">
+          <small>специальное предложение</small>
+          Выберите удобный срок
+        </h2>
+
+        <div class="plans">
+          <article class="plan">
+            <div class="plan-badge">графитовая карта</div>
+            <h3>6 месяцев</h3>
+            <p class="price">19 900 <small>₽</small></p>
+            <p>
+              Полноценная карта без ограничений по действующим клубам сети.
+              Активация — с первого прохода.
+            </p>
+          </article>
+
+          <article class="plan">
+            <div class="plan-badge">графитовая карта</div>
+            <h3>12 месяцев</h3>
+            <p class="price">31 900 <small>₽</small></p>
+            <p>
+              Долгосрочный формат для тех, кто выбирает стабильный тренировочный ритм и доступ во все клубы сети.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <h2 class="section-title">
+          <small>важные условия</small>
+          Что нужно знать
+        </h2>
+
+        <div class="facts">
+          <div class="fact">
+            <strong>60 дней</strong>
+            <p>Максимальный срок до первого прохода и активации карты.</p>
+          </div>
+          <div class="fact">
+            <strong>1-й проход</strong>
+            <p>Карта активируется с первого фактического посещения клуба.</p>
+          </div>
+          <div class="fact">
+            <strong>Без бонусов</strong>
+            <p>Акция не суммируется с другими скидками, предложениями и бонусными программами.</p>
+          </div>
+          <div class="fact">
+            <strong>61-й день</strong>
+            <p>Если прохода не было, карта активируется автоматически на 61-й день.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="cta">
+          <div>
+            <h3>Все юридические условия — на отдельной странице</h3>
+            <p>
+              Полный текст правил акции, порядок активации, условия возврата и ограничения
+              доступны на странице документов.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="/graphite-start/rules/">Открыть правила акции</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      «Линия спорта» — специальное предложение «Графитовый старт». Подробные условия — на странице правил акции.
+    </div>
+  </footer>
+</body>
+</html>

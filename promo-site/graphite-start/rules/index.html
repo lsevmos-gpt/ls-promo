@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061014">
+<title>Правила акции «Графитовый старт» — Линия спорта</title>
+<meta name="description" content="Правила проведения акции «Графитовый старт» сети спортивных клубов «Линия спорта».">
+<style>
+:root{
+  --bg:#061014;
+  --bg2:#081318;
+  --panel:#0c201f;
+  --panel2:#0a181a;
+  --paper:#f4f6f7;
+  --paper-line:#d7dde0;
+  --text:#151b20;
+  --paper-text:#3f4950;
+  --muted:#8b9aa0;
+  --green:#20df71;
+  --green2:#0db85a;
+  --green-dark:#087e3d;
+  --shell:1195px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;
+  min-width:320px;
+  color:#f3f7f5;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  background:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),
+    radial-gradient(circle at 60% -10%,rgba(20,115,79,.08),transparent 35%),
+    linear-gradient(180deg,#061014 0%,#071218 100%);
+  background-size:160px 160px,160px 160px,auto,auto;
+}
+a{color:inherit}
+.shell{width:min(var(--shell),calc(100% - 34px));margin:0 auto}
+
+.site-head{padding:18px 0 0}
+.logo-link{
+  display:block;
+  width:185px;
+  text-decoration:none;
+}
+.logo-link img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.back-row{margin-top:20px}
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:11px;
+  min-height:44px;
+  padding:0 20px;
+  border:1.5px solid var(--green);
+  border-radius:999px;
+  color:#f4f7f5;
+  background:rgba(0,0,0,.12);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:850;
+}
+.back-btn span{font-size:19px;line-height:1;color:#fff}
+
+.doc-nav{
+  margin-top:16px;
+  padding:22px 24px;
+  border:1px solid rgba(111,180,159,.24);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(20,215,111,.045),transparent 34%),
+    rgba(8,29,29,.78);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.018);
+}
+.brand-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:33px;
+  padding:0 14px;
+  border:1px solid rgba(32,223,113,.18);
+  border-radius:999px;
+  background:rgba(11,130,69,.20);
+  color:#78e9a6;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+.brand-chip:before{
+  content:"";
+  width:10px;height:10px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 5px rgba(32,223,113,.13),0 0 16px rgba(32,223,113,.35);
+}
+.doc-link{
+  margin-top:15px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-height:82px;
+  padding:15px 17px;
+  border:1px solid var(--green);
+  border-radius:13px;
+  background:
+    linear-gradient(90deg,rgba(7,97,52,.30),rgba(8,25,25,.20)),
+    rgba(8,27,26,.88);
+  text-decoration:none;
+}
+.doc-icon{
+  width:54px;height:54px;display:grid;place-items:center;
+  flex:0 0 auto;border-radius:10px;
+  background:rgba(14,150,78,.20);
+  color:var(--green);
+  font-size:27px;
+}
+.doc-link-text{min-width:0;flex:1}
+.doc-link-text strong{
+  display:block;color:#f5f7f6;font-size:15px;line-height:1.25
+}
+.doc-link-text small{
+  display:block;margin-top:5px;color:#91a19d;font-size:12px
+}
+.doc-arrow{color:var(--green);font-size:34px;line-height:1;font-weight:300}
+
+.page-title{
+  margin:25px 0 15px;
+  font-size:clamp(28px,3.5vw,40px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+  font-weight:900;
+}
+
+.paper{
+  position:relative;
+  margin-bottom:50px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:11px 11px 0 0;
+  background:var(--paper);
+  color:var(--paper-text);
+  box-shadow:0 24px 68px rgba(0,0,0,.18);
+}
+.paper:before{
+  content:"";
+  display:block;
+  height:8px;
+  background:linear-gradient(90deg,#25e87b,#10d966 62%,#32e983);
+}
+.paper-inner{padding:34px 39px 46px}
+.document-meta{
+  margin-bottom:21px;
+  color:#74828a;
+  font-size:12px;
+  line-height:1.55;
+}
+.document-title{
+  margin:0 auto 22px;
+  max-width:820px;
+  color:#171d22;
+  font-size:clamp(21px,2.8vw,29px);
+  line-height:1.25;
+  text-align:center;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.rule-separator{
+  height:1px;
+  margin:0 0 22px;
+  background:var(--paper-line);
+}
+.legal-section{
+  padding:5px 0 15px;
+  border-bottom:1px solid #dde2e5;
+}
+.legal-section:last-child{border-bottom:0}
+.legal-section h2{
+  margin:14px 0 11px;
+  color:#252d32;
+  font-size:16px;
+  line-height:1.35;
+  font-weight:850;
+}
+.legal-section p{
+  margin:0 0 10px;
+  font-size:14px;
+  line-height:1.6;
+}
+.legal-section ul{
+  margin:3px 0 12px;
+  padding-left:23px;
+}
+.legal-section li{
+  margin:0 0 7px;
+  padding-left:2px;
+  font-size:14px;
+  line-height:1.55;
+}
+.legal-section a{
+  color:#078746;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.footer-note{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:0 0 36px;
+  color:#73848a;
+  font-size:11px;
+}
+
+@media(max-width:760px){
+  body{background-size:110px 110px,110px 110px,auto,auto}
+  .shell{width:min(100% - 20px,var(--shell))}
+  .site-head{padding-top:14px}
+  .logo-link{width:160px}
+  .back-row{margin-top:14px}
+  .back-btn{min-height:42px;padding:0 17px}
+  .doc-nav{padding:16px;border-radius:16px}
+  .doc-link{min-height:72px;padding:12px}
+  .doc-icon{width:47px;height:47px;font-size:23px}
+  .doc-link-text strong{font-size:13px}
+  .page-title{margin:21px 0 14px}
+  .paper-inner{padding:24px 18px 32px}
+  .document-meta{font-size:11px}
+  .document-title{font-size:21px}
+  .legal-section h2{font-size:15px}
+  .legal-section p,.legal-section li{font-size:13px;line-height:1.56}
+  .footer-note{flex-direction:column;gap:5px}
+}
+@media print{
+  body{background:#fff}
+  .site-head,.doc-nav,.page-title,.footer-note{display:none!important}
+  .shell{width:100%;margin:0}
+  .paper{margin:0;border:0;border-radius:0;box-shadow:none}
+  .paper:before{display:none}
+  .paper-inner{padding:0}
+}
+</style>
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+</head>
+<body>
+<header class="site-head">
+  <div class="shell">
+    <a class="logo-link" href="https://liniyasporta.ru/" aria-label="Линия спорта">
+      <img src="/assets/logo-liniya-sporta-clean.png" alt="Линия спорта">
+    </a>
+
+    <div class="back-row">
+      <a class="back-btn" href="/graphite-start/"><span>←</span> К акции</a>
+    </div>
+
+    <h1 class="page-title">Правила акции — «Графитовый старт»</h1>
+  </div>
+</header>
+
+<main class="shell">
+  <article class="paper" id="document">
+    <div class="paper-inner">
+      <div class="document-meta">
+        Действуют с 1 сентября 2026 года<br>
+        Организатор: ИП Ягьяев Асан Эскендерович
+      </div>
+
+      <h2 class="document-title">Правила проведения акции<br>«Графитовый старт»</h2>
+      <div class="rule-separator"></div>
+
+      
+      <section class="legal-section" id="section-1">
+        <h2>1. Общие положения</h2>
+        <p>1.1. Настоящие Правила определяют порядок и условия проведения акции «Графитовый старт» в сети спортивных клубов «Линия спорта» (далее — «Акция»).</p><p>1.2. Акция является специальным ценовым предложением и не является лотереей, конкурсом, стимулирующим мероприятием или публичным обещанием награды.</p><p>1.3. Организатором Акции и исполнителем физкультурно-оздоровительных услуг является индивидуальный предприниматель Ягьяев Асан Эскендерович (далее — «Организатор» или «Исполнитель»).</p><p>1.4. Акция проводится в связи с планируемым открытием нового спортивного клуба «Линия спорта». Фактическая дата открытия нового клуба не влияет на срок проведения Акции и срок действия приобретённой клубной карты.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-2">
+        <h2>2. Срок проведения Акции</h2>
+        <p>2.1. Акция проводится с 1 сентября 2026 года по 7 октября 2026 года включительно.</p><p>2.2. Приобрести клубную карту по специальной акционной стоимости можно в период проведения Акции при условии внесения полной оплаты не позднее 7 октября 2026 года.</p><p>2.3. Оплата, поступившая после окончания срока проведения Акции, не является основанием для предоставления специальной акционной стоимости.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-3">
+        <h2>3. Участники Акции</h2>
+        <p>3.1. В Акции могут участвовать:</p><ul><li>новые клиенты сети спортивных клубов «Линия спорта»;</li><li>действующие клиенты сети спортивных клубов «Линия спорта».</li></ul><p>3.2. Участником Акции может стать дееспособное физическое лицо, заключившее с Исполнителем договор на оказание физкультурно-оздоровительных услуг и полностью оплатившее выбранную клубную карту в период проведения Акции.</p><p>3.3. Заключение договора и приобретение клубной карты несовершеннолетним лицом осуществляются с соблюдением требований законодательства Российской Федерации и действующих документов Исполнителя.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-4">
+        <h2>4. Предложение по Акции</h2>
+        <p>4.1. В период проведения Акции устанавливается следующая специальная стоимость графитовых клубных карт:</p><ul><li>графитовая клубная карта сроком действия 6 месяцев — 19 900 рублей;</li><li>графитовая клубная карта сроком действия 12 месяцев — 31 900 рублей.</li></ul><p>4.2. Оплата клубной карты производится единовременно в размере 100% её акционной стоимости, если иной способ оплаты отдельно не согласован с Исполнителем и не противоречит настоящим Правилам.</p><p>4.3. Приобретённая по Акции графитовая клубная карта является полноценной клубной картой и предоставляет её владельцу право посещать все действующие спортивные клубы сети «Линия спорта» на условиях соответствующего тарифа, публичной оферты и Правил клуба.</p><p>4.4. Приобретение клубной карты по Акции не предусматривает специальных ограничений по сравнению с графитовой клубной картой соответствующего срока действия, реализуемой вне Акции.</p><p>4.5. Услуги, которые в соответствии с действующим прейскурантом Исполнителя не входят в стоимость графитовой клубной карты и оказываются за отдельную плату, не включаются в акционную стоимость.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-5">
+        <h2>5. Активация клубной карты</h2>
+        <p>5.1. Срок действия приобретённой клубной карты начинается с даты первого фактического прохода её владельца в любой действующий клуб сети «Линия спорта».</p><p>5.2. Первый проход должен быть совершён не позднее 60 календарных дней со дня приобретения клубной карты.</p><p>5.3. Если владелец карты не совершил первый проход в течение 60 календарных дней со дня её приобретения, клубная карта автоматически активируется на 61-й календарный день со дня приобретения.</p><p>5.4. Дата приобретения клубной карты определяется по дате заключения договора и внесения полной оплаты, отражённой в кассовом чеке и учётной системе Исполнителя.</p><p>5.5. Перенос установленного настоящими Правилами срока автоматической активации допускается только в случаях, прямо предусмотренных законодательством Российской Федерации, заключённым договором или действующими правилами Исполнителя.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-6">
+        <h2>6. Применение бонусов и других скидок</h2>
+        <p>6.1. При приобретении клубной карты по Акции оплата бонусами не допускается.</p><p>6.2. Специальная акционная стоимость не суммируется:</p><ul><li>с другими скидками;</li><li>с промокодами;</li><li>с бонусными программами;</li><li>с персональными предложениями;</li><li>с иными акциями и специальными ценовыми предложениями Организатора.</li></ul><p>6.3. При покупке клубной карты применяется исключительно специальная стоимость, установленная пунктом 4.1 настоящих Правил. Все остальные скидки и специальные предложения к данной покупке не применяются.</p><p>6.4. Если клиент одновременно имеет право на другое специальное предложение, он самостоятельно выбирает одно предложение, которым желает воспользоваться.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-7">
+        <h2>7. Заключение договора и оказание услуг</h2>
+        <p>7.1. Приобретение клубной карты осуществляется путём заключения договора на оказание физкультурно-оздоровительных услуг на основании действующей публичной оферты Исполнителя или иным предусмотренным Исполнителем способом.</p><p>7.2. До приобретения клубной карты участник обязан ознакомиться с настоящими Правилами, публичной офертой, Правилами клуба, условиями выбранного тарифа и иной обязательной информацией об услугах.</p><p>7.3. Внесение полной оплаты за клубную карту подтверждает ознакомление участника с настоящими Правилами и согласие с ними.</p><p>7.4. Настоящие Правила регулируют только специальные условия Акции. В остальной части применяются публичная оферта, Правила клуба, условия тарифа и законодательство Российской Федерации.</p><p>7.5. В случае противоречия настоящих Правил обязательным требованиям законодательства Российской Федерации применяются соответствующие нормы законодательства.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-8">
+        <h2>8. Отказ от договора и возврат денежных средств</h2>
+        <p>8.1. Приобретение клубной карты по специальной акционной стоимости не ограничивает права потребителя, предусмотренные законодательством Российской Федерации.</p><p>8.2. Владелец клубной карты вправе отказаться от договора оказания услуг в порядке и на условиях, установленных законодательством Российской Федерации и публичной офертой Исполнителя.</p><p>8.3. Размер денежных средств, подлежащих возврату, определяется с учётом фактически оказанных услуг и документально подтверждённых фактических расходов Исполнителя, связанных с исполнением обязательств по договору.</p><p>8.4. Заявление об отказе от договора и возврате денежных средств может быть направлено Исполнителю по адресу для направления претензий, по электронной почте либо передано непосредственно в клубе.</p><p>8.5. Возврат осуществляется в порядке и сроки, предусмотренные законодательством Российской Федерации.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-9">
+        <h2>9. Изменение и прекращение Акции</h2>
+        <p>9.1. Организатор вправе вносить изменения в настоящие Правила при условии, что такие изменения не ухудшают положение клиентов, уже оплативших клубную карту, и не ограничивают права потребителей, установленные законодательством Российской Федерации.</p><p>9.2. Изменение или досрочное прекращение Акции не изменяет стоимость, срок действия и иные согласованные условия клубных карт, полностью оплаченных до даты вступления соответствующих изменений в силу.</p><p>9.3. Информация об изменении Правил или прекращении Акции размещается на официальном сайте и (или) в местах продажи клубных карт.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-10">
+        <h2>10. Информация об Организаторе</h2>
+        <p>Индивидуальный предприниматель Ягьяев Асан Эскендерович</p><p>ОГРНИП: 315910200079901</p><p>ИНН: 910215989201</p><p>Адрес и адрес для направления претензий: 295014, Республика Крым, г. Симферополь, ул. Проводников, д. 78</p><p>Электронная почта: <a href="mailto:info@liniyasporta.ru">info@liniyasporta.ru</a></p><p>Сайт: <a href="https://liniyasporta.ru">https://liniyasporta.ru</a></p><p>Телефоны клубов: +7 978 022-50-50; +7 978 236-36-36; +7 978 804-07-77.</p>
+      </section>
+    
+
+      <section class="legal-section" id="section-11">
+        <h2>11. Заключительные положения</h2>
+        <p>11.1. Настоящие Правила вступают в силу 1 сентября 2026 года и действуют до полного исполнения обязательств по клубным картам, приобретённым в период проведения Акции.</p><p>11.2. Во всём, что не урегулировано настоящими Правилами, Организатор и участники руководствуются заключённым договором, публичной офертой, Правилами клуба и законодательством Российской Федерации.</p>
+      </section>
+    
+    </div>
+  </article>
+
+  <div class="footer-note">
+    <span>Официальные документы сети спортивных клубов «Линия спорта»</span>
+    <span>© 2026 «Линия спорта»</span>
+  </div>
+</main>
+</body>
+</html>
