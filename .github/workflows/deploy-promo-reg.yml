@@ -56,7 +56,7 @@ jobs:
             -o ConnectTimeout=20 \
             -P 22 \
             -b /tmp/deploy.sftp \
-            u3626198@server193.hosting.reg.ru
+            u3652448_promo@server193.hosting.reg.ru
 
       - name: Verify live site
         shell: bash
