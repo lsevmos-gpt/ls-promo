@@ -1,0 +1,77 @@
+name: Bootstrap current promo site
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/trigger-bootstrap-promo.txt'
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download current live promo site
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rm -rf promo-site
+          mkdir -p promo-site/graphite-start/rules promo-site/assets
+
+          cat > promo-site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="ru">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Линия спорта — акции</title>
+            <meta http-equiv="refresh" content="0; url=/graphite-start/">
+            <link rel="canonical" href="https://promo.liniyasporta.ru/graphite-start/">
+            <script>window.location.replace('/graphite-start/');</script>
+          </head>
+          <body>
+            <p>Переход на <a href="/graphite-start/">«Графитовый старт»</a>…</p>
+          </body>
+          </html>
+          HTML
+
+          curl -fsSL "https://promo.liniyasporta.ru/graphite-start/?bootstrap=${GITHUB_SHA}"             -o promo-site/graphite-start/index.html
+
+          curl -fsSL "https://promo.liniyasporta.ru/graphite-start/rules/?bootstrap=${GITHUB_SHA}"             -o promo-site/graphite-start/rules/index.html
+
+          for FILE in             android-chrome-192x192.png             android-chrome-512x512.png             apple-touch-icon.png             favicon-16x16.png             favicon-32x32.png             favicon.ico             graphite-start-hero.png             logo-liniya-sporta-clean.png             site.webmanifest
+          do
+            curl -fsSL "https://promo.liniyasporta.ru/assets/$FILE?bootstrap=${GITHUB_SHA}"               -o "promo-site/assets/$FILE"
+          done
+
+          test -s promo-site/graphite-start/index.html
+          test -s promo-site/graphite-start/rules/index.html
+          grep -Fqi 'Графитовый старт' promo-site/graphite-start/index.html
+
+          echo "Downloaded promo-site:"
+          find promo-site -type f -maxdepth 4 | sort
+
+      - name: Commit imported site
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add promo-site
+          if git diff --cached --quiet; then
+            echo "No promo-site changes to commit."
+          else
+            git commit -m "Bootstrap current promo.liniyasporta.ru"
+            git push
+          fi
