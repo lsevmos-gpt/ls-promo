@@ -10,10 +10,10 @@ Private source repository for **promo.liniyasporta.ru**.
 
 ## REG.RU target
 
-- Host: `server193.hosting.reg.ru`
+- Host: `server169.hosting.reg.ru`
 - SFTP port: `22`
 - User: `u3652448_promo`
-- Remote directory: `www/promo.liniyasporta.ru/`
+- Remote directory: `/` (dedicated promo SFTP user)
 - GitHub Actions secret required for deployment: `PROMO_REG_PASSWORD`
 
 Automatic deployment on push will be enabled after SFTP credentials are verified on this repository.
