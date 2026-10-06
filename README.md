@@ -12,7 +12,7 @@ Private source repository for **promo.liniyasporta.ru**.
 
 - Host: `server193.hosting.reg.ru`
 - SFTP port: `22`
-- User: `u3626198`
+- User: `u3652448_promo`
 - Remote directory: `www/promo.liniyasporta.ru/`
 - GitHub Actions secret required for deployment: `PROMO_REG_PASSWORD`
 
