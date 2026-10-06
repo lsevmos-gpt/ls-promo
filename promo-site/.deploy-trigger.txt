@@ -1,1 +1,1 @@
-Trigger REG.RU deployment after PROMO_REG_PASSWORD setup.
+Trigger REG.RU deployment with SFTP user u3652448_promo.
