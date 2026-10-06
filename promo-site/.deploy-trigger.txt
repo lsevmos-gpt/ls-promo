@@ -1,1 +1,1 @@
-Trigger REG.RU deployment with SFTP user u3652448_promo.
+Trigger REG.RU deployment with dedicated promo account on server169.
