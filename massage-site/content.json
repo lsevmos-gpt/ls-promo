@@ -218,7 +218,7 @@
       ]
     }
   ],
-  "version": "7.0-unified-modern-club-style-draft",
+  "version": "8.0-photo-layout",
   "publication_status": "DRAFT — requires user design approval; Anna price list not assigned/confirmed; Grigory & Svetlana portrait materials still derived from supplied advertising designs; subdomain DNS/SSL/FTPS not deployed.",
   "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов.",
   "photo_sources": {
@@ -232,5 +232,14 @@
     "lsevmos-gpt/ls-docs: site/index.html, site/assets/site-v20.css",
     "lsevmos-gpt/ls-new-heroes: site/index.html, site/assets/css/v5/v5-01-exact.css"
   ],
-  "design_note": "Light-background adaptation of new promo/docs visual language. Do NOT use liniyasporta.ru as design reference (old design)."
+  "design_note": "Light-background adaptation of new promo/docs visual language. Do NOT use liniyasporta.ru as design reference (old design).",
+  "photo_assets": {
+    "anna_card": "anna-original-square.png",
+    "anna_profile": "anna-original-portrait.png",
+    "grigory_card": "grigory-card.png",
+    "grigory_profile": "grigory-profile.png",
+    "svetlana_card": "svetlana-card.png",
+    "svetlana_profile": "svetlana-profile.png"
+  },
+  "photo_note": "Specialist card/profile derivatives are literal crops of the supplied photos and poster, without generative alterations. Original poster/photo files are preserved."
 }

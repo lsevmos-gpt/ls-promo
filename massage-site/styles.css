@@ -81,3 +81,15 @@ h1,h2,h3,p{margin-top:0}.overline{display:flex;gap:12px;align-items:center;font-
 
 /* Keep currency spacing readable at desktop sizes as well. */
 .cost b{letter-spacing:-.025em;word-spacing:.08em}
+
+/* v8 — genuine, source-derived square portraits (no bars, no head clipping). */
+.expert-image {height:auto;aspect-ratio:1/1;background:#e8eee7;}
+.expert-image img {width:100%;height:100%;object-fit:cover;object-position:center center;}
+/* Labels must not sit on the face or scalp. */
+.expert-index {top:auto;left:auto;bottom:15px;right:16px;}
+.card-day {bottom:14px;left:16px;}
+/* Taller source-based profile crops use a matching frame ratio, not letterboxing. */
+.profile-image>img{object-fit:cover;object-position:center top;}
+.other-card>img {object-fit:cover;object-position:center center;}
+@media(max-width:960px){.expert-image{height:auto;aspect-ratio:1/1;}}
+@media(max-width:680px){.expert-image{height:auto;aspect-ratio:1/1;}}
