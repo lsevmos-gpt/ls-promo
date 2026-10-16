@@ -178,7 +178,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .site-footer{margin-top:94px;background:var(--ink-deep);color:white}
 .footer-inner{padding:54px 0 28px}
 .footer-main{display:flex;align-items:start;justify-content:space-between;gap:32px;border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:47px}
-.footer-logo{width:210px;height:75px;display:flex;align-items:center;overflow:hidden}.footer-logo img{width:210px;max-width:none}
+/* Original logo has intrinsic 2:1 canvas with transparent top/bottom.
+   The img height MUST be auto; 1000px HTML height hint was the distortion bug. */
+.footer-logo{width:246px;height:82px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.footer-logo img{display:block;width:246px;height:auto;max-width:none;flex:none;object-fit:contain}
 .footer-motto{color:#b2c1b7;font-size:11px;line-height:1.8;max-width:250px}
 .footer-links{display:flex;flex-wrap:wrap;gap:15px 25px;max-width:430px;justify-content:flex-end}
 .footer-links a{color:#c5d1c8;font-size:11px;transition:color .2s}
@@ -197,8 +200,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .profile-tags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px}
 .profile-tags span{padding:9px 12px;border:1px solid #c9d8cd;background:#eaf2e9;color:#28523a;font-size:11px;font-weight:800}
 .profile-tags .sun{background:#e3eee3;border-color:#b9d5bd;color:#286e3b}
-.profile-photo{height:580px;border-radius:9px;border:1px solid #cad4cb;overflow:hidden;position:relative;background:#d1cdc5}
-.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 3%}
+/* Show the entire unmodified portrait, centered by alignment rather
+   than cutting the scalp and face with object-fit:cover. */
+.profile-photo{width:min(100%,465px);margin-left:auto;height:580px;border-radius:9px;border:1px solid #cad4cb;overflow:hidden;position:relative;background:#e4dfd6}
+.profile-photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:right center}
+.profile-photo--svetlana{background:#312f2b}
+.profile-photo--svetlana img{object-fit:cover;object-position:center top}
+.profile-photo--grigory{background:#3b3630}
 .profile-photo .index{position:absolute;left:18px;top:18px;background:var(--ink-deep);color:var(--green-bright);padding:11px 13px;font:900 13px var(--display)}
 .profile-page-services{background:white}
 .profile-list{border-top:1px solid var(--border);margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;column-gap:33px}
@@ -270,7 +278,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
   .approach-layout,.contact-layout{grid-template-columns:1fr;gap:25px}.approach-left h2{font-size:55px}.approach-list{margin-top:6px}
   .contact{padding-top:80px}.contact-item{grid-template-columns:1fr 20px;row-gap:5px;padding:20px 0}.contact-item h3{font-size:26px}.contact-item>a{grid-row:2;grid-column:1}.contact-item>svg{grid-row:1/3;grid-column:2}.contact-bottom{font-size:11px}
   .site-footer{margin-top:65px}.footer-inner{padding-top:35px}.footer-main{display:block;padding-bottom:27px}
-  .footer-logo{width:190px;height:64px}.footer-logo img{width:190px}.footer-motto{margin:12px 0 23px}
+  .footer-logo{width:200px;height:74px}.footer-logo img{width:200px;height:auto}.footer-motto{margin:12px 0 23px}
   .footer-links{justify-content:flex-start;gap:14px 20px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-bottom:8px}
   .breadcrumb{font-size:10px;padding:16px 0}
   .profile-hero{padding:15px 0 63px}.profile-intro{grid-template-columns:1fr;gap:28px}.profile-intro h1{font-size:clamp(74px,15vw,110px);margin:20px 0}.profile-intro h1.big-name{font-size:clamp(54px,12vw,88px)}
