@@ -218,7 +218,7 @@
       ]
     }
   ],
-  "version": "8.0-photo-layout",
+  "version": "9.0-grigory-centered",
   "publication_status": "DRAFT — requires user design approval; Anna price list not assigned/confirmed; Grigory & Svetlana portrait materials still derived from supplied advertising designs; subdomain DNS/SSL/FTPS not deployed.",
   "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов.",
   "photo_sources": {
@@ -236,10 +236,10 @@
   "photo_assets": {
     "anna_card": "anna-original-square.png",
     "anna_profile": "anna-original-portrait.png",
-    "grigory_card": "grigory-card.png",
-    "grigory_profile": "grigory-profile.png",
+    "grigory_card": "grigory-card-centered-v9.png",
+    "grigory_profile": "grigory-profile-centered-v9.png",
     "svetlana_card": "svetlana-card.png",
     "svetlana_profile": "svetlana-profile.png"
   },
-  "photo_note": "Specialist card/profile derivatives are literal crops of the supplied photos and poster, without generative alterations. Original poster/photo files are preserved."
+  "photo_note": "Grigory visually centered from supplied full poster, with only left-background advertising text removed; subject pixels unchanged. Source poster and former crops preserved."
 }
