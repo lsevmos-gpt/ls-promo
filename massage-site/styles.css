@@ -301,80 +301,79 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 /* Keep the accessible skip link off-canvas until keyboard focus. */
 .skip{position:absolute;top:0;left:-10000px}.skip:focus{position:fixed;top:20px;left:20px}
 
-/* v5: portrait-safe editorial composition. Photos are never zoom-cropped. */
-.hero-main { display:flex; flex-direction:column; align-items:stretch; gap:38px; }
-.hero-copy { width:100%; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.75fr); grid-template-areas:'label lead' 'title actions' 'meta meta'; column-gap:clamp(30px,6vw,120px); row-gap:18px; align-items:start; padding:2px 0 0; }
-.hero-copy>.small-label { grid-area:label; align-self:end; }
-.hero-copy h1 { grid-area:title; font-size:clamp(74px,8vw,124px); margin:8px 0 0; }
-.hero-copy p.lead { grid-area:lead; align-self:end; max-width:490px; margin:0; }
-.hero-actions { grid-area:actions; align-self:start; margin-top:0; }
-.hero-submeta { grid-area:meta; margin-top:5px; }
-.hero-art { width:100%; max-width:none; }
-.portrait-layout { display:grid; height:auto; grid-template-columns:minmax(0,1.14fr) minmax(0,1fr) minmax(0,1fr); gap:17px; align-items:end; }
-.portrait-stack { display:contents; }
-.portrait { display:block; width:100%; height:auto; aspect-ratio: .62; position:relative; background:#e7e9e3; }
-.portrait-main { aspect-ratio:.62; }
-.portrait img, .portrait-main img, .portrait-stack .portrait img { width:100%;height:100%;object-fit:contain;object-position:center center; }
-.portrait:hover img { transform:none; }
-.portrait::after { inset:60% 0 0; background:linear-gradient(transparent,rgba(3,18,13,.9)); }
-.portrait-label { inset:auto 20px 21px; }
-.portrait-stack .portrait-label { inset:auto 18px 20px; }
-.portrait-stack .portrait-label strong { font-size:clamp(25px,2.5vw,34px); }
-/* Portrait grid in the team section is also kept proportional, with safe headroom. */
-.card-photo {height:auto;aspect-ratio:.64; background:#ebe9e0;}
-.card-photo img {object-fit:contain;object-position:center center;}
-.card-photo:hover img {transform:none;}
-.more-card img {object-fit:contain;object-position:center center;background:#eaece6;}
 
-@media(max-width:920px){
- .hero-main { gap:22px; }
- .hero-copy { column-gap:30px; }
- .hero-copy h1 { font-size:clamp(60px,9vw,100px); }
- .portrait-layout { height:auto;gap:11px; }
- .card-photo { height:auto; }
+/* v6 / portraits — source originals without reconstruction, stretching, or masking. */
+.hero-main {display:flex;flex-direction:column;align-items:stretch;gap:34px}
+.hero-copy {width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.76fr);grid-template-areas:'label lead' 'title actions' 'meta meta';column-gap:clamp(30px,6vw,100px);row-gap:18px;align-items:start;padding:2px 0 0}
+.hero-copy>.small-label {grid-area:label;align-self:end}
+.hero-copy h1 {grid-area:title;font-size:clamp(72px,8vw,120px);margin:8px 0 0}
+.hero-copy p.lead {grid-area:lead;align-self:end;max-width:470px;margin:0}
+.hero-actions {grid-area:actions;align-self:start;margin-top:0}
+.hero-submeta {grid-area:meta;margin:6px 0 0}
+.hero-art {width:100%;max-width:none}
+.portrait-layout {display:grid;height:auto;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.portrait-stack {display:contents}
+.portrait,.portrait-main {width:100%;height:auto;aspect-ratio: .61;display:block;position:relative;background:#18241f;overflow:hidden}
+.portrait-main {border:2px solid var(--green);box-shadow:0 19px 40px rgba(11,46,23,.10)}
+.portrait img, .portrait-main img, .portrait-stack .portrait img {
+ display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+ object-position:center center;margin:0;max-width:100%;transform:none
 }
-@media(max-width:680px){
- .hero-main{gap:24px}
- .hero-copy {display:flex;flex-direction:column;align-items:stretch;gap:0;}
- .hero-copy h1 {font-size:clamp(59px,13vw,89px);margin:22px 0 18px;}
- .hero-copy p.lead {max-width:600px;align-self:stretch;margin:0 0 22px;}
- .hero-actions { margin-top:0; }
- .hero-submeta { margin-top:24px; }
- .portrait-layout {height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;align-items:stretch;}
- .portrait-main { grid-column:1 / -1;aspect-ratio:.62; }
- .portrait { aspect-ratio:.62; }
- .portrait-main .portrait-label strong {font-size:29px;}
- .portrait-stack .portrait-label {inset:auto 8px 10px;}
- .portrait-stack .portrait-label strong { font-size:clamp(16px,4.3vw,24px); }
- .portrait-stack .portrait-label small { font-size:9px; }
- .portrait-label svg { width:15px;height:15px; }
- .card-photo { height:auto; aspect-ratio:.65; }
+.portrait:hover img,.portrait-main:hover img,.portrait-stack .portrait:hover img{transform:none}
+.portrait::before,.portrait-main::before {content:none}
+.portrait::after {inset:68% 0 0;background:linear-gradient(transparent,rgba(3,18,13,.84))}
+.portrait-label {inset:auto 16px 16px}
+.portrait-stack .portrait-label {inset:auto 13px 16px}
+.portrait-stack .portrait-label strong {font-size:clamp(23px,2.3vw,33px)}
+.portrait-corner {left:14px;top:14px;z-index:3}
+/* Team cards preserve the height / width of the supplied vertical photograph */
+.card-photo {height:auto;aspect-ratio:.64;background:#24342e}
+.card-photo img {display:block;width:100%;height:100%;object-fit:contain;object-position:center center;margin:0;transform:none}
+.card-photo:hover img {transform:none}
+/* The person photo in each profile is shown whole; square Anna photo used on mobile. */
+.profile-photo {display:flex;align-items:center;justify-content:center}
+.profile-photo>img,.profile-photo picture {display:block;width:100%;height:100%}
+.profile-photo picture img {display:block;width:100%;height:100%;object-fit:contain;object-position:center center}
+.profile-photo--anna {background:#14231e}
+.profile-photo--anna img {object-fit:contain;object-position:center center}
+.more-card img {object-fit:contain;object-position:center center;background:#15211a}
+@media(max-width:920px) {
+ .hero-main {gap:28px}
+ .hero-copy {column-gap:30px}
+ .hero-copy h1 {font-size:clamp(64px,9vw,96px)}
+ .portrait-layout {height:auto;gap:10px}
+ .card-photo {height:auto}
 }
-@media(max-width:390px){
- .hero-copy h1{font-size:clamp(51px,12vw,61px)}
- .portrait-layout{height:auto;}
- .card-photo{height:auto;}
+@media(max-width:680px) {
+ .hero-main {gap:20px}
+ .hero-copy {display:flex;flex-direction:column;align-items:stretch;gap:0}
+ .hero-copy h1 {font-size:clamp(59px,13vw,90px);margin:20px 0 17px}
+ .hero-copy p.lead {max-width:none;align-self:stretch;margin:0 0 22px}
+ .hero-actions {margin:0}
+ .hero-submeta {margin-top:24px}
+ .portrait-layout {height:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .portrait-main {grid-column:1/-1;aspect-ratio:.60}
+ .portrait {aspect-ratio:.61}
+ .portrait-main .portrait-label strong {font-size:30px}
+ .portrait-stack .portrait-label {inset:auto 8px 9px}
+ .portrait-stack .portrait-label strong {font-size:clamp(16px,4.2vw,24px)}
+ .portrait-stack .portrait-label small {font-size:9px}
+ .portrait-label svg {width:15px;height:15px}
+ .card-photo {height:auto;aspect-ratio:.64}
+ .profile-photo picture,.profile-photo picture img {width:100%;height:100%;object-fit:contain}
 }
-/* v5 portrait framing: Anna’s source portrait is naturally left-weighted.
-   Keep original photo intact, place it inside a deliberate forest-green editorial rail.
-   This centers her face in the overall card without zoom/crop or invented pixels. */
-.portrait-main { background:var(--ink); }
-.portrait-main img { width:85%;margin-left:15%;height:100%;object-fit:contain;object-position:center center; }
-.portrait-main::before { content:'ЛИНИЯ СПОРТА';position:absolute;z-index:1;left:4.1%;top:46%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;letter-spacing:.22em;font-weight:800;font-size:10px;color:#c5e6cd;opacity:.95; }
-.portrait-corner { left:calc(15% + 10px); }
-@media(max-width:680px){
- .portrait-main::before {font-size:9px;letter-spacing:.14em;}
+@media(max-width:390px) {
+ .hero-copy h1 {font-size:clamp(50px,12vw,60px)}
+ .card-photo {height:auto}
 }
-.portrait-main img {width:100%;margin-left:27%;}
-.portrait-corner {left:calc(27% + 10px)}
-/* Final facial centering for source photographs with asymmetrical framing. */
-.portrait-main img {margin-left:22%;}
-.portrait-corner {left:calc(22% + 10px);}
-.portrait-stack > .portrait:first-child {background:#3b3832;}
-.portrait-stack > .portrait:first-child img {margin-left:12%;}
-/* Consistent safe headroom and facial centering in the lower staff cards too. */
-.card-photo img {height:calc(100% - 14px);margin-top:14px;}
-.team-card--anna .card-photo {background:var(--ink);}
-.team-card--anna .card-photo img {width:100%;margin-left:22%;}
-.team-card:not(.team-card--anna):nth-child(2) .card-photo {background:#3b3832;}
-.team-card:not(.team-card--anna):nth-child(2) .card-photo img {margin-left:12%;}
+
+/* Grigory — source was a vertical finished poster. Clean no-text image region is
+   crop-only (no face retouching). Restore breathing room around scalp via contain. */
+.portrait-stack .portrait:has(img[src*="grigory-from-poster"]) {background:#322f2c}
+.portrait img[src*="grigory-from-poster"],
+.card-photo img[src*="grigory-from-poster"],
+.more-card img[src*="grigory-from-poster"],
+.profile-photo img[src*="grigory-from-poster"] {object-fit:contain!important;object-position:center center!important;transform:none!important}
+
+/* Work for both deployed URLs and offline data-URI previews. */
+.profile-photo--grigory img {object-position:center center!important;object-fit:contain!important;}

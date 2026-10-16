@@ -218,7 +218,29 @@
       ]
     }
   ],
-  "version": "5.0-portrait-safe-design-review",
-  "publication_status": "DRAFT — исправлена компоновка всех портретов; цены Анны не подтверждены, фотографии для сайта получены из готовых плакатов; не публиковать без согласования",
-  "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов."
+  "version": "6.1-Anna-unretouched-photos-Grigory-postercrop",
+  "publication_status": "DRAFT — использованы новые предоставленные Анной фото; для Григория и Светланы отдельные фотооригиналы пока не доступны, прайс Анны не подтверждён",
+  "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов.",
+  "photo_sources": {
+    "anna": {
+      "vertical": "assets/anna-original-portrait.png",
+      "square": "assets/anna-original-square.png",
+      "images_from_user": true,
+      "edited": false
+    },
+    "grigory": {
+      "site_photo": "assets/grigory-from-poster.png",
+      "source_filename": "Григорий Премиальный массажный кабинет — Линия  спорта(1).png",
+      "source_type": "user-provided full advertising poster, not unedited camera original",
+      "crop_box": [
+        440,
+        370,
+        937,
+        1375
+      ],
+      "pixel_edits": false,
+      "source_resaved_in": "Google Drive/Линия спорта/Массажисты/Григорий/02_Готовые сторис и референсы"
+    },
+    "svetlana": "assets/svetlana-portrait.webp — фрагмент готового плаката, ожидается оригинал"
+  }
 }
