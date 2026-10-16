@@ -218,29 +218,19 @@
       ]
     }
   ],
-  "version": "6.1-Anna-unretouched-photos-Grigory-postercrop",
-  "publication_status": "DRAFT — использованы новые предоставленные Анной фото; для Григория и Светланы отдельные фотооригиналы пока не доступны, прайс Анны не подтверждён",
+  "version": "7.0-unified-modern-club-style-draft",
+  "publication_status": "DRAFT — requires user design approval; Anna price list not assigned/confirmed; Grigory & Svetlana portrait materials still derived from supplied advertising designs; subdomain DNS/SSL/FTPS not deployed.",
   "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов.",
   "photo_sources": {
-    "anna": {
-      "vertical": "assets/anna-original-portrait.png",
-      "square": "assets/anna-original-square.png",
-      "images_from_user": true,
-      "edited": false
-    },
-    "grigory": {
-      "site_photo": "assets/grigory-from-poster.png",
-      "source_filename": "Григорий Премиальный массажный кабинет — Линия  спорта(1).png",
-      "source_type": "user-provided full advertising poster, not unedited camera original",
-      "crop_box": [
-        440,
-        370,
-        937,
-        1375
-      ],
-      "pixel_edits": false,
-      "source_resaved_in": "Google Drive/Линия спорта/Массажисты/Григорий/02_Готовые сторис и референсы"
-    },
-    "svetlana": "assets/svetlana-portrait.webp — фрагмент готового плаката, ожидается оригинал"
-  }
+    "anna_square": "User-provided Уверенный портрет фитнес-тренера в студии(1).png — unaltered original in assets/anna-original-square.png, no cropping",
+    "anna_vertical": "User-provided Спортивный портрет в wellness-студии(1).png — unaltered original in assets/anna-original-portrait.png, no cropping",
+    "grigory": "User-provided Григорий Премиальный массажный кабинет — Линия  спорта(1).png; photograph cropped to avoid advertising text in assets/grigory-from-poster.png, no face alterations",
+    "svetlana": "Derived from provided promotional design; replace with original if provided, existing assets/svetlana-portrait.webp"
+  },
+  "design_sources": [
+    "lsevmos-gpt/ls-promo: promo-site/graphite-start/index.html",
+    "lsevmos-gpt/ls-docs: site/index.html, site/assets/site-v20.css",
+    "lsevmos-gpt/ls-new-heroes: site/index.html, site/assets/css/v5/v5-01-exact.css"
+  ],
+  "design_note": "Light-background adaptation of new promo/docs visual language. Do NOT use liniyasporta.ru as design reference (old design)."
 }
