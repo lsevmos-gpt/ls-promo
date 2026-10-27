@@ -29,11 +29,11 @@ jobs:
     timeout-minutes: 25
 
     env:
-      FTP_HOST: ${{ vars.NEW_SITE_FTP_HOST || 'server169.hosting.reg.ru' }}
-      FTP_USER: u3652448_new
-      FTP_DIR: ${{ vars.NEW_SITE_FTP_DIR || '/www/new.liniyasporta.ru' }}
+      REG_HOST: server169.hosting.reg.ru
+      REG_USER: u3652448_new
+      REG_PATH: /
       PUBLIC_DOMAIN: new.liniyasporta.ru
-      LFTP_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
+      REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       MODE: ${{ inputs.mode }}
       CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
 
@@ -49,17 +49,17 @@ jobs:
             echo '::error::This workflow is scoped to the designated website repository.'
             exit 1
           fi
-          for name in FTP_HOST FTP_USER FTP_DIR PUBLIC_DOMAIN LFTP_PASSWORD; do
+          for name in REG_HOST REG_USER REG_PATH PUBLIC_DOMAIN REG_PASSWORD; do
             if [[ -z "${!name}" ]]; then
               echo "::error::Missing repository variable/secret for ${name}."
               exit 1
             fi
           done
-          if [[ ! "$FTP_HOST" =~ ^[A-Za-z0-9.-]+$ || ! "$FTP_USER" =~ ^[A-Za-z0-9._-]+$ || ! "$FTP_DIR" =~ ^/[A-Za-z0-9._/-]*$ || "$FTP_DIR" == *'..'* || ! "$PUBLIC_DOMAIN" =~ ^[A-Za-z0-9.-]+$ ]]; then
+          if [[ ! "$REG_HOST" =~ ^[A-Za-z0-9.-]+$ || ! "$REG_USER" =~ ^[A-Za-z0-9._-]+$ || "$REG_PATH" != "/" || ! "$PUBLIC_DOMAIN" =~ ^[A-Za-z0-9.-]+$ ]]; then
             echo '::error::Invalid connection setting; refusing to pass untrusted values to FTP commands.'
             exit 1
           fi
-          if [[ "$LFTP_PASSWORD" == *$'\n'* || "$LFTP_PASSWORD" == *$'\r'* ]]; then
+          if [[ "$REG_PASSWORD" == *$'\n'* || "$REG_PASSWORD" == *$'\r'* ]]; then
             echo '::error::FTP secret contains newline or carriage-return characters. Use a single-line FTP password.'
             exit 1
           fi
@@ -86,15 +86,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          lftp --user "$FTP_USER" --env-password "ftp://$FTP_HOST:21" -e "
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:passive-mode true;
-            set ssl:verify-certificate true;
+            set ssl:verify-certificate no;
             set net:max-retries 2;
             set net:timeout 20;
-            cd \"$FTP_DIR\";
+            cd /;
             pwd;
             cls -1;
             bye
@@ -106,15 +106,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          lftp --user "$FTP_USER" --env-password "ftp://$FTP_HOST:21" -e "
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:passive-mode true;
-            set ssl:verify-certificate true;
+            set ssl:verify-certificate no;
             set net:max-retries 2;
             set net:timeout 20;
-            cd \"$FTP_DIR\";
+            cd /;
             get .new-site-root.txt -o /tmp/new-site-root.txt;
             bye
           "
@@ -129,15 +129,15 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _new_site_remote_backup
-          lftp --user "$FTP_USER" --env-password "ftp://$FTP_HOST:21" -e "
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:passive-mode true;
-            set ssl:verify-certificate true;
+            set ssl:verify-certificate no;
             set net:max-retries 2;
             set net:timeout 20;
-            cd \"$FTP_DIR\";
+            cd /;
             mirror --no-perms --verbose --exclude-glob '.*' --exclude-glob '*.php' --exclude-glob '*.sql' --exclude-glob '*.env' --exclude-glob '*.ini' --exclude-glob '*.log' --exclude-glob '*.pem' --exclude-glob '*.key' --exclude-glob '*config*' --exclude-glob '*.zip' --exclude-glob '*.tar' ./ _new_site_remote_backup/;
             bye
           "
@@ -157,15 +157,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          lftp --user "$FTP_USER" --env-password "ftp://$FTP_HOST:21" -e "
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:passive-mode true;
-            set ssl:verify-certificate true;
+            set ssl:verify-certificate no;
             set net:max-retries 2;
             set net:timeout 20;
-            cd \"$FTP_DIR\";
+            cd /;
             mirror -R --verbose --no-perms --exclude-glob '*.md' new-site/ ./;
             bye
           "
