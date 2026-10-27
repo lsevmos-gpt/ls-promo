@@ -15,12 +15,6 @@ on:
         description: 'For deploy, type new.liniyasporta.ru exactly'
         required: false
         type: string
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/deploy-new-site.yml'
-
 permissions:
   contents: read
 
@@ -39,7 +33,7 @@ jobs:
       REG_PATH: /
       PUBLIC_DOMAIN: new.liniyasporta.ru
       REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
-      MODE: ${{ github.event_name == 'push' && 'check' || inputs.mode }}
+      MODE: ${{ inputs.mode }}
       CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
 
     steps:
@@ -86,34 +80,6 @@ jobs:
       - name: Install FTPS client
         shell: bash
         run: sudo apt-get update -qq && sudo apt-get install -qq -y lftp
-
-      - name: Control FTPS login with existing promo account (read-only)
-        if: env.MODE == 'check'
-        env:
-          PROMO_REG_PASSWORD: ${{ secrets.PROMO_REG_PASSWORD }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ -z "$PROMO_REG_PASSWORD" ]]; then
-            echo '::notice::Promo secret not found; reference-account test skipped.'
-            exit 0
-          fi
-          if lftp -u "u3652448_promo","$PROMO_REG_PASSWORD" "ftp://server169.hosting.reg.ru:21" -e "
-            set cmd:fail-exit true;
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ftp:passive-mode true;
-            set ssl:verify-certificate no;
-            set net:max-retries 2;
-            set net:timeout 20;
-            cd /;
-            pwd;
-            bye
-          "; then
-            echo 'CONTROL RESULT: Existing promo FTP credentials are accepted on server169.'
-          else
-            echo '::warning::CONTROL RESULT: Promo FTP authentication also failed; check whether REG.RU FTP service or network access changed.'
-          fi
 
       - name: Verify FTPS login and inspect remote folder (read-only)
         shell: bash
