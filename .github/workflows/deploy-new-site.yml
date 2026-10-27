@@ -31,7 +31,7 @@ jobs:
     env:
       FTP_HOST: ${{ vars.NEW_SITE_FTP_HOST || 'server169.hosting.reg.ru' }}
       FTP_USER: u3652448_new
-      FTP_DIR: /www/new.liniyasporta.ru
+      FTP_DIR: ${{ vars.NEW_SITE_FTP_DIR || '/www/new.liniyasporta.ru' }}
       PUBLIC_DOMAIN: new.liniyasporta.ru
       FTP_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       MODE: ${{ inputs.mode }}
