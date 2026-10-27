@@ -12,7 +12,7 @@ on:
           - deploy
         default: check
       confirm_domain:
-        description: 'For deploy, enter exactly the target domain from NEW_SITE_DOMAIN'
+        description: 'For deploy, type new.liniyasporta.ru exactly'
         required: false
         type: string
 
@@ -29,10 +29,10 @@ jobs:
     timeout-minutes: 25
 
     env:
-      FTP_HOST: ${{ vars.NEW_SITE_FTP_HOST }}
-      FTP_USER: ${{ vars.NEW_SITE_FTP_USER }}
-      FTP_DIR: ${{ vars.NEW_SITE_FTP_DIR }}
-      PUBLIC_DOMAIN: ${{ vars.NEW_SITE_DOMAIN }}
+      FTP_HOST: ${{ vars.NEW_SITE_FTP_HOST || 'server169.hosting.reg.ru' }}
+      FTP_USER: u3652448_new
+      FTP_DIR: /www/new.liniyasporta.ru
+      PUBLIC_DOMAIN: new.liniyasporta.ru
       FTP_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       MODE: ${{ inputs.mode }}
       CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
@@ -63,7 +63,7 @@ jobs:
             check) echo 'Read-only connection check selected.' ;;
             deploy)
               if [[ "$CONFIRM_DOMAIN" != "$PUBLIC_DOMAIN" ]]; then
-                echo '::error::confirm_domain must exactly match NEW_SITE_DOMAIN.'
+                echo '::error::confirm_domain must be new.liniyasporta.ru.'
                 exit 1
               fi
               if [[ ! -s new-site/index.html ]]; then
