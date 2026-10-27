@@ -15,6 +15,11 @@ on:
         description: 'For deploy, type new.liniyasporta.ru exactly'
         required: false
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/deploy-new-site.yml'
 
 permissions:
   contents: read
@@ -34,7 +39,7 @@ jobs:
       REG_PATH: /
       PUBLIC_DOMAIN: new.liniyasporta.ru
       REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
-      MODE: ${{ inputs.mode }}
+      MODE: ${{ github.event_name == 'push' && 'check' || inputs.mode }}
       CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
 
     steps:
