@@ -4,7 +4,7 @@
   --club-app-ink:#0A1E1E;
   --club-app-graphite:#333F3F;
   --club-app-green:#128539;
-  --club-app-screen-width:280px;
+  --club-app-device-width:430px;
   padding-block:72px;
   scroll-margin-top:100px;
   background:var(--club-app-paper);
@@ -26,10 +26,7 @@
 .club-app .club-app-features li{display:flex;align-items:center;gap:15px;min-height:44px;padding-block:7px;color:var(--club-app-ink);font-size:17px;font-weight:600;line-height:1.4}
 .club-app .club-app-feature-icon{display:block;flex:0 0 23px;width:23px;height:23px;fill:none;stroke:var(--club-app-graphite);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .club-app .club-app-visual{display:flex;flex-direction:column;align-items:center;justify-self:center;width:100%;margin:0}
-.club-app .club-app-frame{flex:none;width:calc(var(--club-app-screen-width) + 16px);padding:8px;border-radius:13px;background:var(--club-app-graphite);box-shadow:0 14px 34px rgba(10,30,30,.13)}
-.club-app .club-app-screen{position:relative;overflow:hidden;width:var(--club-app-screen-width);aspect-ratio:262/448;border-radius:5px;background:#fff}
-.club-app .club-app-screen-image{position:absolute;display:block;left:-35.8778626%;top:-22.0982143%;width:200.7633588%;max-width:none;height:auto;margin:0;transform:none}
-.club-app .club-app-caption{margin:15px 0 0;color:var(--club-app-graphite);font-size:13px;font-weight:400;line-height:1.4;text-align:center}
+.club-app .club-app-device{display:block;width:var(--club-app-device-width);max-width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 20px 24px rgba(10,30,30,.16))}
 .club-app .club-app-downloads{display:grid;grid-template-columns:minmax(245px,.85fr) minmax(0,2fr);align-items:center;gap:40px;margin-top:39px;padding-top:29px;border-top:1px solid rgba(10,30,30,.22)}
 .club-app .club-app-download-title{margin:0;color:var(--club-app-ink);font-family:'Roboto Condensed',Arial,sans-serif;font-size:28px;font-weight:700;line-height:1.15;letter-spacing:0}
 .club-app .club-app-download-hint{margin:7px 0 0;color:var(--club-app-graphite);font-size:14px;font-weight:400;line-height:1.5}
@@ -41,9 +38,9 @@
 .club-app .club-app-store-kicker{font-size:11px;font-weight:400;line-height:1.2;letter-spacing:.015em}
 .club-app .club-app-store-name{font-size:17px;font-weight:600;line-height:1.2;white-space:nowrap}
 .club-app .club-app-store-icon{display:block;flex:0 0 21px;width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-@media(min-width:1600px){.club-app{--club-app-screen-width:292px}}
+@media(min-width:1600px){.club-app{--club-app-device-width:460px}}
 @media(max-width:1100px){
-  .club-app{--club-app-screen-width:262px;padding-block:64px}
+  .club-app{--club-app-device-width:330px;padding-block:64px}
   .club-app .club-app-layout{grid-template-columns:minmax(0,1fr) 310px;gap:32px}
   .club-app .club-app-title{font-size:clamp(44px,5.4vw,60px)}
   .club-app .club-app-intro{font-size:18px}
@@ -58,14 +55,13 @@
   .club-app .club-app-title{max-width:630px;font-size:clamp(42px,8.1vw,60px)}
   .club-app .club-app-intro{max-width:500px}
   .club-app .club-app-visual{order:2;margin-top:34px;justify-self:start;align-items:flex-start;padding-left:2px}
-  .club-app .club-app-caption{width:278px;max-width:100%}
   .club-app .club-app-downloads{order:1;margin-top:33px}
   .club-app .club-app-store{padding-inline:13px;gap:8px}
   .club-app .club-app-store-name{font-size:16px}
   .club-app .club-app-store-icon{flex-basis:18px;width:18px;height:18px}
 }
 @media(max-width:600px){
-  .club-app{padding-block:48px}
+  .club-app{--club-app-device-width:350px;padding-block:48px}
   .club-app .club-app-title{font-size:clamp(40px,11.6vw,56px);line-height:1}
   .club-app .club-app-line{margin-block:18px 21px}
   .club-app .club-app-intro{margin-top:21px;font-size:17px;line-height:1.55}
