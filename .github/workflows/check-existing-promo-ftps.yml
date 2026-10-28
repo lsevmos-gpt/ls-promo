@@ -1,0 +1,57 @@
+name: REG.RU existing promo FTP — read-only auth check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-existing-promo-ftps.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-existing-promo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FTP_HOST: server169.hosting.reg.ru
+      FTP_USER: u3652448_promo
+      FTP_PASSWORD: ${{ secrets.PROMO_REG_PASSWORD }}
+
+    steps:
+      - name: Validate the existing secret without exposing it
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$FTP_PASSWORD" ]]; then
+            echo '::error::PROMO_REG_PASSWORD secret is missing.'
+            exit 1
+          fi
+          if [[ "$FTP_PASSWORD" == *$'\n'* || "$FTP_PASSWORD" == *$'\r'* ]]; then
+            echo '::error::FTP password contains a newline.'
+            exit 1
+          fi
+          echo 'Read-only FTPS authentication check for existing promo account.'
+
+      - name: Install FTPS client
+        run: sudo apt-get update -qq && sudo apt-get install -qq -y lftp
+
+      - name: Authenticate existing promo FTP and list root (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            pwd;
+            cls -1;
+            bye
+          "
+          echo 'Existing promo FTPS login and remote directory check succeeded. No remote writes.'
