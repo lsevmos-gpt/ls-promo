@@ -41,3 +41,32 @@ jobs:
               echo "AFTER_HOST_REWRITE=$NORMALIZED"
             fi
           done </tmp/manifest
+      - name: Analyze safe host and Cloudflare preview normalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,hashlib
+          d=Path('/tmp/probe')
+          pre='https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site'
+          target='https://new.liniyasporta.ru'
+          expected={'index.html':'8ab7c54853c17d409f1e24e79fea84fef26e24b604892e06b3f78778488893d7','fitness/index.html':'f53157788c94c30079d38ee669b2c39a4671475f80d2ada8678aab3642e541f0','robots.txt':'3f87d52a026b886da004eb8cd119b374cf00ad2cfc69fc12b12c09561f74afd0','sitemap.xml':'8f7286ec4df4e1a14355f8aa9493486ee5e555ee2975b7d43e30c932148a8adf','assets/fonts/fonts.css':'b63be2cf1b800d394765310f6a5d0a89d21303a3ae90dd9e6fdc6d526fc05b0c'}
+          for name,goal in expected.items():
+            p=d/name
+            s=p.read_text()
+            s=s.replace(pre,target)
+            if name.endswith('.html'):
+              s,n=re.subn(r'<script>\(function\(\)\{function c\(\).*?</script>(?=</body></html>)','',s,flags=re.S)
+              print('REMOVED_CF_SCRIPTS',name,n)
+              if '<meta name="robots"' not in s:
+                s=s.replace('<meta name="theme-color" content="#0A1E1E">','<meta name="theme-color" content="#0A1E1E"><meta name="robots" content="noindex,nofollow,noarchive">')
+              s=s.replace('font-4.ttf" as="font" type="font/ttf"','font-4.woff2" as="font" type="font/woff2"')
+            if name.endswith('fonts.css'):
+              print('ORIGINAL_FONT_CSS',repr(s))
+              s=s.replace("url(/assets/fonts/font-4.ttf) format('truetype')","url(/assets/fonts/font-4.woff2) format('woff2')")
+              s=s.replace("url(/assets/fonts/font-2.ttf) format('truetype')","url(/assets/fonts/font-2.woff2) format('woff2')")
+              s=s.replace("url(/assets/fonts/font-3.ttf) format('truetype')","url(/assets/fonts/font-3.woff2) format('woff2')")
+            actual=hashlib.sha256(s.encode()).hexdigest()
+            print('NORMALIZED',name,'MATCH',goal==actual,'SHA',actual,'SIZE',len(s.encode()))
+          PY
