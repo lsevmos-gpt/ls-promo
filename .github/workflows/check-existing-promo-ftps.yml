@@ -55,3 +55,5 @@ jobs:
             bye
           "
           echo 'Existing promo FTPS login and remote directory check succeeded. No remote writes.'
+
+# Read-only connection recheck (2026-10-28); no remote writes.
