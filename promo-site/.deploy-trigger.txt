@@ -1,1 +1,1 @@
-Trigger REG.RU FTPS deployment with user u3652448_promo.
+Deploy active promotions catalog and verify root plus both active promotion pages.
