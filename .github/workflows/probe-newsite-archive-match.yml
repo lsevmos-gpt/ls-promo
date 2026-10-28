@@ -94,3 +94,25 @@ jobs:
            print('COMPARE_FINAL',name,'MATCH',goal==actual,'SHA',actual,'SIZE',len(s.encode()))
            if name=='robots.txt':print('ROBOTS_REPR',repr(s))
           PY
+      - name: Locate remaining markup differences by verified checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re,hashlib
+          d=Path('/tmp/probe')
+          chunks={"index.html":["f5bd5583f1ddfbe8","a20dae61dcd1d133","ef632a586cb6f45a","63471c7a641b6ba0","09cdc96cbd7d09ed","bf9228c880f76d23","a806159ddb06fe36","6320da86920e0926","cb3926449be92884","a817e7586e326920","775799459f6a00dd","e8928f7a29173c63","616caef23ee3dcc9","570de3cfd80d4e41","ff0a1973fb69641f","1b69bf30cdb2c52f","11f429661001c3a4","6c3e5b7a637493af","ecf1424f3b8fbb57","003700cbc8969c5b"],"fitness/index.html":["d4f9a13195809ef6","530201235d51880b","c494d5dc0501f7d4","29aac813702d89ba","4d648c9009eff3a1","7969bc43e45b7e32","7e0a3a7f0f4f8a09","b6d9618d85e52149","6f2a58855e6ef989","dbe1a81f7d0759b9","88f9bdd19ff2767c","13e11b7c5a2e990f","ccd60684e1603781","ea4624c21ddab572","e1767ebd1cdc0673","27ed0e5615271e73"]}
+          for name,expect in chunks.items():
+           s=(d/name).read_text().replace('https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site','https://new.liniyasporta.ru')
+           s=re.sub(r'<script>\(function\(\)\{function c\(\).*?</script>(?=</body></html>)','',s,flags=re.S)
+           s=re.sub(r'(<meta name="theme-color" content="[^"]*">)',r'\1<meta name="robots" content="noindex,nofollow,noarchive">',s,count=1)
+           s=s.replace('font-4.ttf" as="font" type="font/ttf"','font-4.woff2" as="font" type="font/woff2"')
+           b=s.encode()
+           for i,h in enumerate(expect):
+            chunk=b[i*2048:(i+1)*2048]
+            got=hashlib.sha256(chunk).hexdigest()[:16]
+            if got!=h:
+             print('CHUNK_DIFF',name,i*2048,'EXPECTED',h,'ACTUAL',got,'TEXT_FRAGMENT',repr(chunk[:100].decode(errors='replace')))
+           print('NORMALIZED_LEN',name,len(b))
+          PY
