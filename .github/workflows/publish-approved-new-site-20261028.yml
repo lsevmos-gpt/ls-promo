@@ -1,0 +1,197 @@
+name: Publish approved new.liniyasporta.ru (guarded, backup, one-time)
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-approved-new-site-20261028.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: new-site-first-publication-20261028
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: contains(github.event.head_commit.message, '[publish-approved-newsite-20261028]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      REG_HOST: server169.hosting.reg.ru
+      REG_USER: u3652448_new
+      REG_PASSWORD: \${{ secrets.NEW_SITE_FTP_PASSWORD }}
+      PUBLIC_DOMAIN: new.liniyasporta.ru
+    steps:
+      - name: Check out approved website
+        uses: actions/checkout@v4
+
+      - name: Verify approved source fingerprint and deployment scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REPOSITORY" == "lsevmos-gpt/ls-promo" ]]
+          [[ -n "$REG_PASSWORD" ]]
+          [[ "$REG_USER" == "u3652448_new" ]]
+          [[ "$PUBLIC_DOMAIN" == "new.liniyasporta.ru" ]]
+          [[ "$REG_HOST" == "server169.hosting.reg.ru" ]]
+          if [[ "$REG_PASSWORD" == *$'\n'* || "$REG_PASSWORD" == *$'\r'* ]]; then echo "::error::Unexpected newline in secret."; exit 1; fi
+          test -s new-site/index.html
+          test -s new-site/fitness/index.html
+          test -s new-site/assets/fitness/jumping-fitness.webp
+          test -s new-site/.htaccess
+          node --check new-site/app.js
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          root = Path('new-site')
+          excluded={f'assets/fonts/font-{n}.woff2' for n in range(5)}
+          names=sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p.relative_to(root).as_posix() not in excluded and p.name != 'README.md')
+          d=sha256()
+          for name in names:
+              d.update(name.encode()+b'\0'+sha256((root/name).read_bytes()).digest())
+          h=d.hexdigest()
+          print('APPROVED_SITE_FINGERPRINT='+h)
+          if len(names)!=126 or h!='d831d22e4fc8956e2ba8d01fac0382eb2d75116435363b20236dec3d17b9801c':
+              raise SystemExit('Approved ZIP checksum mismatch; publishing refused')
+          if len(list(root.rglob('*.html'))) != 32:
+              raise SystemExit('Unexpected HTML page count')
+          print('All approved source files verified before any FTP changes.')
+          PY
+
+      - name: Install FTPS tools
+        run: sudo apt-get update -qq && sudo apt-get install -qq -y lftp
+
+      - name: Confirm target FTP root matches new site HTTPS and unchanged placeholder
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _new_site_predeploy_backup
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            cls -1 -a;
+            bye
+          " > _new_site_predeploy_backup/remote-listing.txt
+          cat _new_site_predeploy_backup/remote-listing.txt
+          grep -Fxq "index.html" _new_site_predeploy_backup/remote-listing.txt
+          if grep -Ev '^(\./|\.\./|index\.html)$' _new_site_predeploy_backup/remote-listing.txt; then
+            echo "::error::Unexpected existing files in destination root; refusing to overwrite."
+            exit 1
+          fi
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            get index.html -o _new_site_predeploy_backup/index.html;
+            bye
+          "
+          echo "54de7429672546e5ad06d1cab90c5699b140c2542963d7acfaa68ebb74973ac4  _new_site_predeploy_backup/index.html" | sha256sum -c -
+          curl --fail --location --silent --show-error --connect-timeout 10 --max-time 30 \
+            -H "Cache-Control: no-cache" \
+            "https://$PUBLIC_DOMAIN/?preflight=$GITHUB_RUN_ID" -o /tmp/predeploy-https.html
+          cmp _new_site_predeploy_backup/index.html /tmp/predeploy-https.html
+          echo "Destination HTTPS is exactly mapped to the expected dedicated FTP user, and placeholder is unchanged."
+
+      - name: Archive existing remote page before overwriting
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-liniyasporta-predeploy-backup-\${{ github.run_id }}
+          path: _new_site_predeploy_backup/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish only approved new-site directory over dedicated FTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'new.liniyasporta.ru\n' > /tmp/new-site-root-verified.txt
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 30;
+            cd /;
+            mirror -R --verbose --no-perms --exclude-glob '*.md' new-site/ ./;
+            put new-site/.htaccess -o .htaccess;
+            put /tmp/new-site-root-verified.txt -o .new-site-root.txt;
+            bye
+          "
+          echo "Only dedicated new site root updated; no delete operations issued."
+
+      - name: Verify every published HTML, stylesheet, script and key assets over live HTTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor, as_completed
+          from urllib.request import Request,urlopen
+          from hashlib import sha256
+          import time, sys
+          root=Path('new-site')
+          paths=[p.relative_to(root).as_posix() for p in root.rglob('*.html')]
+          paths += ['styles.css','app.js','assets/content.js','robots.txt','sitemap.xml','assets/brand/logo-dark.png','assets/brand/logo-white.png','assets/fitness/jumping-fitness.webp','assets/fonts/fonts.css','assets/video/club-heroes6d.mp4']
+          def verify(path):
+              path_url='/' if path=='index.html' else '/'+path.removesuffix('index.html') if path.endswith('/index.html') else '/'+path
+              url='https://new.liniyasporta.ru'+path_url+'?publish='+str('4071')
+              target=(root/path).read_bytes()
+              last=None
+              for attempt in range(6):
+                  try:
+                      with urlopen(Request(url,headers={'Cache-Control':'no-cache','User-Agent':'LineaSportaVerification/1.0'}),timeout=35) as res:
+                          data=res.read()
+                      if sha256(target).digest()!=sha256(data).digest():
+                          raise ValueError('Mismatch bytes: '+path)
+                      return path,len(data)
+                  except Exception as e:
+                      last=e
+                      if attempt<5:time.sleep(3)
+              raise RuntimeError(f'{path}: {last}')
+          # Bound number of requests and verify all 32 HTML pages and critical assets.
+          failures=[]
+          with ThreadPoolExecutor(max_workers=6) as pool:
+              futures={pool.submit(verify,p):p for p in sorted(set(paths))}
+              for future in as_completed(futures):
+                  try:
+                      path,size=future.result()
+                      print('HTTPS_VERIFIED',path,size,flush=True)
+                  except Exception as e:
+                      print('HTTPS_FAILED',repr(e),flush=True)
+                      failures.append(str(e))
+          if failures:raise SystemExit('Published source mismatch or missing paths: '+repr(failures))
+          print('SUCCESS: all HTML pages and key assets match approved source over HTTPS.')
+          PY
+
+      - name: Verify dedicated domain marker over FTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            cd /;
+            get .new-site-root.txt -o /tmp/verified-new-site-root.txt;
+            bye
+          "
+          test "$(tr -d '\r\n' < /tmp/verified-new-site-root.txt)" = "new.liniyasporta.ru"
+          echo "Verified dedicated FTP marker: new.liniyasporta.ru"
