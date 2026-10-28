@@ -65,4 +65,20 @@ jobs:
           else
             echo "::warning::HTTPS_STATUS=unavailable"
           fi
-# Spot-check remote deployment progress without writes: 2026-10-28.
+
+      - name: Probe public pages and static resources without changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for ROUTE in / /fitness/ /cards/ /trainers/ /clubs/heroes/ /clubs/konnoi/ /clubs/kuibysheva/ /styles.css /app.js /assets/content.js /assets/brand/logo-dark.png /assets/fitness/jumping-fitness.webp /assets/video/club-heroes6d.mp4; do
+            URL="https://new.liniyasporta.ru${ROUTE}?readonly=${GITHUB_RUN_ID}"
+            printf 'PROBE path=%s ' "$ROUTE"
+            HTTP="$(curl -L -sS -o /tmp/probe-newsite-response --connect-timeout 10 --max-time 45 -w '%{http_code}' "$URL")"
+            BYTES="$(wc -c </tmp/probe-newsite-response)"
+            printf 'http=%s bytes=%s\n' "$HTTP" "$BYTES"
+            if [[ "$HTTP" != 200 || "$BYTES" -lt 100 ]]; then
+              echo "::error::Unexpected website response at $ROUTE: HTTP $HTTP / $BYTES bytes."
+              exit 1
+            fi
+          done
+          echo 'All selected public routes and assets accessible over HTTPS.'
