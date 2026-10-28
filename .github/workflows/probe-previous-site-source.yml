@@ -39,3 +39,18 @@ jobs:
           print('PREVIEW_START',repr(s[:1300]))
           print('PREVIEW_END',repr(s[-1800:]))
           PY
+      - name: Verify availability of converted web fonts and static resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 0 1 2 3 4; do
+            for ext in woff2 ttf; do
+              URL="https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site/assets/fonts/font-$n.$ext"
+              CODE="$(curl -L -sS --connect-timeout 10 --max-time 15 -o /tmp/font-probe -w '%{http_code}' "$URL" || true)"
+              echo "FONT=$n.$ext HTTP=$CODE SIZE=$(wc -c </tmp/font-probe)"
+            done
+          done
+          for x in /assets/fonts/inter-OFL.txt /assets/fonts/robotocondensed-OFL.txt /.htaccess /404/index.html /404.html; do
+            CODE="$(curl -L -sS --connect-timeout 10 --max-time 15 -o /tmp/font-probe -w '%{http_code}' "https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site$x" || true)"
+            echo "EXTRA=$x HTTP=$CODE SIZE=$(wc -c </tmp/font-probe)"
+          done
