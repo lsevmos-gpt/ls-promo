@@ -1,0 +1,28 @@
+name: Inspect previous site preview as migration source
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/probe-previous-site-source.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Inspect original site's public URLs read-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site"
+          for PATHPART in / /fitness/ /assets/brand/logo-dark.png /assets/fitness/jumping-fitness.webp /styles.css /app.js; do
+            OUT="/tmp/site-preview-$(echo "$PATHPART" | tr '/' '_')"
+            HTTP="$(curl --location --silent --show-error --connect-timeout 10 --max-time 30 -o "$OUT" -w '%{http_code}' "$BASE$PATHPART" || true)"
+            SIZE=$(wc -c < "$OUT" 2>/dev/null || echo 0)
+            echo "PATH=$PATHPART HTTP=$HTTP SIZE=$SIZE"
+            if [[ "$PATHPART" == "/" || "$PATHPART" == "/fitness/" ]]; then
+              sed -n 's/.*<title>\([^<]*\)<\/title>.*/TITLE=\1/p' "$OUT" | head -1 || true
+              head -c 80 "$OUT" | tr '\n' ' '; echo
+            fi
+          done
