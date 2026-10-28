@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 SRC = "https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site"
 DEST = "https://new.liniyasporta.ru"
 ROOT = Path("new-site")
-EXPECTED_HASH = "3acced7702227f78108a64fb741da7ebda65beb4c9a39ce08a76650254ea8ee6"
+EXPECTED_HASH = "d831d22e4fc8956e2ba8d01fac0382eb2d75116435363b20236dec3d17b9801c"
 GENERATED_FONTS = {f"assets/fonts/font-{n}.woff2" for n in range(5)}
 GROUPS = {
     "brand": """fitness-burgundy.png fitness-dark.png fitness-white.png logo-dark.png logo-green.png logo-white.png""",
