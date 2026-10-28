@@ -1,0 +1,67 @@
+name: Verify new.liniyasporta.ru binding (read-only)
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/verify-new-site-binding.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
+    steps:
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -qq -y lftp
+      - name: Inspect remote root, existing marker, and remote index (read only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$REG_PASSWORD"
+          lftp -u "u3652448_new","$REG_PASSWORD" "ftp://server169.hosting.reg.ru:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            cls -a;
+            get index.html -o /tmp/newsite-remote-index.html;
+            bye
+          "
+          echo "REMOTE_INDEX_SHA256=$(sha256sum /tmp/newsite-remote-index.html | awk '{print $1}')"
+          if lftp -u "u3652448_new","$REG_PASSWORD" "ftp://server169.hosting.reg.ru:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 1;
+            cd /;
+            get .new-site-root.txt -o /tmp/newsite-root-marker.txt;
+            bye
+          "; then
+            echo "MARKER_PRESENT=yes"
+            if [[ "$(tr -d '\r\n' < /tmp/newsite-root-marker.txt)" == "new.liniyasporta.ru" ]]; then echo "MARKER_MATCH=yes"; else echo "::warning::MARKER_MATCH=no"; fi
+          else
+            echo "::notice::MARKER_PRESENT=no"
+          fi
+      - name: Verify public HTTPS maps to the exact FTP index
+        shell: bash
+        run: |
+          set -euo pipefail
+          if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 30 --header "Cache-Control: no-cache" "https://new.liniyasporta.ru/?check=${GITHUB_RUN_ID}" -o /tmp/newsite-https-index.html; then
+            echo "HTTPS_STATUS=ok"
+            echo "HTTPS_INDEX_SHA256=$(sha256sum /tmp/newsite-https-index.html | awk '{print $1}')"
+            if cmp -s /tmp/newsite-remote-index.html /tmp/newsite-https-index.html; then
+              echo "DOMAIN_BINDING=verified_exact_bytes"
+            else
+              echo "::warning::DOMAIN_BINDING=mismatch"
+            fi
+          else
+            echo "::warning::HTTPS_STATUS=unavailable"
+          fi
