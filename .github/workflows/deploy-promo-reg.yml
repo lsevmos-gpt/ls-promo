@@ -31,6 +31,9 @@ jobs:
           test -f promo-site/index.html
           test -f promo-site/graphite-start/index.html
           test -f promo-site/graphite-start/rules/index.html
+          test -f promo-site/new-client-25/index.html
+          test -f promo-site/refer-a-friend/index.html
+          test -f promo-site/assets/promotions.css
 
       - name: Install FTPS tools
         run: sudo apt-get update && sudo apt-get install -y lftp
@@ -59,15 +62,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for attempt in 1 2 3 4 5 6; do
-            if curl -fsSL --connect-timeout 10 --max-time 45 \
-              -H 'Cache-Control: no-cache' \
-              "https://promo.liniyasporta.ru/graphite-start/?smoke=${GITHUB_SHA}" \
-              -o /tmp/live.html; then
-              break
-            fi
-            [ "$attempt" -eq 6 ] && exit 1
-            sleep 5
-          done
-          grep -Fqi 'Графитовый старт' /tmp/live.html
-          echo "Live promo site verified."
+          fetch_live() {
+            local url="$1"
+            local out="$2"
+            for attempt in 1 2 3 4 5 6; do
+              if curl -fsSL --connect-timeout 10 --max-time 45 \
+                -H 'Cache-Control: no-cache' \
+                "$url" -o "$out"; then
+                return 0
+              fi
+              [ "$attempt" -eq 6 ] && return 1
+              sleep 5
+            done
+          }
+
+          fetch_live "https://promo.liniyasporta.ru/?smoke=${GITHUB_SHA}" /tmp/live-root.html
+          fetch_live "https://promo.liniyasporta.ru/new-client-25/?smoke=${GITHUB_SHA}" /tmp/live-new-client.html
+          fetch_live "https://promo.liniyasporta.ru/refer-a-friend/?smoke=${GITHUB_SHA}" /tmp/live-referral.html
+
+          grep -Fqi 'ДЕЙСТВУЮЩИЕ' /tmp/live-root.html
+          grep -Fqi '−25%' /tmp/live-new-client.html
+          grep -Fqi '+500' /tmp/live-referral.html
+          echo "Live promo catalog and both promotion pages verified."
