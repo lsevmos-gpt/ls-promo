@@ -57,3 +57,4 @@ jobs:
           echo 'Existing promo FTPS login and remote directory check succeeded. No remote writes.'
 
 # Read-only connection recheck (2026-10-28); no remote writes.
+# On-demand promo authentication verification: 2026-10-28T14:52:39.728Z (read-only)
