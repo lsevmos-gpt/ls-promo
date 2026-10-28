@@ -20,7 +20,7 @@ jobs:
     env:
       REG_HOST: server169.hosting.reg.ru
       REG_USER: u3652448_new
-      REG_PASSWORD: \${{ secrets.NEW_SITE_FTP_PASSWORD }}
+      REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       PUBLIC_DOMAIN: new.liniyasporta.ru
     steps:
       - name: Check out approved website
@@ -107,7 +107,7 @@ jobs:
       - name: Archive existing remote page before overwriting
         uses: actions/upload-artifact@v4
         with:
-          name: new-liniyasporta-predeploy-backup-\${{ github.run_id }}
+          name: new-liniyasporta-predeploy-backup-${{ github.run_id }}
           path: _new_site_predeploy_backup/
           include-hidden-files: true
           if-no-files-found: error
