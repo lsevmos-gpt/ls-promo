@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://new.liniyasporta.ru/sitemap.xml
