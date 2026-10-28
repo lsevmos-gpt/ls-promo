@@ -1,4 +1,4 @@
-name: Compare public site snapshot with approved archive checksums
+name: Compare live site preview to site archive
 on:
   push:
     branches: [main]
@@ -10,24 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Compare a sample against archive's SHA-256 (no writes)
+      - name: Compare SHA-256 checksums (read only)
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p /tmp/probe
           cat >/tmp/manifest <<'CHECKSUMS'
-8ab7c54853c17d409f1e24e79fea84fef26e24b604892e06b3f78778488893d7  index.html
-f53157788c94c30079d38ee669b2c39a4671475f80d2ada8678aab3642e541f0  fitness/index.html
-de1c18168f7eafb9947082d245423f317fd71070398ab178d8707b0a888db108  styles.css
-5ce1dd28447e9fe3c1a6669607b385f8111dce5061a75ff2424ca5b40e90516e  app.js
-66807f8bf87b85a9985c6c49e6c258cb4df33ffdda43341cc6dc7c651f576322  assets/content.js
-d62a4b11f09b0a72a0a7336c53811c050e1df29b1d2a99485e70c6e4dbd1f334  assets/brand/logo-dark.png
-79c1185fe78fbb8ca428338bd6a45929a0589337e8e2b8ee915499d0869185fb  assets/fitness/jumping-fitness.webp
-8f7286ec4df4e1a14355f8aa9493486ee5e555ee2975b7d43e30c932148a8adf  sitemap.xml
-3f87d52a026b886da004eb8cd119b374cf00ad2cfc69fc12b12c09561f74afd0  robots.txt
-d0f4b597210205532551f6a00bccf095d609c713df05158d426df53374a5f2ef  404.html
-b63be2cf1b800d394765310f6a5d0a89d21303a3ae90dd9e6fdc6d526fc05b0c  assets/fonts/fonts.css
-CHECKSUMS
+          8ab7c54853c17d409f1e24e79fea84fef26e24b604892e06b3f78778488893d7  index.html
+          f53157788c94c30079d38ee669b2c39a4671475f80d2ada8678aab3642e541f0  fitness/index.html
+          de1c18168f7eafb9947082d245423f317fd71070398ab178d8707b0a888db108  styles.css
+          5ce1dd28447e9fe3c1a6669607b385f8111dce5061a75ff2424ca5b40e90516e  app.js
+          66807f8bf87b85a9985c6c49e6c258cb4df33ffdda43341cc6dc7c651f576322  assets/content.js
+          d62a4b11f09b0a72a0a7336c53811c050e1df29b1d2a99485e70c6e4dbd1f334  assets/brand/logo-dark.png
+          79c1185fe78fbb8ca428338bd6a45929a0589337e8e2b8ee915499d0869185fb  assets/fitness/jumping-fitness.webp
+          8f7286ec4df4e1a14355f8aa9493486ee5e555ee2975b7d43e30c932148a8adf  sitemap.xml
+          3f87d52a026b886da004eb8cd119b374cf00ad2cfc69fc12b12c09561f74afd0  robots.txt
+          d0f4b597210205532551f6a00bccf095d609c713df05158d426df53374a5f2ef  404.html
+          b63be2cf1b800d394765310f6a5d0a89d21303a3ae90dd9e6fdc6d526fc05b0c  assets/fonts/fonts.css
+          CHECKSUMS
           cd /tmp/probe
           while read -r SHA PATHPART; do
             mkdir -p "$(dirname "$PATHPART")"
