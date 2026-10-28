@@ -50,3 +50,4 @@ jobs:
             git commit -m "Import approved 32-page new.liniyasporta.ru site snapshot"
             git push origin HEAD:main
           fi
+# Verified archived-site fingerprint correction; source-only import.
