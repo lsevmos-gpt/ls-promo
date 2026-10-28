@@ -65,3 +65,4 @@ jobs:
           else
             echo "::warning::HTTPS_STATUS=unavailable"
           fi
+# Spot-check remote deployment progress without writes: 2026-10-28.
