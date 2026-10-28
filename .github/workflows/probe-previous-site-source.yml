@@ -26,3 +26,16 @@ jobs:
               head -c 80 "$OUT" | tr '\n' ' '; echo
             fi
           done
+      - name: Diagnose HTML preview injection (read only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --max-time 30 "https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site/" -o /tmp/preview-site.html
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('/tmp/preview-site.html').read_text()
+          for term in ('chatgpt.site','new.liniyasporta.ru','zippy-joy','<script','<meta','viewport','<footer','</html>'):
+              print('OCCURRENCES',term,s.count(term))
+          print('PREVIEW_START',repr(s[:1300]))
+          print('PREVIEW_END',repr(s[-1800:]))
+          PY
