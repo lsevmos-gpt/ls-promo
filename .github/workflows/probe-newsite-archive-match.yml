@@ -116,3 +116,24 @@ jobs:
              print('CHUNK_DIFF',name,i*2048,'EXPECTED',h,'ACTUAL',got,'TEXT_FRAGMENT',repr(chunk[:100].decode(errors='replace')))
            print('NORMALIZED_LEN',name,len(b))
           PY
+      - name: Confirm exact approved bytes after HTML head and robots normalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import re
+          root=Path('/tmp/probe')
+          targets={'index.html':'8ab7c54853c17d409f1e24e79fea84fef26e24b604892e06b3f78778488893d7','fitness/index.html':'f53157788c94c30079d38ee669b2c39a4671475f80d2ada8678aab3642e541f0','robots.txt':'3f87d52a026b886da004eb8cd119b374cf00ad2cfc69fc12b12c09561f74afd0'}
+          for name,expected in targets.items():
+            s=(root/name).read_text().replace('https://liniya-sporta-clubs.zippy-joy-1488.chatgpt.site','https://new.liniyasporta.ru')
+            if name.endswith('.html'):
+              s=re.sub(r'<script>\(function\(\)\{function c\(\).*?</script>(?=</body></html>)','',s,flags=re.S)
+              if '<meta name="robots"' not in s:
+                s=s.replace('</title>','</title><meta name="robots" content="noindex,nofollow,noarchive">',1)
+              s=s.replace('font-4.ttf" as="font" type="font/ttf"','font-4.woff2" as="font" type="font/woff2"')
+            if name=='robots.txt': s=s.replace('Allow: /','Disallow: /')
+            actual=sha256(s.encode()).hexdigest()
+            print('APPROVED_SOURCE_CHECK',name,'OK',actual==expected,'SHA',actual,'SIZE',len(s.encode()))
+          PY
