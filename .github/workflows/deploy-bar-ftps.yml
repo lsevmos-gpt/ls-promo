@@ -12,7 +12,7 @@ on:
           - deploy
         default: plan
       confirm_domain:
-        description: 'For deploy, type bar.lineasporta.ru exactly'
+        description: 'For deploy, type bar.liniyasporta.ru exactly'
         required: false
         type: string
 
@@ -32,7 +32,7 @@ jobs:
       FTP_USER: u3652448_bar
       FTP_PASSWORD: ${{ secrets.BAR_REG_PASSWORD }}
       FTP_ROOT: /
-      EXPECTED_DOMAIN: bar.lineasporta.ru
+      EXPECTED_DOMAIN: bar.liniyasporta.ru
       MODE: ${{ inputs.mode }}
       CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
 
@@ -48,7 +48,7 @@ jobs:
           test "$FTP_HOST" = "server169.hosting.reg.ru"
           test "$FTP_USER" = "u3652448_bar"
           test "$FTP_ROOT" = "/"
-          test "$EXPECTED_DOMAIN" = "bar.lineasporta.ru"
+          test "$EXPECTED_DOMAIN" = "bar.liniyasporta.ru"
           if [[ -z "$FTP_PASSWORD" ]]; then
             echo '::error::BAR_REG_PASSWORD is missing. Set the secret in repository Actions settings.'
             exit 1
