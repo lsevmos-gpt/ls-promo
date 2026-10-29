@@ -1,0 +1,127 @@
+/* The desktop menu retains its established layout. */
+.mobile-menu-launcher,.filter-short,.detail-mobile{display:none}
+.product-grid .detail-button .detail-desktop{font:inherit}
+
+@media(max-width:760px){
+  :root{--header:64px}
+  html{scroll-behavior:auto}
+  .wrap{width:calc(100% - 36px)}
+  .site-header{background:#f6f2e8f7;border-bottom:1px solid #18332912;backdrop-filter:blur(12px)}
+  .header-inner{gap:18px}
+  .brand img{width:150px;height:50px}
+  .top-nav a:first-child{min-height:44px;min-width:82px;border-radius:24px;font-size:15px}
+
+  .menu-section{padding:38px 0 44px;scroll-margin-top:0}
+  .menu-section>.section-title-row{display:block;margin-bottom:22px}
+  .menu-section .section-title-row .eyebrow{font-size:13px;letter-spacing:.11em;margin-bottom:10px;color:var(--green)}
+  .menu-section .section-title-row h2{font-size:46px;line-height:.99;letter-spacing:-.02em;max-width:340px}
+  .menu-section .section-title-row h2 br{display:none}
+  .menu-section .section-title-row>p,.nutrition-intro{display:none}
+
+  /* A visible category rail, with a complete list one tap away. */
+  .menu-toolbar{display:flex;align-items:center;gap:10px;min-height:70px;padding:11px 18px;margin:0 -18px 24px;width:calc(100% + 36px);border:0;background:#f6f2e8f7;box-shadow:0 6px 18px #18332908;backdrop-filter:blur(12px);top:var(--header);scroll-margin-top:0}
+  .mobile-menu-launcher{display:grid;place-items:center;width:46px;height:46px;min-height:46px;flex:0 0 46px;border:1px solid #cbd2c1;border-radius:14px;background:#fffcf6;color:var(--ink)}
+  .mobile-menu-launcher svg{width:23px;height:23px}
+  .mobile-menu-launcher:hover,.mobile-menu-launcher[aria-expanded=true]{background:#e2ecd7;border-color:#97af8d}
+  .menu-filters{display:flex;flex:1;min-width:0;width:auto;gap:7px;padding:2px 1px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+  .menu-filters::-webkit-scrollbar{display:none}
+  .menu-filters button{scroll-snap-align:start;min-height:44px;border:1px solid #d3d7c9;border-radius:24px;background:#fffcf6;padding:10px 17px;font-size:15px;line-height:1.4;font-weight:600}
+  .menu-filters button[aria-pressed=true]{background:var(--ink);color:#fffdf5;border-color:var(--ink)}
+  .menu-filters .filter-full,.mobile-category{display:none}
+  .menu-filters .filter-short{display:inline}
+
+  .menu-group{margin-top:32px;scroll-margin-top:76px}
+  .group-header{max-width:440px;margin:0 auto 18px;padding:0;border:0;display:block}
+  .group-header h3{font-size:32px;line-height:1.06;letter-spacing:-.015em;overflow-wrap:normal}
+  .group-header .group-number{display:none}
+  .group-header p{font-size:15px;line-height:1.5;margin:7px 0 0;padding:0;text-align:left;color:#6a7266}
+  .menu-section[data-active-category]:not([data-active-category="all"]) .menu-toolbar{margin-bottom:0}
+  .menu-section[data-active-category]:not([data-active-category="all"]) .menu-group{margin-top:18px}
+  .menu-section[data-active-category]:not([data-active-category="all"]) .group-header{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+  .product-grid,.product-grid.columns-3,.product-grid--snack{grid-template-columns:minmax(0,1fr)!important;gap:24px;max-width:440px;margin:0 auto}
+
+  /* A single generous food card, with its name and price sharing a line. */
+  .product-grid .drink-card,.product-grid--snack .drink-card{display:flex;flex-direction:column;gap:0;align-items:stretch;padding:0;overflow:hidden;border:1px solid #e6e6d9;border-radius:22px;background:#fffcf6;box-shadow:0 12px 28px #18332908;min-width:0}
+  .product-grid .drink-image{border-radius:0;aspect-ratio:4/5;background:#e8decc}
+  .product-grid .drink-image img{display:block;width:100%;height:100%;object-fit:contain;transform:none;border-radius:0}
+  .product-grid .drink-image:hover img{transform:none;filter:none}
+  .product-grid .card-badge{top:14px;left:14px;font-size:12px;line-height:1.3;letter-spacing:.02em;padding:6px 9px;border-radius:7px;background:#fffdf1ed}
+  .product-grid .card-volume{top:14px;right:14px;bottom:auto;font-size:14px;padding:5px 10px;border-radius:7px;background:#fffdf1ed}
+  .product-grid .drink-content,.product-grid--snack .drink-content{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto auto;grid-template-areas:"name price" "description description" "nutrition nutrition" "details details";gap:12px 16px;flex:none;max-width:none;padding:21px 20px 20px;min-width:0}
+  .product-grid .drink-content h4{grid-area:name;order:0;align-self:center;font:700 31px/1.05 Condensed,Impact,sans-serif;letter-spacing:-.012em;min-height:0;margin:0;overflow-wrap:anywhere;hyphens:auto}
+  .product-grid .drink-bottom{display:contents;order:0;margin:0;padding:0;border:0}
+  .product-grid .price{grid-area:price;align-self:start;font:700 30px/1.1 Condensed,Impact,sans-serif;display:block;white-space:nowrap;margin:0;padding:1px 0 0;color:#246f39}
+  .product-grid .composition{grid-area:description;order:0;min-height:0;font-size:16px;line-height:1.55;margin:0;color:#69705f}
+  .product-grid .nutrition{grid-area:nutrition;order:0;display:block;justify-self:start;min-height:0;padding:0;border:0;margin:0;line-height:1.3}
+  .product-grid .nutrition strong{display:inline-block;background:#edf1e3;color:#59664c;font-size:14px;line-height:1.3;font-weight:600;padding:7px 10px;border-radius:8px}
+  .product-grid .nutrition strong::after{content:" / порция";font-weight:400}
+  .product-grid .nutrition .macro-line,.product-grid .nutrition.pending,body.nutrition-off .drink-card .nutrition{display:none}
+  .product-grid .detail-button{grid-area:details;order:0;display:flex;justify-content:space-between;align-items:center;width:100%;height:auto;min-height:48px;margin:3px 0 0;padding:12px 15px;border-radius:12px;border:1px solid #244e32;background:#244e32;color:#fffdf6;font-size:15px;line-height:1.4;font-weight:600}
+  .product-grid .detail-button:hover{background:#1b3e27;border-color:#1b3e27}
+  .product-grid .detail-button .detail-desktop{display:none}
+  .product-grid .detail-button .detail-mobile{display:inline;font:inherit}
+  .snack-group{padding:0;background:none;border:0;border-radius:0;margin-top:32px}
+  .snack-group .group-header{margin-bottom:18px}
+  .snack-group .group-header h3{font-size:32px}
+  .nutrition-note{max-width:440px;margin:32px auto 0;padding:22px;background:#eeeddf;font-size:14px;line-height:1.6;border-radius:18px}
+
+  /* Compact video previews let the menu and prices arrive sooner. */
+  .stories-section{padding-top:42px;scroll-margin-top:16px}
+  .stories-section .section-title-row{display:block;margin-bottom:20px}
+  .stories-section .eyebrow{font-size:13px;margin-bottom:10px;letter-spacing:.08em}
+  .stories-section .section-title-row h2{font-size:34px;line-height:1.02}
+  .stories-section .section-title-row h2 br{display:none}
+  .stories-section .section-title-row>p{font-size:15px;line-height:1.5;margin:12px 0 0}
+  .stories-section .section-title-row>p br{display:none}
+  .stories-track{gap:12px;padding-bottom:8px}
+  .story-card{flex:0 0 46%;min-width:145px;max-width:200px}
+  .story-media{border-radius:16px}
+  .story-toggle{width:40px;height:40px;min-height:40px;justify-content:center;padding:0;top:9px;left:9px;border-radius:50%;gap:0}
+  .story-toggle [data-play-label]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .story-caption{display:flex;flex-direction:column;align-items:start;gap:7px;padding-top:12px}
+  .story-caption h3{font-size:24px;line-height:1.08;min-height:52px;margin:0}
+  .story-caption>strong{font-size:25px;line-height:1.1}
+  .story-details{font-size:14px;min-height:42px;gap:10px;margin:0;padding:5px 0}
+  .stories-hint{font-size:14px;margin:10px 0 0}
+
+  /* The full category list is a comfortable bottom sheet. */
+  #category-dialog{position:fixed;inset:auto 0 0;margin:0;width:100%;max-width:none;max-height:86vh;max-height:86dvh;border-radius:26px 26px 0 0;background:#fbf9f0;overflow:auto;overscroll-behavior:contain}
+  .category-sheet{padding:23px 20px max(22px,env(safe-area-inset-bottom))}
+  .category-sheet-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}
+  .category-sheet-heading p{font-size:14px;line-height:1.4;color:#737a68;margin:0 0 4px}
+  .category-sheet-heading h2{font:700 32px/1.08 Condensed,sans-serif;margin:0}
+  .category-sheet-heading .dialog-close{width:42px;height:42px;background:#eeefe4;border:0}
+  .category-options{display:flex;flex-direction:column;gap:4px}
+  .category-option{width:100%;display:grid;grid-template-columns:52px minmax(0,1fr) 22px;gap:13px;align-items:center;min-height:68px;padding:7px 10px;text-align:left;border:1px solid transparent;border-radius:14px;color:var(--ink);background:transparent}
+  .category-option[aria-pressed=true]{background:#e9f0dd;border-color:#c1d0b6}
+  .category-option:hover{background:#e9f0dd}
+  .category-thumb{display:block;width:48px;height:56px;overflow:hidden;border-radius:9px;background:#ece8db}
+  .category-thumb img{width:100%;height:100%;object-fit:contain}
+  .category-thumb--all{display:grid;place-items:center;background:#244e32;color:#fff}
+  .category-thumb--all svg{width:25px;height:25px}
+  .category-option strong{display:block;font-size:17px;line-height:1.25;font-weight:600}
+  .category-option small{display:block;color:#6c775f;font-size:14px;line-height:1.3;margin-top:4px}
+  .category-option-arrow{font-size:22px;color:#46714b}
+  body:has(dialog[open]){overflow:hidden}
+  #item-dialog,#method-dialog{position:fixed;inset:auto 0 0;margin:0;width:100%;max-width:none;max-height:90vh;max-height:90dvh;border-radius:26px 26px 0 0;overscroll-behavior:contain}
+  .dialog-inner{padding:26px 24px max(26px,env(safe-area-inset-bottom))}
+  .dialog-header h2{font-size:34px}
+  .dialog-header .dialog-close{width:44px;height:44px;min-height:44px}
+  .dialog-label{font-size:13px}
+  .dialog-inner p{font-size:16px;line-height:1.6}
+  .dialog-nutrition{border-radius:14px;font-size:13px;gap:10px;padding:18px 14px}
+  .dialog-nutrition b{font-size:31px}
+}
+
+@media(max-width:359px){
+  .product-grid .drink-content{padding:18px 17px;gap:11px 12px;grid-template-areas:"name name" "price price" "description description" "nutrition nutrition" "details details";grid-template-rows:auto auto auto auto auto}
+  .product-grid .drink-content h4{font-size:30px}
+  .product-grid .price{font-size:28px}
+  .menu-section .section-title-row h2{font-size:42px}
+  .category-sheet{padding-left:14px;padding-right:14px}
+  .category-option{gap:10px;padding-inline:7px}
+  .category-option strong{font-size:16px}
+  .dialog-inner{padding-inline:20px}
+}
+
+@media(prefers-reduced-motion:reduce){.menu-filters{scroll-behavior:auto}}

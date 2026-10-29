@@ -4,6 +4,8 @@
   const items = new Map(data.items.map(item => [item.id, item]));
   const dialog = document.getElementById('item-dialog');
   const methodDialog = document.getElementById('method-dialog');
+  const categoryDialog = document.getElementById('category-dialog');
+  const categoryLauncher = document.querySelector('[data-open-categories]');
   const nf = new Intl.NumberFormat('ru-RU');
   const price = value => (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽';
   const showItem = id => {
@@ -27,19 +29,39 @@
   };
   document.querySelectorAll('[data-details]').forEach(button => button.addEventListener('click', () => showItem(button.dataset.details)));
   document.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
-  [dialog, methodDialog].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) modal.close(); }));
+  [dialog, methodDialog, categoryDialog].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) modal.close(); }));
   document.querySelectorAll('[data-show-method]').forEach(button => button.addEventListener('click', () => methodDialog.showModal()));
-  const mobileCategory = document.getElementById('mobile-menu-category');
-  const selectCategory = id => {
+  categoryLauncher.addEventListener('click', () => {
+    categoryDialog.showModal();
+    categoryLauncher.setAttribute('aria-expanded', 'true');
+  });
+  categoryDialog.addEventListener('close', () => categoryLauncher.setAttribute('aria-expanded', 'false'));
+  window.matchMedia('(max-width: 760px)').addEventListener('change', event => {
+    if (!event.matches && categoryDialog.open) categoryDialog.close();
+  });
+  const categoryIds = new Set(['all', ...data.categories.map(category => category.id)]);
+  const selectCategory = (id, scroll = true, updateHash = true) => {
+    if (!categoryIds.has(id)) return;
+    if (categoryDialog.open) categoryDialog.close();
     document.querySelectorAll('[data-menu-filter]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.menuFilter === id)));
-    mobileCategory.value = id;
+    document.querySelector('.menu-section').dataset.activeCategory = id;
     document.querySelectorAll('[data-menu-category]').forEach(section => { section.hidden = id !== 'all' && section.dataset.menuCategory !== id; });
     const count = data.items.filter(item => id === 'all' || item.category === id).length;
     document.getElementById('menu-status').textContent = 'В разделе: ' + count;
-    document.querySelector('.menu-toolbar').scrollIntoView({ block: 'start', behavior: 'instant' });
+    if (updateHash) history.replaceState(null, '', id === 'all' ? '#menu' : '#menu-' + id);
+    if (scroll) document.querySelector('.menu-toolbar').scrollIntoView({ block: 'start', behavior: 'instant' });
+    const rail = document.querySelector('.menu-filters');
+    const selected = rail.querySelector('[data-menu-filter="' + id + '"]');
+    rail.scrollTo({ left: selected.offsetLeft - rail.offsetLeft - (rail.clientWidth - selected.offsetWidth) / 2, behavior: 'instant' });
   };
   document.querySelectorAll('[data-menu-filter]').forEach(button => button.addEventListener('click', () => selectCategory(button.dataset.menuFilter)));
-  mobileCategory.addEventListener('change', () => selectCategory(mobileCategory.value));
+  const readCategoryHash = () => {
+    const hash = location.hash;
+    if (hash === '#menu') selectCategory('all', false, false);
+    else if (hash.startsWith('#menu-')) selectCategory(hash.slice(6), false, false);
+  };
+  readCategoryHash();
+  window.addEventListener('hashchange', readCategoryHash);
   document.getElementById('show-nutrition').addEventListener('change', event => document.body.classList.toggle('nutrition-off', !event.target.checked));
 
   const videos = [...document.querySelectorAll('.story-video')];
