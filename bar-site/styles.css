@@ -14,3 +14,83 @@
 .hero-visual img{height:auto}
 .compact-columns>.menu-group{min-width:0}.menu-row h4{overflow-wrap:anywhere}
 @media(max-width:760px){.compact-columns{grid-template-columns:minmax(0,1fr)}.group-header{display:block}.group-header p{text-align:left;margin-top:8px}.group-header h3{overflow-wrap:anywhere}}
+
+/* Every menu position has its own full, uncropped product photograph. */
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 24px;align-items:stretch}
+.product-grid.columns-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.product-grid .drink-card{min-width:0;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.product-grid .drink-image{aspect-ratio:4/5;isolation:isolate;background:#e8decc;border-radius:6px;overflow:hidden}
+.product-grid .drink-image img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transform:none;transition:filter .2s ease}
+.product-grid .drink-image:hover img{transform:none;filter:brightness(1.035)}
+.product-grid .card-badge{font-size:12px;letter-spacing:.03em;top:12px;left:12px;padding:5px 8px}
+.card-volume{position:absolute;bottom:12px;right:12px;background:var(--paper);color:var(--ink);padding:4px 10px;border-radius:3px;font-size:14px;font-weight:600}
+.product-grid .drink-content{padding-top:20px;min-width:0}
+.product-grid .drink-content h4{font-size:30px;line-height:1.12;min-height:68px;margin:0 0 10px;overflow-wrap:anywhere}
+.product-grid .composition{font-size:16px;line-height:1.5;min-height:48px;margin:0 0 20px}
+.product-grid .drink-bottom{margin-top:auto;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.product-grid .price{font-size:32px}
+.product-grid .detail-button{display:inline-flex;justify-content:center;align-items:center;gap:12px;width:auto;min-height:44px;height:auto;padding:8px 12px;border-radius:3px;font-size:14px;line-height:1.4}
+.product-grid .detail-button span{font-size:19px}
+.product-grid .nutrition{font-size:14px;line-height:1.7;min-height:70px;padding-top:13px}
+.product-grid .nutrition strong{font-size:16px}
+.product-grid .nutrition .macro-line{white-space:normal}
+.product-grid .nutrition span{display:inline-block;white-space:nowrap}
+.product-grid .pending{font-size:14px;line-height:1.6}
+.product-grid--snack{grid-template-columns:1fr!important}
+.product-grid--snack .drink-card{display:grid;grid-template-columns:minmax(230px,360px) minmax(0,1fr);gap:42px;padding-bottom:0;border:0;align-items:center}
+.product-grid--snack .drink-content{padding:0 20px 0 0;max-width:550px}
+.product-grid--snack .drink-content h4{font-size:40px;min-height:0}
+.product-grid--snack .composition{font-size:18px;min-height:0;margin-bottom:26px}
+.product-grid--snack .price{font-size:42px}
+.product-grid--snack .drink-bottom{margin-top:0}
+.product-grid--snack .nutrition{min-height:0}
+@media(max-width:1190px){.product-grid,.product-grid.columns-3{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 22px}.product-grid .drink-content h4{font-size:29px}.product-grid .detail-button{padding:8px 10px;gap:8px}.product-grid .drink-bottom{gap:10px}.product-grid .price{font-size:30px}}
+@media(max-width:900px){.product-grid,.product-grid.columns-3{grid-template-columns:repeat(2,minmax(0,1fr))}.product-grid--snack .drink-card{grid-template-columns:minmax(200px,.85fr) minmax(0,1fr);gap:28px}.product-grid--snack .drink-content h4{font-size:34px}.product-grid--snack .composition{font-size:16px}.product-grid--snack .price{font-size:36px}}
+@media(max-width:600px){.product-grid,.product-grid.columns-3{gap:30px 16px}.product-grid .drink-content{padding-top:15px}.product-grid .drink-content h4{font-size:27px;line-height:1.13;min-height:62px;margin-bottom:10px}.product-grid .composition{font-size:15px;min-height:68px;margin-bottom:16px}.product-grid .drink-bottom{display:block;padding-bottom:14px}.product-grid .price{font-size:31px;display:block;margin-bottom:12px}.product-grid .detail-button{width:100%;min-height:44px;justify-content:space-between;font-size:14px;padding:9px 11px}.product-grid .nutrition{font-size:14px;min-height:95px;line-height:1.65}.product-grid .nutrition strong{font-size:16px}.product-grid .nutrition span+span{margin-left:4px}.product-grid .card-badge{top:8px;left:7px;font-size:10px;padding:3px 5px}.card-volume{font-size:13px;bottom:8px;right:7px;padding:3px 7px}.snack-group{padding:23px 18px}.product-grid--snack .drink-card{display:flex;gap:0}.product-grid--snack .drink-content{padding:20px 0 0;max-width:none}.product-grid--snack .drink-content h4{font-size:34px;min-height:0}.product-grid--snack .composition{min-height:0;font-size:16px}.product-grid--snack .drink-bottom{display:flex;flex-wrap:nowrap;align-items:center}.product-grid--snack .price{font-size:36px;margin-bottom:0}.product-grid--snack .detail-button{width:auto}.product-grid--snack .nutrition{min-height:0}}
+@media(max-width:359px){.product-grid,.product-grid.columns-3{grid-template-columns:1fr}.product-grid .drink-image{aspect-ratio:4/5}.product-grid .drink-content h4{font-size:32px;min-height:0}.product-grid .composition{min-height:0;font-size:16px}.product-grid .drink-bottom{display:flex;flex-wrap:nowrap}.product-grid .price{margin-bottom:0;font-size:34px}.product-grid .detail-button{width:auto}.product-grid .nutrition{min-height:0}.product-grid .card-badge{font-size:12px;padding:5px 8px}}
+@media(prefers-reduced-motion:reduce){.product-grid .drink-image img{transition:none}}
+
+/* Short owner-made stories are loaded only when played or in view. */
+.stories-section{padding:74px 0 0;scroll-margin-top:var(--header)}
+.stories-section .section-title-row>p{font-size:18px}
+.stories-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.story-card{min-width:0}
+.story-media{position:relative;aspect-ratio:9/16;background:var(--ink);border-radius:7px;overflow:hidden}
+.story-video{display:block;width:100%;height:100%;object-fit:contain;cursor:pointer}
+.story-toggle{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 12px;background:rgba(246,242,232,.96);border:1px solid #fff8;border-radius:4px;color:var(--ink);font-size:14px;font-weight:600}
+.story-toggle:hover{background:var(--lime)}
+.story-toggle>[aria-hidden]{font-size:15px}
+.story-duration{position:absolute;right:12px;bottom:12px;background:#0e231ed9;color:white;border-radius:3px;padding:3px 8px;font-size:13px}
+.story-noscript{position:absolute;bottom:12px;left:12px;background:var(--paper);padding:6px 10px;font-size:14px}
+.story-caption{padding:18px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;align-items:start}
+.story-caption h3{font:700 27px/1.12 Condensed,sans-serif;margin:0}
+.story-caption>strong{font:700 28px/1.12 Condensed,sans-serif;white-space:nowrap}
+.story-details{grid-column:1/-1;justify-self:start;background:none;border:0;border-bottom:1px solid #90a68e;padding:3px 0 7px;min-height:44px;color:var(--green);font-size:15px;display:flex;align-items:center;gap:20px}
+.stories-hint{display:none}
+.mobile-category{display:none}
+.nutrition-controls{display:flex;gap:22px;flex-shrink:0;align-items:center}
+.menu-toolbar{scroll-margin-top:var(--header)}
+@media(max-width:1190px){.nutrition-intro{gap:25px}.nutrition-controls{flex-direction:column;align-items:start;gap:10px}.story-caption{display:block}.story-caption h3{min-height:61px;margin-bottom:8px}.story-caption>strong{display:block}.story-details{margin-top:8px}}
+@media(max-width:760px){
+ .top-nav a:first-child{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--paper);border-radius:3px;min-height:44px;min-width:84px;padding:8px 14px;font-size:15px}
+ .stories-section{padding-top:48px}.stories-section .section-title-row>p{font-size:16px;margin-bottom:22px}.stories-section .section-title-row>p br{display:none}
+ .stories-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:#98ad91 transparent}
+ .story-card{flex:0 0 min(76vw,330px);scroll-snap-align:start}.story-caption{display:grid}.story-caption h3{font-size:29px;min-height:0;margin:0}.story-caption>strong{font-size:29px}.story-details{margin-top:0;font-size:16px}
+ .stories-hint{display:block;font-size:14px;color:var(--muted);margin:14px 0 0}.stories-hint span{margin-left:12px}
+ .menu-toolbar{display:block;padding:8px 0;min-height:66px;box-shadow:0 5px 12px #18332908}
+ .menu-filters{display:none}
+ .mobile-category{position:relative;display:flex;align-items:center;background:var(--ink);border-radius:4px;color:var(--paper);min-height:50px}
+ .mobile-category>span:first-child{position:absolute;left:15px;top:5px;font-size:11px;line-height:1.3;letter-spacing:.08em;text-transform:uppercase;color:var(--lime);pointer-events:none}
+ .mobile-category select{appearance:none;-webkit-appearance:none;background:transparent;color:inherit;width:100%;border:0;border-radius:4px;padding:20px 45px 7px 15px;font:600 16px/1.4 Inter,Arial,sans-serif;min-height:52px;cursor:pointer}
+ .mobile-category select option{background:var(--paper);color:var(--ink)}
+ .select-chevron{position:absolute;right:16px;font-size:26px;pointer-events:none;top:10px}
+ .nutrition-intro{display:block;font-size:14px;margin-bottom:30px}.nutrition-controls{flex-direction:row;align-items:center;justify-content:space-between;gap:14px;margin-top:15px}.nutrition-toggle{font-size:14px;margin-left:0}.nutrition-intro .text-button{font-size:14px}
+ .product-grid .drink-content{position:relative;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto 1fr auto;align-content:start}
+ .product-grid .drink-content h4{order:0}.product-grid .drink-bottom{order:1;border:0;padding-bottom:0;margin:0 0 13px}.product-grid .composition{order:2;min-height:0;margin:0 0 14px}.product-grid .nutrition{order:3;border-top:1px solid var(--line);min-height:72px;margin-top:0;padding-top:10px}
+}
+@media(max-width:600px){.product-grid .drink-bottom{position:static}.product-grid .price{font-size:31px;margin-bottom:10px}.product-grid .drink-content h4{font-size:26px}.product-grid .composition{font-size:15px}.product-grid .drink-card{padding-bottom:15px}.product-grid--snack .drink-content{display:flex}.product-grid--snack .drink-bottom{margin-bottom:18px}.product-grid--snack .drink-content h4{font-size:34px}.product-grid--snack .price{margin-bottom:0;font-size:36px}.product-grid--snack .nutrition{min-height:0;padding-top:12px}.nutrition-controls{flex-wrap:wrap}}
+@media(max-width:359px){.product-grid .drink-content h4{font-size:32px}.product-grid .price{margin-bottom:0;font-size:34px}.story-toggle{font-size:14px}}
+html{scroll-padding-top:var(--header)}
+.menu-group{scroll-margin-top:88px}
+.menu-toolbar{scroll-margin-top:0}
+@media(max-width:760px){.menu-group{scroll-margin-top:76px}.nutrition-intro{margin-top:16px;margin-bottom:25px}.nutrition-intro>p{font-size:14px;margin-bottom:10px}.nutrition-controls{margin-top:0}.group-header p{font-size:14px}}

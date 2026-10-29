@@ -1,0 +1,46 @@
+{
+  "stories": [
+    {
+      "key": "breakfast",
+      "drive_id": "1C-0j_Dv8Vcgmp2miVcEq2a5FxOw3Zqy6",
+      "title": "смузи завтрак.mp4",
+      "source_url": "https://drive.google.com/file/d/1C-0j_Dv8Vcgmp2miVcEq2a5FxOw3Zqy6/view",
+      "output": "bar-site/assets/stories/breakfast.mp4",
+      "processing": "480 px wide, H.264 24 fps, CRF 26, audio removed, faststart; original full video duration retained"
+    },
+    {
+      "key": "berry",
+      "drive_id": "1gvrJJNjfKPz5g_zmDM_HI5GW3NhoJi5h",
+      "title": "смузи ягоды.mp4",
+      "source_url": "https://drive.google.com/file/d/1gvrJJNjfKPz5g_zmDM_HI5GW3NhoJi5h/view",
+      "output": "bar-site/assets/stories/berry.mp4",
+      "processing": "480 px wide, H.264 24 fps, CRF 26, audio removed, faststart; original full video duration retained"
+    },
+    {
+      "key": "bumble",
+      "drive_id": "17xQ40X54y5f24cwZ1N80bnCZlqeWjn9L",
+      "title": "бамбл кофе карамель.mp4",
+      "source_url": "https://drive.google.com/file/d/17xQ40X54y5f24cwZ1N80bnCZlqeWjn9L/view",
+      "output": "bar-site/assets/stories/bumble.mp4",
+      "processing": "480 px wide, H.264 24 fps, CRF 26, audio removed, faststart; original full video duration retained"
+    },
+    {
+      "key": "citrus",
+      "drive_id": "1HA_FtQlYGsyVWHSvYCkuaSiXUBlgmTyc",
+      "title": "фреш апельсин и грейпфрукт.mp4",
+      "source_url": "https://drive.google.com/file/d/1HA_FtQlYGsyVWHSvYCkuaSiXUBlgmTyc/view",
+      "output": "bar-site/assets/stories/citrus.mp4",
+      "processing": "480 px wide, H.264 24 fps, CRF 26, audio removed, faststart; original full video duration retained"
+    }
+  ],
+  "menu_images": {
+    "kind": "AI-created ingredient-led commercial food visuals",
+    "one_unique_image_per_position": true,
+    "count": 22
+  },
+  "protein_bar_reference_pages": [
+    "https://www.bombbar.ru/catalog/batonchiki_vafli/shokoladnie_batonchiki",
+    "https://www.proteinrex.ru/"
+  ],
+  "protein_bar_note": "Assortment illustration using recognizable real brand packaging references; actual club stock not confirmed."
+}

@@ -28,7 +28,7 @@ add('breakfast','smoothies','На завтрак',350,'Банан, овсянк�
 add('berry','smoothies','Ягодный',300,'Банан, ягоды.','berry',[('banana',100),('strawberry',100/3),('blueberry',100/3),('raspberry',100/3)],'Банан 100 г и ягоды 100 г. Для оценки взята смесь клубники, черники и малины в равных долях. Вода — по консистенции; без молока, сахара и сиропов.')
 add('fruit','smoothies','Фруктовый',250,'Банан, киви, яблоко.','fruit',[('banana',100),('kiwi',60),('apple',80)],'Банан 100 г, киви 60 г, яблоко 80 г. Вода — по консистенции; без молока, сахара и сиропов.')
 add('green','smoothies','Зелёный смузи',250,'Шпинат, банан, яблоко.','green',[('spinach',30),('banana',100),('apple',80)],'Шпинат 30 г, банан 100 г, яблоко 80 г. Вода — по консистенции; без молока, сахара и сиропов.',badge='ЗЕЛЁНЫЙ ВКУС')
-add('bumble','smoothies','Бамбл-кофе',300,'Апельсиновый фреш, кофе, карамельный сироп.','bumble',[('orange',210),('espresso',30),('caramel',19.395)],'Апельсиновый фреш 200 мл (примерно 210 г), эспрессо 30 мл и карамельный сироп 15 мл (примерно 19,4 г). Сироп учтён по справочной этикетке MONIN. Это расчётные количества; фактическую дозировку и марку сиропа клуба нужно уточнить.',badge='С КАРАМЕЛЬЮ')
+add('bumble','drinks','Бамбл-кофе',300,'Апельсиновый фреш, кофе, карамельный сироп.','bumble',[('orange',210),('espresso',30),('caramel',19.395)],'Апельсиновый фреш 200 мл (примерно 210 г), эспрессо 30 мл и карамельный сироп 15 мл (примерно 19,4 г). Сироп учтён по справочной этикетке MONIN. Это расчётные количества; фактическую дозировку и марку сиропа клуба нужно уточнить.',badge='С КАРАМЕЛЬЮ')
 for id,name,price,kind in [('whey','Протеин сывороточный',280,'whey'),('plant','Протеин растительный',290,'plant'),('isolate','Протеин изолят',330,'isolate')]:
     add(id,'protein',name,price,image='protein',recipe=[(kind,30)],assumption='Расчёт для 30 г порошка на воде. Марка и вкус не указаны: использована справочная этикетка аналогичного продукта, а не подтверждённая рецептура клуба. При приготовлении на молоке КБЖУ будут выше.')
 for id,name,price in [('bcaa','BCAA',110),('carnitine','L-карнитин',130),('preworkout','Предтрен',130)]:
@@ -40,7 +40,38 @@ add('tea','drinks','Чай классический',30,recipe=[('tea',200)],ass
 add('fruit-tea','drinks','Фруктовый чай',120,pending='Не указана рецептура: настой, свежие фрукты, пюре, мёд и сироп дают разную пищевую ценность. Нужен состав и масса ингредиентов.')
 add('coffee','drinks','Кофе',80,recipe=[('espresso',30)],assumption='Для оценки взята порция эспрессо 30 мл без сахара и молока. Вид кофе и объём в исходном меню не указаны; это расчётный ориентир.')
 add('protein-bar','snack','Протеиновый батончик',[80,200],pending='Ассортимент, марки и масса батончиков не указаны. КБЖУ следует брать с упаковки конкретного батончика.')
+images = {
+    'whey':'protein', 'plant':'plant', 'isolate':'isolate',
+    'bcaa':'bcaa', 'carnitine':'carnitine', 'preworkout':'preworkout', 'gainer':'gainer',
+    'fresh-apple':'fresh-apple', 'fresh-apple-carrot':'fresh-apple-carrot',
+    'fresh-orange':'fresh-orange', 'fresh-apple-orange':'fresh-apple-orange',
+    'fresh-grapefruit':'fresh-grapefruit', 'fresh-orange-grapefruit':'fresh',
+    'tea':'tea', 'fruit-tea':'fruit-tea', 'coffee':'coffee', 'protein-bar':'protein-bar-mix'
+}
+descriptions = {
+    'whey':'Классический белковый коктейль.',
+    'plant':'Белковый коктейль на растительной основе.',
+    'isolate':'Коктейль на основе протеина-изолята.',
+    'bcaa':'Порция аминокислот BCAA.',
+    'carnitine':'Порция L-карнитина.',
+    'preworkout':'Предтренировочный комплекс.',
+    'gainer':'Коктейль на основе гейнера.',
+    'fresh-apple':'Свежий яблочный сок.',
+    'fresh-apple-carrot':'Яблоко и морковь.',
+    'fresh-orange':'Свежий апельсиновый сок.',
+    'fresh-apple-orange':'Яблоко и апельсин.',
+    'fresh-grapefruit':'Свежий грейпфрутовый сок.',
+    'fresh-orange-grapefruit':'Апельсин и грейпфрут.',
+    'tea':'Горячий чай для приятной паузы.',
+    'fruit-tea':'Яркий фруктовый вкус.',
+    'coffee':'Ароматный кофе.',
+    'protein-bar':'Вкусный перекус с собой. Ассортимент и вкусы уточняй на баре.'
+}
+for item in items:
+    if item['id'] in images: item['image'] = images[item['id']]
+    item['description'] = descriptions.get(item['id'], item['composition'])
 assert len(items)==22
+assert len({item['image'] for item in items}) == 22
 sources=[
  {'id':'caramel','name':'GEORGES MONIN — спецификация карамельного сиропа-аналога','url':'https://www.cfw.co.uk/Media/PDF%20Spec%20Sheets/Monin/Spec-Sheet-Monin-Syrup-Caramel.pdf','note':'323 ккал и 79,3 г углеводов на 100 мл, плотность 1,293 г/мл. Для бамбл-кофе принято 15 мл сиропа. Марка клуба не подтверждена.'},
  {'id':'usda','name':'USDA Standard Reference 28','url':'https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/','note':'Продукты и соки, значения на 100 г. Яблочный и морковный соки — справочные аналоги.'},

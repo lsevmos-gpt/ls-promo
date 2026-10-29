@@ -253,7 +253,8 @@
             30
           ]
         ]
-      }
+      },
+      "description": "Банан, овсянка, протеин."
     },
     {
       "id": "berry",
@@ -298,7 +299,8 @@
             33.333333333333336
           ]
         ]
-      }
+      },
+      "description": "Банан, ягоды."
     },
     {
       "id": "fruit",
@@ -339,7 +341,8 @@
             80
           ]
         ]
-      }
+      },
+      "description": "Банан, киви, яблоко."
     },
     {
       "id": "green",
@@ -380,11 +383,12 @@
             80
           ]
         ]
-      }
+      },
+      "description": "Шпинат, банан, яблоко."
     },
     {
       "id": "bumble",
-      "category": "smoothies",
+      "category": "drinks",
       "name": "Бамбл-кофе",
       "price_rub": 300,
       "composition": "Апельсиновый фреш, кофе, карамельный сироп.",
@@ -421,7 +425,8 @@
             19.395
           ]
         ]
-      }
+      },
+      "description": "Апельсиновый фреш, кофе, карамельный сироп."
     },
     {
       "id": "whey",
@@ -454,7 +459,8 @@
             30
           ]
         ]
-      }
+      },
+      "description": "Классический белковый коктейль."
     },
     {
       "id": "plant",
@@ -462,7 +468,7 @@
       "name": "Протеин растительный",
       "price_rub": 290,
       "composition": "",
-      "image": "protein",
+      "image": "plant",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -487,7 +493,8 @@
             30
           ]
         ]
-      }
+      },
+      "description": "Белковый коктейль на растительной основе."
     },
     {
       "id": "isolate",
@@ -495,7 +502,7 @@
       "name": "Протеин изолят",
       "price_rub": 330,
       "composition": "",
-      "image": "protein",
+      "image": "isolate",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -520,7 +527,8 @@
             30
           ]
         ]
-      }
+      },
+      "description": "Коктейль на основе протеина-изолята."
     },
     {
       "id": "bcaa",
@@ -528,7 +536,7 @@
       "name": "BCAA",
       "price_rub": 110,
       "composition": "",
-      "image": null,
+      "image": "bcaa",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -537,7 +545,8 @@
         "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
         "assumption": "",
         "calculation_recipe_g": null
-      }
+      },
+      "description": "Порция аминокислот BCAA."
     },
     {
       "id": "carnitine",
@@ -545,7 +554,7 @@
       "name": "L-карнитин",
       "price_rub": 130,
       "composition": "",
-      "image": null,
+      "image": "carnitine",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -554,7 +563,8 @@
         "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
         "assumption": "",
         "calculation_recipe_g": null
-      }
+      },
+      "description": "Порция L-карнитина."
     },
     {
       "id": "preworkout",
@@ -562,7 +572,7 @@
       "name": "Предтрен",
       "price_rub": 130,
       "composition": "",
-      "image": null,
+      "image": "preworkout",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -571,7 +581,8 @@
         "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
         "assumption": "",
         "calculation_recipe_g": null
-      }
+      },
+      "description": "Предтренировочный комплекс."
     },
     {
       "id": "gainer",
@@ -579,7 +590,7 @@
       "name": "Гейнер",
       "price_rub": 220,
       "composition": "",
-      "image": null,
+      "image": "gainer",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -604,7 +615,8 @@
             50
           ]
         ]
-      }
+      },
+      "description": "Коктейль на основе гейнера."
     },
     {
       "id": "fresh-apple",
@@ -612,7 +624,7 @@
       "name": "Яблочный",
       "price_rub": 250,
       "composition": "",
-      "image": null,
+      "image": "fresh-apple",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -637,7 +649,8 @@
             260
           ]
         ]
-      }
+      },
+      "description": "Свежий яблочный сок."
     },
     {
       "id": "fresh-apple-carrot",
@@ -645,7 +658,7 @@
       "name": "Яблочно-морковный",
       "price_rub": 250,
       "composition": "",
-      "image": null,
+      "image": "fresh-apple-carrot",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -674,7 +687,8 @@
             130.0
           ]
         ]
-      }
+      },
+      "description": "Яблоко и морковь."
     },
     {
       "id": "fresh-orange",
@@ -682,7 +696,7 @@
       "name": "Апельсиновый",
       "price_rub": 300,
       "composition": "",
-      "image": null,
+      "image": "fresh-orange",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -707,7 +721,8 @@
             260
           ]
         ]
-      }
+      },
+      "description": "Свежий апельсиновый сок."
     },
     {
       "id": "fresh-apple-orange",
@@ -715,7 +730,7 @@
       "name": "Яблочно-апельсиновый",
       "price_rub": 300,
       "composition": "",
-      "image": null,
+      "image": "fresh-apple-orange",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -744,7 +759,8 @@
             130.0
           ]
         ]
-      }
+      },
+      "description": "Яблоко и апельсин."
     },
     {
       "id": "fresh-grapefruit",
@@ -752,7 +768,7 @@
       "name": "Грейпфрутовый",
       "price_rub": 320,
       "composition": "",
-      "image": null,
+      "image": "fresh-grapefruit",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -777,7 +793,8 @@
             260
           ]
         ]
-      }
+      },
+      "description": "Свежий грейпфрутовый сок."
     },
     {
       "id": "fresh-orange-grapefruit",
@@ -785,7 +802,7 @@
       "name": "Апельсиново-грейпфрутовый",
       "price_rub": 320,
       "composition": "",
-      "image": null,
+      "image": "fresh",
       "volume_ml": 250,
       "badge": null,
       "nutrition": {
@@ -814,7 +831,8 @@
             130.0
           ]
         ]
-      }
+      },
+      "description": "Апельсин и грейпфрут."
     },
     {
       "id": "tea",
@@ -822,7 +840,7 @@
       "name": "Чай классический",
       "price_rub": 30,
       "composition": "",
-      "image": null,
+      "image": "tea",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -847,7 +865,8 @@
             200
           ]
         ]
-      }
+      },
+      "description": "Горячий чай для приятной паузы."
     },
     {
       "id": "fruit-tea",
@@ -855,7 +874,7 @@
       "name": "Фруктовый чай",
       "price_rub": 120,
       "composition": "",
-      "image": null,
+      "image": "fruit-tea",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -864,7 +883,8 @@
         "reason": "Не указана рецептура: настой, свежие фрукты, пюре, мёд и сироп дают разную пищевую ценность. Нужен состав и масса ингредиентов.",
         "assumption": "",
         "calculation_recipe_g": null
-      }
+      },
+      "description": "Яркий фруктовый вкус."
     },
     {
       "id": "coffee",
@@ -872,7 +892,7 @@
       "name": "Кофе",
       "price_rub": 80,
       "composition": "",
-      "image": null,
+      "image": "coffee",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -897,7 +917,8 @@
             30
           ]
         ]
-      }
+      },
+      "description": "Ароматный кофе."
     },
     {
       "id": "protein-bar",
@@ -908,7 +929,7 @@
         200
       ],
       "composition": "",
-      "image": null,
+      "image": "protein-bar-mix",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -917,7 +938,8 @@
         "reason": "Ассортимент, марки и масса батончиков не указаны. КБЖУ следует брать с упаковки конкретного батончика.",
         "assumption": "",
         "calculation_recipe_g": null
-      }
+      },
+      "description": "Вкусный перекус с собой. Ассортимент и вкусы уточняй на баре."
     }
   ]
 }
