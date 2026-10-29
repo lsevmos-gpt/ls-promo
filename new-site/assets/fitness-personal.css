@@ -1,6 +1,6 @@
 /* Load after styles.css. Fitness pass switcher and the personal-training group only. */
 .fitness-passes .fitness-personal-switcher.segment{display:flex;gap:3px;width:max-content;max-width:100%;margin:0 0 28px;padding:4px;border:1px solid #DCCFC5;background:#F3EAE2}
-.fitness-passes .fitness-personal-switcher.segment>button{min-height:48px;padding:12px 22px;border:0;background:transparent;color:#1F1C1B;font:600 13px/1.4 Inter,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+.fitness-passes .fitness-personal-switcher.segment>button{min-height:48px;padding:12px 22px;border:0;background:transparent;color:#1F1C1B;font:600 14px/1.4 Inter,Arial,sans-serif;cursor:pointer;white-space:nowrap}
 .fitness-passes .fitness-personal-switcher.segment>button.active{background:#914F4C;color:#FBF7F3}
 .fitness-passes .fitness-personal-switcher.segment>button:hover:not(.active){background:#EFE2D6;color:#1F1C1B}
 .fitness-passes .fitness-personal-switcher.segment>button:focus-visible{position:relative;outline:3px solid #1F1C1B;outline-offset:2px}
@@ -17,8 +17,8 @@
 .fitness-personal-group .fitness-pass-price{margin-top:28px;margin-bottom:30px;gap:10px}
 .fitness-personal-group .fitness-pass-price>strong{font-size:70px}
 .fitness-personal-group .fitness-pass-price>span{font-size:30px}
-.fitness-personal-group .fitness-pass-price small{font-size:12px;line-height:1.5}
-.fitness-personal-group .fitness-personal-card>.fitness-personal-cta{width:100%;min-height:54px;margin-top:auto;padding:14px 16px;gap:14px;border-color:#914F4C;background:#914F4C;color:#FBF7F3;font-size:12px;text-decoration:none}
+.fitness-personal-group .fitness-pass-price small{font-size:14px;line-height:1.5}
+.fitness-personal-group .fitness-personal-card>.fitness-personal-cta{width:100%;min-height:54px;margin-top:auto;padding:14px 16px;gap:14px;border-color:#914F4C;background:#914F4C;color:#FBF7F3;font-size:16px;text-decoration:none}
 .fitness-personal-group .fitness-personal-card>.fitness-personal-cta:hover{border-color:#7D4341;background:#7D4341;color:#FBF7F3}
 .fitness-personal-group .fitness-personal-card>.fitness-personal-cta:focus-visible{outline:3px solid #1F1C1B;outline-offset:4px}
 @media(max-width:1100px){
@@ -28,7 +28,7 @@
 }
 @media(max-width:760px){
   .fitness-passes .fitness-personal-switcher.segment{width:100%;margin-bottom:24px}
-  .fitness-passes .fitness-personal-switcher.segment>button{flex:1;min-width:0;padding:12px 14px;font-size:12px}
+  .fitness-passes .fitness-personal-switcher.segment>button{flex:1;min-width:0;padding:12px 14px;font-size:16px}
   .fitness-passes .fitness-personal-panel-title{font-size:32px}
   .fitness-personal-group{margin-top:35px;padding-top:27px}
   .fitness-personal-group .fitness-personal-title{margin-bottom:20px;font-size:32px}
@@ -37,9 +37,10 @@
   .fitness-personal-group .fitness-personal-card>h4{font-size:40px}
   .fitness-personal-group .fitness-pass-price{margin-top:24px}
   .fitness-personal-group .fitness-pass-price>strong{font-size:70px}
-  .fitness-personal-group .fitness-personal-card>.fitness-personal-cta{min-height:54px;font-size:13px}
+  .fitness-personal-group .fitness-personal-card>.fitness-personal-cta{min-height:54px;font-size:16px}
 }
 @media(max-width:400px){
+  .fitness-passes .fitness-personal-switcher.segment{display:grid;grid-template-columns:minmax(0,1fr)}
   .fitness-personal-group .fitness-personal-card{padding:22px}
   .fitness-personal-group .fitness-personal-card>h4{font-size:36px}
   .fitness-personal-group .fitness-pass-price>strong{font-size:64px}
