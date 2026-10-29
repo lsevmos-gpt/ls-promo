@@ -1,0 +1,53 @@
+name: Deploy app.liniyasporta.ru to REG.RU
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'app-site/**'
+      - '.github/scripts/deploy-app-site.py'
+      - '.github/workflows/deploy-app-reg.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: app-liniyasporta-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout approved app website
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify app FTP settings, dedicated destination and backup
+        env:
+          APP_REG_USER: ${{ vars.APP_REG_USER }}
+          APP_REG_PASSWORD: ${{ secrets.APP_REG_PASSWORD }}
+        run: python .github/scripts/deploy-app-site.py backup
+
+      - name: Save original app homepage before publishing
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-homepage-before-${{ github.run_id }}
+          path: _app_site_backup/index.html
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish approved app homepage over FTPS
+        env:
+          APP_REG_USER: ${{ vars.APP_REG_USER }}
+          APP_REG_PASSWORD: ${{ secrets.APP_REG_PASSWORD }}
+        run: python .github/scripts/deploy-app-site.py deploy
+
+      - name: Verify the published app homepage over HTTPS
+        run: python .github/scripts/deploy-app-site.py verify
