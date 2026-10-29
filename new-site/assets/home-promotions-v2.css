@@ -26,7 +26,7 @@
 #promotions.home-promo-graphic .poster-baseline{position:absolute;bottom:24px;left:31px;right:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
 #promotions.home-promo-graphic .poster-baseline p{font-size:14px;line-height:1.4}
 #promotions.home-promo-graphic .poster-link{display:flex;align-items:center;gap:15px;font-size:12px;font-weight:600}
-#promotions.home-promo-graphic .friend{background:var(--green);color:var(--paper);margin-top:35px;padding:25px 31px}
+#promotions.home-promo-graphic .friend{background:var(--green);color:var(--paper);margin-top:0;padding:25px 31px}
 #promotions.home-promo-graphic .friend h3{font-size:28px;line-height:1.05;letter-spacing:-.02em}
 #promotions.home-promo-graphic .bonus-pair{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:23px;margin-top:24px}
 #promotions.home-promo-graphic .bonus-unit{display:flex;flex-direction:column;text-align:center}
