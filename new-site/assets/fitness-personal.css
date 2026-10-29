@@ -1,0 +1,33 @@
+/* Load after styles.css. Only the added personal-training group is affected. */
+.fitness-personal-group{margin-top:45px;padding-top:32px;border-top:1px solid #DCCFC5}
+.fitness-personal-group .fitness-personal-title{margin:0 0 24px;color:#1F1C1B;font-family:'Roboto Condensed',Arial,sans-serif;font-size:clamp(30px,3.8vw,42px);font-weight:700;line-height:1.08;letter-spacing:-.02em}
+.fitness-personal-group .fitness-personal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.fitness-personal-group .fitness-personal-card{min-width:0;padding:28px;border-top-color:#A96663}
+.fitness-personal-group .fitness-personal-card>h4{margin:0;color:#1F1C1B;font-family:'Roboto Condensed',Arial,sans-serif;font-size:42px;font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.fitness-personal-group .fitness-pass-price{margin-top:28px;margin-bottom:30px;gap:10px}
+.fitness-personal-group .fitness-pass-price>strong{font-size:70px}
+.fitness-personal-group .fitness-pass-price>span{font-size:30px}
+.fitness-personal-group .fitness-pass-price small{font-size:12px;line-height:1.5}
+.fitness-personal-group .fitness-personal-card>.fitness-personal-cta{width:100%;min-height:54px;margin-top:auto;padding:14px 16px;gap:14px;border-color:#914F4C;background:#914F4C;color:#FBF7F3;font-size:12px;text-decoration:none}
+.fitness-personal-group .fitness-personal-card>.fitness-personal-cta:hover{border-color:#7D4341;background:#7D4341;color:#FBF7F3}
+.fitness-personal-group .fitness-personal-card>.fitness-personal-cta:focus-visible{outline:3px solid #1F1C1B;outline-offset:4px}
+@media(max-width:1100px){
+  .fitness-personal-group .fitness-personal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .fitness-personal-group .fitness-personal-card{padding:26px}
+  .fitness-personal-group .fitness-personal-card>h4{font-size:40px}
+}
+@media(max-width:760px){
+  .fitness-personal-group{margin-top:35px;padding-top:27px}
+  .fitness-personal-group .fitness-personal-title{margin-bottom:20px;font-size:32px}
+  .fitness-personal-group .fitness-personal-grid{grid-template-columns:minmax(0,1fr)}
+  .fitness-personal-group .fitness-personal-card{padding:25px}
+  .fitness-personal-group .fitness-personal-card>h4{font-size:40px}
+  .fitness-personal-group .fitness-pass-price{margin-top:24px}
+  .fitness-personal-group .fitness-pass-price>strong{font-size:70px}
+  .fitness-personal-group .fitness-personal-card>.fitness-personal-cta{min-height:54px;font-size:13px}
+}
+@media(max-width:400px){
+  .fitness-personal-group .fitness-personal-card{padding:22px}
+  .fitness-personal-group .fitness-personal-card>h4{font-size:36px}
+  .fitness-personal-group .fitness-pass-price>strong{font-size:64px}
+}
