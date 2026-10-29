@@ -1,0 +1,27 @@
+{
+  "name": "Тренерские абонементы",
+  "currency": "RUB",
+  "source": {
+    "type": "owner_instruction_and_uploaded_price_list",
+    "date": "2026-10-29",
+    "file": "image(6).png"
+  },
+  "default_sessions": 8,
+  "sessions": [8, 12],
+  "formats": [
+    {
+      "id": "mini",
+      "title": "МИНИ-ГРУППА",
+      "description": "До 3 человек одновременно",
+      "max_people": 3,
+      "prices": {"8": 6000, "12": 7000}
+    },
+    {
+      "id": "individual",
+      "title": "ИНДИВИДУАЛЬНО",
+      "description": "Один на один с тренером",
+      "max_people": 1,
+      "prices": {"8": 11000, "12": 13000}
+    }
+  ]
+}

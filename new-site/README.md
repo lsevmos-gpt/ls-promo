@@ -83,3 +83,12 @@ Deployment workflow: `.github/workflows/deploy-new-site.yml`
 По замечанию владельца увеличены описания, условия, кнопки и ссылки: основной текст 16–18 px, подписи не мельче 14 px. На мобильных эти размеры сохраняются; меню на планшетах сворачивается, фильтры и условия переносятся без уменьшения шрифта. Узкие карточки тренеров переходят в одну колонку. Контраст второстепенного текста усилен. Заголовки, цены, фотографии и правила доступа карт сохранены.
 
 Изменены основной styles.css и действующие дополнительные CSS тренеров, фитнеса и акций; подписи приложения увеличены в общих стилях. Все HTML используют новые версии изменённых ресурсов по SHA-256. После будущих правок CSS сохраняйте эти размеры и обновляйте версии подключений; для styles.css используется stamp-new-site-css.py.
+
+
+### Trainer service packages — 2026-10-29
+
+Owner-supplied prices: 8 / 12 sessions cost 6,000 / 7,000 RUB in a mini-group (up to 3 clients at the same time), or 11,000 / 13,000 RUB individually (one client). These are trainer service packages, independent of club card color. No package expiry or extra terms are assumed.
+
+The shared 8/12-session selector appears on the home team block, directory, three club rosters, 19 full profiles and personal training page. Booking links use each trainer's current assigned clubs. Source: `data/trainer-passes.json`; regenerate with `.github/scripts/refresh-trainer-passes.py`. The full trainer renderer also calls it. Trainer controls use their own data attributes and assets, separate from membership pricing.
+
+Approved site favicons use `/assets/favicons/v1/`; fitness has its own icon in the fitness subdirectory. The current main favicon has no New label and can follow the site to its permanent domain.

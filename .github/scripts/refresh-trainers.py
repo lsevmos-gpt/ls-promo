@@ -185,4 +185,5 @@ for path in SITE.rglob('*.html'):
     text = re.sub(r'src="/assets/content\.js(?:\?[^" ]*)?"', f'src="/assets/content.js?v={version}"', text)
     path.write_text(text)
 runpy.run_path(str(ROOT / '.github/scripts/refresh-memberships.py'), run_name='__main__')
+runpy.run_path(str(ROOT / '.github/scripts/refresh-trainer-passes.py'), run_name='__main__')
 print('Rendered', len(TRAINERS), 'complete trainer profiles and', len(CLUBS), 'club rosters.')
