@@ -1,0 +1,923 @@
+{
+  "brand": "Линия спорта",
+  "menu_source": {
+    "type": "owner_photo",
+    "file": "IMG_20261029_234450_636.jpg",
+    "date": "2026-10-29"
+  },
+  "owner_updates": [
+    {
+      "date": "2026-10-30",
+      "change": "Бамбл-кофе с карамельным сиропом, 300 ₽; состав уточнён владельцем."
+    }
+  ],
+  "common_menu_for_all_clubs": true,
+  "nutrition_method": {
+    "status": "approximate_not_verified_recipe",
+    "rounding": "Калории до 5 ккал, БЖУ до целого грамма. Значения рассчитаны на обозначенную расчётную порцию, не на 100 г.",
+    "notice": "Граммовки для расчёта предварительные. Реальные КБЖУ зависят от рецептуры, марки порошка, вкуса и основы напитка.",
+    "usda_food_ids": {
+      "banana": "09040",
+      "apple": "09003",
+      "kiwi": "09148",
+      "oats": "08120",
+      "spinach": "11457",
+      "strawberry": "09316",
+      "blueberry": "09050",
+      "raspberry": "09302",
+      "orange": "09206",
+      "grapefruit": "09404",
+      "apple_juice": "09016",
+      "carrot": "11655",
+      "espresso": "14210",
+      "tea": "14355"
+    },
+    "ingredient_values_per_100g": {
+      "banana": {
+        "kcal": 89.0,
+        "protein": 1.09,
+        "fat": 0.33,
+        "carbs": 22.84
+      },
+      "apple": {
+        "kcal": 52.0,
+        "protein": 0.26,
+        "fat": 0.17,
+        "carbs": 13.81
+      },
+      "kiwi": {
+        "kcal": 61.0,
+        "protein": 1.14,
+        "fat": 0.52,
+        "carbs": 14.66
+      },
+      "oats": {
+        "kcal": 379.0,
+        "protein": 13.15,
+        "fat": 6.52,
+        "carbs": 67.7
+      },
+      "spinach": {
+        "kcal": 23.0,
+        "protein": 2.86,
+        "fat": 0.39,
+        "carbs": 3.63
+      },
+      "strawberry": {
+        "kcal": 32.0,
+        "protein": 0.67,
+        "fat": 0.3,
+        "carbs": 7.68
+      },
+      "blueberry": {
+        "kcal": 57.0,
+        "protein": 0.74,
+        "fat": 0.33,
+        "carbs": 14.49
+      },
+      "raspberry": {
+        "kcal": 52.0,
+        "protein": 1.2,
+        "fat": 0.65,
+        "carbs": 11.94
+      },
+      "orange": {
+        "kcal": 45.0,
+        "protein": 0.7,
+        "fat": 0.2,
+        "carbs": 10.4
+      },
+      "grapefruit": {
+        "kcal": 39.0,
+        "protein": 0.5,
+        "fat": 0.1,
+        "carbs": 9.2
+      },
+      "apple_juice": {
+        "kcal": 46.0,
+        "protein": 0.1,
+        "fat": 0.13,
+        "carbs": 11.3
+      },
+      "carrot": {
+        "kcal": 40.0,
+        "protein": 0.95,
+        "fat": 0.15,
+        "carbs": 9.28
+      },
+      "espresso": {
+        "kcal": 9.0,
+        "protein": 0.12,
+        "fat": 0.18,
+        "carbs": 1.67
+      },
+      "tea": {
+        "kcal": 1.0,
+        "protein": 0.0,
+        "fat": 0.0,
+        "carbs": 0.3
+      },
+      "whey": {
+        "kcal": 373,
+        "protein": 74,
+        "fat": 4.2,
+        "carbs": 9.7
+      },
+      "plant": {
+        "kcal": 399,
+        "protein": 73,
+        "fat": 7.6,
+        "carbs": 6.7
+      },
+      "isolate": {
+        "kcal": 375,
+        "protein": 78.125,
+        "fat": 3.125,
+        "carbs": 6.25
+      },
+      "gainer": {
+        "kcal": 376,
+        "protein": 15,
+        "fat": 1.9,
+        "carbs": 75
+      },
+      "caramel": {
+        "kcal": 249.80665119876258,
+        "protein": 0,
+        "fat": 0,
+        "carbs": 61.330239752513535
+      }
+    },
+    "sources": [
+      {
+        "id": "caramel",
+        "name": "GEORGES MONIN — спецификация карамельного сиропа-аналога",
+        "url": "https://www.cfw.co.uk/Media/PDF%20Spec%20Sheets/Monin/Spec-Sheet-Monin-Syrup-Caramel.pdf",
+        "note": "323 ккал и 79,3 г углеводов на 100 мл, плотность 1,293 г/мл. Для бамбл-кофе принято 15 мл сиропа. Марка клуба не подтверждена."
+      },
+      {
+        "id": "usda",
+        "name": "USDA Standard Reference 28",
+        "url": "https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/",
+        "note": "Продукты и соки, значения на 100 г. Яблочный и морковный соки — справочные аналоги."
+      },
+      {
+        "id": "whey",
+        "name": "Optimum Nutrition Gold Standard Whey — этикетка аналога",
+        "url": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu?variant=52105833120011",
+        "note": "373 ккал, Б 74, Ж 4,2, У 9,7 г на 100 г. Это не подтверждение марки, используемой клубом."
+      },
+      {
+        "id": "plant",
+        "name": "Optimum Nutrition Plant — этикетка аналога",
+        "url": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-plant-based-protein-powder-eu?variant=52105842557195",
+        "note": "399 ккал, Б 73, Ж 7,6, У 6,7 г на 100 г. Это не подтверждение марки, используемой клубом."
+      },
+      {
+        "id": "isolate",
+        "name": "Dymatize ISO100 — этикетка аналога",
+        "url": "https://dymatize.com/products/iso100-gourmet-chocolate?pr_rd_page=1",
+        "note": "120 ккал, Б 25, Ж 1, У 2 г на 32 г; пересчитано на 30 г. Это не подтверждение марки клуба."
+      },
+      {
+        "id": "gainer",
+        "name": "Optimum Nutrition Serious Mass — этикетка аналога",
+        "url": "https://www.optimumnutrition.com/en-gb/products/serious-mass-weight-gainer-protein-powder-eu?variant=52105828925707",
+        "note": "376 ккал, Б 15, Ж 1,9, У 75 г на 100 г. Для оценки принята порция 50 г; это не подтверждение марки клуба."
+      }
+    ]
+  },
+  "categories": [
+    {
+      "id": "smoothies",
+      "name": "Смузи"
+    },
+    {
+      "id": "protein",
+      "name": "Протеин"
+    },
+    {
+      "id": "sport",
+      "name": "Спортивное питание"
+    },
+    {
+      "id": "fresh",
+      "name": "Фреши"
+    },
+    {
+      "id": "drinks",
+      "name": "Напитки"
+    },
+    {
+      "id": "snack",
+      "name": "Полезный перекус"
+    }
+  ],
+  "items": [
+    {
+      "id": "breakfast",
+      "category": "smoothies",
+      "name": "На завтрак",
+      "price_rub": 350,
+      "composition": "Банан, овсянка, протеин.",
+      "image": "breakfast",
+      "volume_ml": null,
+      "badge": "С ПРОТЕИНОМ",
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 315,
+          "protein": 27,
+          "fat": 4,
+          "carbs": 46
+        },
+        "unrounded": {
+          "kcal": 314.6,
+          "protein": 27.235,
+          "fat": 3.546,
+          "carbs": 46.06
+        },
+        "assumption": "Банан 100 г, сухая овсянка 30 г, сывороточный протеин 30 г. Вода не меняет КБЖУ. Молоко, сахар и сиропы в расчёт не включены.",
+        "calculation_recipe_g": [
+          [
+            "banana",
+            100
+          ],
+          [
+            "oats",
+            30
+          ],
+          [
+            "whey",
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "id": "berry",
+      "category": "smoothies",
+      "name": "Ягодный",
+      "price_rub": 300,
+      "composition": "Банан, ягоды.",
+      "image": "berry",
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 135,
+          "protein": 2,
+          "fat": 1,
+          "carbs": 34
+        },
+        "unrounded": {
+          "kcal": 136.0,
+          "protein": 1.96,
+          "fat": 0.757,
+          "carbs": 34.21
+        },
+        "assumption": "Банан 100 г и ягоды 100 г. Для оценки взята смесь клубники, черники и малины в равных долях. Вода — по консистенции; без молока, сахара и сиропов.",
+        "calculation_recipe_g": [
+          [
+            "banana",
+            100
+          ],
+          [
+            "strawberry",
+            33.333333333333336
+          ],
+          [
+            "blueberry",
+            33.333333333333336
+          ],
+          [
+            "raspberry",
+            33.333333333333336
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fruit",
+      "category": "smoothies",
+      "name": "Фруктовый",
+      "price_rub": 250,
+      "composition": "Банан, киви, яблоко.",
+      "image": "fruit",
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 165,
+          "protein": 2,
+          "fat": 1,
+          "carbs": 43
+        },
+        "unrounded": {
+          "kcal": 167.2,
+          "protein": 1.982,
+          "fat": 0.778,
+          "carbs": 42.684
+        },
+        "assumption": "Банан 100 г, киви 60 г, яблоко 80 г. Вода — по консистенции; без молока, сахара и сиропов.",
+        "calculation_recipe_g": [
+          [
+            "banana",
+            100
+          ],
+          [
+            "kiwi",
+            60
+          ],
+          [
+            "apple",
+            80
+          ]
+        ]
+      }
+    },
+    {
+      "id": "green",
+      "category": "smoothies",
+      "name": "Зелёный смузи",
+      "price_rub": 250,
+      "composition": "Шпинат, банан, яблоко.",
+      "image": "green",
+      "volume_ml": null,
+      "badge": "ЗЕЛЁНЫЙ ВКУС",
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 140,
+          "protein": 2,
+          "fat": 1,
+          "carbs": 35
+        },
+        "unrounded": {
+          "kcal": 137.5,
+          "protein": 2.156,
+          "fat": 0.583,
+          "carbs": 34.977
+        },
+        "assumption": "Шпинат 30 г, банан 100 г, яблоко 80 г. Вода — по консистенции; без молока, сахара и сиропов.",
+        "calculation_recipe_g": [
+          [
+            "spinach",
+            30
+          ],
+          [
+            "banana",
+            100
+          ],
+          [
+            "apple",
+            80
+          ]
+        ]
+      }
+    },
+    {
+      "id": "bumble",
+      "category": "smoothies",
+      "name": "Бамбл-кофе",
+      "price_rub": 300,
+      "composition": "Апельсиновый фреш, кофе, карамельный сироп.",
+      "image": "bumble",
+      "volume_ml": null,
+      "badge": "С КАРАМЕЛЬЮ",
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 145,
+          "protein": 2,
+          "fat": 0,
+          "carbs": 34
+        },
+        "unrounded": {
+          "kcal": 145.65,
+          "protein": 1.506,
+          "fat": 0.474,
+          "carbs": 34.236
+        },
+        "assumption": "Апельсиновый фреш 200 мл (примерно 210 г), эспрессо 30 мл и карамельный сироп 15 мл (примерно 19,4 г). Сироп учтён по справочной этикетке MONIN. Это расчётные количества; фактическую дозировку и марку сиропа клуба нужно уточнить.",
+        "calculation_recipe_g": [
+          [
+            "orange",
+            210
+          ],
+          [
+            "espresso",
+            30
+          ],
+          [
+            "caramel",
+            19.395
+          ]
+        ]
+      }
+    },
+    {
+      "id": "whey",
+      "category": "protein",
+      "name": "Протеин сывороточный",
+      "price_rub": 280,
+      "composition": "",
+      "image": "protein",
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 110,
+          "protein": 22,
+          "fat": 1,
+          "carbs": 3
+        },
+        "unrounded": {
+          "kcal": 111.9,
+          "protein": 22.2,
+          "fat": 1.26,
+          "carbs": 2.91
+        },
+        "assumption": "Расчёт для 30 г порошка на воде. Марка и вкус не указаны: использована справочная этикетка аналогичного продукта, а не подтверждённая рецептура клуба. При приготовлении на молоке КБЖУ будут выше.",
+        "calculation_recipe_g": [
+          [
+            "whey",
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "id": "plant",
+      "category": "protein",
+      "name": "Протеин растительный",
+      "price_rub": 290,
+      "composition": "",
+      "image": "protein",
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 120,
+          "protein": 22,
+          "fat": 2,
+          "carbs": 2
+        },
+        "unrounded": {
+          "kcal": 119.7,
+          "protein": 21.9,
+          "fat": 2.28,
+          "carbs": 2.01
+        },
+        "assumption": "Расчёт для 30 г порошка на воде. Марка и вкус не указаны: использована справочная этикетка аналогичного продукта, а не подтверждённая рецептура клуба. При приготовлении на молоке КБЖУ будут выше.",
+        "calculation_recipe_g": [
+          [
+            "plant",
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "id": "isolate",
+      "category": "protein",
+      "name": "Протеин изолят",
+      "price_rub": 330,
+      "composition": "",
+      "image": "protein",
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 115,
+          "protein": 23,
+          "fat": 1,
+          "carbs": 2
+        },
+        "unrounded": {
+          "kcal": 112.5,
+          "protein": 23.438,
+          "fat": 0.938,
+          "carbs": 1.875
+        },
+        "assumption": "Расчёт для 30 г порошка на воде. Марка и вкус не указаны: использована справочная этикетка аналогичного продукта, а не подтверждённая рецептура клуба. При приготовлении на молоке КБЖУ будут выше.",
+        "calculation_recipe_g": [
+          [
+            "isolate",
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "id": "bcaa",
+      "category": "sport",
+      "name": "BCAA",
+      "price_rub": 110,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "values": null,
+        "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
+        "assumption": "",
+        "calculation_recipe_g": null
+      }
+    },
+    {
+      "id": "carnitine",
+      "category": "sport",
+      "name": "L-карнитин",
+      "price_rub": 130,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "values": null,
+        "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
+        "assumption": "",
+        "calculation_recipe_g": null
+      }
+    },
+    {
+      "id": "preworkout",
+      "category": "sport",
+      "name": "Предтрен",
+      "price_rub": 130,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "values": null,
+        "reason": "Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.",
+        "assumption": "",
+        "calculation_recipe_g": null
+      }
+    },
+    {
+      "id": "gainer",
+      "category": "sport",
+      "name": "Гейнер",
+      "price_rub": 220,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 190,
+          "protein": 8,
+          "fat": 1,
+          "carbs": 38
+        },
+        "unrounded": {
+          "kcal": 188.0,
+          "protein": 7.5,
+          "fat": 0.95,
+          "carbs": 37.5
+        },
+        "assumption": "Расчёт для условной порции 50 г сухого гейнера на воде по этикетке продукта-аналога. Фактическую марку и размер порции клуба нужно уточнить.",
+        "calculation_recipe_g": [
+          [
+            "gainer",
+            50
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-apple",
+      "category": "fresh",
+      "name": "Яблочный",
+      "price_rub": 250,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 120,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 29
+        },
+        "unrounded": {
+          "kcal": 119.6,
+          "protein": 0.26,
+          "fat": 0.338,
+          "carbs": 29.38
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "apple_juice",
+            260
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-apple-carrot",
+      "category": "fresh",
+      "name": "Яблочно-морковный",
+      "price_rub": 250,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 110,
+          "protein": 1,
+          "fat": 0,
+          "carbs": 27
+        },
+        "unrounded": {
+          "kcal": 111.8,
+          "protein": 1.365,
+          "fat": 0.364,
+          "carbs": 26.754
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "apple_juice",
+            130.0
+          ],
+          [
+            "carrot",
+            130.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-orange",
+      "category": "fresh",
+      "name": "Апельсиновый",
+      "price_rub": 300,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 115,
+          "protein": 2,
+          "fat": 1,
+          "carbs": 27
+        },
+        "unrounded": {
+          "kcal": 117.0,
+          "protein": 1.82,
+          "fat": 0.52,
+          "carbs": 27.04
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "orange",
+            260
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-apple-orange",
+      "category": "fresh",
+      "name": "Яблочно-апельсиновый",
+      "price_rub": 300,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 120,
+          "protein": 1,
+          "fat": 0,
+          "carbs": 28
+        },
+        "unrounded": {
+          "kcal": 118.3,
+          "protein": 1.04,
+          "fat": 0.429,
+          "carbs": 28.21
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "apple_juice",
+            130.0
+          ],
+          [
+            "orange",
+            130.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-grapefruit",
+      "category": "fresh",
+      "name": "Грейпфрутовый",
+      "price_rub": 320,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 100,
+          "protein": 1,
+          "fat": 0,
+          "carbs": 24
+        },
+        "unrounded": {
+          "kcal": 101.4,
+          "protein": 1.3,
+          "fat": 0.26,
+          "carbs": 23.92
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "grapefruit",
+            260
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fresh-orange-grapefruit",
+      "category": "fresh",
+      "name": "Апельсиново-грейпфрутовый",
+      "price_rub": 320,
+      "composition": "",
+      "image": null,
+      "volume_ml": 250,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 110,
+          "protein": 2,
+          "fat": 0,
+          "carbs": 25
+        },
+        "unrounded": {
+          "kcal": 109.2,
+          "protein": 1.56,
+          "fat": 0.39,
+          "carbs": 25.48
+        },
+        "assumption": "250 мл сока приняты примерно за 260 г. Для смешанных фрешей использовано соотношение 1:1. Без добавленного сахара; значения зависят от сырья. Для яблочного и морковного соков использованы справочные аналоги без добавленного сахара.",
+        "calculation_recipe_g": [
+          [
+            "orange",
+            130.0
+          ],
+          [
+            "grapefruit",
+            130.0
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tea",
+      "category": "drinks",
+      "name": "Чай классический",
+      "price_rub": 30,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 5,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 1
+        },
+        "unrounded": {
+          "kcal": 2.0,
+          "protein": 0.0,
+          "fat": 0.0,
+          "carbs": 0.6
+        },
+        "assumption": "Условная чашка чёрного чая 200 мл, без сахара, мёда и молока. Объём чашки в исходном меню не указан.",
+        "calculation_recipe_g": [
+          [
+            "tea",
+            200
+          ]
+        ]
+      }
+    },
+    {
+      "id": "fruit-tea",
+      "category": "drinks",
+      "name": "Фруктовый чай",
+      "price_rub": 120,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "values": null,
+        "reason": "Не указана рецептура: настой, свежие фрукты, пюре, мёд и сироп дают разную пищевую ценность. Нужен состав и масса ингредиентов.",
+        "assumption": "",
+        "calculation_recipe_g": null
+      }
+    },
+    {
+      "id": "coffee",
+      "category": "drinks",
+      "name": "Кофе",
+      "price_rub": 80,
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "per": "расчётная порция",
+        "values": {
+          "kcal": 5,
+          "protein": 0,
+          "fat": 0,
+          "carbs": 1
+        },
+        "unrounded": {
+          "kcal": 2.7,
+          "protein": 0.036,
+          "fat": 0.054,
+          "carbs": 0.501
+        },
+        "assumption": "Для оценки взята порция эспрессо 30 мл без сахара и молока. Вид кофе и объём в исходном меню не указаны; это расчётный ориентир.",
+        "calculation_recipe_g": [
+          [
+            "espresso",
+            30
+          ]
+        ]
+      }
+    },
+    {
+      "id": "protein-bar",
+      "category": "snack",
+      "name": "Протеиновый батончик",
+      "price_rub": [
+        80,
+        200
+      ],
+      "composition": "",
+      "image": null,
+      "volume_ml": null,
+      "badge": null,
+      "nutrition": {
+        "approximate": true,
+        "values": null,
+        "reason": "Ассортимент, марки и масса батончиков не указаны. КБЖУ следует брать с упаковки конкретного батончика.",
+        "assumption": "",
+        "calculation_recipe_g": null
+      }
+    }
+  ]
+}

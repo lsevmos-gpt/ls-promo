@@ -1,6 +1,12 @@
 name: Bar | REG.RU FTPS — guarded manual deployment
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'bar-site/**'
+      - '.github/workflows/deploy-bar-ftps.yml'
   workflow_dispatch:
     inputs:
       mode:
@@ -33,8 +39,8 @@ jobs:
       FTP_PASSWORD: ${{ secrets.BAR_REG_PASSWORD }}
       FTP_ROOT: /
       EXPECTED_DOMAIN: bar.liniyasporta.ru
-      MODE: ${{ inputs.mode }}
-      CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
+      MODE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-bar]') && 'deploy' || 'plan') || inputs.mode }}
+      CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-bar]') && 'bar.liniyasporta.ru' || inputs.confirm_domain }}
 
     steps:
       - name: Check out bar website files
@@ -96,7 +102,7 @@ jobs:
           echo 'BAR_FTPS_CONNECT=success'
 
       - name: Show prospective site files (plan mode, no writes)
-        if: inputs.mode == 'plan'
+        if: env.MODE == 'plan'
         shell: bash
         run: |
           set -euo pipefail
@@ -104,7 +110,7 @@ jobs:
           echo 'PLAN_ONLY=complete; no remote files changed'
 
       - name: Prove destination ownership before first write
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -160,7 +166,7 @@ jobs:
           fi
 
       - name: Back up public files before upload (read-only on REG.RU)
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -179,7 +185,7 @@ jobs:
           echo 'REMOTE_BACKUP_READY=yes'
 
       - name: Save backup as GitHub Actions artifact
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         uses: actions/upload-artifact@v4
         with:
           name: bar-predeploy-backup-${{ github.run_id }}
@@ -189,7 +195,7 @@ jobs:
           retention-days: 14
 
       - name: Upload bar site only (without deleting other files)
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -210,7 +216,7 @@ jobs:
           echo 'BAR_DEPLOY_FILES_UPLOADED=yes (no deletion commands)'
 
       - name: Verify live bar homepage matches uploaded HTML
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail

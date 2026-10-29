@@ -1,10 +1,9 @@
-# Sportbar website source
+# Спортбар «Линия спорта»
 
-The future static bar menu is stored here. Add a real `index.html`, images, styles, and menu data before deploying.
+Готовый статический сайт с единым меню для всех трёх клубов.
 
-- Target domain: `bar.liniyasporta.ru`
-- No auto-publish on commit.
-- All clubs use one common menu.
-- Do not store FTP credentials, contact secrets, customer personal data, or keys in this folder.
+Целевой домен: https://bar.liniyasporta.ru/. Источник меню — фотография владельца от 29.10.2026 и уточнение о бамбл-кофе от 30.10.2026.
 
-No placeholder site has been deployed.
+22 позиции, 6 категорий, составы и цены. Предварительные КБЖУ и допущения доступны в карточках. 5 позиций требуют марки/рецептуры.
+
+Для публикации используется существующий workflow deploy-bar-ftps.yml; обычный commit выполняет только plan; явный маркер [deploy-bar] запускает публикацию с теми же проверками и резервной копией.

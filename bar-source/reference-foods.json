@@ -1,0 +1,104 @@
+{
+  "usda_food_ids": {
+    "banana": "09040",
+    "apple": "09003",
+    "kiwi": "09148",
+    "oats": "08120",
+    "spinach": "11457",
+    "strawberry": "09316",
+    "blueberry": "09050",
+    "raspberry": "09302",
+    "orange": "09206",
+    "grapefruit": "09404",
+    "apple_juice": "09016",
+    "carrot": "11655",
+    "espresso": "14210",
+    "tea": "14355"
+  },
+  "ingredient_values_per_100g": {
+    "banana": {
+      "kcal": 89.0,
+      "protein": 1.09,
+      "fat": 0.33,
+      "carbs": 22.84
+    },
+    "apple": {
+      "kcal": 52.0,
+      "protein": 0.26,
+      "fat": 0.17,
+      "carbs": 13.81
+    },
+    "kiwi": {
+      "kcal": 61.0,
+      "protein": 1.14,
+      "fat": 0.52,
+      "carbs": 14.66
+    },
+    "oats": {
+      "kcal": 379.0,
+      "protein": 13.15,
+      "fat": 6.52,
+      "carbs": 67.7
+    },
+    "spinach": {
+      "kcal": 23.0,
+      "protein": 2.86,
+      "fat": 0.39,
+      "carbs": 3.63
+    },
+    "strawberry": {
+      "kcal": 32.0,
+      "protein": 0.67,
+      "fat": 0.3,
+      "carbs": 7.68
+    },
+    "blueberry": {
+      "kcal": 57.0,
+      "protein": 0.74,
+      "fat": 0.33,
+      "carbs": 14.49
+    },
+    "raspberry": {
+      "kcal": 52.0,
+      "protein": 1.2,
+      "fat": 0.65,
+      "carbs": 11.94
+    },
+    "orange": {
+      "kcal": 45.0,
+      "protein": 0.7,
+      "fat": 0.2,
+      "carbs": 10.4
+    },
+    "grapefruit": {
+      "kcal": 39.0,
+      "protein": 0.5,
+      "fat": 0.1,
+      "carbs": 9.2
+    },
+    "apple_juice": {
+      "kcal": 46.0,
+      "protein": 0.1,
+      "fat": 0.13,
+      "carbs": 11.3
+    },
+    "carrot": {
+      "kcal": 40.0,
+      "protein": 0.95,
+      "fat": 0.15,
+      "carbs": 9.28
+    },
+    "espresso": {
+      "kcal": 9.0,
+      "protein": 0.12,
+      "fat": 0.18,
+      "carbs": 1.67
+    },
+    "tea": {
+      "kcal": 1.0,
+      "protein": 0.0,
+      "fat": 0.0,
+      "carbs": 0.3
+    }
+  }
+}
