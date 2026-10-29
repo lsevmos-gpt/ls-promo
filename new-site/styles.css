@@ -137,3 +137,42 @@ dialog{border:1px solid #465a50;background:var(--bg);color:var(--text);padding:4
 @media(max-width:360px){.fitness-direction-copy{padding:21px}.fitness-direction-copy>h3{font-size:27px}}
 .fitness-direction-art{padding:20px;justify-content:center;gap:14px}
 .fitness-direction-art>small{margin-top:0}
+
+/* Mobile app: existing device artwork and distinct store identities. */
+.app-section{background:var(--paper);color:var(--ink);padding-block:76px;scroll-margin-top:0}
+.app-showcase{display:block}
+.app-presentation{display:grid;grid-template-columns:1.12fr 1fr;gap:48px;align-items:center}
+.app-showcase-copy{min-width:0}
+.app-showcase-copy>.eyebrow{color:var(--green-deep)}
+.app-showcase-copy>h2{font-size:clamp(49px,5.1vw,76px);line-height:1.01;letter-spacing:-.03em}
+.app-lead{font-size:17px;line-height:1.8;color:#506056;max-width:490px;margin-top:28px}
+.app-features{display:grid;gap:19px;margin-top:34px}
+.app-features>li{display:flex;align-items:center;gap:14px;font-size:14px;font-weight:500;line-height:1.6}
+.app-features svg{width:21px;height:21px;color:var(--green-deep);stroke-width:1.8}
+.app-showcase-visual{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;min-width:0;padding:10px 24px}
+.app-showcase-visual:before{content:'';position:absolute;z-index:-1;width:94%;aspect-ratio:1;border-radius:50%;background:#e4eadd}
+.app-device-image{display:block;width:min(380px,100%);height:auto;max-height:520px;object-fit:contain;filter:drop-shadow(0 24px 20px #12251b22)}
+.app-download-bar{display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;align-items:center;border-top:1px solid #c9d1c5;margin-top:44px;padding-top:30px}
+.app-download-heading>h3{font-size:28px;line-height:1.1}
+.app-download-heading>p{font-size:11px;line-height:1.8;color:#59675c;margin-top:9px}
+.store-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.store-buttons>.store-button{display:flex;align-items:center;justify-content:flex-start;gap:13px;min-width:0;min-height:82px;padding:17px 18px;border:1px solid var(--store-border);border-radius:12px;background:var(--store-bg);color:var(--store-fg);text-decoration:none;transition:background .15s,border-color .15s}
+.store-button.store-apple{--store-bg:#111315;--store-fg:#fff;--store-border:#111315}
+.store-button.store-google{--store-bg:#fff;--store-fg:#202124;--store-border:#cfd7ce}
+.store-button.store-rustore{--store-bg:#0068e5;--store-fg:#fff;--store-border:#0068e5}
+.store-button.store-apple:hover{--store-bg:#292c2f;--store-border:#292c2f}
+.store-button.store-google:hover{--store-bg:#f3f7f2;--store-border:#a8b5a8}
+.store-button.store-rustore:hover{--store-bg:#005aca;--store-border:#005aca}
+.store-button:focus-visible{outline:3px solid #30b852;outline-offset:4px}
+.store-button-icon{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center}
+.store-button-icon>img{display:block;width:34px;height:34px;object-fit:contain}
+.store-button-copy{display:block;min-width:0}
+.store-button-copy>small{display:block;font-size:10px;font-weight:500;line-height:1.4;margin-bottom:3px;color:inherit}
+.store-button-copy>strong{display:block;font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:650;line-height:1.2;letter-spacing:-.025em;white-space:nowrap}
+.store-button-link{margin-left:auto;display:flex;align-items:center}
+.store-button-link>svg{width:16px;height:16px;color:inherit;stroke:currentColor}
+.dialog-store-buttons{grid-template-columns:1fr;margin:25px 0}
+.dialog-store-buttons>.store-button{min-height:78px;padding:16px 20px}
+@media(max-width:1100px){.app-download-bar{grid-template-columns:1fr;gap:24px}.app-download-heading{display:flex;gap:24px;align-items:baseline;justify-content:space-between}.app-download-heading>p{margin:0}.app-presentation{gap:28px}.app-showcase-copy>h2{font-size:clamp(46px,5.4vw,64px)}.app-lead{font-size:15px}.app-features>li{font-size:12px}.app-showcase-visual{padding:10px 12px}}
+@media(max-width:700px){.app-presentation{grid-template-columns:1fr;gap:24px}.app-showcase-copy>h2{font-size:clamp(42px,10.2vw,64px);line-height:1.02}.app-lead{font-size:14px;line-height:1.8;margin-top:23px;max-width:400px}.app-features{gap:16px;margin-top:25px}.app-features>li{font-size:12px}.app-features svg{width:19px;height:19px}.app-showcase-visual{padding:6px 16px}.app-showcase-visual:before{width:92%;max-width:360px}.app-device-image{width:min(310px,90%);max-height:none}.app-download-bar{margin-top:26px;padding-top:25px;gap:21px}.app-download-heading{display:block}.app-download-heading>h3{font-size:28px}.app-download-heading>p{font-size:11px;margin-top:8px}.store-buttons{grid-template-columns:1fr;gap:11px}.store-buttons>.store-button{min-height:76px;padding:16px 20px}.store-button-copy>small{font-size:11px}.store-button-copy>strong{font-size:19px}.dialog-store-buttons{margin:22px 0}.dialog-store-buttons>.store-button{min-height:72px;padding:14px 16px}}
+@media(prefers-reduced-motion:reduce){.store-buttons>.store-button{transition:none}}

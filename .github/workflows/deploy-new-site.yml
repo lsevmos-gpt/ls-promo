@@ -20,6 +20,8 @@ on:
       - main
     paths:
       - '.github/trigger-new-site-ftps-check.txt'
+      - 'new-site/**'
+      - '.github/workflows/deploy-new-site.yml'
 permissions:
   contents: read
 
@@ -38,8 +40,8 @@ jobs:
       REG_PATH: /
       PUBLIC_DOMAIN: new.liniyasporta.ru
       REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
-      MODE: ${{ github.event_name == 'push' && 'check' || inputs.mode }}
-      CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
+      MODE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-new-site]') && 'deploy' || 'check') || inputs.mode }}
+      CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-new-site]') && 'new.liniyasporta.ru' || inputs.confirm_domain }}
 
     steps:
       - name: Check out website files
@@ -106,7 +108,7 @@ jobs:
           echo 'FTPS login and remote directory check successful; no writes performed.'
 
       - name: Verify domain-specific marker before any publishing
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -128,7 +130,7 @@ jobs:
           fi
 
       - name: Back up existing public files before first write
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -147,7 +149,7 @@ jobs:
           "
 
       - name: Save backup as a run artifact
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         uses: actions/upload-artifact@v4
         with:
           name: new-site-ftps-backup-${{ github.run_id }}
@@ -157,7 +159,7 @@ jobs:
           retention-days: 7
 
       - name: Upload website files by FTPS (without deleting other files)
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -175,7 +177,7 @@ jobs:
           "
 
       - name: Verify live HTTPS homepage matches the uploaded file
-        if: inputs.mode == 'deploy'
+        if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
@@ -188,3 +190,4 @@ jobs:
             exit 1
           fi
           echo 'New site uploaded and HTTPS homepage verified.'
+
