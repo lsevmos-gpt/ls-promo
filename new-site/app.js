@@ -40,6 +40,10 @@
     $('#club-card').textContent = c.card;
     $('#club-area').textContent = c.area;
     $('#club-lead').textContent = c.lead;
+    const clubAddress = $('#club-address');
+    if (clubAddress) clubAddress.textContent = c.address;
+    const clubHours = $('#club-hours');
+    if (clubHours) clubHours.textContent = 'Режим работы: ' + c.hours;
     $('#club-features').replaceChildren(...c.features.map(f => {
       const li = document.createElement('li'); li.textContent = f; return li;
     }));

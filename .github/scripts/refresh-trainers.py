@@ -21,6 +21,7 @@ assert content_source.startswith(prefix)
 CONTENT = json.loads(content_source[len(prefix):].strip().removesuffix(';'))
 CLUBS = {c['id']: c for c in CONTENT['clubs']}
 TRAINERS = {t['id']: t for t in DATA['trainers']}
+PASSES = json.loads((SITE / 'data/trainer-passes.json').read_text())
 ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
 UP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg>'
 e = escape
@@ -33,11 +34,16 @@ def image(src, alt, eager=False, **dimensions):
 
 
 def card(t):
-    names = ' · '.join(CLUBS[c]['street'] for c in t['clubs'])
+    names = ' · '.join(CLUBS[c]['address'] for c in t['clubs'])
+    personal = ''
+    offer = PASSES.get('trainer_overrides', {}).get(t['id'])
+    if offer:
+        lines = ''.join(f'<span>{p["sessions"]} занятий — {p["price_rub"]:,} ₽</span>'.replace(',', '\u00a0') for p in offer['packages'])
+        personal = '<p class="trainer-card-pricing"><strong>Мини-группы</strong>' + lines + '</p>'
     return (f'<a class="trainer-card" href="/trainers/{t["id"]}/" data-trainer-clubs="{" ".join(t["clubs"])}">'
             f'<div class="trainer-image">{image(t["image"], t["name"], width=t["portrait"]["width"], height=t["portrait"]["height"])}<span class="trainer-arrow">{UP}</span></div>'
             f'<div class="trainer-caption"><h3>{e(t["name"])}</h3><p>{e(t["speciality"])}</p>'
-            f'<p class="trainer-card-clubs"><span class="trainer-club-label">Клуб{ "ы" if len(t["clubs"]) > 1 else ""}</span>{e(names)}</p></div></a>')
+            f'<p class="trainer-card-clubs"><span class="trainer-club-label">Клуб{ "ы" if len(t["clubs"]) > 1 else ""}</span>{e(names)}</p>{personal}</div></a>')
 
 
 def replace_section(text, marker, replacement):
@@ -106,6 +112,7 @@ def profile(t):
     for cid in t['clubs']:
         c = CLUBS[cid]
         clubs += (f'<div class="profile-club"><a class="profile-club-name" href="/clubs/{cid}/#trainers">{e(c["street"])} {UP}</a>'
+                  f'<p class="profile-club-address">{e(c["address"])}</p>'
                   f'<a class="profile-club-phone" href="tel:{c["tel"]}" aria-label="Запись к тренеру: клуб {e(c["street"])}, {e(c["phone"])}">'
                   f'Запись: {e(c["phone"])}</a></div>')
     gallery = t['gallery']
@@ -186,4 +193,5 @@ for path in SITE.rglob('*.html'):
     path.write_text(text)
 runpy.run_path(str(ROOT / '.github/scripts/refresh-memberships.py'), run_name='__main__')
 runpy.run_path(str(ROOT / '.github/scripts/refresh-trainer-passes.py'), run_name='__main__')
+runpy.run_path(str(ROOT / '.github/scripts/refresh-club-hours.py'), run_name='__main__')
 print('Rendered', len(TRAINERS), 'complete trainer profiles and', len(CLUBS), 'club rosters.')

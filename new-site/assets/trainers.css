@@ -88,6 +88,9 @@
 @media(max-width:360px){.trainer-card .trainer-caption h3{font-size:21px}.trainer-card .trainer-caption .trainer-card-clubs{min-height:92px}.team-club-filter{font-size:16px;padding-inline:10px}.profile-club-name{font-size:23px}}
 
 /* Full descriptions keep their body-text size on narrow screens. */
+.trainer-card .trainer-caption>.trainer-card-pricing{flex:0;min-height:0;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--text)}
+.trainer-card-pricing>strong,.trainer-card-pricing>span{display:block}
+.trainer-profile-complete .profile-club>p.profile-club-address{font-size:16px;line-height:1.65;color:var(--muted);margin-top:10px}
 .trainer-biography{font-size:18px;line-height:1.75}
 .trainer-card .trainer-caption>p:not(.trainer-card-clubs){line-height:1.6;min-height:3.2em}
 .trainer-card .trainer-caption .trainer-card-clubs{line-height:1.6;min-height:100px}

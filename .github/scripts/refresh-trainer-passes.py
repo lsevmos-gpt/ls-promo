@@ -30,7 +30,35 @@ assert [(f['id'], f['prices']) for f in DATA['formats']] == [
 def amount(value):
     return f'{value:,}'.replace(',', '\u00a0')
 
-def block(*, embedded, heading, href, cta):
+def access_notice():
+    return (f'<div class="trainer-passes-requirement"><strong>{escape(DATA["access_requirement"]["title"])}</strong>'
+            f'<p>{escape(DATA["access_requirement"]["description"])}</p></div>')
+
+def personal_block(trainer_id, *, heading, href, cta):
+    offer = DATA['trainer_overrides'][trainer_id]
+    assert offer['format'] == 'mini' and offer['max_people'] == 3
+    cards = ''
+    for package in offer['packages']:
+        sessions, price = package['sessions'], package['price_rub']
+        level = heading + 1
+        cards += (f'<article class="membership trainer-pass" data-trainer-fixed-sessions="{sessions}">'
+                  '<div class="membership-heading"><span class="membership-label">ТРЕНЕРСКИЙ АБОНЕМЕНТ</span>' + SYMBOLS['mini'] + '</div>'
+                  f'<h{level} class="trainer-pass-name">{sessions} ЗАНЯТИЙ</h{level}>'
+                  '<p class="trainer-pass-description">Мини-группа до 3 человек</p>'
+                  f'<p class="trainer-pass-price"><strong data-trainer-fixed-price="{price}">{amount(price)}</strong><span>₽</span></p>'
+                  '<p class="trainer-pass-quantity">За абонемент</p>'
+                  f'<div class="trainer-pass-footer"><a class="button button-primary" href="{escape(href)}">{escape(cta)} {UP}</a></div></article>')
+    inner = ('<div class="trainer-passes-head"><div><p class="eyebrow">ПЕРСОНАЛЬНЫЙ ПРАЙС ТРЕНЕРА</p>'
+             f'<h{heading} class="trainer-passes-title" id="trainer-passes-title">АБОНЕМЕНТЫ<br>С ВЛАДОМ.</h{heading}></div>'
+             '<p class="trainer-passes-intro">Занятия с Владом Кравченко проходят в мини-группах до 3 человек. Выберите пакет на 8 или 12 занятий.</p></div>'
+             + access_notice() + f'<div class="trainer-pass-grid">{cards}</div>'
+             '<p class="trainer-passes-note">Время занятий согласуйте с тренером или администратором клуба.</p>')
+    return (START + '<section class="section trainer-passes trainer-passes--section" data-trainer-passes-static '
+            f'aria-labelledby="trainer-passes-title"><div class="container" id="trainer-passes">{inner}</div></section>' + END)
+
+def block(*, embedded, heading, href, cta, trainer_id=None, show_vlad_note=False):
+    if trainer_id in DATA.get('trainer_overrides', {}):
+        return personal_block(trainer_id, heading=heading, href=href, cta=cta)
     cards = ''
     for f in DATA['formats']:
         name_heading = heading + 1
@@ -44,8 +72,10 @@ def block(*, embedded, heading, href, cta):
     inner = ('<div class="trainer-passes-head"><div><p class="eyebrow">СТОИМОСТЬ УСЛУГ ТРЕНЕРА</p>'
              f'<h{heading} class="trainer-passes-title" id="trainer-passes-title">АБОНЕМЕНТЫ<br>С ТРЕНЕРОМ.</h{heading}></div>'
              '<p class="trainer-passes-intro">Выберите количество тренировок и удобный формат занятий с тренером.</p></div>'
-             f'<div class="trainer-passes-requirement"><strong>{escape(DATA["access_requirement"]["title"])}</strong>'
-             f'<p>{escape(DATA["access_requirement"]["description"])}</p></div>'
+             + access_notice()
+             + ('<p class="trainer-pass-exception">У Влада Кравченко отдельный прайс мини-групп. '
+                '<a href="/trainers/trainer4/#trainer-passes">Посмотреть условия</a></p>' if show_vlad_note else '')
+             +
              '<div class="trainer-passes-controls"><div class="segment" role="group" aria-label="Количество тренировок с тренером">'
              '<button type="button" class="active" data-trainer-sessions="8" aria-pressed="true" disabled>8 тренировок</button>'
              '<button type="button" data-trainer-sessions="12" aria-pressed="false" disabled>12 тренировок</button></div>'
@@ -77,7 +107,7 @@ def assets(text):
         text = text.replace('</head>', tag + '</head>', 1)
     return text
 
-def add_to_roster(path, marker, *, href, cta, heading):
+def add_to_roster(path, marker, *, href, cta, heading, show_vlad_note=False):
     text = clean(path.read_text())
     pattern = rf'<section\b[^>]*{marker}[^>]*>[\s\S]*?</section>'
     match = re.search(pattern, text)
@@ -89,14 +119,14 @@ def add_to_roster(path, marker, *, href, cta, heading):
     # No nested sections: the existing trainer renderer relies on this boundary.
     closing = '</div></section>'
     assert section.endswith(closing), path
-    section = section[:-len(closing)] + block(embedded=True, heading=heading, href=href, cta=cta) + closing
+    section = section[:-len(closing)] + block(embedded=True, heading=heading, href=href, cta=cta, show_vlad_note=show_vlad_note) + closing
     text = text[:match.start()] + section + text[match.end():]
     path.write_text(assets(text))
 
-add_to_roster(SITE / 'index.html', 'id="team"', href='/trainers/', cta='Выбрать тренера', heading=3)
-add_to_roster(SITE / 'trainers/index.html', 'class="section team-page"', href='#team-results', cta='Выбрать тренера', heading=2)
+add_to_roster(SITE / 'index.html', 'id="team"', href='/trainers/', cta='Выбрать тренера', heading=3, show_vlad_note=True)
+add_to_roster(SITE / 'trainers/index.html', 'class="section team-page"', href='#team-results', cta='Выбрать тренера', heading=2, show_vlad_note=True)
 for cid, club in CLUBS.items():
-    add_to_roster(SITE / f'clubs/{cid}/index.html', 'id="trainers"', href='tel:' + club['tel'], cta='Записаться в клубе', heading=3)
+    add_to_roster(SITE / f'clubs/{cid}/index.html', 'id="trainers"', href='tel:' + club['tel'], cta='Записаться в клубе', heading=3, show_vlad_note=cid == 'heroes')
 
 for trainer in TRAINERS:
     path = SITE / f'trainers/{trainer["id"]}/index.html'
@@ -112,13 +142,13 @@ for trainer in TRAINERS:
     marker = '<a class="text-link profile-back"'
     assert marker in section
     section = section.replace(marker, JUMP + marker, 1)
-    text = text[:hero.start()] + section + block(embedded=False, heading=2, href=href, cta=cta) + text[hero.end():]
+    text = text[:hero.start()] + section + block(embedded=False, heading=2, href=href, cta=cta, trainer_id=trainer['id']) + text[hero.end():]
     path.write_text(assets(text))
 
 path = SITE / 'directions/personal/index.html'
 text = clean(path.read_text())
 hero = re.search(r'<section\b[^>]*class="section direction-page[^>]*>[\s\S]*?</section>', text)
 assert hero
-text = text[:hero.end()] + block(embedded=False, heading=2, href='/trainers/', cta='Выбрать тренера') + text[hero.end():]
+text = text[:hero.end()] + block(embedded=False, heading=2, href='/trainers/', cta='Выбрать тренера', show_vlad_note=True) + text[hero.end():]
 path.write_text(assets(text))
 print('Rendered trainer packages on 25 pages: home, directory, 3 clubs, 19 profiles and personal training.')

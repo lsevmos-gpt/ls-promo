@@ -8,6 +8,8 @@
 .trainer-passes-requirement{margin-bottom:26px;padding:18px 20px;border-left:3px solid var(--green);background:rgba(245,243,234,.05);font-size:16px;line-height:1.65}
 .trainer-passes-requirement>strong{display:block;font-size:16px;font-weight:600;color:var(--text)}
 .trainer-passes-requirement>p{margin-top:6px;color:#d0ddd4}
+.trainer-pass-exception{font-size:16px;line-height:1.65;color:var(--muted);margin:0 0 24px}
+.trainer-pass-exception>a{color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .trainer-passes-controls{margin-bottom:26px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .trainer-passes-controls>.segment{max-width:100%;flex-shrink:0}
 .trainer-passes-controls>.segment>button{font-size:16px;line-height:1.5;min-height:48px;padding:11px 20px}
