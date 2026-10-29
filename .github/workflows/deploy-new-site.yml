@@ -42,10 +42,14 @@ jobs:
       REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       MODE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-new-site]') && 'deploy' || 'check') || inputs.mode }}
       CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-new-site]') && 'new.liniyasporta.ru' || inputs.confirm_domain }}
+      PATCH_MODE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[patch-new-site]') && 'true' || 'false' }}
+      PATCH_BASE_SHA: ${{ github.event.before }}
 
     steps:
       - name: Check out website files
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Validate repository, connection settings and confirmation
         shell: bash
@@ -129,12 +133,20 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare bounded text update
+        if: env.MODE == 'deploy' && env.PATCH_MODE == 'true'
+        run: python3 .github/scripts/new-site-text-patch.py prepare
+
       - name: Back up existing public files before first write
         if: env.MODE == 'deploy'
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p _new_site_remote_backup
+          BACKUP_ACTION="mirror --no-perms --verbose --exclude-glob '.*' --exclude-glob '*.php' --exclude-glob '*.sql' --exclude-glob '*.env' --exclude-glob '*.ini' --exclude-glob '*.log' --exclude-glob '*.pem' --exclude-glob '*.key' --exclude-glob '*config*' --exclude-glob '*.zip' --exclude-glob '*.tar' ./ _new_site_remote_backup/;"
+          if [[ "$PATCH_MODE" == 'true' ]]; then
+            BACKUP_ACTION='source _new_site_patch_backup.lftp;'
+          fi
           lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
@@ -144,9 +156,13 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             cd /;
-            mirror --no-perms --verbose --exclude-glob '.*' --exclude-glob '*.php' --exclude-glob '*.sql' --exclude-glob '*.env' --exclude-glob '*.ini' --exclude-glob '*.log' --exclude-glob '*.pem' --exclude-glob '*.key' --exclude-glob '*config*' --exclude-glob '*.zip' --exclude-glob '*.tar' ./ _new_site_remote_backup/;
+            $BACKUP_ACTION
             bye
           "
+
+      - name: Verify text backup matches the expected previous commit
+        if: env.MODE == 'deploy' && env.PATCH_MODE == 'true'
+        run: python3 .github/scripts/new-site-text-patch.py verify-backup
 
       - name: Save backup as a run artifact
         if: env.MODE == 'deploy'
@@ -163,6 +179,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          UPLOAD_ACTION="mirror -R --verbose --no-perms --exclude-glob '*.md' new-site/ ./;"
+          if [[ "$PATCH_MODE" == 'true' ]]; then
+            UPLOAD_ACTION='source _new_site_patch_upload.lftp;'
+          fi
           lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
             set cmd:fail-exit true;
             set ftp:ssl-force true;
@@ -172,7 +192,7 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             cd /;
-            mirror -R --verbose --no-perms --exclude-glob '*.md' new-site/ ./;
+            $UPLOAD_ACTION
             bye
           "
 
@@ -190,4 +210,8 @@ jobs:
             exit 1
           fi
           echo 'New site uploaded and HTTPS homepage verified.'
+
+      - name: Verify every updated text file over HTTPS
+        if: env.MODE == 'deploy' && env.PATCH_MODE == 'true'
+        run: python3 .github/scripts/new-site-text-patch.py verify-live
 

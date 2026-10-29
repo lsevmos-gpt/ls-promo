@@ -8,6 +8,12 @@
   },
   "default_sessions": 8,
   "sessions": [8, 12],
+  "access_requirement": {
+    "active_club_card_required": true,
+    "grants_gym_access": false,
+    "title": "Для занятий нужна действующая клубная карта",
+    "description": "Тренерский абонемент оплачивает услуги тренера и сам по себе не даёт права на посещение зала."
+  },
   "formats": [
     {
       "id": "mini",

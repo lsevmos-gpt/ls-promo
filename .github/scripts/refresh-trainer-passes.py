@@ -22,6 +22,8 @@ SYMBOLS = {
 }
 assert DATA['sessions'] == [8, 12]
 assert DATA['default_sessions'] == 8
+assert DATA['access_requirement']['active_club_card_required'] is True
+assert DATA['access_requirement']['grants_gym_access'] is False
 assert [(f['id'], f['prices']) for f in DATA['formats']] == [
     ('mini', {'8': 6000, '12': 7000}), ('individual', {'8': 11000, '12': 13000})]
 
@@ -42,6 +44,8 @@ def block(*, embedded, heading, href, cta):
     inner = ('<div class="trainer-passes-head"><div><p class="eyebrow">СТОИМОСТЬ УСЛУГ ТРЕНЕРА</p>'
              f'<h{heading} class="trainer-passes-title" id="trainer-passes-title">АБОНЕМЕНТЫ<br>С ТРЕНЕРОМ.</h{heading}></div>'
              '<p class="trainer-passes-intro">Выберите количество тренировок и удобный формат занятий с тренером.</p></div>'
+             f'<div class="trainer-passes-requirement"><strong>{escape(DATA["access_requirement"]["title"])}</strong>'
+             f'<p>{escape(DATA["access_requirement"]["description"])}</p></div>'
              '<div class="trainer-passes-controls"><div class="segment" role="group" aria-label="Количество тренировок с тренером">'
              '<button type="button" class="active" data-trainer-sessions="8" aria-pressed="true" disabled>8 тренировок</button>'
              '<button type="button" data-trainer-sessions="12" aria-pressed="false" disabled>12 тренировок</button></div>'
