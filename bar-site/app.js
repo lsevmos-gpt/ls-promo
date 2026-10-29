@@ -45,6 +45,9 @@
   const videos = [...document.querySelectorAll('.story-video')];
   const visibleVideos = new Map();
   const pausedByUser = new Set();
+  let activeVideo = null;
+  let manuallySelectedVideo = null;
+  let userPausedAutoplay = false;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const saveData = navigator.connection && navigator.connection.saveData;
   const loadVideo = video => {
@@ -54,10 +57,16 @@
     }
   };
   const pauseOthers = current => videos.forEach(video => { if (video !== current) video.pause(); });
-  const playVideo = video => {
+  const playVideo = (video, manual = false) => {
+    activeVideo = video;
+    manuallySelectedVideo = manual ? video : null;
     pauseOthers(video);
     loadVideo(video);
-    video.play().catch(() => {});
+    video.play().then(() => {
+      if (activeVideo !== video) video.pause();
+    }).catch(() => {
+      if (activeVideo === video) activeVideo = null;
+    });
   };
   videos.forEach(video => {
     const button = document.querySelector('[aria-controls="' + video.id + '"]');
@@ -73,9 +82,13 @@
     const toggle = () => {
       if (video.paused) {
         pausedByUser.delete(video);
-        playVideo(video);
+        userPausedAutoplay = false;
+        playVideo(video, true);
       } else {
         pausedByUser.add(video);
+        userPausedAutoplay = true;
+        if (activeVideo === video) activeVideo = null;
+        manuallySelectedVideo = null;
         video.pause();
       }
     };
@@ -87,18 +100,28 @@
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.intersectionRatio >= .65) visibleVideos.set(entry.target, entry.intersectionRatio);
-        else {
-          visibleVideos.delete(entry.target);
-          entry.target.pause();
+        const video = entry.target;
+        if (entry.isIntersecting) visibleVideos.set(video, entry.intersectionRatio);
+        else visibleVideos.delete(video);
+        const shouldPause = !entry.isIntersecting || (entry.intersectionRatio < .65 && manuallySelectedVideo !== video);
+        if (shouldPause) {
+          video.pause();
+          if (activeVideo === video) activeVideo = null;
+          if (manuallySelectedVideo === video) manuallySelectedVideo = null;
         }
       });
-      if (document.hidden || reducedMotion.matches || saveData) return;
-      if (videos.some(video => !video.paused)) return;
-      const candidate = [...visibleVideos.entries()].filter(([video]) => !pausedByUser.has(video)).sort((a, b) => b[1] - a[1])[0];
+      if (document.hidden || reducedMotion.matches || saveData || userPausedAutoplay) return;
+      if (activeVideo) return;
+      const candidate = [...visibleVideos.entries()].filter(([video, ratio]) => ratio >= .65 && !pausedByUser.has(video)).sort((a, b) => b[1] - a[1])[0];
       if (candidate) playVideo(candidate[0]);
     }, { threshold: [0, .65, .9] });
     videos.forEach(video => observer.observe(video));
   }
-  document.addEventListener('visibilitychange', () => { if (document.hidden) videos.forEach(video => video.pause()); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      activeVideo = null;
+      manuallySelectedVideo = null;
+      videos.forEach(video => video.pause());
+    }
+  });
 })();
