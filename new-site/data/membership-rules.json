@@ -1,0 +1,15 @@
+{
+  "updated": "2026-10-29",
+  "source": "owner_instruction",
+  "cards": {
+    "graphite": {"club_ids": ["heroes", "konnoi", "kuibysheva"]},
+    "green": {"club_ids": ["kuibysheva"]}
+  },
+  "direction_clubs": {
+    "gym": ["heroes", "konnoi", "kuibysheva"],
+    "personal": ["heroes", "konnoi", "kuibysheva"],
+    "functional": ["heroes", "konnoi"],
+    "mma": ["heroes", "konnoi"]
+  },
+  "note": "Графитовая карта действует во всех клубах сети. Зелёная карта действует только на Куйбышева, 60. Предложения карт на странице соответствуют клубам этой страницы; на страницах тренеров учитываются их текущие клубы."
+}

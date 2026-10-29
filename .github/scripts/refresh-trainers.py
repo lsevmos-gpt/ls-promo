@@ -9,6 +9,7 @@ from html import escape
 import hashlib
 import json
 import re
+import runpy
 
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / 'new-site'
@@ -166,8 +167,9 @@ save(home_path, replace_section(home, r'id="team"', section))
 for tid, t in TRAINERS.items():
     path = SITE / f'trainers/{tid}/index.html'
     text = path.read_text()
-    # Preserve the existing membership section below each profile verbatim.
-    remainder = re.search(r'<main id="main">[\s\S]*?(<section class="section cards-section"[\s\S]*?)</main>', text).group(1)
+    # Keep the current membership block; its offers are scoped to this trainer
+    # by refresh-memberships.py after the current club assignments are written.
+    remainder = re.search(r'<main id="main">[\s\S]*?(<section\b[^>]*\bid="cards"[^>]*>[\s\S]*?)</main>', text).group(1)
     text = re.sub(r'(<main id="main">)[\s\S]*?(</main>)', lambda m: m.group(1) + profile(t) + remainder + m.group(2), text, count=1)
     save(path, text)
 
@@ -182,4 +184,5 @@ for path in SITE.rglob('*.html'):
     text = path.read_text()
     text = re.sub(r'src="/assets/content\.js(?:\?[^" ]*)?"', f'src="/assets/content.js?v={version}"', text)
     path.write_text(text)
+runpy.run_path(str(ROOT / '.github/scripts/refresh-memberships.py'), run_name='__main__')
 print('Rendered', len(TRAINERS), 'complete trainer profiles and', len(CLUBS), 'club rosters.')

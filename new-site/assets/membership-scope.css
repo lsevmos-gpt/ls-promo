@@ -1,0 +1,8 @@
+/* A single applicable card keeps the same proportions as the shared catalog. */
+.memberships.memberships-single{grid-template-columns:minmax(0,1fr)}
+.cards-section-single .plan-controls,.cards-section-single .plan-note,.cards-section-single .card-notes,.cards-section-single .memberships{max-width:680px;margin-left:auto;margin-right:auto}
+.cards-section-single .plan-controls{flex-wrap:wrap;gap:12px}
+.cards-section-single .plan-controls>.segment{flex-wrap:wrap}
+.cards-section-single .membership-scope{min-height:0}
+.cards-section-single .card-notes{align-items:flex-start}
+@media(max-width:700px){.cards-section-single .plan-controls,.cards-section-single .plan-note,.cards-section-single .card-notes,.cards-section-single .memberships{max-width:100%}.cards-section-single .plan-controls>.segment{max-width:100%}}
