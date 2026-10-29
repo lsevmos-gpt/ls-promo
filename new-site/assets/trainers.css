@@ -1,0 +1,88 @@
+/* Team directory, club rosters and complete trainer profiles. */
+.trainer-card{height:100%;display:flex;flex-direction:column}
+.trainer-card[hidden],.team-empty[hidden]{display:none!important}
+.trainer-card .trainer-caption{display:flex;flex-direction:column;flex:1}
+.trainer-card .trainer-caption h3{min-height:2.15em}
+.trainer-card .trainer-caption>p:not(.trainer-card-clubs){font-size:11px;line-height:1.65;min-height:3.3em;flex:1}
+.trainer-card .trainer-caption .trainer-card-clubs{font-size:11px;line-height:1.6;color:#d0ddd4;border-top:1px solid var(--line);margin-top:16px;padding-top:12px;min-height:84px}
+.trainer-club-label{display:block;color:var(--green);font-size:8px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:5px}
+.club-team-section{background:var(--deep)}
+.team-club-filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.team-club-filter{display:flex;align-items:center;gap:14px;padding:14px 17px;background:var(--forest);border:1px solid #446056;color:var(--text);font:inherit;font-size:12px;cursor:pointer;transition:background .15s,color .15s}
+.team-club-filter>span{font-size:10px;opacity:.7}
+.team-club-filter.active{background:var(--green);border-color:var(--green);color:var(--deep)}
+.team-club-filter:focus-visible,.trainer-search>input:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+.team-result-count{font-size:11px;color:var(--muted);margin-top:15px}
+.team-empty{padding:40px 0;line-height:1.8;color:var(--muted)}
+.team-empty>.text-link{margin-top:18px}
+.trainer-profile.trainer-profile-complete{grid-template-columns:.8fr 1.2fr;align-items:start;gap:clamp(32px,6vw,90px);padding-bottom:70px}
+.trainer-profile-complete>figure{max-width:440px}
+.trainer-profile-complete>figure>img{display:block;width:100%;height:auto;max-height:660px;object-fit:contain;object-position:top;background:var(--forest)}
+.trainer-profile-complete h1{font-size:clamp(42px,5vw,72px);line-height:1.03;overflow-wrap:normal}
+.trainer-profile-complete .profile-speciality{font-size:14px;line-height:1.7;margin-top:24px}
+.profile-availability{margin-top:30px;border-top:1px solid var(--line);padding-top:24px}
+.trainer-profile-complete .profile-availability>h2{font-family:Inter,Arial,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);line-height:1.5;margin-bottom:15px}
+.profile-club+.profile-club{margin-top:18px}
+.profile-club-name{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Roboto Condensed',Arial,sans-serif;font-size:27px;line-height:1.2;font-weight:700;color:var(--text)}
+.profile-club-name>svg{flex:0 0 19px;width:19px;height:19px;color:var(--green)}
+.profile-club-phone{display:inline-block;color:var(--green);font-size:12px;line-height:1.7;margin-top:8px}
+.trainer-profile-complete .trainer-profile-heading>.profile-booking-note{font-size:12px;color:var(--muted);line-height:1.8;margin-top:25px;max-width:460px}
+.profile-back{margin-top:25px}
+.trainer-about-section{background:var(--forest)}
+.trainer-about-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px);align-items:start}
+.trainer-about-layout h2{font-size:clamp(40px,4vw,58px)}
+.trainer-biography{font-size:16px;line-height:1.85;color:#d2ded7;overflow-wrap:break-word}
+.trainer-biography p{margin:0 0 20px}
+.trainer-biography ul,.trainer-biography ol{padding-left:22px;margin:20px 0 26px;list-style:disc}
+.trainer-biography ol{list-style:decimal}
+.trainer-biography li{padding-left:5px;margin-bottom:10px}
+.trainer-biography li::marker{color:var(--green)}
+.trainer-biography strong,.trainer-biography b{color:var(--text)}
+.trainer-biography>p:last-child,.trainer-biography>ul:last-child{margin-bottom:0}
+.trainer-photos-section{background:var(--deep)}
+.trainer-photo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.trainer-photo-tile{position:relative;display:block;min-width:0;background:var(--forest);overflow:hidden;border:1px solid var(--line)}
+.trainer-photo-tile>img{width:100%;height:auto;aspect-ratio:4/5;object-fit:contain;display:block;transition:opacity .15s}
+.trainer-photo-tile:hover>img{opacity:.8}
+.trainer-photo-tile>span{position:absolute;bottom:0;right:0;display:flex;align-items:center;gap:16px;padding:10px 13px;background:var(--forest);color:var(--green);font-size:10px}
+.trainer-photo-tile>span>svg{width:16px;height:16px}
+.trainer-more-photos{margin-top:25px;border-top:1px solid var(--line)}
+.trainer-more-photos>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:12px;color:var(--green);list-style:none}
+.trainer-more-photos>summary::-webkit-details-marker{display:none}
+.trainer-more-photos>summary>span{font-size:11px}
+.trainer-more-photos[open]>.trainer-photo-grid{margin-top:4px}
+.trainer-photo-dialog{width:min(1100px,94vw);max-width:94vw;padding:52px 26px 20px;background:var(--forest);color:var(--text);border:1px solid #446056;max-height:94svh}
+.trainer-photo-dialog figure>img{display:block;max-width:100%;width:auto;max-height:68svh;height:auto;object-fit:contain;margin-inline:auto}
+.trainer-photo-dialog figcaption{font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5}
+.trainer-photo-controls{display:flex;justify-content:center;align-items:center;gap:30px;margin-top:18px;font-size:12px}
+.trainer-photo-controls>button{width:44px;height:40px;border:1px solid #5c7c68;color:var(--green);font-size:23px;cursor:pointer}
+@media(max-width:1000px){.team-club-filter{font-size:11px;padding:13px}.profile-club-name{font-size:25px}.trainer-biography{font-size:15px}.trainer-photo-grid{gap:14px}}
+@media(max-width:700px){
+ .team-club-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:25px}
+ .team-club-filter{font-size:10px;line-height:1.6;padding:11px 12px;justify-content:space-between;text-align:left;gap:7px;min-height:52px}
+ .team-club-filter>span{font-size:9px}
+ .trainer-card .trainer-caption h3{font-size:23px;min-height:2.15em}
+ .trainer-card .trainer-caption>p:not(.trainer-card-clubs){font-size:10px;min-height:3.3em}
+ .trainer-card .trainer-caption .trainer-card-clubs{font-size:10px;padding-top:10px;margin-top:12px;min-height:78px}
+ .trainer-club-label{font-size:7px}
+ .trainer-profile.trainer-profile-complete{display:flex;flex-direction:column;gap:30px;padding-bottom:50px}
+ .trainer-profile-complete>.trainer-profile-heading{order:0;width:100%}
+ .trainer-profile-complete>figure{order:1;max-width:440px;width:100%;margin-inline:auto}
+ .trainer-profile-complete>figure>img{max-height:540px}
+ .trainer-profile-complete h1{font-size:clamp(38px,10.5vw,54px);line-height:1.05}
+ .trainer-profile-complete .profile-speciality{font-size:12px;margin-top:20px}
+ .profile-availability{margin-top:24px;padding-top:20px}
+ .profile-club-name{font-size:26px}
+ .profile-club-phone{font-size:12px}
+ .trainer-profile-complete .trainer-profile-heading>.profile-booking-note{font-size:12px;margin-top:20px}
+ .profile-back{font-size:11px;margin-top:22px}
+ .trainer-about-layout{grid-template-columns:1fr;gap:24px}
+ .trainer-about-layout h2{font-size:43px}
+ .trainer-biography{font-size:14px;line-height:1.85}
+ .trainer-biography ul,.trainer-biography ol{padding-left:19px}
+ .trainer-biography li{padding-left:3px}
+ .trainer-photo-grid{grid-template-columns:1fr 1fr;gap:12px}
+ .trainer-photo-dialog{padding:48px 14px 18px}
+ .trainer-photo-dialog figure>img{max-height:65svh}
+}
+@media(max-width:360px){.trainer-card .trainer-caption h3{font-size:21px}.trainer-card .trainer-caption .trainer-card-clubs{min-height:92px}.team-club-filter{font-size:9px;padding-inline:10px}.profile-club-name{font-size:23px}}

@@ -1,0 +1,1853 @@
+{
+  "source_checked": "2026-10-29",
+  "club_sources": [
+    {
+      "id": "heroes",
+      "source": "https://liniyasporta.ru/zaly/club1/",
+      "trainers": [
+        "trainer2",
+        "trainer9",
+        "trainer1",
+        "trainer12_haal",
+        "trainer27"
+      ]
+    },
+    {
+      "id": "konnoi",
+      "source": "https://liniyasporta.ru/zaly/club3/",
+      "trainers": [
+        "trainer4",
+        "trainer13",
+        "trainer17",
+        "trainer23_addt",
+        "trainer18",
+        "trainer15",
+        "trainer19",
+        "trainer20",
+        "trainer25"
+      ]
+    },
+    {
+      "id": "kuibysheva",
+      "source": "https://liniyasporta.ru/zaly/club2/",
+      "trainers": [
+        "trainer9",
+        "trainer10",
+        "trainer10_ohoo",
+        "trainer12_yxpa",
+        "trainer24",
+        "trainer26"
+      ]
+    }
+  ],
+  "editorial_notes": [
+    "Тексты сохранены полностью; удалены пустые элементы и оформление старого сайта.",
+    "Героев Сталинграда, 10 заменён на актуальный адрес 6Д по ранее утверждённым данным клуба.",
+    "Повторяющиеся копии фотографий исключены; первыми показаны личные фото, далее достижения и документы."
+  ],
+  "trainers": [
+    {
+      "id": "trainer4",
+      "name": "Кравченко Влад",
+      "speciality": "Пауэрлифтинг · бодибилдинг · ОФП",
+      "bio": "Мастер спорта России по пауэрлифтингу (IPF). Направления работы: пауэрлифтинг, бодибилдинг и общая физическая подготовка.",
+      "image": "/assets/trainers/trainer4-portrait-8d97db6ef0.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/a45/a45d4238d098b0f56ad37ce62b7a609b/dsc08251_2x.jpg",
+        "path": "/assets/trainers/trainer4-portrait-8d97db6ef0.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "4d9b14353c9a042e123ed729b8f58f243545c29cc683751e6032edf7b1547b8a",
+        "bytes": 34088
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer4/",
+      "description_html": "<p>Стаж работы  10 лет<br></p><ul><li>Направления пауэрлифтинг, бодибилдинг, общая физическая подготовка.</li><li>Мастер спорта России по пауэрлифтингу(IPF).</li><li>Неоднократный абсолютный чемпион и рекордсмен Крыма по пауэрлифтингу и отдельным его движениям.</li><li>Чемпион и призер соревнований по бодибилдингу и классическому бодибилдингу</li></ul>Пропагандирую здоровый образ жизни!Со мной ты похудеешь легко и быстро без диет, а набор мышечной массы, откроет для тебя новые возможности твоего тела!<br>Вместе с тобой проведем чек-ап твоего организма, настроим все механизмы по трансформации в лучшую версию тебя самого!<br>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/ec5/ec5c81a52eb37e1aea09055a88daac54/dsc08404_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-08-eeb4fb4451.webp",
+          "width": 1600,
+          "height": 1067,
+          "original_size": [
+            2700,
+            1800
+          ],
+          "pixel_sha256": "f383ced809aa60523d82de9b3b17bd40185b7540e07b47a544cddbfb8da52578",
+          "bytes": 89374
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/17d/17d906272493f35bce0a7918f764f051/photo_2024_12_15_20_24_13_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-06-90479a8059.webp",
+          "width": 1125,
+          "height": 1125,
+          "original_size": [
+            1125,
+            1125
+          ],
+          "pixel_sha256": "f7084889040310580d9bfb686fe4af8dab129cf66bae6d73a0d2741955d2bb37",
+          "bytes": 115668
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/f7a/f7a38d490bb3e13a37530123d2567fde/photo_2024_12_15_20_24_06_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-07-2921fba8f5.webp",
+          "width": 1125,
+          "height": 1125,
+          "original_size": [
+            1125,
+            1125
+          ],
+          "pixel_sha256": "7db4d347ea4aec59894d288aad2435ce5645c488205489f084cccf5a8514747b",
+          "bytes": 128900
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/ff1/ff197ddd5412ed77f33248e70d0554e8/photo_2024_12_15_20_24_02_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-09-d2ccdac014.webp",
+          "width": 1035,
+          "height": 1280,
+          "original_size": [
+            1035,
+            1280
+          ],
+          "pixel_sha256": "94a6b612bbc20c37259996572e0d22e9dd1a372200a2a688c487abf61fe22d57",
+          "bytes": 49116
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/1ae/1aed1f9744687b9f9e44a8a09f7fdf83/photo_2024_12_15_20_24_00_1x.jpg",
+          "path": "/assets/trainers/trainer4-photo-10-07fdaac5c7.webp",
+          "width": 1280,
+          "height": 853,
+          "original_size": [
+            1280,
+            853
+          ],
+          "pixel_sha256": "3af748708827b81eac386bee5be37349eddd63583bbeafb615230f449dda8266",
+          "bytes": 40948
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/09a/09adcdc89b68e3e1dbfd410c9db7926d/photo_2024_12_15_19_53_20_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-01-a95edd15c3.webp",
+          "width": 719,
+          "height": 930,
+          "original_size": [
+            719,
+            930
+          ],
+          "pixel_sha256": "cfef29e1ef7b44cbeddd9a793fa0b6e6e0a3cf64a1ceacfa28958e3993384f5d",
+          "bytes": 79108
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/160/160756995045cbc4fecb366d4beb9299/photo_2024_12_15_19_53_29_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-02-57db73459c.webp",
+          "width": 914,
+          "height": 1144,
+          "original_size": [
+            914,
+            1144
+          ],
+          "pixel_sha256": "f43f3fe8e42fa8a5d84bdb6c43a916911daa8571ae59bd81b059d0f725695d7f",
+          "bytes": 185106
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/15c/15c63bb10bb277b8586a7cb599c2e638/photo_2024_12_15_19_53_24_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-03-6aeaf1902b.webp",
+          "width": 720,
+          "height": 931,
+          "original_size": [
+            720,
+            931
+          ],
+          "pixel_sha256": "9a8e2afa1c7393192b56cb55ed8a03cce8e68d5f3e96de47e4d64eafc09c5f4c",
+          "bytes": 95658
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/707/7079831b44d18e9efd9ee2f4c4c3851f/photo_2024_12_15_19_57_49_1x.jpg",
+          "path": "/assets/trainers/trainer4-photo-04-b84606a064.webp",
+          "width": 1280,
+          "height": 768,
+          "original_size": [
+            1280,
+            768
+          ],
+          "pixel_sha256": "136dc30f2f9014805cbc0a714bbbd5f3e68b3e12f748a42d7d3b3a6928c806b2",
+          "bytes": 190906
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/c73/c73d282c50f84f40c9e417c91d5412dc/photo_2024_12_15_19_53_18_2x.jpg",
+          "path": "/assets/trainers/trainer4-photo-05-fa144b9934.webp",
+          "width": 720,
+          "height": 990,
+          "original_size": [
+            720,
+            990
+          ],
+          "pixel_sha256": "15d054df48fcdc01fda56acad14b5efaf1b2f1fca35151bb22e2e3f59533d13d",
+          "bytes": 95242
+        }
+      ]
+    },
+    {
+      "id": "trainer2",
+      "name": "Максим Илларионов",
+      "speciality": "Пауэрлифтинг · силовые тренировки",
+      "bio": "Мастер спорта WRPF и НАП по классическому троеборью. Работает с силовыми тренировками и набором мышечной массы.",
+      "image": "/assets/trainers/trainer2-portrait-7084caf3cb.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/333/333fd4f477d3cd96a8b0c16826ae6eb1/dsc07232_2x.jpg",
+        "path": "/assets/trainers/trainer2-portrait-7084caf3cb.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "49970b57044d2441ca91bd380295a8b1c1aadf441dfe759f2f648a2f993cd624",
+        "bytes": 33616
+      },
+      "clubs": [
+        "heroes"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer2/",
+      "description_html": "Действующий спортсмен.<br><ul><li>Мастер спорта WRPF (троеборье классическое).</li><li>Мастер спорта НАП (троеборье классическое).</li><li>Кандидат в мастера спорта ,федерации IPF в троеборье классическом.</li><li>Чемпион Республики Крым, ЮФО.</li><li>Победитель  Eastern European Cup.</li></ul>Многократный призер Крыма по пауэрлифтингу <br>Рекордсмен  по пауэрлифтингу в федерациях IPF, WRPF, НАП<br>Опыт в тренировках более 12 лет<br>Тренировки :<br><ul><li>тренировки на силу (пауэрлифтинг);</li><li>наращивание мышечной массы;</li><li>сброс веса (похудение);</li><li>базовый тренинг;</li><li>бодипамп;</li><li>фитнес.</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/03b/03ba06d3bbc6944f969384289f015863/dsc07276_2x.jpg",
+          "path": "/assets/trainers/trainer2-photo-06-fbd31ce771.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "34f9ffe839ffcea248a6d294dbc406b1ad296ac77ec4b5f6adeada6c293308e5",
+          "bytes": 103496
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b53/b537f61483fb6e74448b012882e25fcf/dsc07317_2x.jpg",
+          "path": "/assets/trainers/trainer2-photo-07-d0a68a3500.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "17380c1d950bea632da54b17b346522f5024f72d7cedfb0829be1f364d622d20",
+          "bytes": 82042
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/632/632b05f719f38cc3bc7d21625f748e62/record_sertificate_2_2x.jpeg",
+          "path": "/assets/trainers/trainer2-photo-01-8c99a389c3.webp",
+          "width": 1600,
+          "height": 1132,
+          "original_size": [
+            1754,
+            1241
+          ],
+          "pixel_sha256": "8f091e5f4dbf25d0b39b356f35b0ac237eda80685dd18570cf587f6b9ee11c59",
+          "bytes": 284352
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/c0c/c0c992efabb4ab7caae937f74a1bde53/record_sertificate_6_2x.jpeg",
+          "path": "/assets/trainers/trainer2-photo-02-e05584ae2e.webp",
+          "width": 1600,
+          "height": 1132,
+          "original_size": [
+            1754,
+            1241
+          ],
+          "pixel_sha256": "0042666abed912a71534eaa82a1864d121e8d612bc860fadb2671a7d63fe1a4e",
+          "bytes": 445400
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/739/739648515bf705199d2ee333c070caee/record_sertificate_5_2x.jpeg",
+          "path": "/assets/trainers/trainer2-photo-03-3087e29e1c.webp",
+          "width": 1600,
+          "height": 1132,
+          "original_size": [
+            1754,
+            1241
+          ],
+          "pixel_sha256": "cc5ec9773d3c9cef4b3b6f11e8cccdf115c880ffeb44e72a112f6a6c978535e8",
+          "bytes": 445402
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/829/8298e43c61d37c79e9941bfb22a4c999/record_sertificate_4_2x.jpeg",
+          "path": "/assets/trainers/trainer2-photo-04-4864bb2d18.webp",
+          "width": 1600,
+          "height": 1132,
+          "original_size": [
+            1754,
+            1241
+          ],
+          "pixel_sha256": "5d551e695f6adebb28375f3a4ab4c89483a84483bd1c7fb2d2033400d16dede0",
+          "bytes": 444942
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/997/997d5e04597885b8b37e7958891f65bb/izobrazhenie_whatsapp_2025_03_14_v_15_55_03_6d6fb2a4_2x.jpg",
+          "path": "/assets/trainers/trainer2-photo-05-b8f937f152.webp",
+          "width": 1600,
+          "height": 1131,
+          "original_size": [
+            1600,
+            1131
+          ],
+          "pixel_sha256": "94c0b7546e9f1a5916907616ee20e8e88ae83427082d6dd839d40d4f8bfa2f2d",
+          "bytes": 384680
+        }
+      ]
+    },
+    {
+      "id": "trainer1",
+      "name": "Анастасия Коршенко",
+      "speciality": "Силовые тренировки · работа с фигурой",
+      "bio": "КМС России по пауэрлифтингу (IPF), многократная чемпионка Крыма. Основные направления: набор мышечной массы и коррекция фигуры.",
+      "image": "/assets/trainers/trainer1-portrait-487ecc5e54.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/1ba/1bab36687125e0ee4dee68bf46bf1d51/dsc07408_2x.jpg",
+        "path": "/assets/trainers/trainer1-portrait-487ecc5e54.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "fa9d8acd6e6fcaff0b303c8d6362fa6d8694183d30e963a5d0f1fc31ac7cb7f9",
+        "bytes": 41218
+      },
+      "clubs": [
+        "heroes"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer1/",
+      "description_html": "<ul><li>\n\t\t\t\t\t\tКМС России по пауэрлифтингу по версии IPF;</li><li>Многократная Чемпионка Крыма по троеборью классическому по версии IPF;</li><li>\n\t\t\t\t\t\tПобедительница силового шоу \"Богатырская тяга\" г. Симферополь.\n\t\t\t\t\t</li><li>Мастер Спорта НФА в дивизионе Saxon Bar Deadlift;</li><li>Призерка Чемпионата Восточной Европы по армлифтингу НФА</li></ul><p>Стаж тренерской деятельности более 5-ти лет \n<br>Направления деятельности :</p><ul><li>набор мышечной массы;</li><li>похудение;</li><li>коррекция фигуры.</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/41e/41e07ee1d126ddac11e727e2fd43bbc9/dsc07415_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-07-c2a615cb92.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "9e141d76b19e7c3aff2f13a41485f9ecfeae449064b11790200be33582dc7d77",
+          "bytes": 120876
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e1c/e1c21925d4f6144826a5b78d15d30b3c/dsc07455_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-08-9feac62b67.webp",
+          "width": 1080,
+          "height": 719,
+          "original_size": [
+            1080,
+            719
+          ],
+          "pixel_sha256": "40224511e25edf5404aa47eb4c52b8afa2985cbf3d8817d8fc2251e8c2c58edd",
+          "bytes": 59860
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/5ce/5ce9af21e5071051f263326309b0c069/photo_2024_12_15_14_11_59_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-04-2afc2a49d1.webp",
+          "width": 854,
+          "height": 854,
+          "original_size": [
+            854,
+            854
+          ],
+          "pixel_sha256": "a6c1d08c1243e44af9bfa0167c49dfb57b1d66cb636e13196be2d5900b6bab8f",
+          "bytes": 78142
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/aec/aec6c761738e72d35f9d9bb629073206/photo_2024_12_15_14_12_04_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-05-b9480230e0.webp",
+          "width": 854,
+          "height": 854,
+          "original_size": [
+            854,
+            854
+          ],
+          "pixel_sha256": "0776e6094b174baaac2e2266710a67197d5aa15ed0c4b47385d7a7c7e0c0a3e8",
+          "bytes": 80558
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e26/e265f01ef5d01eb326f704265495e237/photo_2024_12_15_14_12_05_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-06-11b992025e.webp",
+          "width": 1080,
+          "height": 1080,
+          "original_size": [
+            1080,
+            1080
+          ],
+          "pixel_sha256": "ae9756c6a195bd2a1d08e86ce68fd12862f8e30e3a78cfe891603a1ca06692d2",
+          "bytes": 104632
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/adb/adb1966dde266e2c4e1489c17132c83c/photo_2024_12_15_14_12_06_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-09-d33414f299.webp",
+          "width": 1080,
+          "height": 1080,
+          "original_size": [
+            1080,
+            1080
+          ],
+          "pixel_sha256": "f6382eb4fb873a20b75b9b0fcd0e73e365f4569a45b617cce9be343b9279f351",
+          "bytes": 77708
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/eba/eba111683e391256142d8528e6a1823a/photo_2024_12_15_14_12_09_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-10-f594b7e59a.webp",
+          "width": 1080,
+          "height": 1080,
+          "original_size": [
+            1080,
+            1080
+          ],
+          "pixel_sha256": "a43b5b88fb2fdb248aab0aa61718c0218ac159d21540737cbcbe7108c9500d60",
+          "bytes": 122736
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/231/23123ca3a9a02ad50ea45d374ea4ee57/photo_2024_12_15_14_12_16_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-11-f4acf15fd7.webp",
+          "width": 1280,
+          "height": 720,
+          "original_size": [
+            1280,
+            720
+          ],
+          "pixel_sha256": "aefbd5db5d074092f263106bc943f211794ff60ee7b30d3642cd0ccfd5937a7a",
+          "bytes": 107446
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/635/6355e8b34956c9961c7430e77641a3c5/photo_2024_12_15_14_12_11_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-12-a3f35a4a88.webp",
+          "width": 958,
+          "height": 958,
+          "original_size": [
+            958,
+            958
+          ],
+          "pixel_sha256": "c8573dd1432ecba010b73ebeb721c64260ce0c575a6c6b3aed71056c8a9b9943",
+          "bytes": 162692
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/f55/f55f3183d32e57ab5277d4817b566031/photo_2024_12_15_14_12_18_1x.jpg",
+          "path": "/assets/trainers/trainer1-photo-13-576305f9d2.webp",
+          "width": 1280,
+          "height": 960,
+          "original_size": [
+            1280,
+            960
+          ],
+          "pixel_sha256": "854848f1557464b230fdfaa083d842b8871df507ea596af35c7bcb5ae90dfa51",
+          "bytes": 173850
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/fd3/fd368c6b5fff63c6104d156561d9db1a/photo_2024_12_15_14_05_36_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-01-ed17fd0bf2.webp",
+          "width": 1280,
+          "height": 960,
+          "original_size": [
+            1280,
+            960
+          ],
+          "pixel_sha256": "07e2f4e03ccf6806d6add87bdb45925de0ebcb8c3cde94e21bf184ccacb928b2",
+          "bytes": 95758
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/835/8356fc019960f2ceffadbeb9c127d78a/photo_2024_12_15_14_05_40_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-02-578c4c4d8d.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "ae331f1ba0ab8cc685a3603b0b6aad2031f7b5de8ffaefc77a439f9262630367",
+          "bytes": 334128
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/292/2922c2eea1c788008ac1bdc0772800e9/photo_2024_12_15_14_05_38_2x.jpg",
+          "path": "/assets/trainers/trainer1-photo-03-a22dbaa034.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "91bbff31717d2e01156d4ef1c4575687bf3acde9ff509d77d07773902b1ff5ea",
+          "bytes": 141966
+        }
+      ]
+    },
+    {
+      "id": "trainer12_haal",
+      "name": "Сушкова Любовь",
+      "speciality": "Фитнес · растяжка · силовой тренинг",
+      "bio": "Танцевальные и силовые направления, развитие гибкости и выносливости. Составляет программы тренировок с учётом целей клиента.",
+      "image": "/assets/trainers/trainer12_haal-portrait-92a39e8962.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/899/8994d8b38542a47a84e1dd3fcc3b8b0d/dsc07882_2x.jpg",
+        "path": "/assets/trainers/trainer12_haal-portrait-92a39e8962.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "a978ac27536a78dbf83c61359242c5e06f1505bc15135ee7060a320513b7a672",
+        "bytes": 27076
+      },
+      "clubs": [
+        "heroes"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer12_haal/",
+      "description_html": "<p>Более 15 лет в фитнесе\n<br>Танцы.</p>  \n<br><ul><li>Коррекция фигуры и осанки\n</li><li>Развитие гибкости ( растяжка)\n</li><li>Набор мышечной массы\n</li><li>Увеличение выносливости\n</li><li>Повышение силовых показателей\n</li><li>Составление программ питания и тренировок в зависимости от целей \n</li><li>Работа с людьми разного возраста, направленная на улучшение физического состояния с учетом ограничений связанных со здоровьем</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/db3/db32e6f0c64a4b14c55b69a9d5a7264e/dsc07897_2x.jpg",
+          "path": "/assets/trainers/trainer12_haal-photo-01-225bf6c4ef.webp",
+          "width": 970,
+          "height": 1455,
+          "original_size": [
+            970,
+            1455
+          ],
+          "pixel_sha256": "c57db8d6a29f0c510306e01adda64323c15c1db60981612b2e93f51f449b7937",
+          "bytes": 130882
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/04a/04a533f3f10c5ad8004f90c5660e9b98/dsc07960_2x.jpg",
+          "path": "/assets/trainers/trainer12_haal-photo-02-111fd665f8.webp",
+          "width": 970,
+          "height": 1455,
+          "original_size": [
+            970,
+            1455
+          ],
+          "pixel_sha256": "be7fd115b3b3c64910b8ae83582904f32e91ffea6c380579172b23f0ff2a6bd7",
+          "bytes": 119332
+        }
+      ]
+    },
+    {
+      "id": "trainer27",
+      "name": "Захарчук Анна",
+      "speciality": "ОФП · функциональные тренировки · восстановление",
+      "bio": "Персональный тренер. Делает акцент на индивидуальном подходе и технике выполнения упражнений.",
+      "image": "/assets/trainers/trainer27-portrait-cca92c7db9.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/706/706720c679b9d763a7cc1133045bca64/dsc07194_2x.jpg",
+        "path": "/assets/trainers/trainer27-portrait-cca92c7db9.webp",
+        "width": 1067,
+        "height": 1600,
+        "original_size": [
+          1080,
+          1620
+        ],
+        "pixel_sha256": "2bb1ac8ae12bae1d27aae86c5a140268152deff6743e9e82bcd69950592028aa",
+        "bytes": 86204
+      },
+      "clubs": [
+        "heroes"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer27/",
+      "description_html": "<p> Я персональный фитнес-тренер с опытом работы более 9 лет. Работаю в клубе «Линия спорта» (ул. Героев Сталинграда, д. 6Д) и помогаю клиентам улучшать физическую форму, самочувствие и уверенность в себе.<br><br> В своей работе я делаю акцент на индивидуальный подход и безопасные, эффективные тренировки. Провожу занятия по ОФП, силовым и функциональным тренировкам, развиваю выносливость, гибкость, работаю с растяжкой, пилатесом и ЛФК. Отдельное направление моей работы — послеродовое восстановление: помогаю мягко и грамотно вернуться в форму после беременности и родов.<br><br> Я сама активно занимаюсь спортом и регулярно участвую в соревнованиях. Среди моих достижений — бронзовое призовое место на чемпионате Республики Крым по бодибилдингу в номинации «Фитнес-модель» (2020), участие в Кубке ЮФО «Самсон» (2020), победы в забегах на дистанции 5 км в Симферополе (2021) и Ялте в рамках Russia Running (2022). Это помогает мне лучше понимать путь клиента — от первых шагов до уверенного результата.<br><br> Работаю по понедельникам, средам и пятницам с 9:00 до 18:00.<br> В свободное время люблю пешие походы и бег — активный образ жизни для меня не просто работа, а часть философии.<br><br> Если вы хотите тренироваться грамотно, без травм и с понятным результатом — буду рада помочь вам на этом пути.</p>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/036/03622d1c43dbc918ad52d1916729ca40/dsc07247_2x.jpg",
+          "path": "/assets/trainers/trainer27-photo-01-dc13476559.webp",
+          "width": 1066,
+          "height": 1600,
+          "original_size": [
+            1199,
+            1800
+          ],
+          "pixel_sha256": "d00e93a7aae594ac98d4acdeeeb1ac11a81a21bfe990d81906f2e8a7b0dbbe4e",
+          "bytes": 73980
+        }
+      ]
+    },
+    {
+      "id": "trainer9",
+      "name": "Дубиковский Валерий",
+      "speciality": "Пауэрлифтинг · силовой тренинг",
+      "bio": "Мастер спорта по пауэрлифтингу. Образование: факультет физического воспитания ТНУ им. Вернадского. Тренерская работа с 1994 года.",
+      "image": "/assets/trainers/trainer9-portrait-2e7641f099.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/f6c/f6c94dbafd35f79adb6f7cbe6c357fd6/dsc09428_2x.jpg",
+        "path": "/assets/trainers/trainer9-portrait-2e7641f099.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "b52453b74af868efe793180df15e859581cba6520df08ffe80664f5a7bfc97f5",
+        "bytes": 31524
+      },
+      "clubs": [
+        "heroes",
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer9/",
+      "description_html": "<p>стаж тренера с 1994 г. </p><p>Образование: - ТНУ им. Вернадского, факультет - физического воспитания.<br></p><ul><li>Мастер спорта по пауэрлифтингу.</li><li>Многократный победитель и призер чемпионатов, кубков, турниров Крыма и Украины по пауэрлифтингу т жиму лежа.</li><li>рекордсмен Крыма по пауэрлифтингу.</li><li>Судья национальной категории Украины и судья все российской категории по пауэрлифтингу.</li><li>Президент федерации пауэрлифтинга Республики Крым в 2012-2015 годы. </li></ul><br>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/752/7523f9e09995edac6e231559e68b07b2/dsc09447_2x.jpg",
+          "path": "/assets/trainers/trainer9-photo-09-da77070192.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "6058cce43662e2cc7c7dec3c6b8ad3f2de6425f51d8244892998ff89aa6a93df",
+          "bytes": 93806
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b9f/b9ffb0d6a3ce467561a164ba27da743d/dsc09458_2x.jpg",
+          "path": "/assets/trainers/trainer9-photo-10-2fe4d6ec91.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "04cbdb7572640dc185eb621b58066b5c0f70095363141e12d72495af8641839f",
+          "bytes": 84668
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/7fd/7fdc81cf00dbb609be548aacc623440d/photo_2024_12_16_00_10_48_2_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-01-44224c2159.webp",
+          "width": 1280,
+          "height": 853,
+          "original_size": [
+            1280,
+            853
+          ],
+          "pixel_sha256": "1e738346f0d52290d365cce14ed9c26760d765e7eb69695337ae81ed31716885",
+          "bytes": 127666
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/00a/00a1d89aa1bf7d1728cfc89ed88bd360/photo_2024_12_16_00_10_47_5_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-03-7f990438f6.webp",
+          "width": 533,
+          "height": 800,
+          "original_size": [
+            533,
+            800
+          ],
+          "pixel_sha256": "0ace03744ef81ff19805649bcd0f57b2c188b11de604ec4a5c905affd4540053",
+          "bytes": 41314
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/eb4/eb463957045b85971e8885daa7030c2a/photo_2024_12_16_00_10_47_4_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-04-6189ddd6bc.webp",
+          "width": 533,
+          "height": 800,
+          "original_size": [
+            533,
+            800
+          ],
+          "pixel_sha256": "0eff6438cb5cfec329f474d2228bb55fbeaf594d5248a71710c810fc82fdccdf",
+          "bytes": 46778
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/7c3/7c33a236c157c419d9f4d4a5641bc6f5/photo_2024_12_16_00_10_48_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-02-03fb37e629.webp",
+          "width": 533,
+          "height": 800,
+          "original_size": [
+            533,
+            800
+          ],
+          "pixel_sha256": "95282f5a97c57793e15c4efe5c7cf281f4d82d523d1fb550817fb61dd15d356b",
+          "bytes": 34212
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/813/8134e35e2675c2b1badfe6cf943847bb/photo_2024_12_16_00_10_47_2_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-06-9716e05f62.webp",
+          "width": 600,
+          "height": 900,
+          "original_size": [
+            600,
+            900
+          ],
+          "pixel_sha256": "2d99b8b38ab18021973481c012af5b1c29877f6a72d44bbb79cdf6c104be7197",
+          "bytes": 44458
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/8d9/8d981ff1c5e703b8ae764dae56e12a56/photo_2024_12_16_00_10_47_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-07-13e5d723dd.webp",
+          "width": 776,
+          "height": 883,
+          "original_size": [
+            776,
+            883
+          ],
+          "pixel_sha256": "65847f3ccac6d1d5cf44f0634f095d0c3b160d39d9dadcfffc1b52ef632ca735",
+          "bytes": 97256
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/560/5605f500a1c04429a5887d9f30f43b66/photo_2024_12_16_00_10_46_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-08-f5d067d30e.webp",
+          "width": 807,
+          "height": 603,
+          "original_size": [
+            807,
+            603
+          ],
+          "pixel_sha256": "922c55b8e4bcab9afe5140986f6cbff052c5b4f9cf52ebf40b86101041ed9031",
+          "bytes": 111954
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/dcb/dcb52092265337577e8c363fa487a78d/photo_2024_12_16_00_10_47_3_1x.jpg",
+          "path": "/assets/trainers/trainer9-photo-05-8897935593.webp",
+          "width": 533,
+          "height": 800,
+          "original_size": [
+            533,
+            800
+          ],
+          "pixel_sha256": "88df456678a4d4afcc1dc0d94186efc53b73a44e93e1db552d9917d44a69fd4f",
+          "bytes": 40698
+        }
+      ]
+    },
+    {
+      "id": "trainer10",
+      "name": "Шевченко Димитрий",
+      "speciality": "Пауэрлифтинг · тренажёрный зал",
+      "bio": "КМС по пауэрлифтингу (IPF), участник турниров по пауэрлифтингу.",
+      "image": "/assets/trainers/trainer10-portrait-182e494852.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b0c/b0c2918756ed08befab519c4100d8d11/dsc07482_2x.jpg",
+        "path": "/assets/trainers/trainer10-portrait-182e494852.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "080121981403679bc755b9cc5adefc4df9be3ccb4494b69b5b219a9d5a15b6b0",
+        "bytes": 32932
+      },
+      "clubs": [
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer10/",
+      "description_html": "<p>Стаж работы 7 лет</p><ul><li>КМС по пауэрлифтингу по версии IPF.</li><li>Участник турниров по пауэрлифтингу.</li><li>Стаж занятий спортивной деятельностью более 20 лет.</li></ul><br>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/10b/10bf2724a293ef9e4669ffca18676355/dsc07579_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-06-1c02f3626f.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "d9148d22fb5e821f2853e797c4f29cca77676e6e1ae09bf741c6c68cb6e1e4cb",
+          "bytes": 79998
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3d3/3d3e1fcd2ee0312c941c175b4ec5a463/dsc07590_1x.jpg",
+          "path": "/assets/trainers/trainer10-photo-07-0a3c6919a2.webp",
+          "width": 1080,
+          "height": 720,
+          "original_size": [
+            1080,
+            720
+          ],
+          "pixel_sha256": "56e065a1f794c0f15db32242d0cf4c08a691f6a0bb38c2da083cbf8b0b85e699",
+          "bytes": 49540
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/8ee/8ee3376ec1a116f3381d6f175a71a891/photo_2023_03_23_10_57_05_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-01-8296406141.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "a7e7d8c4abc330d7eefcba3debeaf0269e67fafd3bfefc2369cab10817d652e4",
+          "bytes": 68120
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/344/344d99bef2b11a5dafa3b2729dd4adc1/photo_2023_03_23_10_57_04_2_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-02-aa0c429354.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "7ce5d6bb64a9ac5c9bedc3b62e82e2ac7a94741607502e48dffb0b552333d0ba",
+          "bytes": 90360
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/cec/cec22963628c5a208b727a9537e7d0e8/photo_2023_03_23_10_57_03_2_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-03-2b6e7319a3.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "e1440d8786d8316783a115e3d7d47008b476f82e409b64e0854ef0267330b922",
+          "bytes": 73120
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/a2b/a2b74f94c101e41b36bb63aca37ce428/photo_2023_03_23_10_57_03_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-04-78ebd3f8d4.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "b9fbdd581d06a25ffddf191abf657a5d4b6c44a88a27d6b33a529727b32877f7",
+          "bytes": 64386
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/250/2506038f1a2603b26d6e364601d33f6f/photo_2023_03_23_10_57_04_2x.jpg",
+          "path": "/assets/trainers/trainer10-photo-05-59be7c674f.webp",
+          "width": 854,
+          "height": 1280,
+          "original_size": [
+            854,
+            1280
+          ],
+          "pixel_sha256": "e5f621f32011a0dde499ebaf0eae23cb9ce8487075971537b00d62201ffcac81",
+          "bytes": 38446
+        }
+      ]
+    },
+    {
+      "id": "trainer10_ohoo",
+      "name": "Коршунов Олег",
+      "speciality": "Бокс · силовой тренинг",
+      "bio": "КМС по боксу, победитель и призёр турниров. Имеет опыт тренерской работы и выступлений в жиме лёжа.",
+      "image": "/assets/trainers/trainer10_ohoo-portrait-30440567d9.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/88f/88fb65e09838ba98c99b69eb6fb65c0b/dsc09607_2x.jpg",
+        "path": "/assets/trainers/trainer10_ohoo-portrait-30440567d9.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "b964aa7afc8b6860a21538dc6087834a5833411f5823eb8d369c90834659e53c",
+        "bytes": 29036
+      },
+      "clubs": [
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer10_ohoo/",
+      "description_html": "<p>Стаж работы 7 лет</p><ul><li>КМС по боксу.</li><li>Многократный победитель всесоюзных и республиканских турниров.</li><li>Призер по жиму штанги лежа.</li><li>Стаж занятий спортивной деятельностью более 30 лет.</li><li>Опытный тренер.</li><li>Стаж тренерской работы 5 лет.</li></ul><br>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3cd/3cd26eeb01d06fb228fd7b8504f40b0a/dsc09888_2x.jpg",
+          "path": "/assets/trainers/trainer10_ohoo-photo-01-efd83cc4aa.webp",
+          "width": 1600,
+          "height": 1067,
+          "original_size": [
+            2699,
+            1800
+          ],
+          "pixel_sha256": "f32f0bfc982c620f2d595f43f5823b54087ceb12d7ea67d9e404d4f2c7257770",
+          "bytes": 116144
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3ec/3ec51451c5ad315e546ceca877462394/dsc09901_2x.jpg",
+          "path": "/assets/trainers/trainer10_ohoo-photo-02-067b7ede16.webp",
+          "width": 1066,
+          "height": 1600,
+          "original_size": [
+            1199,
+            1800
+          ],
+          "pixel_sha256": "50167749d5f4c4f145d74ed4d2f044aaaca98092cb5d96ed385327c20786d103",
+          "bytes": 116714
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/a2c/a2c1c15016f5cd98933597d61a5b52d1/dsc09909_2x.jpg",
+          "path": "/assets/trainers/trainer10_ohoo-photo-03-88aa11f1b4.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "7ff9742d9bc075299d80bc707ca03bd638dcc1007a4d9031b8376ace6ab9ab86",
+          "bytes": 86356
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/4fa/4fa5dc6190fd38f90a5e943b046c6d39/dsc09944_2x.jpg",
+          "path": "/assets/trainers/trainer10_ohoo-photo-04-eb3abdc18f.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "d7db7d863f321b7ab63b2cadcdabd29d5d6cced04d867bdadb090bb00d5452ae",
+          "bytes": 82334
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/88d/88d599160219e0c076393e44d1d70a39/dsc09955_1x.jpg",
+          "path": "/assets/trainers/trainer10_ohoo-photo-05-8abadf8799.webp",
+          "width": 1080,
+          "height": 720,
+          "original_size": [
+            1080,
+            720
+          ],
+          "pixel_sha256": "b474ca81aa48060b2f40b1f2368226383151565c783ab160880f1ec60a1da6de",
+          "bytes": 65594
+        }
+      ]
+    },
+    {
+      "id": "trainer12_yxpa",
+      "name": "Гоцак Алла",
+      "speciality": "ОФП · растяжка · персональный тренинг",
+      "bio": "Мастер спорта Украины по художественной гимнастике. Специальность: тренер-преподаватель по физической культуре и спорту.",
+      "image": "/assets/trainers/trainer12_yxpa-portrait-dea0b0bf45.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/069/06995c6183096808e078689675c73199/dsc06480_2x.jpg",
+        "path": "/assets/trainers/trainer12_yxpa-portrait-dea0b0bf45.webp",
+        "width": 900,
+        "height": 1350,
+        "original_size": [
+          900,
+          1350
+        ],
+        "pixel_sha256": "1a69b6347b4830659fccaec924bf8581b222da12ffab55860f5d6d22346255c3",
+        "bytes": 79306
+      },
+      "clubs": [
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer12_yxpa/",
+      "description_html": "<p>Стаж спортивной карьеры 12 лет.\n<br>Воспитанница школы Олимпийского резерва, Мастер спорта Украины по художественной гимнастике.\n<br>Обладатель золотого знака отличия норм ГТО.</p><p>Специальность: тренер-преподаватель по физической культуре и спорту.</p>\nНаправления:\n<br><ul><li>коррекция пропорций фигуры\n</li><li>растяжка и миофасциальный релиз\n</li><li>увеличение силовых показателей и развитие выносливости\n</li><li>работа с людьми разного возраста, направленная на общую физическую подготовку \n</li><li>подготовка к сдаче норм ГТО\n</li><li>обучение основам здорового питания</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3c6/3c68a1c0b809bac2139cd694bacd1069/dsc06600_2x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-07-3f4c9e38ac.webp",
+          "width": 900,
+          "height": 1350,
+          "original_size": [
+            900,
+            1350
+          ],
+          "pixel_sha256": "274ca65064786e84dcc6c35f18ef60882cc0e0c2777ef4b1b4c38352533891ca",
+          "bytes": 173670
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/2d2/2d27ee88f37f7cccde48e4450afef2a1/dsc06620_2x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-08-98774f15fe.webp",
+          "width": 900,
+          "height": 1350,
+          "original_size": [
+            900,
+            1350
+          ],
+          "pixel_sha256": "990dc80bdc844db24cf6f92257bb94a40d4cb9a84b2a4fe0643be88581b7bd5e",
+          "bytes": 120944
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/cc3/cc3f8424ceb542e99890612a7d45d36f/photo_2025_06_06_19_04_10_4_1x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-01-c5fa6d7960.webp",
+          "width": 704,
+          "height": 795,
+          "original_size": [
+            704,
+            795
+          ],
+          "pixel_sha256": "22236352fc6141b8dee52490e95bb6fca5673d8e319e7edf2bab0389bf705116",
+          "bytes": 87746
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b18/b18c37c9be5042258e32d2033ad3d2e4/photo_2025_06_06_19_04_10_1x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-02-6004e9260b.webp",
+          "width": 1012,
+          "height": 721,
+          "original_size": [
+            1012,
+            721
+          ],
+          "pixel_sha256": "a72e835f91f6f9f9ebba805564b4a7454cce201dffbe85aecbec9db40e44a265",
+          "bytes": 183666
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e39/e3933cf2f3e608ecbb6735c255a94ca3/photo_2025_06_06_12_21_04_2x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-03-f9cf8ed91e.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "dfb6db46ac0af07edbb9a2a4037da168b8652b703f47ec39c79b87b458211ea0",
+          "bytes": 282166
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/fd2/fd2e811b704c8aa4e874942625996856/photo_2025_06_06_19_04_10_3_1x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-04-0946c696bb.webp",
+          "width": 685,
+          "height": 513,
+          "original_size": [
+            685,
+            513
+          ],
+          "pixel_sha256": "234452a48b536138d57c9c6ec86b3d386bd219ee7edfd9a79d0b5f868019c3bd",
+          "bytes": 50568
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/ed9/ed916393c98fc8f87bcb45562e99f0d9/photo_2025_06_06_19_04_10_2_1x.jpg",
+          "path": "/assets/trainers/trainer12_yxpa-photo-05-57cbd1d8d3.webp",
+          "width": 682,
+          "height": 506,
+          "original_size": [
+            682,
+            506
+          ],
+          "pixel_sha256": "36fe2ebccd14294ab5265125c0ffe50b2bd5c811265012467052215df2ca8e22",
+          "bytes": 59746
+        }
+      ]
+    },
+    {
+      "id": "trainer24",
+      "name": "Емцова Светлана",
+      "speciality": "Тренажёрный зал · силовой тренинг",
+      "bio": "Дипломированный специалист, КМС по жиму лёжа.",
+      "image": "/assets/trainers/trainer24-portrait-40ccd693eb.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3a7/3a7a8061ccf39c91e9ab2a3ecea94328/dsc08464_2x.jpg",
+        "path": "/assets/trainers/trainer24-portrait-40ccd693eb.webp",
+        "width": 900,
+        "height": 1350,
+        "original_size": [
+          900,
+          1350
+        ],
+        "pixel_sha256": "243e964a99007f53a1d84a2d60d9b7acc06331a3f025a89cd82f071f335a99a3",
+        "bytes": 62308
+      },
+      "clubs": [
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer24/",
+      "description_html": "<p>Стаж работы 10 лет\n<br>Дипломированный специалист\n<br>КМС по жиму лёжа по версии WRPF\n<br>Неоднократный призёр соревнований по жиму лёжа (2016-2017 год) \n<br>Полумарафон (21.1км) 1ч 53 мин  (2018 г) \n<br>Участница соревнований по фитнес-бикини</p><p>Специализация:</p><ul><li>Общая физическая подготовка\n</li><li>Функциональные тренировки\n</li><li>Улучшение осанки\n</li><li>Коррекция фигуры\n</li><li>Послеродовое восстановление\n</li><li>Развитие гибкости\n</li><li>Миофасциальный релиз\n</li></ul>\nНастоящее достижение это то, что тренировки вошли в мою жизнь начиная с 10 лет и по сей день я не потеряла мотивации, и регулярно тренируюсь не смотря ни на какие жизненные обстоятельства (отпуски, лето, праздники, беременность и роды, переезды и т. д.)\n<br>\n<br>А ещё я люблю то, что делаю и научу каждого тому же. Тренировать физическое тело - на сегодняшний день - это не просто эстетика, это необходимость для хорошего самочувствия и укрепления здоровья.",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d21/d212de9d467883423d7de480542bd03c/img_3033_2x.jpg",
+          "path": "/assets/trainers/trainer24-photo-06-45d1bfe45c.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1200,
+            1800
+          ],
+          "pixel_sha256": "2edb2beff2c08a4af1c22efb906cb03f589e3455255f6bfee624c30f886bb53d",
+          "bytes": 83188
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/50c/50cf805efc7bd2985a66f9f4aba06189/img_3034_2x.jpg",
+          "path": "/assets/trainers/trainer24-photo-07-e598ea6b96.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1200,
+            1800
+          ],
+          "pixel_sha256": "dda043ba60433cb01128e5c413d096ab93c4a9d4ee13f37154deaaa7e4e03776",
+          "bytes": 74144
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/35d/35d828e972297c5bc14c19de6d710c2d/img_3036_2x.jpg",
+          "path": "/assets/trainers/trainer24-photo-08-5c292216b8.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1200,
+            1800
+          ],
+          "pixel_sha256": "6dcdd9a7eb6946be852d11301b4e49f78a62f9dd2f35a6a4a6133c581c16558d",
+          "bytes": 72144
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/6a6/6a6f2b5d8bf16372007c00cfce15ee80/img_3037_2x.jpg",
+          "path": "/assets/trainers/trainer24-photo-09-f62351097e.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1200,
+            1800
+          ],
+          "pixel_sha256": "3719b24d391638e876de49e45afa3d2c37c3a1dd0f6c13c9578bc17424b7a384",
+          "bytes": 66620
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/35b/35b7b2236f7612ff946f8f1fb7b2181a/img_8942_1x.jpg",
+          "path": "/assets/trainers/trainer24-photo-01-de397d8804.webp",
+          "width": 1200,
+          "height": 848,
+          "original_size": [
+            1200,
+            848
+          ],
+          "pixel_sha256": "1f37e28e6c79e3e8c66a47ef423ff3aee1705e121fa4b9fb40485eb18ca3150e",
+          "bytes": 225036
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/357/357703a51780e11f526726edeb774250/img_8954_1x.jpeg",
+          "path": "/assets/trainers/trainer24-photo-02-32ba328334.webp",
+          "width": 1200,
+          "height": 849,
+          "original_size": [
+            1200,
+            849
+          ],
+          "pixel_sha256": "f7ecfdf2739ea26eb61c382ea82dd0206be14265e27fa656e51c923516970ff1",
+          "bytes": 229180
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b4f/b4f775d2dc55041d54f0644775a72f33/2025_09_24_22_20_56_1x.png",
+          "path": "/assets/trainers/trainer24-photo-04-655f0a44a1.webp",
+          "width": 1503,
+          "height": 1075,
+          "original_size": [
+            1503,
+            1075
+          ],
+          "pixel_sha256": "98578a3b275c793320784a6c62aad0ffeff6101aecfefee4ef921f2a096b223b",
+          "bytes": 80678
+        }
+      ]
+    },
+    {
+      "id": "trainer26",
+      "name": "Егорова Екатерина",
+      "speciality": "Персональный тренинг",
+      "bio": "Дипломированный тренер тренажёрного зала. Работает тренером с 2016 года.",
+      "image": "/assets/trainers/trainer26-portrait-737194470a.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/70e/70ec1e921e74007fc63639af147924d8/dsc07211_2x.jpg",
+        "path": "/assets/trainers/trainer26-portrait-737194470a.webp",
+        "width": 1067,
+        "height": 1600,
+        "original_size": [
+          1080,
+          1619
+        ],
+        "pixel_sha256": "6fbb7906a08c48645448f245365f8fc8551fc774c9146fe3d22b2af4f4a6ff8a",
+        "bytes": 82350
+      },
+      "clubs": [
+        "kuibysheva"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer26/",
+      "description_html": "<p>Персональный тренер  тренажерного зала</p><p>36 лет, двое детей.</p><p>О себе: высшее образование, Работаю тренером с 2016г. многочисленные тренинги и семинары по диетологии и биомеханике. Хороший опыт восстановления после родов.Всегда готова развиваться и двигаться вперед! \n<br>\n<br>Коммуникабельна,  тактична. люблю общение с людьми! Привью любовь к спорту и заряжу мотивацией! За годы работы тренером, научилась находить подход к каждому клиенту. Умею слушать и слышу желания клиентов, отталкиваясь от этого, составляю правильно подобранную программу тренировок и питания, в зависимости от уровня физической подготовки и здоровья клиента. Просто обожаю то, что делаю!\n<br>\n<br>Мои достижения:\n<br></p><ul><li>Мастер Спорта по армлифтингу по версии САР\n</li><li>КМС в становой тяге по версии WRPF\n</li><li>судья региональной категории WRPF/СПР/IPL </li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/c60/c6056168c52740ea1988521258a02fc1/dsc07222_2x.jpg",
+          "path": "/assets/trainers/trainer26-photo-01-5996646136.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1200,
+            1800
+          ],
+          "pixel_sha256": "275f5fedbf184329724bf8a3fbeca4c1d2b12b09b5af9d9073078af3d16e30f1",
+          "bytes": 77876
+        }
+      ]
+    },
+    {
+      "id": "trainer13",
+      "name": "Шаповалов Александр",
+      "speciality": "Пауэрлифтинг · силовые тренировки",
+      "bio": "Мастер спорта WRPF по пауэрлифтингу в троеборье.",
+      "image": "/assets/trainers/trainer13-portrait-da03fab485.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d40/d400951b6beedfe30e745a22b07b60b1/dsc08521_2x.jpg",
+        "path": "/assets/trainers/trainer13-portrait-da03fab485.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "d521950bc48c237ea59508d5ffa4d12ecb0ae219633a00f03a9a1d4c4e792a5b",
+        "bytes": 27690
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer13/",
+      "description_html": "<p>Мастер спорта WRPF по пауэрлифтингу (троеборье).\n<br>Лучшая сумма - 722.5кг в 90 категории. Результат близок к нормативу МСМК (745кг).\n<br>Коэффициент Wilks 464.442, что превышает результат абсолютного чемпиона мира WRPF этого года среди юниоров на 4 очка.\n<br>Обладатель рекорда России  WRPF в приседаниях без экипировки (юниоры) - 267.5кг.\n<br>Вице-чемпион республики Крым по бодибилдингу (Classic Physique).\n<br>КМС ФПР выполнен в 17 лет. \n<br>\n<br>Опыт в тренировках 9 лет.</p><p>Силовая подготовка спортсменов по гибридной тренировочной системе атлетов США и России.</p><ul><li>Бодибилдинг. \n</li><li>Фитнес. \n</li><li>Общая физическая подготовка.</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/fd0/fd051d2751f319552d77ddb0de925f39/dsc08840_2x.jpg",
+          "path": "/assets/trainers/trainer13-photo-02-7fa631a045.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "ac873f640258726849673158cab756ea37e8e521bc4711693eefd64a007b474a",
+          "bytes": 87318
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/548/548deed59e82c4e696cfedfe3df638c5/dsc08896_2x.jpg",
+          "path": "/assets/trainers/trainer13-photo-03-ae09633854.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "a7169c4efd75d2aa421d8d47e1a3643f67b546870ad07f5f8fb368e5f300ab20",
+          "bytes": 110994
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/1b6/1b6d80d8ec4137cc340ea807c72b44a9/img_6484_2x.jpg",
+          "path": "/assets/trainers/trainer13-photo-01-188faf3c42.webp",
+          "width": 1600,
+          "height": 1132,
+          "original_size": [
+            2544,
+            1800
+          ],
+          "pixel_sha256": "e207b8180fff7455c7a6ae01f33c3e6cd00c52bc8d2fdc42e8c5b79fb53016ad",
+          "bytes": 434132
+        }
+      ]
+    },
+    {
+      "id": "trainer17",
+      "name": "Куртвафов Надир",
+      "speciality": "Функциональный и силовой тренинг",
+      "bio": "КМС по вольной и греко-римской борьбе, чемпион и призёр турниров. Направление работы: функциональный и силовой тренинг.",
+      "image": "/assets/trainers/trainer17-portrait-f3e73dd9f4.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d86/d8627ad7200eaf6908017f809983cde7/dsc09602_2x.jpg",
+        "path": "/assets/trainers/trainer17-portrait-f3e73dd9f4.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "9177290921678d7102b9fea11fec2d340246297a5abd3f822add3113f86517cf",
+        "bytes": 32124
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer17/",
+      "description_html": "<ul><li>Кмс по Вольной и Греко -Римской борьбе \n</li><li>Многократный чемпион и призёр Крыма \n</li><li>Многократный чемпион и призёр Всероссийских турниров \n</li><li>Действующий спортсмен \n</li><li>Тренировочный стаж 15 лет \n</li><li>Стаж тренерской деятельности 6 лет \n</li><li>Направление :\n</li><li>Функциональный - силовой тренинг \n</li><li>Функциональный фитнес\n</li><li>Сила/Мобильность \n</li><li>Выносливость</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e37/e377769cbdcec37f439b3cb43730fb30/dsc09814_1x.jpg",
+          "path": "/assets/trainers/trainer17-photo-07-c894520ea9.webp",
+          "width": 1080,
+          "height": 720,
+          "original_size": [
+            1080,
+            720
+          ],
+          "pixel_sha256": "9ddecfae8729a48b0df29dd0798a960f54c8541b8acac31e961452792065b937",
+          "bytes": 45602
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/6d8/6d8dea11428258fc657240b5c7dfe2d9/dsc09836_2x.jpg",
+          "path": "/assets/trainers/trainer17-photo-08-52892dcdde.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "e4b8e2ffe56c4947363886f83d47ca479df10fab0dd9880eaa6a6360cf32cdc5",
+          "bytes": 117858
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/677/677a9a32c9864af9eaa70e457014bd61/photo_2024_12_15_15_52_39_1x.jpg",
+          "path": "/assets/trainers/trainer17-photo-05-272186a4bd.webp",
+          "width": 640,
+          "height": 640,
+          "original_size": [
+            640,
+            640
+          ],
+          "pixel_sha256": "63c2404923bc24c31ccd96088ab81a23ea9b44da73a44e7195ba812d140f2f50",
+          "bytes": 63040
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/693/693046c28e875c4cde4aee264f9818d4/photo_2024_12_15_15_52_38_2_1x.jpg",
+          "path": "/assets/trainers/trainer17-photo-06-ca01571385.webp",
+          "width": 960,
+          "height": 640,
+          "original_size": [
+            960,
+            640
+          ],
+          "pixel_sha256": "ca5ab383b73aef632d3023777942c48313172200dbe1fe928d255622e774e718",
+          "bytes": 72100
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b7d/b7d514d80e712b72de632356fa7c663c/photo_2024_12_15_15_52_42_2x.jpg",
+          "path": "/assets/trainers/trainer17-photo-03-bfe54be68c.webp",
+          "width": 1043,
+          "height": 1043,
+          "original_size": [
+            1043,
+            1043
+          ],
+          "pixel_sha256": "1dace6ce442707a947b6e720ac76e9c2dad4088488dbca9330e10ac83930d175",
+          "bytes": 167428
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b27/b279f48d5b66970554a558c0d0686494/photo_2024_12_15_15_52_41_2x.jpg",
+          "path": "/assets/trainers/trainer17-photo-04-72530b8602.webp",
+          "width": 959,
+          "height": 959,
+          "original_size": [
+            959,
+            959
+          ],
+          "pixel_sha256": "e8ecc85766de5503f52c37bb998375ed77209935f42e887ef101c63cd4d5ded0",
+          "bytes": 139880
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/b37/b37389edf270be75ee4f2126cc64fe91/photo_2024_12_15_15_52_38_2x.jpg",
+          "path": "/assets/trainers/trainer17-photo-01-70e801c854.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "62feb0a490ff9728f082cbf82479c56f49b1221b28cfc5b1611b9693b25bc50c",
+          "bytes": 89480
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/7e0/7e01a2a8a78e08124dfeac07c0d59082/photo_2024_12_15_15_52_37_2x.jpg",
+          "path": "/assets/trainers/trainer17-photo-02-931c9fd27b.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "6983bf4c4c97df6846d0914db6c1e84981ec08d485fa1f5af924df8122119eaa",
+          "bytes": 75198
+        }
+      ]
+    },
+    {
+      "id": "trainer23_addt",
+      "name": "Гавриленко Руслан",
+      "speciality": "Персональный тренинг",
+      "bio": "Работает с мужчинами, женщинами и подростками. Основные направления: развитие мышц и поддержание физической формы.",
+      "image": "/assets/trainers/trainer23_addt-portrait-ed2a1ff36e.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3d6/3d66700f0016577f423afdf780a0b199/dsc08481_2x.jpg",
+        "path": "/assets/trainers/trainer23_addt-portrait-ed2a1ff36e.webp",
+        "width": 900,
+        "height": 1350,
+        "original_size": [
+          900,
+          1350
+        ],
+        "pixel_sha256": "55110187a335377baaf14e631a96a597e18106f0b3ed9c145c7c399159f81d8d",
+        "bytes": 64320
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer23_addt/",
+      "description_html": "<p>Стаж работы 15 лет. \n<br>Работа с мужчинами, женщинами, подростками. \n<br>Похудение, набор мышечной массы, тонус мышц. \n<br>Работа с наличием медикаментозных ограничений ( грыжи, протрузии, остеохондроз).</p>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/504/50484b404c0edfcb36054214b04d72bd/dsc08479_2x.jpg",
+          "path": "/assets/trainers/trainer23_addt-photo-01-5548e83832.webp",
+          "width": 900,
+          "height": 1350,
+          "original_size": [
+            900,
+            1350
+          ],
+          "pixel_sha256": "4c850341eba523e665c9b4c338a62fe39c81bd24fea71a58531c9f471778160d",
+          "bytes": 77506
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d8b/d8b33a34420f5ab2acf476671bd4663b/photo_2024_12_15_13_10_42_2x.jpg",
+          "path": "/assets/trainers/trainer23_addt-photo-03-ac97501974.webp",
+          "width": 854,
+          "height": 1280,
+          "original_size": [
+            854,
+            1280
+          ],
+          "pixel_sha256": "1de0bb73f7fe4cf41a253c47b5b172212e35ec45ea344bfd49ddaea18bfcc252",
+          "bytes": 41624
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/7b6/7b69384678b50caa8333fdbaa3675263/photo_2024_12_15_13_10_43_2x.jpg",
+          "path": "/assets/trainers/trainer23_addt-photo-04-bc8c20f0ca.webp",
+          "width": 960,
+          "height": 1280,
+          "original_size": [
+            960,
+            1280
+          ],
+          "pixel_sha256": "541f424d8fd513efc9cbc4204f7d8e26fbce9d95360fa818fafb99ea864694bf",
+          "bytes": 199020
+        }
+      ]
+    },
+    {
+      "id": "trainer18",
+      "name": "Кашкарова Галина",
+      "speciality": "Пауэрлифтинг · фитнес",
+      "bio": "Сертифицированный инструктор тренажёрного зала. Основные направления: пауэрлифтинг и фитнес.",
+      "image": "/assets/trainers/trainer18-portrait-c704de45ae.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/6e3/6e3e7e29c94c35b0fcc36304ae7fb528/dsc07635_2x.jpg",
+        "path": "/assets/trainers/trainer18-portrait-c704de45ae.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "c285766be598bf09ce3e7c825c81cffcd782b67e57171adc6100a273a535156f",
+        "bytes": 26580
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer18/",
+      "description_html": "<p>Сертифицированный инструктор тренажёрного зала.\n<br>Направление: пауэрлифтинг,фитнес</p><ul><li>Личный стаж тренировок 10+ лет;\n</li><li>Прошла курс семинаров  “Mass Fitness’’ при Федерации атлетического фитнеса Республики Крым по специализации “Профессиональный тренер в области фитнеса”;\n</li></ul>\n<br><ul><li>Составление индивидуальной программы тренировки;\n</li><li>Личный контроль и ведение тренировки\n</li><li>Рекомендации по сбалансированному питанию и программа питания исходя из целей человека ( похудение, набор или поддержание).\n</li></ul>\n<br>Достижения:\n<br><ul><li>1 место в открытом кубке первенстве в г.Симферополе по пауэрлифтингу (троеборью классическому);\n</li><li>3 место в абсолютном зачёте.</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/4d8/4d8d03700b52706e1be1bff6af8aa332/dsc07721_2x.jpg",
+          "path": "/assets/trainers/trainer18-photo-01-7cdf1cf75e.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "1ce50215099784bfcc55a5bfbca01f7d32d804ba520c687ec1a8ed87cfb4ec9b",
+          "bytes": 73790
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/4cf/4cf11b0f7806ec7f022bb3851cd70fc4/dsc07734_2x.jpg",
+          "path": "/assets/trainers/trainer18-photo-02-dbfb9323e8.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "80d434191a9d815f35babfa288b487a47e67ddb264377cc2950d49c2563c74c5",
+          "bytes": 73130
+        }
+      ]
+    },
+    {
+      "id": "trainer15",
+      "name": "Умарова Виктория",
+      "speciality": "Фитнес · персональный тренинг",
+      "bio": "Профессиональный инструктор в области фитнеса. Прошла обучение в Федерации спортивной аэробики и фитнеса Республики Крым и Колледже им. Бена Вейдера.",
+      "image": "/assets/trainers/trainer15-portrait-cd4fac04ca.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/4c3/4c3f80366d64ca042a473061b1a80b11/dsc08929_2_2x.jpg",
+        "path": "/assets/trainers/trainer15-portrait-cd4fac04ca.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "893f1fc54bbf43e555e722ad02a89934070c847d5460ebecc0b2fde3d83dabc4",
+        "bytes": 23040
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer15/",
+      "description_html": "<p> Свидетельство \"Mass Fitness\"при Федерации спортивной аэробики и фитнеса Республики Крым по специализации\"Профессиональный инструктор в области фитнеса\"</p><p> Сертификат Федерации бодибилдинга и фитнеса России Колледжа фитнеса и бодибилдинга им. Бена Вейдера Диетологическое сопровождение клиента фитнес -клуба </p><p> Сертификат Федерации бодибилдинга и фитнеса России Колледжа фитнеса и бодибилдинга им. Бена Вейдера </p><p>Основы рационально питания.Нутрициолог.</p><p>Сертификат Федерации бодибилдинга и фитнеса России Колледжа фитнеса и бодибилдинга им. Бена Вейдера персональный тренер тренажерного зала</p><p>Начало спортивной карьеры: </p><p>2012 год\n<br>Достижения: вошла в 3 финалистов номинации Бикини 1-й открытый чемпионат республики Крым и первенства республики Крым среди молодежи по бодибилдингу и фитнесу 2015 г.</p>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/768/768409f347e4977bba0d40c727f2a582/dsc09100_2x.jpg",
+          "path": "/assets/trainers/trainer15-photo-01-a105e7e2fb.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "f74f617f527614ade5334706d4cbe82be6b6b1ec0618794d017d647b8c763a32",
+          "bytes": 79936
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/21f/21fc0046ca8f3ed5763292b9a5ea17b5/dsc09117_2x.jpg",
+          "path": "/assets/trainers/trainer15-photo-02-a80b7b6972.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "0aab6c45a7b3e866cf3e3c3d6c7c7800f6c9a7cc76e27f63010603f31a616ac1",
+          "bytes": 78090
+        }
+      ]
+    },
+    {
+      "id": "trainer19",
+      "name": "Давлетшина Анна",
+      "speciality": "Фитнес · физическая подготовка",
+      "bio": "Образование: факультет физической культуры и спорта ТНУ им. Вернадского. Прошла обучение по фитнес-направлениям и фитнес-нутрициологии.",
+      "image": "/assets/trainers/trainer19-portrait-7cfc9795af.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/58c/58c64b9ac630d8529180b7cd90ce2a26/dsc09503_2_2x.jpg",
+        "path": "/assets/trainers/trainer19-portrait-7cfc9795af.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "6d7dea5152c0225dc0292b2292cf56329442d455d64bb6ca5caedb0d0b462a8d",
+        "bytes": 24562
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer19/",
+      "description_html": "<p>Закончила ТНУ им.Вернадского- факультет Физической культуры и спорта\n<br>Имею сертификат о прохождении мастер-классов фитнес-направлении \n<br>Принимала участие в соревнованиях по бодифитнесу и фитнес - бикини\n<br>Прошла обучение в Тайланде в школе \"Wat Po\" по направлению Традиционный лечебный Тайский йога-массаж\n<br>Прошла обучение в FPA (ассоциация профессионалов фитнеса) по программе Фитнес -нутрициолог</p><ul><li>КМС( кандидат в мастера спорта)по дзюдо\n</li><li>МСМК( мастер спорта международного класса) по подъему штанги на бицепс, являюсь рекордсменом России и мира в федерации NPA\n</li></ul>Опыт работы более 12 лет\n<br>Направления:\n<br><ul><li>силовой тренинг\n</li><li>тренировки на похудение \n</li><li>функциональные тренировки \n</li><li>растяжка и пилатес, коррекция осанки \n</li><li>детский фитнес</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/592/59249150c1e7d977e74cb4a4a1830b5c/dsc09573_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-05-02117ee016.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "f8fac65745fffb5f6f490559019c0003d845231ede9cd76e8046adb0b92d1de0",
+          "bytes": 71994
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/92a/92a8b5c9bf6b2be708eeb3013bdb2c8a/dsc09556_1x.jpg",
+          "path": "/assets/trainers/trainer19-photo-07-96a1e07ed2.webp",
+          "width": 1080,
+          "height": 720,
+          "original_size": [
+            1080,
+            720
+          ],
+          "pixel_sha256": "f6bf7edea360e5d12dee5c133e4f63534a442d19304168ec2efafb712d1f7228",
+          "bytes": 34082
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/811/811f596c39f92c08cd719d610e2e369d/photo_2024_12_14_16_41_22_1x.jpg",
+          "path": "/assets/trainers/trainer19-photo-04-e0b860a246.webp",
+          "width": 851,
+          "height": 851,
+          "original_size": [
+            851,
+            851
+          ],
+          "pixel_sha256": "980cc8aaa253bcdf87c0b2665ce83207c7174a6a50e817234a30c5ce6f4b7f96",
+          "bytes": 59780
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d4c/d4ca600a3077a8736438cf33b8fc26f4/photo_2024_12_14_16_41_24_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-06-f3e9a62b04.webp",
+          "width": 1200,
+          "height": 1200,
+          "original_size": [
+            1200,
+            1200
+          ],
+          "pixel_sha256": "763c40a57355b56d151bbe6b603aab0a147972c5aa960d063a0778dcd66a68d0",
+          "bytes": 98902
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/15c/15c154bd33de7fbe56cdd174e57cbc8b/photo_2024_12_15_14_15_10_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-08-cd0bde8b14.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "9fd10a414e234599c0a03e1a70914d455975b9acd29f2fd85c75bd3203211645",
+          "bytes": 50558
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/889/889d21a464d39530a636edd95878596c/photo_2024_12_15_14_15_10_4_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-09-7b3de669ca.webp",
+          "width": 853,
+          "height": 1280,
+          "original_size": [
+            853,
+            1280
+          ],
+          "pixel_sha256": "17722fba8b799ecba948021cc949b6022d6d4a47d3c95cbff57d57dfc5ab0378",
+          "bytes": 18176
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/752/7526ea2a85219f3425ca0f67b5fc63d2/photo_2024_12_15_14_15_10_2_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-11-0adccf8458.webp",
+          "width": 854,
+          "height": 1280,
+          "original_size": [
+            854,
+            1280
+          ],
+          "pixel_sha256": "3d44413bb8351deef90ab653fbbe22ba1a654213d3e51222abe4c8e9ab4c95eb",
+          "bytes": 61842
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/726/72696a6f46bea82838bad4bb6de54d4e/photo_2024_12_14_16_38_19_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-01-1e2bbba754.webp",
+          "width": 1280,
+          "height": 905,
+          "original_size": [
+            1280,
+            905
+          ],
+          "pixel_sha256": "01652c2705190954ecc09d0e58863d0d9ae58f77f3f1351e7a7bcc508df6109a",
+          "bytes": 95020
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/517/517443bd1d594d16b12c256b24bc191b/photo_2024_12_14_16_38_19_2_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-02-3b2ca44469.webp",
+          "width": 1280,
+          "height": 960,
+          "original_size": [
+            1280,
+            960
+          ],
+          "pixel_sha256": "ea09a422edc11864d87cd360b64562c41f32e321e1039852fbf2dce7ef278be3",
+          "bytes": 112076
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/1d1/1d1b20b5d2907326dccc8ec373e9809b/photo_2024_12_14_16_38_19_3_2x.jpg",
+          "path": "/assets/trainers/trainer19-photo-03-b72ba3ef51.webp",
+          "width": 720,
+          "height": 1280,
+          "original_size": [
+            720,
+            1280
+          ],
+          "pixel_sha256": "1300ef61962394cb072e8acbf5f85648b2d3099e0b94d3cc8e3d0bc828c72eed",
+          "bytes": 80982
+        }
+      ]
+    },
+    {
+      "id": "trainer20",
+      "name": "Евлошевская Александра",
+      "speciality": "Бодибилдинг · фитнес · пауэрлифтинг",
+      "bio": "Дипломированный тренер тренажёрного зала. Работает с разным уровнем подготовки. Направления: бодибилдинг, фитнес и пауэрлифтинг.",
+      "image": "/assets/trainers/trainer20-portrait-08bbbeec3a.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/32b/32b2cb743e52b77d0ad32b477a743852/dsc08959_2_2x.jpg",
+        "path": "/assets/trainers/trainer20-portrait-08bbbeec3a.webp",
+        "width": 600,
+        "height": 900,
+        "original_size": [
+          600,
+          900
+        ],
+        "pixel_sha256": "dedd8cd6d334c67a31be27e421daca7e2dae02c67f6dadac24649c0027a7cfd5",
+        "bytes": 29966
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer20/",
+      "description_html": "<p>Дипломированный тренер тренажерного зала.\n<br>Направление: бодибилдинг, фитнес, пауэрлифтинг.</p><p>Стаж работы - 8 лет; Стаж в спорте - 18 лет;</p><p>Владею различными методиками тренировочного процесса.\n<br>Изучила различную литературу, направленную на самые рабочие программы тренинга.\n<br>Работаю с разным уровнем подготовки.\n<br>Специализируюсь на правильных тренировках для девушек(с учётом всех пожеланий и особенностей), на постороении  привлекательной и атлетической формы тела, на создании бразильских ягодиц, и улучшении физического здоровья.\n<br>Тот тренер, который заинтересован в  твоём результате больше, чем ты сама!\n<br>Тренирую людей с нарушением ОДА.\n<br>\n<br>Окончила школу Бодибилдинга и Фитнеса \"Energym\".\n<br>КМС по пауэрлифтингу  (становая тяга), в федерациях НАП и WRPF.\n<br>\n<br>Подготовка спортсменов к соревнованиям.\n<br>Среди атлетов : действующая спортсменка , Чемпионка Крыма по становой тяге, по версии WRPF/WEPF/WSF/СПР/ФЖД  среди Юниоров(20-23) в своей весовой категории.</p>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/dbe/dbeea2205db0bb308025591239f27481/dsc09225_2x.jpg",
+          "path": "/assets/trainers/trainer20-photo-01-5d22048ee9.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "7c0141cb5efe8cdc12db0f8e2359ec5c409a9b47b97a62fd98bf0691b4e036d7",
+          "bytes": 140400
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/87d/87db612ea63ad380230299344fbbee87/dsc09259_2x.jpg",
+          "path": "/assets/trainers/trainer20-photo-02-957a8c390a.webp",
+          "width": 1067,
+          "height": 1600,
+          "original_size": [
+            1080,
+            1620
+          ],
+          "pixel_sha256": "fb78038b37fc92a14afb5ff270f14c63b1bee96bd56a2fa47bd1ae1ea5f7dc03",
+          "bytes": 99814
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/661/66140f9c4c217c7fc6264f62a8561051/photo_2024_12_16_06_29_13_2_2x.jpg",
+          "path": "/assets/trainers/trainer20-photo-03-10437914fc.webp",
+          "width": 1080,
+          "height": 1041,
+          "original_size": [
+            1080,
+            1041
+          ],
+          "pixel_sha256": "3848086e51ff3f66f1a07afd3866b3e3a4f76b5f2d661612a4be636fed928b28",
+          "bytes": 84294
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/95a/95a09915eeb0fe9327c059dcd0783255/photo_2024_12_16_06_29_13_3_2x.jpg",
+          "path": "/assets/trainers/trainer20-photo-04-974d40aee0.webp",
+          "width": 1080,
+          "height": 1074,
+          "original_size": [
+            1080,
+            1074
+          ],
+          "pixel_sha256": "d390e0106c4078d6ad4b545304e6987d890eec8d56756b38caa94760a9cf98ad",
+          "bytes": 94912
+        }
+      ]
+    },
+    {
+      "id": "trainer25",
+      "name": "Службина Руслана",
+      "speciality": "Силовой тренинг · фитнес-бикини",
+      "bio": "Опыт работы в фитнес-клубах Киева и Крыма. Специализация: силовой тренинг, фитнес-бикини и коррекция фигуры.",
+      "image": "/assets/trainers/trainer25-portrait-50cb1b5e92.webp",
+      "portrait": {
+        "source": "https://cdn-ru.bitrix24.ru/b758321/landing/928/928fdd01fd32185294dc949f87a04471/dsc08503_2x.jpg",
+        "path": "/assets/trainers/trainer25-portrait-50cb1b5e92.webp",
+        "width": 900,
+        "height": 1350,
+        "original_size": [
+          900,
+          1350
+        ],
+        "pixel_sha256": "2eefbbce3ebcda6bd857dd3f6f045a8bbe27954d3305318a96294b18d55d6481",
+        "bytes": 105820
+      },
+      "clubs": [
+        "konnoi"
+      ],
+      "source": "https://liniyasporta.ru/trenera/trainer25/",
+      "description_html": "<p>Опыт работы: 11 лет\n<br>Ключевая квалификация:<br></p><ul><li>Опыт успешной работы фитнес-тренером более 11 лет в ведущих клубах Киева и Крыма.</li><li>Специализация: силовой тренинг, фитнес-бикини, коррекция фигуры.</li><li>Практические знания в области диетологии и нутрициологии.</li></ul>\nОпыт работы:<br><ul><li>Фитнес-тренер | Фитнес-клуб «Атлетiко» (Киев) - 3 года</li><li>Фитнес-тренер | Фитнес-клуб «Адреналин» (Крым) - Начала работу после возвращения в Крым <br></li><li>Фитнес-тренер | Фитнес-клуб «Шарк Атлетик» (Крым) - 3 года</li></ul>Спортивные достижения (личное участие):<ul><li>Кубок Республики Крым и Первенство Республики Крым среди молодёжи по бодибилдингу и фитнесу, Ялта.\n</li><li>Кубок Чёрного моря по фитнес-бикини, Севастополь.\n</li><li>Проект Fitness Bikini &amp; Men’s Physique (2016).\n</li></ul>\nОбразование:<ul><li>КФУ имени Вернадского Направление: «Физическая культура и спорт» Курсы повышения квалификации</li><li>На базе тренажерного зала «Атлетiко», Киев\n</li><li>Пищевой колледж Специальность: «Технолог пищевой промышленности»</li></ul>",
+      "gallery": [
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/fd1/fd16ff11ca13ac51a86bc8dfd70a72f9/photo_2025_09_24_22_26_48_2_1x.jpg",
+          "path": "/assets/trainers/trainer25-photo-02-2269ce6276.webp",
+          "width": 599,
+          "height": 900,
+          "original_size": [
+            599,
+            900
+          ],
+          "pixel_sha256": "e41034ca953db759118803f01fbbed056b8be156f68fb69e697892f0d7a3e10d",
+          "bytes": 31432
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/f78/f78e6f4e4e255cc3a4f53677588aefb2/photo_2025_09_24_22_26_48_1x.jpg",
+          "path": "/assets/trainers/trainer25-photo-03-1bf92d0594.webp",
+          "width": 599,
+          "height": 900,
+          "original_size": [
+            599,
+            900
+          ],
+          "pixel_sha256": "943ad49caf1fcd3e3032036f7ebab982597711c38e48c7ac47c77c6b815b0ccd",
+          "bytes": 28704
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/d8d/d8dea1f25c50c06b00e7c6a307e0cd40/photo_2025_09_24_22_26_49_2_2x.jpg",
+          "path": "/assets/trainers/trainer25-photo-05-4e22a7ad7d.webp",
+          "width": 599,
+          "height": 900,
+          "original_size": [
+            599,
+            900
+          ],
+          "pixel_sha256": "9c582ddd524a03491625025915754a127463701fc0805325506a7e6e94957934",
+          "bytes": 30242
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e4a/e4af46381f15a4b5ef905849ff3279d0/photo_2025_09_24_22_26_50_1x.jpg",
+          "path": "/assets/trainers/trainer25-photo-07-26d0071f1d.webp",
+          "width": 1208,
+          "height": 800,
+          "original_size": [
+            1208,
+            800
+          ],
+          "pixel_sha256": "d2f2db01bfbb1eb57f32aa03e0096123886327034f157fd9028edc78ee6b195e",
+          "bytes": 93626
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e4c/e4c3f1f21977404777d1d100464ae78f/photo_2025_09_24_22_26_48_3_1x.jpg",
+          "path": "/assets/trainers/trainer25-photo-04-788a621657.webp",
+          "width": 599,
+          "height": 900,
+          "original_size": [
+            599,
+            900
+          ],
+          "pixel_sha256": "c114809b2f4a856f1c4d2c19b2d06b50bd16798c4bb8169fe02cf655ccb32cc2",
+          "bytes": 23618
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/3be/3be6dd08bcbf20b6a8d64261fa2ed0ac/photo_2025_09_24_22_26_49_2x.jpg",
+          "path": "/assets/trainers/trainer25-photo-06-96a9ae687b.webp",
+          "width": 599,
+          "height": 900,
+          "original_size": [
+            599,
+            900
+          ],
+          "pixel_sha256": "8aa2e4124dc371d69769d23ca1dcf6957722142319b864c26561c39b7b77f734",
+          "bytes": 31476
+        },
+        {
+          "source": "https://cdn-ru.bitrix24.ru/b758321/landing/e70/e70687aa92b31fecbf071031063298c6/diplom_page_0001_2x.jpg",
+          "path": "/assets/trainers/trainer25-photo-01-237a925b86.webp",
+          "width": 1600,
+          "height": 1025,
+          "original_size": [
+            2700,
+            1729
+          ],
+          "pixel_sha256": "84174e2ebcc71a58de441b01af6d466996f2b9cafb2614be06ab4517485b6c81",
+          "bytes": 211204
+        }
+      ]
+    }
+  ]
+}
