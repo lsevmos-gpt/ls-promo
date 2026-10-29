@@ -1,0 +1,120 @@
+name: Bar | REG.RU FTPS — read-only connection check
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/trigger-bar-ftps-check.txt'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: liniyasporta-bar-ftps-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FTP_HOST: server169.hosting.reg.ru
+      FTP_USER: u3652448_bar
+      FTP_PASSWORD: ${{ secrets.BAR_REG_PASSWORD }}
+      EXPECTED_DOMAIN: bar.lineasporta.ru
+
+    steps:
+      - name: Validate FTP credentials are configured
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$FTP_PASSWORD" ]]; then
+            echo '::error::GitHub Actions secret BAR_REG_PASSWORD is missing.'
+            exit 1
+          fi
+          if [[ "$FTP_PASSWORD" == *$'\n'* || "$FTP_PASSWORD" == *$'\r'* ]]; then
+            echo '::error::FTP secret must not contain line breaks.'
+            exit 1
+          fi
+          test "$FTP_USER" = "u3652448_bar"
+          test "$EXPECTED_DOMAIN" = "bar.lineasporta.ru"
+          echo 'BAR: safe read-only connection test.'
+
+      - name: Install lftp
+        shell: bash
+        run: sudo apt-get update -qq && sudo apt-get install -qq -y lftp
+
+      - name: Authenticate with explicit FTPS and list remote root (no writes)
+        shell: bash
+        run: |
+          set -euo pipefail
+          lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate true;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            pwd;
+            cls -1 -a;
+            bye
+          "
+          echo 'BAR_FTPS_AUTH=success; BAR_FTPS_ROOT=/; REMOTE_WRITES=none'
+
+      - name: Inspect domain ownership marker if present (no writes)
+        shell: bash
+        run: |
+          set -euo pipefail
+          if lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate true;
+            set net:max-retries 1;
+            set net:timeout 20;
+            cd /;
+            get .bar-site-root.txt -o /tmp/bar-site-root.txt;
+            bye
+          "; then
+            if [[ "$(tr -d '\r\n' < /tmp/bar-site-root.txt)" != "$EXPECTED_DOMAIN" ]]; then
+              echo '::error::FTP root marker belongs to another site. Deployment must not proceed.'
+              exit 1
+            fi
+            echo 'BAR_DOMAIN_MARKER=verified'
+          else
+            echo '::notice::BAR_DOMAIN_MARKER=not_yet_created; FTPS login alone does not prove domain binding.'
+          fi
+
+      - name: Compare current remote homepage with public HTTPS if both are available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if lftp -u "$FTP_USER","$FTP_PASSWORD" "ftp://$FTP_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate true;
+            set net:max-retries 1;
+            set net:timeout 20;
+            cd /;
+            get index.html -o /tmp/bar-ftp-index.html;
+            bye
+          "; then
+            if curl -fLsS --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache'               "https://$EXPECTED_DOMAIN/?ftps-check=${{ github.run_id }}" -o /tmp/bar-https-index.html; then
+              if cmp -s /tmp/bar-ftp-index.html /tmp/bar-https-index.html; then
+                echo 'BAR_DOMAIN_BINDING=confirmed_exact_bytes'
+              else
+                echo '::warning::BAR_DOMAIN_BINDING=homepage_mismatch'
+              fi
+            else
+              echo '::notice::BAR_DOMAIN_BINDING=HTTPS_unavailable_or_not_ready'
+            fi
+          else
+            echo '::notice::BAR_DOMAIN_BINDING=no_remote_index_yet'
+          fi
