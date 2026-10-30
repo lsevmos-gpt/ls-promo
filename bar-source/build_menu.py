@@ -41,7 +41,7 @@ add('fruit-tea','drinks','Фруктовый чай',120,pending='Не указ�
 add('coffee','drinks','Кофе',80,recipe=[('espresso',30)],assumption='Для оценки взята порция эспрессо 30 мл без сахара и молока. Вид кофе и объём в исходном меню не указаны; это расчётный ориентир.')
 images = {
     'whey':'protein', 'plant':'plant', 'isolate':'isolate',
-    'bcaa':'bcaa', 'creatine':'creatine.jpg', 'preworkout':'preworkout', 'gainer':'gainer',
+    'bcaa':'bcaa', 'creatine':'creatine-approved-20261030.jpg', 'preworkout':'preworkout', 'gainer':'gainer',
     'fresh-apple':'fresh-apple', 'fresh-apple-carrot':'fresh-apple-carrot',
     'fresh-orange':'fresh-orange', 'fresh-apple-orange':'fresh-apple-orange',
     'fresh-grapefruit':'fresh-grapefruit', 'fresh-orange-grapefruit':'fresh',
