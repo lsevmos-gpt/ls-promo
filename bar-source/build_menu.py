@@ -39,14 +39,13 @@ for id,name,price,parts in [('apple','Яблочный',250,[('apple_juice',1)])
 add('tea','drinks','Чай классический',30,recipe=[('tea',200)],assumption='Условная чашка чёрного чая 200 мл, без сахара, мёда и молока. Объём чашки в исходном меню не указан.')
 add('fruit-tea','drinks','Фруктовый чай',120,pending='Не указана рецептура: настой, свежие фрукты, пюре, мёд и сироп дают разную пищевую ценность. Нужен состав и масса ингредиентов.')
 add('coffee','drinks','Кофе',80,recipe=[('espresso',30)],assumption='Для оценки взята порция эспрессо 30 мл без сахара и молока. Вид кофе и объём в исходном меню не указаны; это расчётный ориентир.')
-add('protein-bar','snack','Протеиновый батончик',[80,200],pending='Ассортимент, марки и масса батончиков не указаны. КБЖУ следует брать с упаковки конкретного батончика.')
 images = {
     'whey':'protein', 'plant':'plant', 'isolate':'isolate',
     'bcaa':'bcaa', 'carnitine':'carnitine', 'preworkout':'preworkout', 'gainer':'gainer',
     'fresh-apple':'fresh-apple', 'fresh-apple-carrot':'fresh-apple-carrot',
     'fresh-orange':'fresh-orange', 'fresh-apple-orange':'fresh-apple-orange',
     'fresh-grapefruit':'fresh-grapefruit', 'fresh-orange-grapefruit':'fresh',
-    'tea':'tea', 'fruit-tea':'fruit-tea', 'coffee':'coffee', 'protein-bar':'protein-bar-mix'
+    'tea':'tea', 'fruit-tea':'fruit-tea', 'coffee':'coffee'
 }
 descriptions = {
     'whey':'Классический белковый коктейль.',
@@ -64,14 +63,13 @@ descriptions = {
     'fresh-orange-grapefruit':'Апельсин и грейпфрут.',
     'tea':'Горячий чай для приятной паузы.',
     'fruit-tea':'Яркий фруктовый вкус.',
-    'coffee':'Ароматный кофе.',
-    'protein-bar':'Вкусный перекус с собой. Ассортимент и вкусы уточняй на баре.'
+    'coffee':'Ароматный кофе.'
 }
 for item in items:
     if item['id'] in images: item['image'] = images[item['id']]
     item['description'] = descriptions.get(item['id'], item['composition'])
-assert len(items)==22
-assert len({item['image'] for item in items}) == 22
+assert len(items)==21
+assert len({item['image'] for item in items}) == 21
 sources=[
  {'id':'caramel','name':'GEORGES MONIN — спецификация карамельного сиропа-аналога','url':'https://www.cfw.co.uk/Media/PDF%20Spec%20Sheets/Monin/Spec-Sheet-Monin-Syrup-Caramel.pdf','note':'323 ккал и 79,3 г углеводов на 100 мл, плотность 1,293 г/мл. Для бамбл-кофе принято 15 мл сиропа. Марка клуба не подтверждена.'},
  {'id':'usda','name':'USDA Standard Reference 28','url':'https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/','note':'Продукты и соки, значения на 100 г. Яблочный и морковный соки — справочные аналоги.'},
@@ -80,8 +78,8 @@ sources=[
  {'id':'isolate','name':'Dymatize ISO100 — этикетка аналога','url':'https://dymatize.com/products/iso100-gourmet-chocolate?pr_rd_page=1','note':'120 ккал, Б 25, Ж 1, У 2 г на 32 г; пересчитано на 30 г. Это не подтверждение марки клуба.'},
  {'id':'gainer','name':'Optimum Nutrition Serious Mass — этикетка аналога','url':'https://www.optimumnutrition.com/en-gb/products/serious-mass-weight-gainer-protein-powder-eu?variant=52105828925707','note':'376 ккал, Б 15, Ж 1,9, У 75 г на 100 г. Для оценки принята порция 50 г; это не подтверждение марки клуба.'}
 ]
-categories=[{'id':'smoothies','name':'Смузи'},{'id':'protein','name':'Протеин'},{'id':'sport','name':'Спортивное питание'},{'id':'fresh','name':'Фреши'},{'id':'drinks','name':'Напитки'},{'id':'snack','name':'Полезный перекус'}]
+categories=[{'id':'smoothies','name':'Смузи'},{'id':'protein','name':'Протеин'},{'id':'sport','name':'Спортивное питание'},{'id':'fresh','name':'Фреши'},{'id':'drinks','name':'Напитки'}]
 data={'brand':'Линия спорта','menu_source':{'type':'owner_photo','file':'IMG_20261029_234450_636.jpg','date':'2026-10-29'},'owner_updates':[{'date':'2026-10-30','change':'Бамбл-кофе с карамельным сиропом, 300 ₽; состав уточнён владельцем.'}],'common_menu_for_all_clubs':True,'nutrition_method':{'status':'approximate_not_verified_recipe','rounding':'Калории до 5 ккал, БЖУ до целого грамма. Значения рассчитаны на обозначенную расчётную порцию, не на 100 г.','notice':'Граммовки для расчёта предварительные. Реальные КБЖУ зависят от рецептуры, марки порошка, вкуса и основы напитка.','usda_food_ids':ids,'ingredient_values_per_100g':facts,'sources':sources},'categories':categories,'items':items}
 (SITE/'menu.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'menu-summary.txt').write_text('\n'.join(f"{x['name']}: {x['price_rub']} ₽ | {x['nutrition']['values'] or 'КБЖУ уточняется'} | {x['nutrition']['assumption']}" for x in items))
-print(f"22 menu items; {sum(x['nutrition']['values'] is not None for x in items)} estimated portions, {sum(x['nutrition']['values'] is None for x in items)} awaiting product/recipe details.")
+print(f"21 menu items; {sum(x['nutrition']['values'] is not None for x in items)} estimated portions, {sum(x['nutrition']['values'] is None for x in items)} awaiting product/recipe details.")
