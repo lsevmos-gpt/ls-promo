@@ -9,6 +9,10 @@
     {
       "date": "2026-10-30",
       "change": "Бамбл-кофе с карамельным сиропом, 300 ₽; состав уточнён владельцем."
+    },
+    {
+      "date": "2026-10-30",
+      "change": "L-карнитин заменён на креатин в разделе «Спортивное питание». Цена 130 ₽ перенесена без изменения из прежней карточки; требует подтверждения."
     }
   ],
   "common_menu_for_all_clubs": true,
@@ -545,12 +549,12 @@
       "description": "Порция аминокислот BCAA."
     },
     {
-      "id": "carnitine",
+      "id": "creatine",
       "category": "sport",
-      "name": "L-карнитин",
+      "name": "Креатин",
       "price_rub": 130,
       "composition": "",
-      "image": "carnitine",
+      "image": "creatine.svg",
       "volume_ml": null,
       "badge": null,
       "nutrition": {
@@ -560,7 +564,7 @@
         "assumption": "",
         "calculation_recipe_g": null
       },
-      "description": "Порция L-карнитина."
+      "description": "Порция креатина."
     },
     {
       "id": "preworkout",

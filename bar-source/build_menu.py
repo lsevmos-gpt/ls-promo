@@ -31,7 +31,7 @@ add('green','smoothies','Зелёный смузи',250,'Шпинат, бана�
 add('bumble','drinks','Бамбл-кофе',300,'Апельсиновый фреш, кофе, карамельный сироп.','bumble',[('orange',210),('espresso',30),('caramel',19.395)],'Апельсиновый фреш 200 мл (примерно 210 г), эспрессо 30 мл и карамельный сироп 15 мл (примерно 19,4 г). Сироп учтён по справочной этикетке MONIN. Это расчётные количества; фактическую дозировку и марку сиропа клуба нужно уточнить.',badge='С КАРАМЕЛЬЮ')
 for id,name,price,kind in [('whey','Протеин сывороточный',280,'whey'),('plant','Протеин растительный',290,'plant'),('isolate','Протеин изолят',330,'isolate')]:
     add(id,'protein',name,price,image='protein',recipe=[(kind,30)],assumption='Расчёт для 30 г порошка на воде. Марка и вкус не указаны: использована справочная этикетка аналогичного продукта, а не подтверждённая рецептура клуба. При приготовлении на молоке КБЖУ будут выше.')
-for id,name,price in [('bcaa','BCAA',110),('carnitine','L-карнитин',130),('preworkout','Предтрен',130)]:
+for id,name,price in [('bcaa','BCAA',110),('creatine','Креатин',130),('preworkout','Предтрен',130)]:
     add(id,'sport',name,price,pending='Нужны марка, форма продукта и масса порции. КБЖУ уточняются по этикетке; отсутствие цифр не означает нулевую калорийность.')
 add('gainer','sport','Гейнер',220,recipe=[('gainer',50)],assumption='Расчёт для условной порции 50 г сухого гейнера на воде по этикетке продукта-аналога. Фактическую марку и размер порции клуба нужно уточнить.')
 for id,name,price,parts in [('apple','Яблочный',250,[('apple_juice',1)]),('apple-carrot','Яблочно-морковный',250,[('apple_juice',.5),('carrot',.5)]),('orange','Апельсиновый',300,[('orange',1)]),('apple-orange','Яблочно-апельсиновый',300,[('apple_juice',.5),('orange',.5)]),('grapefruit','Грейпфрутовый',320,[('grapefruit',1)]),('orange-grapefruit','Апельсиново-грейпфрутовый',320,[('orange',.5),('grapefruit',.5)])]:
@@ -41,7 +41,7 @@ add('fruit-tea','drinks','Фруктовый чай',120,pending='Не указ�
 add('coffee','drinks','Кофе',80,recipe=[('espresso',30)],assumption='Для оценки взята порция эспрессо 30 мл без сахара и молока. Вид кофе и объём в исходном меню не указаны; это расчётный ориентир.')
 images = {
     'whey':'protein', 'plant':'plant', 'isolate':'isolate',
-    'bcaa':'bcaa', 'carnitine':'carnitine', 'preworkout':'preworkout', 'gainer':'gainer',
+    'bcaa':'bcaa', 'creatine':'creatine.svg', 'preworkout':'preworkout', 'gainer':'gainer',
     'fresh-apple':'fresh-apple', 'fresh-apple-carrot':'fresh-apple-carrot',
     'fresh-orange':'fresh-orange', 'fresh-apple-orange':'fresh-apple-orange',
     'fresh-grapefruit':'fresh-grapefruit', 'fresh-orange-grapefruit':'fresh',
@@ -52,7 +52,7 @@ descriptions = {
     'plant':'Белковый коктейль на растительной основе.',
     'isolate':'Коктейль на основе протеина-изолята.',
     'bcaa':'Порция аминокислот BCAA.',
-    'carnitine':'Порция L-карнитина.',
+    'creatine':'Порция креатина.',
     'preworkout':'Предтренировочный комплекс.',
     'gainer':'Коктейль на основе гейнера.',
     'fresh-apple':'Свежий яблочный сок.',
@@ -79,7 +79,7 @@ sources=[
  {'id':'gainer','name':'Optimum Nutrition Serious Mass — этикетка аналога','url':'https://www.optimumnutrition.com/en-gb/products/serious-mass-weight-gainer-protein-powder-eu?variant=52105828925707','note':'376 ккал, Б 15, Ж 1,9, У 75 г на 100 г. Для оценки принята порция 50 г; это не подтверждение марки клуба.'}
 ]
 categories=[{'id':'smoothies','name':'Смузи'},{'id':'protein','name':'Протеин'},{'id':'sport','name':'Спортивное питание'},{'id':'fresh','name':'Фреши'},{'id':'drinks','name':'Напитки'}]
-data={'brand':'Линия спорта','menu_source':{'type':'owner_photo','file':'IMG_20261029_234450_636.jpg','date':'2026-10-29'},'owner_updates':[{'date':'2026-10-30','change':'Бамбл-кофе с карамельным сиропом, 300 ₽; состав уточнён владельцем.'}],'common_menu_for_all_clubs':True,'nutrition_method':{'status':'approximate_not_verified_recipe','rounding':'Калории до 5 ккал, БЖУ до целого грамма. Значения рассчитаны на обозначенную расчётную порцию, не на 100 г.','notice':'Граммовки для расчёта предварительные. Реальные КБЖУ зависят от рецептуры, марки порошка, вкуса и основы напитка.','usda_food_ids':ids,'ingredient_values_per_100g':facts,'sources':sources},'categories':categories,'items':items}
+data={'brand':'Линия спорта','menu_source':{'type':'owner_photo','file':'IMG_20261029_234450_636.jpg','date':'2026-10-29'},'owner_updates':[{'date':'2026-10-30','change':'Бамбл-кофе с карамельным сиропом, 300 ₽; состав уточнён владельцем.'},{'date':'2026-10-30','change':'L-карнитин заменён на креатин в разделе «Спортивное питание». Цена 130 ₽ перенесена без изменения из прежней карточки; требует подтверждения.'}],'common_menu_for_all_clubs':True,'nutrition_method':{'status':'approximate_not_verified_recipe','rounding':'Калории до 5 ккал, БЖУ до целого грамма. Значения рассчитаны на обозначенную расчётную порцию, не на 100 г.','notice':'Граммовки для расчёта предварительные. Реальные КБЖУ зависят от рецептуры, марки порошка, вкуса и основы напитка.','usda_food_ids':ids,'ingredient_values_per_100g':facts,'sources':sources},'categories':categories,'items':items}
 (SITE/'menu.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'menu-summary.txt').write_text('\n'.join(f"{x['name']}: {x['price_rub']} ₽ | {x['nutrition']['values'] or 'КБЖУ уточняется'} | {x['nutrition']['assumption']}" for x in items))
 print(f"21 menu items; {sum(x['nutrition']['values'] is not None for x in items)} estimated portions, {sum(x['nutrition']['values'] is None for x in items)} awaiting product/recipe details.")
