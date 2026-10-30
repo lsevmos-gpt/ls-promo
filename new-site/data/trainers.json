@@ -1857,18 +1857,18 @@
       "name": "Кайбуллаева Фера Эскендеровна",
       "speciality": "Олимпийское тхэквондо",
       "bio": "Мастер спорта по олимпийскому тхэквондо. Чёрный пояс, 1 дан. Победитель чемпионата ЮФО, призёр чемпионата России и международных соревнований.",
-      "image": "/assets/trainers/kaibullaeva-fera-portrait-58151d7cb5.webp",
+      "image": "/assets/trainers/kaibullaeva-fera-portrait-91bf0f431d.webp",
       "portrait": {
-        "source": "Женский портрет в синей футболке.png",
-        "path": "/assets/trainers/kaibullaeva-fera-portrait-58151d7cb5.webp",
+        "source": "Нежный дневной макияж портрета.png",
+        "path": "/assets/trainers/kaibullaeva-fera-portrait-91bf0f431d.webp",
         "width": 600,
         "height": 900,
         "original_size": [
           1024,
           1536
         ],
-        "pixel_sha256": "b8cde7a0e6ff9fbc325426ef61bb870daec71f891264417e5b8ecadb4f024f69",
-        "bytes": 69310
+        "pixel_sha256": "9203a30d6233d5bccd0787878abee81c031b6404527b8c841512332aa3041ee1",
+        "bytes": 65886
       },
       "clubs": [
         "heroes"
@@ -1878,16 +1878,16 @@
       "description_html": "<p><strong>Мастер спорта по олимпийскому тхэквондо.</strong></p><ul><li>Чёрный пояс, 1 дан.</li><li>Первый номер сборной команды Республики Крым.</li><li>Победитель чемпионата ЮФО.</li><li>Призёр чемпионата России.</li><li>Призёр международных соревнований.</li><li>Многократный победитель и призёр всероссийских и республиканских соревнований.</li></ul>",
       "gallery": [
         {
-          "source": "photo_2026-10-30_09-11-24.jpg",
-          "path": "/assets/trainers/kaibullaeva-fera-photo-01-7826dedf9e.webp",
-          "width": 640,
-          "height": 816,
+          "source": "Юная чемпионка по тхэквондо с медалями и кубками.png",
+          "path": "/assets/trainers/kaibullaeva-fera-photo-01-d7d9021ce2.webp",
+          "width": 1122,
+          "height": 1402,
           "original_size": [
-            640,
-            816
+            1122,
+            1402
           ],
-          "pixel_sha256": "0d184e8ad262ad9d408436b0a28f874eb5cdf8c347e464c454664f9c79bfa1a9",
-          "bytes": 92224
+          "pixel_sha256": "52ee49f723bd3fea9ee6d9dec3d7ae077793f43c03fea20dddcc533cb6d277ec",
+          "bytes": 277882
         }
       ],
       "added_from_owner": "2026-10-30"
