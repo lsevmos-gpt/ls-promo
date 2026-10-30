@@ -92,3 +92,10 @@ Owner-supplied prices: 8 / 12 sessions cost 6,000 / 7,000 RUB in a mini-group (u
 The shared 8/12-session selector appears on the home team block, directory, three club rosters, 19 full profiles and personal training page. Booking links use each trainer's current assigned clubs. Source: `data/trainer-passes.json`; regenerate with `.github/scripts/refresh-trainer-passes.py`. The full trainer renderer also calls it. Trainer controls use their own data attributes and assets, separate from membership pricing.
 
 Approved site favicons use `/assets/favicons/v1/`; fitness has its own icon in the fitness subdirectory. The current main favicon has no New label and can follow the site to its permanent domain.
+
+
+### Фера Кайбуллаева — 30.10.2026
+
+Кайбуллаева Фера Эскендеровна (`kaibullaeva-fera`) добавлена по текстам и двум фотографиям владельца. Тренирует только на Героев Сталинграда, 6Д, работает по стандартному тренерскому прайсу. На главной занимает место Анастасии Коршенко; Анастасия сохранена в каталоге и составе клуба. Всего 20 тренеров; на Героев — 7. Запись: Fitness365 и телефон клуба. Индивидуальные условия Влада Кравченко сохранены без изменений.
+
+`refresh-trainers.py` создаёт недостающие страницы по существующему шаблону и сохраняет необязательную персональную ссылку `booking_url`.

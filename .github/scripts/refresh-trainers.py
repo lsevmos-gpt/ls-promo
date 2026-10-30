@@ -130,6 +130,8 @@ def profile(t):
             f'<span class="accent-line" aria-hidden="true"></span><h1>{e(t["name"].upper())}</h1>'
             f'<p class="profile-speciality">{e(t["speciality"])}</p><div class="profile-availability"><h2>Тренирует в клуб{ "ах" if len(t["clubs"]) > 1 else "е"}</h2>{clubs}</div>'
             '<p class="profile-booking-note">Администратор подскажет свободное время и поможет записаться на тренировку.</p>'
+            + (f'<div class="hero-actions"><a class="button button-primary" href="{e(t["booking_url"], quote=True)}" target="_blank" rel="noopener">Записаться онлайн {UP}</a></div>' if t.get('booking_url') else '')
+            +
             f'<a class="text-link profile-back" href="/trainers/">Вся команда {ARROW}</a></div></section>'
             '<section class="section trainer-about-section" aria-labelledby="trainer-about-title"><div class="container trainer-about-layout">'
             '<div><p class="eyebrow">ОПЫТ / ПОДХОД / ДОСТИЖЕНИЯ</p><span class="accent-line" aria-hidden="true"></span>'
@@ -169,11 +171,29 @@ def update_home_card(match):
     tid = re.search(r'href="/trainers/([^/]+)/"', match.group(0)).group(1)
     return card(TRAINERS[tid])
 section = re.sub(r'<a class="trainer-card"[^>]*>[\s\S]*?</a>', update_home_card, section)
+section = re.sub(r'Вся команда · \d+ тренер(?:ов|а)?', f'Вся команда · {len(TRAINERS)} тренеров', section)
 save(home_path, replace_section(home, r'id="team"', section))
 
 for tid, t in TRAINERS.items():
     path = SITE / f'trainers/{tid}/index.html'
-    text = path.read_text()
+    if path.exists():
+        text = path.read_text()
+    else:
+        template = next(SITE / f'trainers/{other}/index.html' for other in TRAINERS
+                        if (SITE / f'trainers/{other}/index.html').exists())
+        text = template.read_text()
+        origin = re.search(r'<link rel="canonical" href="(https?://[^/\"]+)', text).group(1)
+        page_url = f'{origin}/trainers/{tid}/'
+        title = e(t['name'] + ' — Линия спорта')
+        text = re.sub(r'<title>[\s\S]*?</title>', lambda _: '<title>' + title + '</title>', text, count=1)
+        metadata = {'description': t['bio'], 'og:title': t['name'] + ' — Линия спорта',
+                    'og:description': t['bio'], 'og:url': page_url, 'og:image': origin + t['image']}
+        for key, value in metadata.items():
+            text = re.sub(rf'(<meta\b[^>]*(?:name|property)="{re.escape(key)}"[^>]*content=")[^\"]*(")',
+                          lambda m, value=value: m.group(1) + e(value, quote=True) + m.group(2), text, count=1)
+        text = re.sub(r'(<link rel="canonical" href=")[^\"]*(")',
+                      lambda m: m.group(1) + page_url + m.group(2), text, count=1)
+        path.parent.mkdir(parents=True, exist_ok=True)
     # Keep the current membership block; its offers are scoped to this trainer
     # by refresh-memberships.py after the current club assignments are written.
     remainder = re.search(r'<main id="main">[\s\S]*?(<section\b[^>]*\bid="cards"[^>]*>[\s\S]*?)</main>', text).group(1)
