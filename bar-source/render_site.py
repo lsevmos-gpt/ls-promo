@@ -8,7 +8,7 @@ D=json.loads((SITE/'menu.json').read_text())
 def price(v):return ('–'.join(map(str,v)) if isinstance(v,list) else str(v))+' ₽'
 def image_path(item):
     img=item['image']
-    return 'assets/'+img if img.endswith('.svg') else 'assets/'+img+'.webp'
+    return 'assets/'+img if img.endswith(('.svg','.jpg','.jpeg','.png','.webp')) else 'assets/'+img+'.webp'
 def nutrients(item):
     v=item['nutrition']['values']
     if not v:return '<div class="nutrition pending">КБЖУ уточняются по '+('рецептуре' if item['id']=='fruit-tea' else 'этикетке')+'</div>'
@@ -18,8 +18,9 @@ def detail(item):
 def card(item):
     badge=f'<span class="card-badge">{e(item["badge"])}</span>' if item['badge'] else ''
     volume=f'<span class="card-volume">{item["volume_ml"]} мл</span>' if item['volume_ml'] else ''
+    image_dimensions = 'width="896" height="1152"' if item['image'].endswith('.jpg') else 'width="1122" height="1402"'
     return (f'<article class="drink-card" data-menu-item="{item["id"]}"><button class="drink-image" type="button" data-details="{item["id"]}" aria-label="Подробнее: {e(item["name"])}" aria-haspopup="dialog">'
-      f'<img src="{image_path(item)}" alt="{e(item["name"])}" width="1122" height="1402" loading="lazy">{badge}{volume}</button>'
+      f'<img src="{image_path(item)}" alt="{e(item["name"])}" {image_dimensions} loading="lazy">{badge}{volume}</button>'
       f'<div class="drink-content"><h4>{e(item["name"])}</h4><p class="composition">{e(item["description"])}</p><div class="drink-bottom"><strong class="price">{price(item["price_rub"])}</strong>{detail(item)}</div>{nutrients(item)}</div></article>')
 def group(cid,number):
     c=next(c for c in D['categories'] if c['id']==cid)
