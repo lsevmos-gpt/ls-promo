@@ -50,7 +50,7 @@ def prepare():
                     raise SystemExit('Invalid or incorrectly fingerprinted trainer image: ' + path)
             elif (not body.startswith(b'<!doctype html>')
                   or b'<html lang="ru">' not in body
-                  or (ORIGIN + '/' + path.removeprefix('new-site/')).encode() not in body):
+                  or (ORIGIN + '/trainers/' + source.parent.name + '/').encode() not in body):
                 raise SystemExit('Invalid new trainer profile: ' + path)
             try:
                 request = Request(ORIGIN + '/' + path.removeprefix('new-site/') + '?before=' + commit,
@@ -76,6 +76,8 @@ def prepare():
         destination.parent.mkdir(parents=True, exist_ok=True)
         if item['before_blob'] is not None:
             backup_commands.append(f'get "{relative}" -o "_new_site_remote_backup/{relative}";')
+        if item['before_blob'] is None and relative.startswith('trainers/') and relative.endswith('/index.html'):
+            upload_commands.append(f'mkdir -p "{Path(relative).parent.as_posix()}";')
         upload_commands.append(f'put "{item["path"]}" -o "{relative}";')
     (ROOT / '_new_site_patch_backup.lftp').write_text('\n'.join(backup_commands) + '\n')
     (ROOT / '_new_site_patch_upload.lftp').write_text('\n'.join(upload_commands) + '\n')

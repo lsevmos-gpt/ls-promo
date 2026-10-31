@@ -43,13 +43,13 @@ jobs:
       MODE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-new-site]') && 'deploy' || 'check') || inputs.mode }}
       CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-new-site]') && 'new.liniyasporta.ru' || inputs.confirm_domain }}
       PATCH_MODE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[patch-new-site]') && 'true' || 'false' }}
-      PATCH_BASE_SHA: ${{ github.event.before }}
+      PATCH_BASE_SHA: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[catchup-new-site-20261031]') && 'ace6dcd62ffc618b266a4ffc3f66e0b5fc776b9c' || github.event.before }}
 
     steps:
       - name: Check out website files
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 20
 
       - name: Validate repository, connection settings and confirmation
         shell: bash
