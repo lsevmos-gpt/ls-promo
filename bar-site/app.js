@@ -8,23 +8,51 @@
   const categoryLauncher = document.querySelector('[data-open-categories]');
   const nf = new Intl.NumberFormat('ru-RU');
   const price = value => (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽';
-  const showItem = id => {
-    const item = items.get(id);
-    if (!item) return;
-    dialog.querySelector('[data-dialog-name]').textContent = item.name;
+  const variantBox = dialog.querySelector('[data-dialog-variants]');
+  const servingLine = dialog.querySelector('[data-dialog-serving]');
+  const displayDetails = (item, selected) => {
+    const current = selected || item;
+    const nutrition = current.nutrition || item.nutrition || {};
+    dialog.querySelector('[data-dialog-name]').textContent = current.name || item.name;
     dialog.querySelector('[data-dialog-category]').textContent = data.categories.find(c => c.id === item.category).name;
-    dialog.querySelector('[data-dialog-price]').textContent = price(item.price_rub);
-    dialog.querySelector('[data-dialog-composition]').textContent = item.composition || (item.volume_ml ? 'Объём: ' + item.volume_ml + ' мл.' : 'Выберите вкус и уточните состав у администратора бара.');
+    dialog.querySelector('[data-dialog-price]').textContent = price(current.price_rub);
+    dialog.querySelector('[data-dialog-composition]').textContent = current.composition || item.composition || (item.volume_ml ? 'Объём: ' + item.volume_ml + ' мл.' : 'Состав уточните на баре.');
+    servingLine.textContent = current.serving || '';
+    servingLine.hidden = !current.serving;
     const nutrients = dialog.querySelector('[data-dialog-nutrition]');
     const label = dialog.querySelector('[data-dialog-nutrition-label]');
-    const values = item.nutrition.values;
+    const values = nutrition.values;
     nutrients.hidden = !values;
     label.hidden = !values;
     if (values) {
       for (const key of ['kcal', 'protein', 'fat', 'carbs']) nutrients.querySelector('[data-value="' + key + '"]').textContent = '≈' + values[key];
     }
-    dialog.querySelector('[data-dialog-assumption]').textContent = item.nutrition.assumption || item.nutrition.reason;
-    dialog.querySelector('[data-dialog-estimate-note]').hidden = !values;
+    dialog.querySelector('[data-dialog-assumption]').textContent = nutrition.assumption || nutrition.reason || '';
+    dialog.querySelector('[data-dialog-estimate-note]').hidden = !values || !nutrition.approximate;
+  };
+  const showItem = id => {
+    const item = items.get(id);
+    if (!item) return;
+    variantBox.replaceChildren();
+    const variants = Array.isArray(item.variants) ? item.variants : [];
+    variantBox.hidden = variants.length === 0;
+    variants.forEach((variant, index) => {
+      const choice = document.createElement('button');
+      choice.type = 'button';
+      choice.className = 'dialog-variant-choice';
+      choice.setAttribute('aria-pressed', String(index === 0));
+      const name = document.createElement('span');
+      name.textContent = variant.name;
+      const amount = document.createElement('strong');
+      amount.textContent = price(variant.price_rub);
+      choice.append(name, amount);
+      choice.addEventListener('click', () => {
+        variantBox.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button === choice)));
+        displayDetails(item, variant);
+      });
+      variantBox.append(choice);
+    });
+    displayDetails(item, variants[0] || item);
     dialog.showModal();
   };
   document.querySelectorAll('[data-details]').forEach(button => button.addEventListener('click', () => showItem(button.dataset.details)));
