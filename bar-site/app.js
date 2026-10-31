@@ -164,13 +164,122 @@
     video.addEventListener('play', update);
     video.addEventListener('pause', update);
   });
+  // Dedicated fullscreen button on each story; inline tap-to-play remains unchanged.
+  let fullscreenVideo = null;
+  const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+  const isStoryFullscreen = video => {
+    const media = video.closest('.story-media');
+    const element = fullscreenElement();
+    return element === media || element === video ||
+      Boolean(video.webkitDisplayingFullscreen) || media.classList.contains('story-media--immersive');
+  };
+  const updateStoryFullscreenUI = () => {
+    videos.forEach(video => {
+      const media = video.closest('.story-media');
+      const button = media.querySelector('[data-story-fullscreen]');
+      const expanded = isStoryFullscreen(video);
+      const wasExpanded = media.dataset.storyExpanded === 'true';
+      media.dataset.storyExpanded = String(expanded);
+      button.setAttribute('aria-pressed', String(expanded));
+      const title = video.getAttribute('aria-label').replace(/^Видео:\s*/, '');
+      button.setAttribute('aria-label', (expanded ? 'Свернуть видео «' : 'Развернуть видео «') +
+        title + '»' + (expanded ? '' : ' на весь экран'));
+      button.title = expanded ? 'Свернуть видео' : 'На весь экран';
+      video.controls = expanded;
+      // Inline previews must return to silent playback after using native controls.
+      if (wasExpanded && !expanded) video.muted = true;
+    });
+    if (!videos.some(isStoryFullscreen)) fullscreenVideo = null;
+  };
+  const openStoryFallback = video => {
+    const media = video.closest('.story-media');
+    fullscreenVideo = video;
+    media.classList.add('story-media--immersive');
+    document.body.classList.add('story-fullscreen-open');
+    updateStoryFullscreenUI();
+  };
+  const closeStoryFallback = video => {
+    video.closest('.story-media').classList.remove('story-media--immersive');
+    document.body.classList.remove('story-fullscreen-open');
+    updateStoryFullscreenUI();
+  };
+  videos.forEach(video => {
+    const media = video.closest('.story-media');
+    const button = media.querySelector('[data-story-fullscreen]');
+    if (!button) return;
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (isStoryFullscreen(video)) {
+        if (media.classList.contains('story-media--immersive')) {
+          closeStoryFallback(video);
+        } else if (fullscreenElement() === media || fullscreenElement() === video) {
+          const exit = document.exitFullscreen || document.webkitExitFullscreen;
+          if (exit) Promise.resolve(exit.call(document)).catch(() => {});
+        } else if (typeof video.webkitExitFullscreen === 'function' && video.webkitDisplayingFullscreen) {
+          video.webkitExitFullscreen();
+        }
+        return;
+      }
+      fullscreenVideo = video;
+      pausedByUser.delete(video);
+      userPausedAutoplay = false;
+      loadVideo(video);
+      if (typeof media.requestFullscreen === 'function') {
+        try {
+          // Keep this synchronous in the click handler: Fullscreen API requires user activation.
+          const request = media.requestFullscreen();
+          playVideo(video, true);
+          Promise.resolve(request).then(updateStoryFullscreenUI).catch(() => openStoryFallback(video));
+        } catch (error) {
+          playVideo(video, true);
+          openStoryFallback(video);
+        }
+      } else if (typeof video.webkitEnterFullscreen === 'function' && video.webkitSupportsFullscreen !== false) {
+        // iPhone Safari has a native video fullscreen API instead of element fullscreen.
+        try {
+          playVideo(video, true);
+          video.controls = true;
+          video.webkitEnterFullscreen();
+          // Some in-app browsers expose the API but fail to open the native player.
+          window.setTimeout(() => {
+            if (fullscreenVideo === video && !isStoryFullscreen(video)) openStoryFallback(video);
+          }, 400);
+        } catch (error) {
+          openStoryFallback(video);
+        }
+      } else if (typeof video.requestFullscreen === 'function') {
+        try {
+          const request = video.requestFullscreen();
+          playVideo(video, true);
+          Promise.resolve(request).then(updateStoryFullscreenUI).catch(() => openStoryFallback(video));
+        } catch (error) {
+          playVideo(video, true);
+          openStoryFallback(video);
+        }
+      } else {
+        playVideo(video, true);
+        openStoryFallback(video);
+      }
+    });
+    video.addEventListener('webkitbeginfullscreen', updateStoryFullscreenUI);
+    video.addEventListener('webkitendfullscreen', updateStoryFullscreenUI);
+  });
+  document.addEventListener('fullscreenchange', updateStoryFullscreenUI);
+  document.addEventListener('webkitfullscreenchange', updateStoryFullscreenUI);
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    const media = document.querySelector('.story-media--immersive');
+    if (media) closeStoryFallback(media.querySelector('.story-video'));
+  });
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) visibleVideos.set(video, entry.intersectionRatio);
         else visibleVideos.delete(video);
-        const shouldPause = !entry.isIntersecting || (entry.intersectionRatio < .65 && manuallySelectedVideo !== video);
+        const shouldPause = fullscreenVideo !== video && !isStoryFullscreen(video) &&
+          (!entry.isIntersecting || (entry.intersectionRatio < .65 && manuallySelectedVideo !== video));
         if (shouldPause) {
           video.pause();
           if (activeVideo === video) activeVideo = null;
