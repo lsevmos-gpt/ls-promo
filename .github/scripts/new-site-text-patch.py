@@ -16,7 +16,8 @@ PLAN = ROOT / '_new_site_text_patch.json'
 BACKUP = ROOT / '_new_site_remote_backup'
 ORIGIN = 'https://new.liniyasporta.ru'
 ALLOWED = re.compile(r'new-site/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.(?:html|css|js|json)')
-NEW_TRAINER_IMAGE = re.compile(r'new-site/assets/trainers/[A-Za-z0-9_.-]+-([a-f0-9]{10})\.webp')
+NEW_TRAINER_IMAGE = re.compile(r'new-site/assets/trainers/[A-Za-z0-9_.-]+-([a-f0-9]{10})\.(?:webp|jpg)')
+NEW_TRAINER_HTML = re.compile(r'new-site/trainers/[a-z0-9-]+/index\.html')
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()
@@ -33,16 +34,24 @@ def prepare():
         status, path = row.split('\t', 1)
         source = ROOT / path
         new_image = status == 'A' and NEW_TRAINER_IMAGE.fullmatch(path)
+        new_profile = status == 'A' and NEW_TRAINER_HTML.fullmatch(path)
         existing_text = status == 'M' and ALLOWED.fullmatch(path)
-        if (not (existing_text or new_image) or '..' in Path(path).parts
+        if (not (existing_text or new_image or new_profile) or '..' in Path(path).parts
                 or not source.is_file() or source.is_symlink()
                 or not source.resolve().is_relative_to(ROOT)):
             raise SystemExit('Unsupported text update path or change: ' + row)
         body = source.read_bytes()
-        if new_image:
-            if (not body.startswith(b'RIFF') or body[8:12] != b'WEBP'
-                    or new_image.group(1) != sha256(body).hexdigest()[:10]):
-                raise SystemExit('Invalid or incorrectly fingerprinted trainer image: ' + path)
+        if new_image or new_profile:
+            if new_image:
+                valid_webp = path.endswith('.webp') and body.startswith(b'RIFF') and body[8:12] == b'WEBP'
+                valid_jpeg = path.endswith('.jpg') and body.startswith(b'\xff\xd8') and body.endswith(b'\xff\xd9')
+                if (not (valid_webp or valid_jpeg)
+                        or new_image.group(1) != sha256(body).hexdigest()[:10]):
+                    raise SystemExit('Invalid or incorrectly fingerprinted trainer image: ' + path)
+            elif (not body.startswith(b'<!doctype html>')
+                  or b'<html lang="ru">' not in body
+                  or (ORIGIN + '/' + path.removeprefix('new-site/')).encode() not in body):
+                raise SystemExit('Invalid new trainer profile: ' + path)
             try:
                 request = Request(ORIGIN + '/' + path.removeprefix('new-site/') + '?before=' + commit,
                                   headers={'Cache-Control': 'no-cache'})
@@ -56,7 +65,7 @@ def prepare():
         if len(body) > 512 * 1024 or size > 2 * 1024 * 1024:
             raise SystemExit('Text update exceeds the size limit; use a full deployment.')
         files.append({'path': path, 'remote': path.removeprefix('new-site/'),
-                      'before_blob': None if new_image else git('rev-parse', base + ':' + path),
+                      'before_blob': None if (new_image or new_profile) else git('rev-parse', base + ':' + path),
                       'sha256': sha256(body).hexdigest()})
     PLAN.write_text(json.dumps({'base': base, 'commit': commit, 'files': files}, indent=2))
     backup_commands, upload_commands = [], []

@@ -171,7 +171,10 @@ def update_home_card(match):
     tid = re.search(r'href="/trainers/([^/]+)/"', match.group(0)).group(1)
     return card(TRAINERS[tid])
 section = re.sub(r'<a class="trainer-card"[^>]*>[\s\S]*?</a>', update_home_card, section)
-section = re.sub(r'Вся команда · \d+ тренер(?:ов|а)?', f'Вся команда · {len(TRAINERS)} тренеров', section)
+n = len(TRAINERS)
+form = ('тренер' if n % 10 == 1 and n % 100 != 11 else
+        'тренера' if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14 else 'тренеров')
+section = re.sub(r'Вся команда · \d+ тренер(?:ов|а)?', f'Вся команда · {n} {form}', section)
 save(home_path, replace_section(home, r'id="team"', section))
 
 for tid, t in TRAINERS.items():
