@@ -35,16 +35,10 @@ def image(src, alt, eager=False, **dimensions):
 
 def card(t):
     names = ' · '.join(CLUBS[c]['address'] for c in t['clubs'])
-    personal = ''
-    offer = PASSES.get('trainer_overrides', {}).get(t['id'])
-    if offer:
-        lines = ''.join(f'<span>{p["sessions"]} занятий — {p["price_rub"]:,} ₽</span>'.replace(',', '\u00a0') for p in offer['packages'])
-        personal = '<p class="trainer-card-pricing"><strong>Мини-группы</strong>' + lines + '</p>'
     return (f'<a class="trainer-card" href="/trainers/{t["id"]}/" data-trainer-clubs="{" ".join(t["clubs"])}">'
             f'<div class="trainer-image">{image(t["image"], t["name"], width=t["portrait"]["width"], height=t["portrait"]["height"])}<span class="trainer-arrow">{UP}</span></div>'
             f'<div class="trainer-caption"><h3>{e(t["name"])}</h3><p>{e(t["speciality"])}</p>'
-            f'<p class="trainer-card-clubs"><span class="trainer-club-label">Клуб{ "ы" if len(t["clubs"]) > 1 else ""}</span>{e(names)}</p>{personal}</div></a>')
-
+            f'<p class="trainer-card-clubs"><span class="trainer-club-label">Клуб{ "ы" if len(t["clubs"]) > 1 else ""}</span>{e(names)}</p></div></a>')
 
 def replace_section(text, marker, replacement):
     # Sections do not contain nested <section> elements in these static templates.
