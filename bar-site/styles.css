@@ -134,3 +134,56 @@ html{scroll-padding-top:var(--header)}
 .dialog-actives dd{font-weight:700;text-align:right;white-space:nowrap;color:var(--ink)}
 .dialog-variant-choice span{overflow-wrap:anywhere}
 @media(max-width:760px){.dialog-actives{padding:14px}.dialog-actives h3{font-size:22px}}
+
+
+/* Fullscreen control for the four short drink videos; inline video UI stays intact. */
+.story-fullscreen{
+  position:absolute;z-index:4;top:12px;right:12px;
+  display:grid;place-items:center;width:44px;height:44px;padding:0;
+  color:#fff;background:rgba(12,27,21,.80);
+  border:1px solid rgba(255,255,255,.42);border-radius:11px;
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  touch-action:manipulation;transition:background .2s,border-color .2s,transform .2s;
+}
+.story-fullscreen:hover{background:rgba(26,105,54,.95);border-color:rgba(255,255,255,.8)}
+.story-fullscreen:active{transform:scale(.96)}
+.story-fullscreen svg{width:21px;height:21px;pointer-events:none}
+.story-fullscreen .story-collapse-icon{display:none}
+.story-media[data-story-expanded="true"] .story-expand-icon{display:none}
+.story-media[data-story-expanded="true"] .story-collapse-icon{display:block}
+.story-media:fullscreen,
+.story-media:-webkit-full-screen,
+.story-media.story-media--immersive{
+  width:100vw!important;height:100vh!important;height:100dvh!important;
+  max-width:none!important;max-height:none!important;aspect-ratio:auto!important;
+  display:flex;align-items:center;justify-content:center;
+  margin:0!important;border:0;border-radius:0!important;background:#070a09;
+  overflow:hidden!important;
+}
+.story-media.story-media--immersive{position:fixed!important;inset:0!important;z-index:9999!important}
+.story-media:fullscreen::backdrop{background:#070a09}
+.story-media:fullscreen .story-video,
+.story-media:-webkit-full-screen .story-video,
+.story-media.story-media--immersive .story-video{
+  width:100%!important;height:100%!important;max-width:100%!important;
+  max-height:100%!important;object-fit:contain!important;
+}
+.story-media[data-story-expanded="true"] .story-fullscreen{
+  top:max(16px,env(safe-area-inset-top) + 12px);
+  right:max(16px,env(safe-area-inset-right) + 12px);
+  width:48px;height:48px;
+}
+.story-media[data-story-expanded="true"] .story-toggle{
+  z-index:4;top:max(16px,env(safe-area-inset-top) + 12px);
+  left:max(16px,env(safe-area-inset-left) + 12px);
+}
+.story-media[data-story-expanded="true"] .story-duration{display:none}
+body.story-fullscreen-open{overflow:hidden!important}
+@media(max-width:760px){
+  .story-fullscreen{width:40px;height:40px;top:9px;right:9px;border-radius:50%}
+  .story-fullscreen svg{width:19px;height:19px}
+  .story-media[data-story-expanded="true"] .story-fullscreen{
+    width:48px;height:48px;border-radius:14px
+  }
+}
