@@ -10,6 +10,8 @@
   const price = value => (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽';
   const variantBox = dialog.querySelector('[data-dialog-variants]');
   const servingLine = dialog.querySelector('[data-dialog-serving]');
+  const actives = dialog.querySelector('[data-dialog-actives]');
+  const activesList = dialog.querySelector('[data-dialog-actives-list]');
   const displayDetails = (item, selected) => {
     const current = selected || item;
     const nutrition = current.nutrition || item.nutrition || {};
@@ -19,13 +21,26 @@
     dialog.querySelector('[data-dialog-composition]').textContent = current.composition || item.composition || (item.volume_ml ? 'Объём: ' + item.volume_ml + ' мл.' : 'Состав уточните на баре.');
     servingLine.textContent = current.serving || '';
     servingLine.hidden = !current.serving;
+    const compounds = Array.isArray(current.actives) ? current.actives : [];
+    actives.hidden = compounds.length === 0;
+    activesList.replaceChildren();
+    compounds.forEach(compound => {
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      dt.textContent = compound.name;
+      dd.textContent = compound.amount;
+      activesList.append(dt, dd);
+    });
     const nutrients = dialog.querySelector('[data-dialog-nutrition]');
     const label = dialog.querySelector('[data-dialog-nutrition-label]');
     const values = nutrition.values;
     nutrients.hidden = !values;
     label.hidden = !values;
     if (values) {
-      for (const key of ['kcal', 'protein', 'fat', 'carbs']) nutrients.querySelector('[data-value="' + key + '"]').textContent = '≈' + values[key];
+      label.textContent = nutrition.approximate ? 'Ориентир на расчётную порцию' : 'КБЖУ на порцию по этикетке';
+      for (const key of ['kcal', 'protein', 'fat', 'carbs']) {
+        nutrients.querySelector('[data-value="' + key + '"]').textContent = (nutrition.approximate ? '≈' : '') + values[key];
+      }
     }
     dialog.querySelector('[data-dialog-assumption]').textContent = nutrition.assumption || nutrition.reason || '';
     dialog.querySelector('[data-dialog-estimate-note]').hidden = !values || !nutrition.approximate;
