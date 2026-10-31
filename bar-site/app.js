@@ -33,7 +33,7 @@
     });
     const nutrients = dialog.querySelector('[data-dialog-nutrition]');
     const label = dialog.querySelector('[data-dialog-nutrition-label]');
-    const values = nutrition.values;
+    const values = item.id === 'preworkout' ? null : nutrition.values;
     nutrients.hidden = !values;
     label.hidden = !values;
     if (values) {
@@ -42,7 +42,9 @@
         nutrients.querySelector('[data-value="' + key + '"]').textContent = (nutrition.approximate ? '≈' : '') + values[key];
       }
     }
-    dialog.querySelector('[data-dialog-assumption]').textContent = nutrition.assumption || nutrition.reason || '';
+    const assumption = dialog.querySelector('[data-dialog-assumption]');
+    assumption.textContent = item.id === 'preworkout' ? '' : (nutrition.assumption || nutrition.reason || '');
+    assumption.hidden = !assumption.textContent;
     dialog.querySelector('[data-dialog-estimate-note]').hidden = !values || !nutrition.approximate;
   };
   const showItem = id => {
