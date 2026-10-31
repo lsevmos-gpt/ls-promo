@@ -123,12 +123,19 @@
       video.load();
     }
   };
-  const pauseOthers = current => videos.forEach(video => { if (video !== current) video.pause(); });
+  const pauseOthers = current => videos.forEach(video => {
+    if (video !== current) {
+      video.muted = true;
+      video.pause();
+    }
+  });
   const playVideo = (video, manual = false) => {
     activeVideo = video;
     manuallySelectedVideo = manual ? video : null;
     pauseOthers(video);
     loadVideo(video);
+    // Browser autoplay requires muted playback; sound is opt-in via the speaker button.
+    if (!manual) video.muted = true;
     video.play().then(() => {
       if (activeVideo !== video) video.pause();
     }).catch(() => {
@@ -163,6 +170,41 @@
     video.addEventListener('click', toggle);
     video.addEventListener('play', update);
     video.addEventListener('pause', update);
+  });
+  // Independent sound toggle: existing play/pause and fullscreen behavior are preserved.
+  const syncStorySoundButton = video => {
+    const button = video.closest('.story-media').querySelector('[data-story-sound]');
+    if (!button) return;
+    const audible = !video.muted && video.volume > 0;
+    const name = video.getAttribute('aria-label').replace(/^Видео:\s*/, '');
+    button.dataset.soundEnabled = String(audible);
+    button.setAttribute('aria-pressed', String(audible));
+    button.setAttribute('aria-label', (audible ? 'Выключить звук: ' : 'Включить звук: ') + name);
+    button.title = audible ? 'Выключить звук' : 'Включить звук';
+  };
+  videos.forEach(video => {
+    const button = video.closest('.story-media').querySelector('[data-story-sound]');
+    if (!button) return;
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!video.muted && video.volume > 0) {
+        video.muted = true;
+      } else {
+        // Loading/unmuting and play() happen on the user gesture itself.
+        loadVideo(video);
+        pausedByUser.delete(video);
+        userPausedAutoplay = false;
+        video.muted = false;
+        if (video.volume === 0) {
+          try { video.volume = 1; } catch (_) { /* Some mobile browsers fix hardware volume. */ }
+        }
+        playVideo(video, true);
+      }
+      syncStorySoundButton(video);
+    });
+    video.addEventListener('volumechange', () => syncStorySoundButton(video));
+    syncStorySoundButton(video);
   });
   // Dedicated fullscreen button on each story; inline tap-to-play remains unchanged.
   let fullscreenVideo = null;
@@ -281,6 +323,7 @@
         const shouldPause = fullscreenVideo !== video && !isStoryFullscreen(video) &&
           (!entry.isIntersecting || (entry.intersectionRatio < .65 && manuallySelectedVideo !== video));
         if (shouldPause) {
+          video.muted = true;
           video.pause();
           if (activeVideo === video) activeVideo = null;
           if (manuallySelectedVideo === video) manuallySelectedVideo = null;
@@ -297,7 +340,7 @@
     if (document.hidden) {
       activeVideo = null;
       manuallySelectedVideo = null;
-      videos.forEach(video => video.pause());
+      videos.forEach(video => { video.muted = true; video.pause(); });
     }
   });
 })();
