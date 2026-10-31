@@ -115,3 +115,12 @@ html{scroll-padding-top:var(--header)}
 @media(max-width:359px){
   .product-grid .variant-price-list{justify-self:start;min-width:155px}
 }
+
+/* Three preworkout choices are displayed evenly on desktop and stacked on narrow screens. */
+.dialog-variants:has(> .dialog-variant-choice:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){
+  .dialog-variants:has(> .dialog-variant-choice:nth-child(3)){grid-template-columns:1fr}
+  .dialog-variants:has(> .dialog-variant-choice:nth-child(3)) .dialog-variant-choice{
+    min-height:58px;flex-direction:row;align-items:center;gap:12px;
+  }
+}
