@@ -125,3 +125,8 @@
 }
 
 @media(prefers-reduced-motion:reduce){.menu-filters{scroll-behavior:auto}}
+
+/* 01.11.2026: responsive pricing while a manufacturer's confirmed price is pending. */
+.product-grid .price.price-pending{font-size:clamp(19px,2.2vw,25px);line-height:1.16;white-space:normal;overflow-wrap:anywhere}
+.dialog-variant-choice strong.dialog-price-pending{font-size:20px;line-height:1.16;white-space:normal;overflow-wrap:anywhere}
+@media(max-width:600px){.product-grid .price.price-pending{font-size:20px;line-height:1.15}.dialog-variant-choice strong.dialog-price-pending{font-size:18px}}

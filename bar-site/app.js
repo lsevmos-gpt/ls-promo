@@ -62,6 +62,7 @@
       name.textContent = variant.name;
       const amount = document.createElement('strong');
       amount.textContent = price(variant.price_rub);
+      if (variant.price_rub === null || variant.price_rub === undefined) amount.classList.add('dialog-price-pending');
       choice.append(name, amount);
       choice.addEventListener('click', () => {
         variantBox.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button === choice)));
