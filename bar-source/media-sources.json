@@ -17,6 +17,20 @@
       "processing": "480 px wide, H.264 24 fps, CRF 26, audio removed, faststart; original full video duration retained"
     },
     {
+      "key": "green",
+      "title": "Зелёный смузи",
+      "source": "owner-supplied ChatGPT video attachment",
+      "source_filename": "Зеленый смузи.mp4",
+      "source_sha256": "c2a5b7c9d2028b83ccf8c69e2b9d2347ed413dabf189153d24a3ac3a87d62f2b",
+      "original_resolution": "2160x3840",
+      "original_size_bytes": 34580335,
+      "original_duration_seconds": 14.75,
+      "output": "bar-site/assets/stories/green.mp4",
+      "poster": "bar-site/assets/stories/green.webp",
+      "processing": "1080x1920, H.264, 24fps, CRF23, stereo AAC audio preserved, faststart; 480x854 WebP poster at 12 s",
+      "uploaded_via": "GitHub Actions one-time import on 2026-11-01"
+    },
+    {
       "key": "bumble",
       "drive_id": "17xQ40X54y5f24cwZ1N80bnCZlqeWjn9L",
       "title": "бамбл кофе карамель.mp4",

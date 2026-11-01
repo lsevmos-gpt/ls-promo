@@ -53,7 +53,7 @@
 /* Short owner-made stories are loaded only when played or in view. */
 .stories-section{padding:74px 0 0;scroll-margin-top:var(--header)}
 .stories-section .section-title-row>p{font-size:18px}
-.stories-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stories-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
 .story-card{min-width:0}
 .story-media{position:relative;aspect-ratio:9/16;background:var(--ink);border-radius:7px;overflow:hidden}
 .story-video{display:block;width:100%;height:100%;object-fit:contain;cursor:pointer}
@@ -220,4 +220,11 @@ body.story-fullscreen-open{overflow:hidden!important}
   .story-media[data-story-expanded="true"] .story-sound{
     width:48px;height:48px;bottom:auto;left:auto
   }
+}
+
+/* Five video stories: five columns on wide desktops, a swipeable row on compact desktops. */
+@media (min-width:761px) and (max-width:1190px){
+  .stories-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
+  .story-card{flex:0 0 220px;scroll-snap-align:start}
+  .stories-hint{display:block;font-size:14px;color:var(--muted);margin:14px 0 0}
 }
