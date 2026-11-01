@@ -53,9 +53,9 @@
 /* Short owner-made stories are loaded only when played or in view. */
 .stories-section{padding:74px 0 0;scroll-margin-top:var(--header)}
 .stories-section .section-title-row>p{font-size:18px}
-.stories-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
-.story-card{min-width:0}
-.story-media{position:relative;aspect-ratio:9/16;background:var(--ink);border-radius:7px;overflow:hidden}
+.stories-track{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:2px;scrollbar-width:thin;scrollbar-color:#98ad91 transparent;padding:2px 2px 14px;-webkit-overflow-scrolling:touch}
+.story-card{flex:0 0 356px;width:356px;min-width:356px;max-width:356px;scroll-snap-align:start}
+.story-media{position:relative;width:100%;aspect-ratio:9/16;background:var(--ink);border-radius:7px;overflow:hidden}
 .story-video{display:block;width:100%;height:100%;object-fit:contain;cursor:pointer}
 .story-toggle{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 12px;background:rgba(246,242,232,.96);border:1px solid #fff8;border-radius:4px;color:var(--ink);font-size:14px;font-weight:600}
 .story-toggle:hover{background:var(--lime)}
@@ -74,8 +74,8 @@
 @media(max-width:760px){
  .top-nav a:first-child{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--paper);border-radius:3px;min-height:44px;min-width:84px;padding:8px 14px;font-size:15px}
  .stories-section{padding-top:48px}.stories-section .section-title-row>p{font-size:16px;margin-bottom:22px}.stories-section .section-title-row>p br{display:none}
- .stories-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:#98ad91 transparent}
- .story-card{flex:0 0 min(76vw,330px);scroll-snap-align:start}.story-caption{display:grid}.story-caption h3{font-size:29px;min-height:0;margin:0}.story-caption>strong{font-size:29px}.story-details{margin-top:0;font-size:16px}
+ .stories-track{gap:14px;padding-bottom:10px}
+ .story-card{flex:0 0 min(70vw,270px);width:min(70vw,270px);min-width:min(70vw,270px);max-width:min(70vw,270px)}.story-caption{display:grid}.story-caption h3{font-size:29px;min-height:0;margin:0}.story-caption>strong{font-size:29px}.story-details{margin-top:0;font-size:16px}
  .stories-hint{display:block;font-size:14px;color:var(--muted);margin:14px 0 0}.stories-hint span{margin-left:12px}
  .menu-toolbar{display:block;padding:8px 0;min-height:66px;box-shadow:0 5px 12px #18332908}
  .menu-filters{display:none}
@@ -222,9 +222,23 @@ body.story-fullscreen-open{overflow:hidden!important}
   }
 }
 
-/* Five video stories: five columns on wide desktops, a swipeable row on compact desktops. */
+/* On intermediate screens, keep a stable card width and allow horizontal scrolling. */
 @media (min-width:761px) and (max-width:1190px){
-  .stories-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
-  .story-card{flex:0 0 220px;scroll-snap-align:start}
+  .stories-track{gap:18px}
+  .story-card{flex:0 0 320px;width:320px;min-width:320px;max-width:320px}
   .stories-hint{display:block;font-size:14px;color:var(--muted);margin:14px 0 0}
+}
+
+/* Carousel navigation for the video rail. */
+.stories-navigation{display:flex;align-items:center;justify-content:flex-end;gap:18px;margin:-8px 0 16px}
+.stories-navigation-label{font-size:14px;font-weight:600;color:var(--muted)}
+.stories-arrows{display:flex;align-items:center;gap:10px}
+.stories-arrow{display:grid;place-items:center;width:46px;height:46px;min-width:46px;border:1px solid #a9b6a1;background:#fffcf6;border-radius:50%;color:var(--ink);font-size:27px;line-height:1;transition:background .15s,border-color .15s}
+.stories-arrow:hover:not(:disabled){background:var(--lime);border-color:var(--green)}
+.stories-arrow:disabled{opacity:.35;cursor:default}
+.stories-track:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+@media (max-width:760px){
+  .stories-navigation{justify-content:space-between;margin:0 0 13px}
+  .stories-navigation-label{font-size:13px}
+  .stories-arrow{width:42px;height:42px;min-width:42px;font-size:24px}
 }

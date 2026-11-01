@@ -110,6 +110,39 @@
   window.addEventListener('hashchange', readCategoryHash);
   document.getElementById('show-nutrition').addEventListener('change', event => document.body.classList.toggle('nutrition-off', !event.target.checked));
 
+  // Controls for the horizontally scrollable story carousel.
+  const storiesTrack = document.getElementById('stories-track');
+  const storiesPrevious = document.querySelector('[data-stories-prev]');
+  const storiesNext = document.querySelector('[data-stories-next]');
+  if (storiesTrack && storiesPrevious && storiesNext) {
+    const storyStep = () => {
+      const first = storiesTrack.querySelector('.story-card');
+      const gap = Number.parseFloat(window.getComputedStyle(storiesTrack).columnGap) || 0;
+      return first ? first.getBoundingClientRect().width + gap : storiesTrack.clientWidth * .8;
+    };
+    const updateStoryArrows = () => {
+      const max = Math.max(0, storiesTrack.scrollWidth - storiesTrack.clientWidth);
+      storiesPrevious.disabled = storiesTrack.scrollLeft <= 3;
+      storiesNext.disabled = storiesTrack.scrollLeft >= max - 3;
+    };
+    const moveStories = direction => storiesTrack.scrollBy({
+      left: direction * storyStep(),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+    });
+    storiesPrevious.addEventListener('click', () => moveStories(-1));
+    storiesNext.addEventListener('click', () => moveStories(1));
+    storiesTrack.addEventListener('keydown', event => {
+      if (event.target !== storiesTrack) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        moveStories(event.key === 'ArrowRight' ? 1 : -1);
+      }
+    });
+    storiesTrack.addEventListener('scroll', updateStoryArrows, { passive: true });
+    window.addEventListener('resize', updateStoryArrows, { passive: true });
+    window.addEventListener('load', updateStoryArrows, { once: true });
+    updateStoryArrows();
+  }
   const videos = [...document.querySelectorAll('.story-video')];
   const visibleVideos = new Map();
   const pausedByUser = new Set();
