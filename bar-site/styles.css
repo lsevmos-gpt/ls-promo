@@ -54,7 +54,7 @@
 .stories-section{padding:74px 0 0;scroll-margin-top:var(--header)}
 .stories-section .section-title-row>p{font-size:18px}
 .stories-track{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:2px;scrollbar-width:thin;scrollbar-color:#98ad91 transparent;padding:2px 2px 14px;-webkit-overflow-scrolling:touch}
-.story-card{flex:0 0 356px;width:356px;min-width:356px;max-width:356px;scroll-snap-align:start}
+.story-card{flex:0 0 calc((100% - 3 * 22px) / 4);width:calc((100% - 3 * 22px) / 4);min-width:0;max-width:none;scroll-snap-align:start}
 .story-media{position:relative;width:100%;aspect-ratio:9/16;background:var(--ink);border-radius:7px;overflow:hidden}
 .story-video{display:block;width:100%;height:100%;object-fit:contain;cursor:pointer}
 .story-toggle{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 12px;background:rgba(246,242,232,.96);border:1px solid #fff8;border-radius:4px;color:var(--ink);font-size:14px;font-weight:600}
@@ -225,7 +225,7 @@ body.story-fullscreen-open{overflow:hidden!important}
 /* On intermediate screens, keep a stable card width and allow horizontal scrolling. */
 @media (min-width:761px) and (max-width:1190px){
   .stories-track{gap:18px}
-  .story-card{flex:0 0 320px;width:320px;min-width:320px;max-width:320px}
+  .story-card{flex:0 0 calc((100% - 2 * 18px) / 3);width:calc((100% - 2 * 18px) / 3);min-width:0;max-width:none}
   .stories-hint{display:block;font-size:14px;color:var(--muted);margin:14px 0 0}
 }
 
