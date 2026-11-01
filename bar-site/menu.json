@@ -45,13 +45,17 @@
     {
       "date": "2026-11-01",
       "change": "Для сывороточного протеина и изолята добавлен выбор только производителей Galvanize и Scitec Nutrition, без вкусов. КБЖУ — по этикеткам фактических банок, цены новых вариантов ожидают подтверждения. Уточнены аминокислотные составы Maxler BCAA и Olimp Creatine."
+    },
+    {
+      "date": "2026-11-01",
+      "change": "Утверждены цены: безлактозный 300 ₽, растительный 280 ₽, изолят CRUSH 250 ₽, изолят Scitec Nutrition и Galvanize 330 ₽, сывороточный Scitec Nutrition и Galvanize 280 ₽. В варианты изолята добавлен CRUSH, BCAA и креатин расширены CRUSH. Вкусы в новых карточках отсутствуют; непредоставленные КБЖУ не выдуманы."
     }
   ],
   "common_menu_for_all_clubs": true,
   "nutrition_method": {
     "status": "approximate_not_verified_recipe",
     "rounding": "Калории до 5 ккал, БЖУ до целого грамма. Значения рассчитаны на обозначенную расчётную порцию, не на 100 г.",
-    "notice": "Расчёты для блюд предварительные. Для выбранных сывороточных протеинов и изолятов используются значения на порцию с предоставленных этикеток. При приготовлении с другими ингредиентами КБЖУ меняются.",
+    "notice": "Расчёты для блюд предварительные. Для выбранных сывороточных протеинов и изолятов используются значения на порцию с предоставленных этикеток. При приготовлении с другими ингредиентами КБЖУ меняются. Для CRUSH ISO WHEY используются значения этикетки на 30 г. Для CRUSH BCAA и креатина приведены составы на порцию.",
     "usda_food_ids": {
       "banana": "09040",
       "apple": "09003",
@@ -464,7 +468,7 @@
       "id": "whey",
       "category": "protein",
       "name": "Протеин сывороточный",
-      "price_rub": null,
+      "price_rub": 280,
       "composition": "",
       "image": "protein",
       "volume_ml": null,
@@ -475,14 +479,14 @@
         "values": null,
         "reason": "КБЖУ указаны для выбранного производителя."
       },
-      "description": "Сывороточный протеин. Выбор по производителю.",
+      "description": "Сывороточный протеин: Galvanize и Scitec Nutrition.",
       "variants": [
         {
           "id": "galvanize",
           "name": "Galvanize",
           "brand": "Galvanize",
           "product_line": "MAX Whey",
-          "price_rub": null,
+          "price_rub": 280,
           "composition": "Сывороточный белок, молочные компоненты, добавленные аминокислоты и ферментный комплекс.",
           "serving": "Порция: 32 г порошка.",
           "nutrition": {
@@ -495,6 +499,20 @@
               "carbs": 4
             },
             "assumption": "Показатели указаны производителем на порцию порошка, приготовленного с водой. Дополнительные ингредиенты в расчёт не включены."
+          }
+        },
+        {
+          "id": "scitec",
+          "name": "Scitec Nutrition",
+          "brand": "Scitec Nutrition",
+          "product_line": null,
+          "price_rub": 280,
+          "composition": "Сывороточный протеин. Точные ингредиенты уточняются по этикетке фактического продукта.",
+          "serving": "Размер порции уточняется.",
+          "nutrition": {
+            "approximate": false,
+            "values": null,
+            "reason": "Для сывороточного протеина Scitec Nutrition отдельная этикетка пока не предоставлена. Показатели изолята не подставляются вместо него."
           }
         }
       ]
@@ -537,7 +555,10 @@
       "id": "isolate",
       "category": "protein",
       "name": "Протеин изолят",
-      "price_rub": null,
+      "price_rub": [
+        250,
+        330
+      ],
       "composition": "",
       "image": "isolate",
       "volume_ml": null,
@@ -548,14 +569,34 @@
         "values": null,
         "reason": "КБЖУ указаны для выбранного производителя."
       },
-      "description": "Изолят сывороточного белка. Выбор по производителю.",
+      "description": "Изолят сывороточного белка: CRUSH, Galvanize и Scitec Nutrition.",
       "variants": [
+        {
+          "id": "crush",
+          "name": "CRUSH",
+          "brand": "CRUSH",
+          "product_line": "ISO WHEY",
+          "price_rub": 250,
+          "composition": "Изолят сывороточного белка, ароматизатор, сукралоза.",
+          "serving": "Порция: 30 г порошка.",
+          "nutrition": {
+            "approximate": false,
+            "per": "порция 30 г",
+            "values": {
+              "kcal": 110,
+              "protein": 26.4,
+              "fat": 0.1,
+              "carbs": 1
+            },
+            "assumption": "Показатели на порцию порошка по этикетке производителя, при приготовлении на воде. Добавки изменяют КБЖУ."
+          }
+        },
         {
           "id": "galvanize",
           "name": "Galvanize",
           "brand": "Galvanize",
           "product_line": "Chrome 100 Isolate",
-          "price_rub": null,
+          "price_rub": 330,
           "composition": "Сывороточный изолят, гидролизат и ферментный комплекс.",
           "serving": "Порция: 25 г порошка.",
           "nutrition": {
@@ -575,7 +616,7 @@
           "name": "Scitec Nutrition",
           "brand": "Scitec Nutrition",
           "product_line": "100% Whey Isolate",
-          "price_rub": null,
+          "price_rub": 330,
           "composition": "Сывороточный изолят с добавленными аминокислотами.",
           "serving": "Порция: 25 г порошка.",
           "nutrition": {
@@ -593,11 +634,27 @@
       ]
     },
     {
+      "id": "lactose-free",
+      "category": "protein",
+      "name": "Протеин безлактозный",
+      "price_rub": 300,
+      "composition": "Безлактозный протеиновый коктейль. Точный состав уточняется.",
+      "image": "isolate",
+      "volume_ml": null,
+      "badge": null,
+      "description": "Безлактозный протеин.",
+      "nutrition": {
+        "approximate": false,
+        "values": null,
+        "reason": "Производитель, размер порции и КБЖУ безлактозного протеина ещё не подтверждены этикеткой."
+      }
+    },
+    {
       "id": "bcaa",
       "category": "sport",
       "name": "BCAA",
       "price_rub": 120,
-      "composition": "Аминокислоты с разветвлённой цепью, лимонная кислота, подсластители и другие вспомогательные компоненты.",
+      "composition": "Аминокислотный комплекс BCAA; состав и порция зависят от производителя.",
       "image": "bcaa",
       "volume_ml": null,
       "badge": null,
@@ -606,20 +663,71 @@
         "values": null,
         "reason": "Полные КБЖУ на этикетке не указаны. 6 г BCAA — количество аминокислот, а не официально заявленные граммы белка."
       },
-      "description": "Maxler · BCAA 2:1:1.",
-      "serving": "Порция: 7 г порошка.",
-      "actives": [
+      "description": "Maxler и CRUSH — выбор производителя.",
+      "variants": [
         {
-          "name": "L-лейцин",
-          "amount": "3 г"
+          "id": "maxler",
+          "name": "Maxler",
+          "brand": "Maxler",
+          "product_line": "100% Golden BCAA",
+          "price_rub": 120,
+          "composition": "Комплекс L-лейцина, L-изолейцина и L-валина; вспомогательные компоненты.",
+          "serving": "Порция: 7 г порошка.",
+          "actives": [
+            {
+              "name": "L-лейцин",
+              "amount": "3 г"
+            },
+            {
+              "name": "L-изолейцин",
+              "amount": "1,5 г"
+            },
+            {
+              "name": "L-валин",
+              "amount": "1,5 г"
+            },
+            {
+              "name": "BCAA суммарно",
+              "amount": "6 г"
+            }
+          ],
+          "nutrition": {
+            "approximate": false,
+            "values": null,
+            "reason": "Полные КБЖУ на этикетке Maxler не приведены; указано содержание аминокислот."
+          }
         },
         {
-          "name": "L-изолейцин",
-          "amount": "1,5 г"
-        },
-        {
-          "name": "L-валин",
-          "amount": "1,5 г"
+          "id": "crush",
+          "name": "CRUSH",
+          "brand": "CRUSH",
+          "product_line": "BCAA 2:1:1",
+          "price_rub": 120,
+          "composition": "L-лейцин, L-изолейцин, L-валин, лимонная кислота, ароматизатор, краситель.",
+          "serving": "Порция: 10 г порошка.",
+          "actives": [
+            {
+              "name": "L-лейцин",
+              "amount": "4,5 г"
+            },
+            {
+              "name": "L-изолейцин",
+              "amount": "2,25 г"
+            },
+            {
+              "name": "L-валин",
+              "amount": "2,25 г"
+            },
+            {
+              "name": "BCAA суммарно",
+              "amount": "9 г"
+            }
+          ],
+          "nutrition": {
+            "approximate": false,
+            "values": null,
+            "reason": "Полные КБЖУ производителем не указаны. 9 г BCAA рассчитаны как сумма аминокислот на этикетке."
+          }
         }
       ]
     },
@@ -628,7 +736,7 @@
       "category": "sport",
       "name": "Креатин",
       "price_rub": 50,
-      "composition": "100% микронизированный моногидрат креатина.",
+      "composition": "Моногидрат креатина; размер порции зависит от производителя.",
       "image": "creatine-approved-20261030.jpg",
       "volume_ml": null,
       "badge": null,
@@ -637,16 +745,51 @@
         "values": null,
         "reason": "Полные КБЖУ производителем на этикетке не указаны."
       },
-      "description": "Olimp · моногидрат креатина.",
-      "serving": "Порция: 3,4 г порошка.",
-      "actives": [
+      "description": "Olimp и CRUSH — выбор производителя.",
+      "variants": [
         {
-          "name": "Моногидрат креатина",
-          "amount": "3,4 г"
+          "id": "olimp",
+          "name": "Olimp",
+          "brand": "Olimp",
+          "product_line": "Creatine Monohydrate Powder",
+          "price_rub": 50,
+          "composition": "100% микронизированный моногидрат креатина.",
+          "serving": "Порция: 3,4 г порошка.",
+          "actives": [
+            {
+              "name": "Моногидрат креатина",
+              "amount": "3,4 г"
+            },
+            {
+              "name": "Креатин",
+              "amount": "3 г"
+            }
+          ],
+          "nutrition": {
+            "approximate": false,
+            "values": null,
+            "reason": "Полные КБЖУ на этикетке не указаны."
+          }
         },
         {
-          "name": "Креатин",
-          "amount": "3 г"
+          "id": "crush",
+          "name": "CRUSH",
+          "brand": "CRUSH",
+          "product_line": "Creatine Monohydrate",
+          "price_rub": 50,
+          "composition": "Креатин моногидрат.",
+          "serving": "Порция: 5 г порошка.",
+          "actives": [
+            {
+              "name": "Моногидрат креатина",
+              "amount": "5 г"
+            }
+          ],
+          "nutrition": {
+            "approximate": false,
+            "values": null,
+            "reason": "Полные КБЖУ на этикетке не указаны. 5 г — масса моногидрата, а не расчёт чистого креатина."
+          }
         }
       ]
     },

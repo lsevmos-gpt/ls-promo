@@ -15,7 +15,7 @@
   const displayDetails = (item, selected) => {
     const current = selected || item;
     const nutrition = current.nutrition || item.nutrition || {};
-    dialog.querySelector('[data-dialog-name]').textContent = item.category === 'protein' && Array.isArray(item.variants) && item.variants.length ? item.name + ' · ' + (current.brand || current.name) : (current.name || item.name);
+    dialog.querySelector('[data-dialog-name]').textContent = (item.category === 'protein' || item.id === 'bcaa' || item.id === 'creatine') && Array.isArray(item.variants) && item.variants.length ? item.name + ' · ' + (current.brand || current.name) : (current.name || item.name);
     dialog.querySelector('[data-dialog-category]').textContent = data.categories.find(c => c.id === item.category).name;
     dialog.querySelector('[data-dialog-price]').textContent = price(current.price_rub);
     dialog.querySelector('[data-dialog-composition]').textContent = current.composition || item.composition || (item.volume_ml ? 'Объём: ' + item.volume_ml + ' мл.' : 'Состав уточните на баре.');

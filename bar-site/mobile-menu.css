@@ -130,3 +130,10 @@
 .product-grid .price.price-pending{font-size:clamp(19px,2.2vw,25px);line-height:1.16;white-space:normal;overflow-wrap:anywhere}
 .dialog-variant-choice strong.dialog-price-pending{font-size:20px;line-height:1.16;white-space:normal;overflow-wrap:anywhere}
 @media(max-width:600px){.product-grid .price.price-pending{font-size:20px;line-height:1.15}.dialog-variant-choice strong.dialog-price-pending{font-size:18px}}
+
+/* 01.11.2026: clear brand-specific protein prices, mobile-first. */
+.product-grid--protein .manufacturer-prices{min-width:0;max-width:100%;width:100%;gap:6px}
+.product-grid--protein .manufacturer-prices .variant-price-row{gap:12px;flex-wrap:wrap;align-items:baseline}
+.product-grid--protein .manufacturer-prices .variant-price-row span{flex:1 1 115px;min-width:0;overflow-wrap:break-word}
+.product-grid--protein .manufacturer-prices .variant-price-row strong{flex:0 0 auto}
+@media(max-width:760px){.product-grid--protein .drink-content{grid-template-areas:"name name" "price price" "description description" "nutrition nutrition" "details details";grid-template-rows:repeat(5,auto)}.product-grid--protein .manufacturer-prices{grid-area:price;justify-self:stretch;min-width:0}.product-grid--protein .manufacturer-prices .variant-price-row{font-size:13px}.product-grid--protein .manufacturer-prices .variant-price-row strong{font-size:21px}}
