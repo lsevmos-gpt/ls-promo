@@ -1,0 +1,73 @@
+name: "One-time | import green smoothie story"
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/import-green-smoothie-20261101.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "bar-green-smoothie-import-20261101"
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: main
+
+      - name: Download exact owner-supplied source
+        shell: bash
+        env:
+          MEDIA_URL: "https://d2ol7oe51mr4n9.cloudfront.net/user_3DGFj8YOvQgbPvppr50r6fgfGAi/71116681-2dfd-48eb-84f8-de0bcf57194c.mp4"
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 2 --connect-timeout 15 --max-time 180 "$MEDIA_URL" -o /tmp/green-smoothie-owner-original.mp4
+          printf '%s  %s\n' 'c2a5b7c9d2028b83ccf8c69e2b9d2347ed413dabf189153d24a3ac3a87d62f2b' '/tmp/green-smoothie-owner-original.mp4' | sha256sum -c -
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x /tmp/green-smoothie-owner-original.mp4)" = "2160x3840"
+          echo "Verified 14.75s user-provided video; no substitution."
+
+      - name: Encode web Full HD with original audio and thumbnail
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          mkdir -p bar-site/assets/stories
+          ffmpeg -hide_banner -loglevel error -y -i /tmp/green-smoothie-owner-original.mp4 \
+            -vf 'scale=1080:1920:flags=lanczos,format=yuv420p' \
+            -c:v libx264 -preset fast -crf 23 -maxrate 4500k -bufsize 9000k \
+            -profile:v high -level:v 4.1 -movflags +faststart \
+            -c:a aac -b:a 128k -ar 48000 \
+            bar-site/assets/stories/green.mp4
+          ffmpeg -hide_banner -loglevel error -y -ss 12.0 -i bar-site/assets/stories/green.mp4 \
+            -frames:v 1 -vf 'scale=480:854:flags=lanczos' -c:v libwebp -quality 82 \
+            bar-site/assets/stories/green.webp
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x bar-site/assets/stories/green.mp4)" = "1080x1920"
+          ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 bar-site/assets/stories/green.mp4 | grep -q '^aac$'
+          test "$(stat -c %s bar-site/assets/stories/green.mp4)" -lt 10000000
+          test -s bar-site/assets/stories/green.webp
+          ls -lh bar-site/assets/stories/green.*
+
+      - name: Commit reproducible media assets into main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- bar-site/assets/stories/green.mp4 bar-site/assets/stories/green.webp
+          if git diff --cached --quiet; then
+            echo "Video assets already present, no additional commit."
+          else
+            git commit -m "Bar: import compressed green smoothie video and poster"
+            git push origin HEAD:main
+          fi
+          echo "Video assets uploaded to GitHub, ready for website publishing."
