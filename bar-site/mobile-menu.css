@@ -137,3 +137,80 @@
 .product-grid--protein .manufacturer-prices .variant-price-row span{flex:1 1 115px;min-width:0;overflow-wrap:break-word}
 .product-grid--protein .manufacturer-prices .variant-price-row strong{flex:0 0 auto}
 @media(max-width:760px){.product-grid--protein .drink-content{grid-template-areas:"name name" "price price" "description description" "nutrition nutrition" "details details";grid-template-rows:repeat(5,auto)}.product-grid--protein .manufacturer-prices{grid-area:price;justify-self:stretch;min-width:0}.product-grid--protein .manufacturer-prices .variant-price-row{font-size:13px}.product-grid--protein .manufacturer-prices .variant-price-row strong{font-size:21px}}
+
+/* One full story per viewport on mobile; adapt the portrait video to available screen height. */
+@media (max-width: 900px), (pointer: coarse) and (max-width: 1100px) {
+  /* The entire slide fits horizontally. No clipped preview of the following card. */
+  .stories-track {
+    display: flex;
+    gap: 14px;
+    padding: 2px 0 12px;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .stories-track::-webkit-scrollbar { display: none; }
+  .stories-track > .story-card {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  /* Portrait source video remains entirely visible, even on short phones. */
+  .stories-track .story-media {
+    width: min(100%, 340px);
+    width: min(100%, 36svh);
+    aspect-ratio: 9 / 16;
+    height: auto;
+    margin-inline: auto;
+    border-radius: 18px;
+  }
+  .stories-track .story-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  /* Show the entire product name and its price together without an extra row. */
+  .stories-track .story-caption {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px 14px;
+    width: min(100%, 430px);
+    margin-inline: auto;
+    padding: 13px 4px 0;
+  }
+  .stories-track .story-caption h3 {
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    font-size: clamp(22px, 5.6vw, 30px);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+  }
+  .stories-track .story-caption > strong {
+    display: block;
+    margin: 0;
+    font-size: clamp(24px, 6vw, 30px);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .stories-track .story-details {
+    grid-column: 1 / -1;
+    margin: 0;
+    min-height: 44px;
+    justify-self: start;
+  }
+  .stories-hint { margin-top: 10px; }
+}
+/* Landscape mobile devices: avoid pushing the caption off the bottom. */
+@media (max-width: 900px) and (orientation: landscape) {
+  .stories-track .story-media {
+    width: min(100%, 29svh);
+  }
+}
+
