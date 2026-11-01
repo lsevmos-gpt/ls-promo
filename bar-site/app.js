@@ -112,6 +112,18 @@
 
   // Controls for the horizontally scrollable story carousel.
   const storiesTrack = document.getElementById('stories-track');
+  // Shuffle complete story cards once on every new page load (Fisher–Yates).
+  // This runs before playback/fullscreen/audio handlers are attached; each video
+  // retains its own poster, caption, price, controls and menu link.
+  if (storiesTrack) {
+    const storyCards = Array.from(storiesTrack.querySelectorAll(':scope > .story-card'));
+    for (let i = storyCards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [storyCards[i], storyCards[j]] = [storyCards[j], storyCards[i]];
+    }
+    storiesTrack.replaceChildren(...storyCards);
+    storiesTrack.scrollLeft = 0;
+  }
   const storiesPrevious = document.querySelector('[data-stories-prev]');
   const storiesNext = document.querySelector('[data-stories-next]');
   if (storiesTrack && storiesPrevious && storiesNext) {
