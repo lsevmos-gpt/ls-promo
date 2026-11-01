@@ -1,0 +1,76 @@
+{
+  "as_of": "2026-11-01",
+  "source": "Фотографии фактических этикеток, предоставленные владельцем",
+  "public_display_rule": "Группировать протеины по производителям без вкусов; не показывать наименования вкусов и не создавать вкусовые варианты.",
+  "prices": "Для новых производителей не подтверждены; не подставлять старую цену как цену конкретного производителя.",
+  "products": [
+    {
+      "manufacturer": "Galvanize",
+      "product_line": "MAX Whey",
+      "menu_category": "whey",
+      "serving_g": 32,
+      "kcal": 128,
+      "protein_g": 25,
+      "fat_g": 1.4,
+      "carbs_g": 4,
+      "published_variant": true
+    },
+    {
+      "manufacturer": "Galvanize",
+      "product_line": "Chrome 100 Isolate",
+      "menu_category": "isolate",
+      "serving_g": 25,
+      "kcal": 100,
+      "protein_g": 20,
+      "fat_g": 0.5,
+      "carbs_g": 4.2,
+      "published_variant": true
+    },
+    {
+      "manufacturer": "Scitec Nutrition",
+      "product_line": "100% Whey Isolate",
+      "menu_category": "isolate",
+      "serving_g": 25,
+      "kcal": 94,
+      "protein_g": 21,
+      "fat_g_upper_bound_exclusive": 0.5,
+      "carbs_g": 1.3,
+      "published_variant": true
+    },
+    {
+      "manufacturer": "Maxler",
+      "product_line": "100% Golden BCAA",
+      "menu_category": "bcaa",
+      "serving_g": 7,
+      "total_bcaa_g": 6,
+      "l_leucine_g": 3,
+      "l_isoleucine_g": 1.5,
+      "l_valine_g": 1.5,
+      "full_kbju": "not_declared",
+      "published_variant": true
+    },
+    {
+      "manufacturer": "Scitec Nutrition",
+      "product_line": "Amino Charge",
+      "menu_category": "sport",
+      "serving_g": 19,
+      "total_bcaa_mg": 6000,
+      "l_glutamine_mg": 3000,
+      "l_citrulline_mg": 3000,
+      "caffeine_mg": 93,
+      "full_kbju": "not_declared",
+      "published_variant": false,
+      "reason": "Отдельный аминокислотный комплекс с кофеином, не равнозначен чистому BCAA; цена для публичной карточки не подтверждена."
+    },
+    {
+      "manufacturer": "Olimp",
+      "product_line": "Creatine Monohydrate Powder",
+      "menu_category": "creatine",
+      "serving_g": 3.4,
+      "creatine_monohydrate_g": 3.4,
+      "creatine_g": 3,
+      "full_kbju": "not_declared",
+      "published_variant": true
+    }
+  ]
+}

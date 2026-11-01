@@ -7,7 +7,7 @@
   const categoryDialog = document.getElementById('category-dialog');
   const categoryLauncher = document.querySelector('[data-open-categories]');
   const nf = new Intl.NumberFormat('ru-RU');
-  const price = value => (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽';
+  const price = value => (value === null || value === undefined ? 'Цена уточняется' : (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽');
   const variantBox = dialog.querySelector('[data-dialog-variants]');
   const servingLine = dialog.querySelector('[data-dialog-serving]');
   const actives = dialog.querySelector('[data-dialog-actives]');
@@ -15,7 +15,7 @@
   const displayDetails = (item, selected) => {
     const current = selected || item;
     const nutrition = current.nutrition || item.nutrition || {};
-    dialog.querySelector('[data-dialog-name]').textContent = current.name || item.name;
+    dialog.querySelector('[data-dialog-name]').textContent = item.category === 'protein' && Array.isArray(item.variants) && item.variants.length ? item.name + ' · ' + (current.brand || current.name) : (current.name || item.name);
     dialog.querySelector('[data-dialog-category]').textContent = data.categories.find(c => c.id === item.category).name;
     dialog.querySelector('[data-dialog-price]').textContent = price(current.price_rub);
     dialog.querySelector('[data-dialog-composition]').textContent = current.composition || item.composition || (item.volume_ml ? 'Объём: ' + item.volume_ml + ' мл.' : 'Состав уточните на баре.');
@@ -39,7 +39,7 @@
     if (values) {
       label.textContent = nutrition.approximate ? 'Ориентир на расчётную порцию' : 'КБЖУ на порцию по этикетке';
       for (const key of ['kcal', 'protein', 'fat', 'carbs']) {
-        nutrients.querySelector('[data-value="' + key + '"]').textContent = (nutrition.approximate ? '≈' : '') + values[key];
+        nutrients.querySelector('[data-value="' + key + '"]').textContent = (nutrition.approximate ? '≈' : '') + (typeof values[key] === 'number' ? nf.format(values[key]) : values[key]);
       }
     }
     const assumption = dialog.querySelector('[data-dialog-assumption]');
