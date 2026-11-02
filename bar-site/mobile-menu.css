@@ -214,7 +214,7 @@
   }
 }
 
-/* Coffee: six standard drinks, compact 3x2 / 2x3 variant selector. */
+/* Coffee: five standard drinks, compact three-column desktop / two-column mobile selector. */
 .dialog-variants.dialog-variants--coffee {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
