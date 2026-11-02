@@ -214,3 +214,52 @@
   }
 }
 
+/* Coffee: six standard drinks, compact 3x2 / 2x3 variant selector. */
+.dialog-variants.dialog-variants--coffee {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.dialog-variants.dialog-variants--coffee .dialog-variant-choice {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 80px;
+  gap: 7px;
+  padding: 12px 14px;
+  font-size: 15px;
+}
+.dialog-variants.dialog-variants--coffee .dialog-variant-choice strong {
+  font-size: 24px;
+}
+@media (max-width: 760px) {
+  .dialog-variants.dialog-variants--coffee,
+  .dialog-variants.dialog-variants--coffee:has(> .dialog-variant-choice:nth-child(3)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .dialog-variants.dialog-variants--coffee .dialog-variant-choice,
+  .dialog-variants.dialog-variants--coffee:has(> .dialog-variant-choice:nth-child(3)) .dialog-variant-choice {
+    min-height: 75px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 12px;
+    gap: 6px;
+    font-size: 14px;
+  }
+  .dialog-variants.dialog-variants--coffee .dialog-variant-choice strong {
+    font-size: 23px;
+  }
+  .product-grid .coffee-price-list .variant-price-row span {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 359px) {
+  .dialog-variants.dialog-variants--coffee .dialog-variant-choice {
+    padding: 9px;
+    font-size: 13px;
+  }
+  .dialog-variants.dialog-variants--coffee .dialog-variant-choice strong {
+    font-size: 21px;
+  }
+}

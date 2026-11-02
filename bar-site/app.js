@@ -50,6 +50,7 @@
   const showItem = id => {
     const item = items.get(id);
     if (!item) return;
+    variantBox.classList.toggle('dialog-variants--coffee', item.id === 'coffee');
     variantBox.replaceChildren();
     const variants = Array.isArray(item.variants) ? item.variants : [];
     variantBox.hidden = variants.length === 0;
