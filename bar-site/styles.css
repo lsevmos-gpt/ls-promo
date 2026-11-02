@@ -242,3 +242,23 @@ body.story-fullscreen-open{overflow:hidden!important}
   .stories-navigation-label{font-size:13px}
   .stories-arrow{width:42px;height:42px;min-width:42px;font-size:24px}
 }
+
+/* preworkout-price-alignment-20261102
+ * The three neighbouring sport cards reserve at least 70px beneath the price
+ * for nutrition. Preworkout intentionally has no nutrition block, so its
+ * auto top margin previously pushed the price selector too far down.
+ * Reserve equal space without displaying invented nutrients or a fake row. */
+@media (min-width: 761px) {
+  .product-grid--sport .drink-card[data-menu-item="preworkout"] .drink-content::after {
+    content: "";
+    display: block;
+    flex: 0 0 70px;
+    min-height: 70px;
+    pointer-events: none;
+  }
+  body.nutrition-off .product-grid--sport .drink-card[data-menu-item="preworkout"] .drink-content::after {
+    display: none;
+  }
+}
+/* Mobile cards have an independent one-column layout; no spacer needed. */
+
