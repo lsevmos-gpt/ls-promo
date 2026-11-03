@@ -263,3 +263,148 @@
     font-size: 21px;
   }
 }
+
+/* Header menu opens the existing responsive category sheet on all screen sizes. */
+/* A proper button in the header; same visual role as the previous menu link. */
+.top-nav .header-menu-button {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 21px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.top-nav .header-menu-button:hover,
+.top-nav .header-menu-button[aria-expanded="true"] {
+  background: #28543b;
+  border-color: #28543b;
+  color: #fff;
+}
+/* Desktop reuses the exact same six-category dialog as the mobile sheet. */
+@media (min-width: 761px) {
+  #category-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(560px, calc(100vw - 40px));
+    max-width: 560px;
+    max-height: min(88vh, 800px);
+    max-height: min(88dvh, 800px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 26px;
+    background: #fbf9f0;
+  }
+  #category-dialog .category-sheet {
+    padding: 28px 30px 30px;
+  }
+  #category-dialog .category-sheet-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  #category-dialog .category-sheet-heading p {
+    margin: 0 0 5px;
+    color: #737a68;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  #category-dialog .category-sheet-heading h2 {
+    margin: 0;
+    font: 700 38px/1.08 Condensed, Impact, sans-serif;
+  }
+  #category-dialog .category-sheet-heading .dialog-close {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: #eeefe4;
+  }
+  #category-dialog .category-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  #category-dialog .category-option {
+    display: grid;
+    grid-template-columns: 56px minmax(0,1fr) 24px;
+    align-items: center;
+    gap: 15px;
+    min-height: 72px;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+  }
+  #category-dialog .category-option:hover,
+  #category-dialog .category-option[aria-pressed="true"] {
+    background: #e9f0dd;
+    border-color: #c1d0b6;
+  }
+  #category-dialog .category-thumb {
+    display: block;
+    width: 50px;
+    height: 56px;
+    border-radius: 9px;
+    overflow: hidden;
+    background: #ece8db;
+  }
+  #category-dialog .category-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #category-dialog .category-thumb--all {
+    display: grid;
+    place-items: center;
+    background: #244e32;
+    color: white;
+  }
+  #category-dialog .category-thumb--all svg {
+    width: 26px;
+    height: 26px;
+  }
+  #category-dialog .category-option strong {
+    display: block;
+    font-size: 19px;
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  #category-dialog .category-option small {
+    display: block;
+    margin-top: 4px;
+    color: #6c775f;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  #category-dialog .category-option-arrow {
+    font-size: 25px;
+    color: #46714b;
+  }
+  body:has(#category-dialog[open]) { overflow: hidden; }
+}
+@media (max-width: 760px) {
+  .top-nav .header-menu-button {
+    min-width: 82px;
+    min-height: 44px;
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+}
+/* Preserve the sheet's scroll and click targets on very short landscape views. */
+#category-dialog .category-option { cursor: pointer; }
+

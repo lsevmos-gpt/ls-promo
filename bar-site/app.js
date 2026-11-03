@@ -5,7 +5,7 @@
   const dialog = document.getElementById('item-dialog');
   const methodDialog = document.getElementById('method-dialog');
   const categoryDialog = document.getElementById('category-dialog');
-  const categoryLauncher = document.querySelector('[data-open-categories]');
+  const categoryLaunchers = [...document.querySelectorAll('[data-open-categories]')];
   const nf = new Intl.NumberFormat('ru-RU');
   const price = value => (value === null || value === undefined ? 'Цена уточняется' : (Array.isArray(value) ? value.map(v => nf.format(v)).join('–') : nf.format(value)) + ' ₽');
   const variantBox = dialog.querySelector('[data-dialog-variants]');
@@ -78,13 +78,14 @@
   document.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   [dialog, methodDialog, categoryDialog].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) modal.close(); }));
   document.querySelectorAll('[data-show-method]').forEach(button => button.addEventListener('click', () => methodDialog.showModal()));
-  categoryLauncher.addEventListener('click', () => {
-    categoryDialog.showModal();
-    categoryLauncher.setAttribute('aria-expanded', 'true');
-  });
-  categoryDialog.addEventListener('close', () => categoryLauncher.setAttribute('aria-expanded', 'false'));
-  window.matchMedia('(max-width: 760px)').addEventListener('change', event => {
-    if (!event.matches && categoryDialog.open) categoryDialog.close();
+  // Header and section buttons open the same responsive category dialog.
+  // Keep aria-expanded in sync across both entry points, including Escape/backdrop closes.
+  categoryLaunchers.forEach(launcher => launcher.addEventListener('click', () => {
+    if (!categoryDialog.open) categoryDialog.showModal();
+    categoryLaunchers.forEach(button => button.setAttribute('aria-expanded', 'true'));
+  }));
+  categoryDialog.addEventListener('close', () => {
+    categoryLaunchers.forEach(button => button.setAttribute('aria-expanded', 'false'));
   });
   const categoryIds = new Set(['all', ...data.categories.map(category => category.id)]);
   const selectCategory = (id, scroll = true, updateHash = true) => {
