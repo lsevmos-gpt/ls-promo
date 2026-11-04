@@ -1,12 +1,25 @@
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Retire the staging hostname and normalize www after the main domain is connected.
+  RewriteCond %{HTTP_HOST} ^(new|www)\.liniyasporta\.ru$ [NC]
+  RewriteRule ^(.*)$ https://liniyasporta.ru/$1 [R=301,L,NE]
+
+  # Preserve search and bookmarked links from the previous main website.
+  RewriteRule ^zaly/club1/?$ /clubs/heroes/ [R=301,L,NC]
+  RewriteRule ^zaly/club2/?$ /clubs/kuibysheva/ [R=301,L,NC]
+  RewriteRule ^zaly/club3/?$ /clubs/konnoi/ [R=301,L,NC]
+  RewriteRule ^trenera/([^/]+)/?$ /trainers/$1/ [R=301,L,NC]
+</IfModule>
+
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex, nofollow, noarchive"
   <FilesMatch "\.(html|css|js|json)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>

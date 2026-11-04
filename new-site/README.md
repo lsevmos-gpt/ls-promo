@@ -1,4 +1,15 @@
-# Новый основной сайт — new.liniyasporta.ru
+# Основной сайт — liniyasporta.ru
+
+## Переключение на основной домен (4 ноября 2026)
+
+- Сайт и GitHub-репозиторий остаются прежними; FTP-пользователь `u3652448_new` и каталог `/www/new.liniyasporta.ru` не меняются.
+- В REG.RU необходимо привязать `liniyasporta.ru` и `www.liniyasporta.ru` к этому же каталогу, настроить DNS и HTTPS. DNS и привязка выполняются отдельно от GitHub.
+- В `new-site/` подготовлены канонические ссылки, сняты запреты `noindex` и `Disallow: /`, обновлена карта сайта. `new.liniyasporta.ru` перенаправляется 301 на основной адрес после выкладки обновлённого `.htaccess`.
+- Существующий FTP-маркер `.new-site-root.txt` должен по-прежнему содержать `new.liniyasporta.ru`: это идентификатор изолированного FTP-каталога, а не публичный адрес.
+- Не запускать публикацию до привязки основного домена и выпуска SSL: workflow проверяет `https://liniyasporta.ru/` после загрузки.
+- Миграционный коммит сам по себе не публикуется: для выкладки нужен ручной запуск `deploy-new-site.yml` с `mode: deploy`, `confirm_domain: liniyasporta.ru`.
+- Старые страницы `/zaly/club1/`, `/zaly/club2/`, `/zaly/club3/` направляются на новые страницы клубов, а `/trenera/<slug>/` — на `/trainers/<slug>/`.
+
 
 GitHub repository: `lsevmos-gpt/ls-promo`  
 Website content directory: `new-site/`  
@@ -15,7 +26,7 @@ Deployment workflow: `.github/workflows/deploy-new-site.yml`
 - FTPS: explicit TLS, passive mode
 - Remote path in FTP session: `/` (изолированный корень FTP-пользователя)
 - Physical website directory in hosting control panel: `/www/new.liniyasporta.ru`
-- Public URL: `https://new.liniyasporta.ru`
+- Public URL after cutover: `https://liniyasporta.ru`
 
 Важно: `/` в FTP-сессии **должен** соответствовать домашнему каталогу `u3652448_new` на хостинге. Это нужно проверить после успешной авторизации, прежде чем что-либо публиковать.
 
@@ -37,7 +48,7 @@ Deployment workflow: `.github/workflows/deploy-new-site.yml`
 
 Перед первой публикацией разместить файл `.new-site-root.txt` **в FTP-корне нужного сайта** с текстом `new.liniyasporta.ru`. Workflow сверяет содержимое этого файла и запрещает отправку на неверный домен. Файл создаётся в REG.RU вручную или после отдельного подтверждения, что FTP-корень соответствует нужному сайту.
 
-Загрузить статические файлы в `new-site/`, в частности `new-site/index.html`. Затем открыть workflow, выбрать `mode: deploy`, в `confirm_domain` ввести точно `new.liniyasporta.ru`. Сценарий создаёт резервную копию подходящих публичных файлов, отправляет обновления через FTPS без удаления других файлов и проверяет опубликованный HTML по HTTPS.
+Загрузить статические файлы в `new-site/`, в частности `new-site/index.html`. Затем открыть workflow, выбрать `mode: deploy`, в `confirm_domain` ввести точно `liniyasporta.ru`. Сценарий создаёт резервную копию подходящих публичных файлов, отправляет обновления через FTPS без удаления других файлов и проверяет опубликованный HTML по HTTPS.
 
 После успешной проверки подключения и публикации сайт обновляется через этот репозиторий. Push в `main`, затрагивающий `new-site/`, запускает публикацию, если сообщение коммита содержит `[deploy-new-site]`. Без этой метки выполняется только проверка подключения. Ручной запуск `mode: deploy` также сохранён. Перед каждой загрузкой проверяется маркер домена и сохраняется резервная копия; другие файлы не удаляются.
 

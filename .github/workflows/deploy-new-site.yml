@@ -12,7 +12,7 @@ on:
           - deploy
         default: check
       confirm_domain:
-        description: 'For deploy, type new.liniyasporta.ru exactly'
+        description: 'For deploy, type liniyasporta.ru exactly'
         required: false
         type: string
   push:
@@ -38,10 +38,11 @@ jobs:
       REG_HOST: server169.hosting.reg.ru
       REG_USER: u3652448_new
       REG_PATH: /
-      PUBLIC_DOMAIN: new.liniyasporta.ru
+      PUBLIC_DOMAIN: liniyasporta.ru
+      FTP_ROOT_MARKER: new.liniyasporta.ru
       REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
       MODE: ${{ github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-new-site]') && 'deploy' || 'check') || inputs.mode }}
-      CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-new-site]') && 'new.liniyasporta.ru' || inputs.confirm_domain }}
+      CONFIRM_DOMAIN: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy-new-site]') && 'liniyasporta.ru' || inputs.confirm_domain }}
       PATCH_MODE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[patch-new-site]') && 'true' || 'false' }}
       PATCH_BASE_SHA: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[catchup-new-site-20261031]') && 'ace6dcd62ffc618b266a4ffc3f66e0b5fc776b9c' || github.event.before }}
 
@@ -59,7 +60,7 @@ jobs:
             echo '::error::This workflow is scoped to the designated website repository.'
             exit 1
           fi
-          for name in REG_HOST REG_USER REG_PATH PUBLIC_DOMAIN REG_PASSWORD; do
+          for name in REG_HOST REG_USER REG_PATH PUBLIC_DOMAIN FTP_ROOT_MARKER REG_PASSWORD; do
             if [[ -z "${!name}" ]]; then
               echo "::error::Missing repository variable/secret for ${name}."
               exit 1
@@ -77,7 +78,7 @@ jobs:
             check) echo 'Read-only connection check selected.' ;;
             deploy)
               if [[ "$CONFIRM_DOMAIN" != "$PUBLIC_DOMAIN" ]]; then
-                echo '::error::confirm_domain must be new.liniyasporta.ru.'
+                echo '::error::confirm_domain must be liniyasporta.ru.'
                 exit 1
               fi
               if [[ ! -s new-site/index.html ]]; then
@@ -128,7 +129,7 @@ jobs:
             get .new-site-root.txt -o /tmp/new-site-root.txt;
             bye
           "
-          if [[ "$(tr -d '\r\n' < /tmp/new-site-root.txt)" != "$PUBLIC_DOMAIN" ]]; then
+          if [[ "$(tr -d '\r\n' < /tmp/new-site-root.txt)" != "$FTP_ROOT_MARKER" ]]; then
             echo '::error::Remote marker mismatch. Refusing to touch this FTP directory.'
             exit 1
           fi

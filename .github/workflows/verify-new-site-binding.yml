@@ -1,4 +1,4 @@
-name: Verify new.liniyasporta.ru binding (read-only)
+name: Verify liniyasporta.ru main domain (read-only)
 on:
   push:
     branches: [main]
@@ -54,7 +54,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 30 --header "Cache-Control: no-cache" "https://new.liniyasporta.ru/?check=${GITHUB_RUN_ID}" -o /tmp/newsite-https-index.html; then
+          if curl --fail --silent --show-error --location --connect-timeout 10 --max-time 30 --header "Cache-Control: no-cache" "https://liniyasporta.ru/?check=${GITHUB_RUN_ID}" -o /tmp/newsite-https-index.html; then
             echo "HTTPS_STATUS=ok"
             echo "HTTPS_INDEX_SHA256=$(sha256sum /tmp/newsite-https-index.html | awk '{print $1}')"
             if cmp -s /tmp/newsite-remote-index.html /tmp/newsite-https-index.html; then
@@ -71,7 +71,7 @@ jobs:
         run: |
           set -euo pipefail
           for ROUTE in / /fitness/ /cards/ /trainers/ /clubs/heroes/ /clubs/konnoi/ /clubs/kuibysheva/ /styles.css /app.js /assets/content.js /assets/brand/logo-dark.png /assets/fitness/jumping-fitness.webp /assets/video/club-heroes6d.mp4; do
-            URL="https://new.liniyasporta.ru${ROUTE}?readonly=${GITHUB_RUN_ID}"
+            URL="https://liniyasporta.ru${ROUTE}?readonly=${GITHUB_RUN_ID}"
             printf 'PROBE path=%s ' "$ROUTE"
             HTTP="$(curl -L -sS -o /tmp/probe-newsite-response --connect-timeout 10 --max-time 45 -w '%{http_code}' "$URL")"
             BYTES="$(wc -c </tmp/probe-newsite-response)"
