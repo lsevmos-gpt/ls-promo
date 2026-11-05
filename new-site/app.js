@@ -94,8 +94,9 @@
   let galleryClub, galleryIndex = 0;
   const showGalleryImage = () => {
     $('#gallery-image').src = galleryClub.gallery[galleryIndex];
-    $('#gallery-image').alt = galleryClub.caption + ', фото ' + (galleryIndex + 1);
-    $('#gallery-caption').textContent = galleryClub.caption;
+    const caption = galleryClub.galleryCaptions?.[galleryIndex] || (galleryClub.caption + ', фото ' + (galleryIndex + 1));
+    $('#gallery-image').alt = caption;
+    $('#gallery-caption').textContent = caption;
     $('#gallery-count').textContent = `${galleryIndex + 1} / ${galleryClub.gallery.length}`;
   };
   $$('[data-gallery]').forEach(b => b.addEventListener('click', () => {

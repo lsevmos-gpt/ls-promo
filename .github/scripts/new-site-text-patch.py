@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare and verify a bounded update to text files and new trainer images."""
+"""Prepare and verify bounded site updates including approved 6D gallery photos."""
 from concurrent.futures import ThreadPoolExecutor
 from hashlib import sha1, sha256
 from pathlib import Path
@@ -14,10 +14,11 @@ from urllib.error import HTTPError
 ROOT = Path(__file__).resolve().parents[2]
 PLAN = ROOT / '_new_site_text_patch.json'
 BACKUP = ROOT / '_new_site_remote_backup'
-ORIGIN = 'https://new.liniyasporta.ru'
+ORIGIN = 'https://liniyasporta.ru'
 ALLOWED = re.compile(r'new-site/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.(?:html|css|js|json)')
 NEW_TRAINER_IMAGE = re.compile(r'new-site/assets/trainers/[A-Za-z0-9_.-]+-([a-f0-9]{10})\.(?:webp|jpg)')
 NEW_TRAINER_HTML = re.compile(r'new-site/trainers/[a-z0-9-]+/index\.html')
+NEW_CLUB_MEDIA = re.compile(r'new-site/assets/images/6d-(?:01|03|04|08|10|13|17|23|41|81|82|111)-[a-z0-9-]+-20261105\.jpg')
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()
@@ -33,7 +34,9 @@ def prepare():
     for row in rows:
         status, path = row.split('\t', 1)
         source = ROOT / path
-        new_image = status == 'A' and NEW_TRAINER_IMAGE.fullmatch(path)
+        new_trainer_image = status == 'A' and NEW_TRAINER_IMAGE.fullmatch(path)
+        new_club_media = status == 'A' and NEW_CLUB_MEDIA.fullmatch(path)
+        new_image = new_trainer_image or new_club_media
         new_profile = status == 'A' and NEW_TRAINER_HTML.fullmatch(path)
         existing_text = status == 'M' and ALLOWED.fullmatch(path)
         if (not (existing_text or new_image or new_profile) or '..' in Path(path).parts
@@ -46,7 +49,7 @@ def prepare():
                 valid_webp = path.endswith('.webp') and body.startswith(b'RIFF') and body[8:12] == b'WEBP'
                 valid_jpeg = path.endswith('.jpg') and body.startswith(b'\xff\xd8') and body.endswith(b'\xff\xd9')
                 if (not (valid_webp or valid_jpeg)
-                        or new_image.group(1) != sha256(body).hexdigest()[:10]):
+                        or (new_trainer_image and new_trainer_image.group(1) != sha256(body).hexdigest()[:10])):
                     raise SystemExit('Invalid or incorrectly fingerprinted trainer image: ' + path)
             elif (not body.startswith(b'<!doctype html>')
                   or b'<html lang="ru">' not in body
@@ -62,8 +65,9 @@ def prepare():
                 if error.code != 404:
                     raise
         size += len(body)
-        if len(body) > 512 * 1024 or size > 2 * 1024 * 1024:
-            raise SystemExit('Text update exceeds the size limit; use a full deployment.')
+        per_file_limit = 2 * 1024 * 1024 if new_club_media else 512 * 1024
+        if len(body) > per_file_limit or size > 16 * 1024 * 1024:
+            raise SystemExit('Bounded site update exceeds its size limit; use a full deployment.')
         files.append({'path': path, 'remote': path.removeprefix('new-site/'),
                       'before_blob': None if (new_image or new_profile) else git('rev-parse', base + ':' + path),
                       'sha256': sha256(body).hexdigest()})

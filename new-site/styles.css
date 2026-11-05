@@ -270,3 +270,17 @@ dialog{border:1px solid #465a50;background:var(--bg);color:var(--text);padding:4
   .stats-strip strong{font-size:28px}
 }
 @media(max-width:360px){.mobile-bottom svg{display:none}}
+
+/* Club 6D: source-backed photo galleries (2026-11-05) */
+#heroes-6d-gallery .gallery-tile>span{left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;text-align:left;gap:12px;background:rgba(8,27,22,.89);padding:13px 16px;color:#f4f7f4;font-size:15px;line-height:1.35}
+#heroes-6d-gallery .gallery-tile>span small{font-size:14px;letter-spacing:.09em;color:#b3c4bb;flex:none}
+.ls-media-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.ls-media-grid--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ls-media-card{min-width:0;margin:0}
+.ls-media-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.ls-media-card figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
+.ls-media-card figcaption strong{color:var(--text);font-weight:600}
+.ls-services-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:34px}
+.ls-services-gallery .ls-media-card img{aspect-ratio:16/9}
+@media(max-width:760px){.ls-media-grid,.ls-media-grid--two,.ls-services-gallery{grid-template-columns:1fr;gap:24px}#heroes-6d-gallery .gallery-tile>span{font-size:14px}}
+
