@@ -1,4 +1,4 @@
-/* Load after styles.css. Fitness pass switcher and the personal-training group only. */
+/* Fitness passes and trainer pages. Load after the shared site and trainer styles. */
 .fitness-passes .fitness-personal-switcher.segment{display:flex;gap:3px;width:max-content;max-width:100%;margin:0 0 28px;padding:4px;border:1px solid #DCCFC5;background:#F3EAE2}
 .fitness-passes .fitness-personal-switcher.segment>button{min-height:48px;padding:12px 22px;border:0;background:transparent;color:#1F1C1B;font:600 14px/1.4 Inter,Arial,sans-serif;cursor:pointer;white-space:nowrap}
 .fitness-passes .fitness-personal-switcher.segment>button.active{background:#914F4C;color:#FBF7F3}
@@ -44,4 +44,115 @@
   .fitness-personal-group .fitness-personal-card{padding:22px}
   .fitness-personal-group .fitness-personal-card>h4{font-size:36px}
   .fitness-personal-group .fitness-pass-price>strong{font-size:64px}
+}
+
+.fitness-team-section {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.fitness-club-roster {
+  scroll-margin-top: 112px;
+}
+
+.fitness-club-roster + .fitness-club-roster {
+  margin-top: 56px;
+}
+
+.fitness-club-roster > h3 {
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.fitness-roster-address {
+  margin: 10px 0 24px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.fitness-team-section .trainer-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fitness-team-section .trainer-card {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+}
+
+.fitness-team-section .trainer-card:focus-visible {
+  outline: 3px solid var(--green-deep);
+  outline-offset: 4px;
+}
+
+.fitness-team-section .trainer-image {
+  background: var(--ink);
+}
+
+.fitness-team-section .trainer-image > img {
+  aspect-ratio: 2 / 3;
+}
+
+.fitness-team-section .trainer-arrow {
+  color: var(--paper);
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+}
+
+.fitness-team-section .trainer-caption {
+  padding: 20px;
+}
+
+.fitness-team-section .trainer-caption h3 {
+  max-width: none;
+}
+
+.fitness-team-section .trainer-card .trainer-caption .trainer-card-clubs {
+  min-height: 0;
+  color: var(--muted);
+}
+
+.fitness .trainer-profile-complete h1 {
+  font-size: clamp(36px, 4.8vw, 68px);
+  overflow-wrap: anywhere;
+}
+
+.fitness .trainer-profile-complete .profile-speciality,
+.fitness .profile-club-phone,
+.fitness .trainer-pass-jump {
+  color: var(--green-deep);
+}
+
+.fitness .trainer-pass-jump {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  min-height: 44px;
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fitness .trainer-pass-jump svg {
+  width: 20px;
+  height: 20px;
+}
+
+.fitness .trainer-biography {
+  color: var(--text);
+}
+
+@media (max-width: 1000px) {
+  .fitness-team-section .trainer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .fitness-team-section .trainer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

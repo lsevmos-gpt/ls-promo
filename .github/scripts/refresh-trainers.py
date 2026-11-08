@@ -3,6 +3,7 @@
 
 Run from any directory. Only trainer markup and its dedicated asset references change;
 the remaining page source is retained verbatim.
+Use --fitness-only to refresh the group fitness roster and its profiles.
 """
 from pathlib import Path
 from html import escape
@@ -10,6 +11,7 @@ import hashlib
 import json
 import re
 import runpy
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / 'new-site'
@@ -101,11 +103,23 @@ def photo_tile(t, i, photo):
             f'<span>{i + 1:02d} {UP}</span></a>')
 
 
-def profile(t):
+def profile(t, *, fitness=False):
+    team_url = '/fitness/#fitness-trainers' if fitness else '/trainers/'
+    team_label = 'Фитнес' if fitness else 'Команда'
+    eyebrow = 'ФИТНЕС / ГРУППОВЫЕ ТРЕНИРОВКИ' if fitness else 'КОМАНДА / ПЕРСОНАЛЬНЫЙ ТРЕНЕР'
+    club_anchor = '' if fitness else '#trainers'
+    booking_note = ('Выберите занятие в расписании и запишитесь в мобильном приложении.' if fitness else
+                    'Администратор подскажет свободное время и поможет записаться на тренировку.')
+    action = ''
+    if fitness:
+        action = f'<a class="trainer-pass-jump" href="/fitness/#fitness-passes">Групповые абонементы {ARROW}</a>'
+    elif t.get('booking_url'):
+        action = (f'<div class="hero-actions"><a class="button button-primary" '
+                  f'href="{e(t["booking_url"], quote=True)}" target="_blank" rel="noopener">Записаться онлайн {UP}</a></div>')
     clubs = ''
     for cid in t['clubs']:
         c = CLUBS[cid]
-        clubs += (f'<div class="profile-club"><a class="profile-club-name" href="/clubs/{cid}/#trainers">{e(c["street"])} {UP}</a>'
+        clubs += (f'<div class="profile-club"><a class="profile-club-name" href="/clubs/{cid}/{club_anchor}">{e(c["street"])} {UP}</a>'
                   f'<p class="profile-club-address">{e(c["address"])}</p>'
                   f'<a class="profile-club-phone" href="tel:{c["tel"]}" aria-label="Запись к тренеру: клуб {e(c["street"])}, {e(c["phone"])}">'
                   f'Запись: {e(c["phone"])}</a></div>')
@@ -118,15 +132,13 @@ def profile(t):
               '<div class="section-head"><div><p class="eyebrow">ЛИЧНЫЕ ФОТОГРАФИИ И ДОСТИЖЕНИЯ</p><span class="accent-line" aria-hidden="true"></span>'
               '<h2 id="trainer-photos-title">В КАДРЕ.</h2></div><p class="section-intro">Тренировки, соревнования и квалификация. Нажмите на фото, чтобы рассмотреть его полностью.</p></div>'
               f'{tiles}</div></section>') if gallery else ''
-    return (f'<div class="container breadcrumb"><a href="/">Главная</a><span>/</span><a href="/trainers/">Команда</a><span>/</span><span>{e(t["name"])}</span></div>'
+    return (f'<div class="container breadcrumb"><a href="/">Главная</a><span>/</span><a href="{team_url}">{team_label}</a><span>/</span><span>{e(t["name"])}</span></div>'
             '<section class="section trainer-profile trainer-profile-complete container">'
-            f'<figure>{image(t["image"], t["name"], True, width=t["portrait"]["width"], height=t["portrait"]["height"])}</figure><div class="trainer-profile-heading"><p class="eyebrow">КОМАНДА / ПЕРСОНАЛЬНЫЙ ТРЕНЕР</p>'
+            f'<figure>{image(t["image"], t["name"], True, width=t["portrait"]["width"], height=t["portrait"]["height"])}</figure><div class="trainer-profile-heading"><p class="eyebrow">{eyebrow}</p>'
             f'<span class="accent-line" aria-hidden="true"></span><h1>{e(t["name"].upper())}</h1>'
             f'<p class="profile-speciality">{e(t["speciality"])}</p><div class="profile-availability"><h2>Тренирует в клуб{ "ах" if len(t["clubs"]) > 1 else "е"}</h2>{clubs}</div>'
-            '<p class="profile-booking-note">Администратор подскажет свободное время и поможет записаться на тренировку.</p>'
-            + (f'<div class="hero-actions"><a class="button button-primary" href="{e(t["booking_url"], quote=True)}" target="_blank" rel="noopener">Записаться онлайн {UP}</a></div>' if t.get('booking_url') else '')
-            +
-            f'<a class="text-link profile-back" href="/trainers/">Вся команда {ARROW}</a></div></section>'
+            f'<p class="profile-booking-note">{booking_note}</p>{action}'
+            f'<a class="text-link profile-back" href="{team_url}">Вся команда {ARROW}</a></div></section>'
             '<section class="section trainer-about-section" aria-labelledby="trainer-about-title"><div class="container trainer-about-layout">'
             '<div><p class="eyebrow">ОПЫТ / ПОДХОД / ДОСТИЖЕНИЯ</p><span class="accent-line" aria-hidden="true"></span>'
             '<h2 id="trainer-about-title">О ТРЕНЕРЕ.</h2></div>'
@@ -136,6 +148,79 @@ def profile(t):
             f'<figure><img id="trainer-photo-full" alt="{e(t["name"])}"><figcaption id="trainer-photo-caption"></figcaption></figure>'
             '<div class="trainer-photo-controls"><button type="button" data-trainer-photo-prev aria-label="Предыдущее фото">←</button>'
             '<span id="trainer-photo-count" aria-live="polite"></span><button type="button" data-trainer-photo-next aria-label="Следующее фото">→</button></div></dialog>')
+
+
+def profile_metadata(text, t, origin):
+    page_url = f'{origin}/trainers/{t["id"]}/'
+    title = t['name'] + ' — Линия спорта'
+    text = re.sub(r'<title>[\s\S]*?</title>', lambda _: f'<title>{e(title)}</title>', text, count=1)
+    metadata = {'description': t['bio'], 'og:title': title, 'og:description': t['bio'],
+                'og:url': page_url, 'og:image': origin + t['image']}
+    for key, value in metadata.items():
+        text = re.sub(rf'(<meta\b[^>]*(?:name|property)="{re.escape(key)}"[^>]*content=")[^"]*(")',
+                      lambda m: m.group(1) + e(value, quote=True) + m.group(2), text, count=1)
+    return re.sub(r'(<link rel="canonical" href=")[^"]*(")',
+                  lambda m: m.group(1) + page_url + m.group(2), text, count=1)
+
+
+def refresh_fitness_trainers():
+    trainers = DATA.get('fitness_trainers', [])
+    if not trainers:
+        return
+    path = SITE / 'fitness/index.html'
+    text = path.read_text()
+    rosters = []
+    for cid, club in CLUBS.items():
+        members = [t for t in trainers if cid in t['clubs']]
+        if members:
+            rosters.append(
+                f'<div class="fitness-club-roster" id="fitness-trainers-{cid}">'
+                f'<h3>{e(club["street"])}</h3><p class="fitness-roster-address">{e(club["address"])}</p>'
+                f'<div class="trainer-grid">{"".join(card(t) for t in members)}</div></div>'
+            )
+    team = ('<section class="section fitness-team-section" id="fitness-trainers" aria-labelledby="fitness-team-title">'
+            '<div class="container"><div class="section-head"><div><p class="eyebrow">КОМАНДА / ГРУППОВОЙ ФИТНЕС</p>'
+            '<span class="accent-line" aria-hidden="true"></span><h2 id="fitness-team-title">ТРЕНЕРЫ ФИТНЕСА.</h2></div>'
+            '<p class="section-intro">Познакомьтесь с тренерами своего клуба. Опыт и направления занятий — в личных профилях.</p></div>'
+            + ''.join(rosters) + '</div></section>')
+    if 'id="fitness-trainers"' in text:
+        text = replace_section(text, r'id="fitness-trainers"', team)
+    else:
+        text = text.replace('<section class="section fitness-passes"', team + '<section class="section fitness-passes"', 1)
+        link = '<a href="/fitness/#fitness-trainers">Тренеры</a>'
+        text = text.replace('<a href="/fitness/#fitness-passes">Абонементы</a>',
+                            link + '<a href="/fitness/#fitness-passes">Абонементы</a>', 1)
+        mobile_labels = ('Направления фитнеса', 'Абонементы', 'Как записаться', 'Контакты')
+        for number, label in reversed(list(enumerate(mobile_labels, 1))):
+            if number > 1:
+                text = text.replace(f'{label} <span>{number:02d}</span>', f'{label} <span>{number + 1:02d}</span>', 1)
+        text = text.replace('Направления фитнеса <span>01</span></a>',
+                            'Направления фитнеса <span>01</span></a>' +
+                            '<a href="/fitness/#fitness-trainers">Тренеры <span>02</span></a>', 1)
+
+    # Load the shared trainer layout before the fitness palette overrides.
+    text = re.sub(r'<link\b[^>]*href="/assets/trainers\.css(?:\?[^"]*)?"[^>]*>', '', text)
+    shared_version = hashlib.sha256((SITE / 'assets/trainers.css').read_bytes()).hexdigest()[:12]
+    fitness_version = hashlib.sha256((SITE / 'assets/fitness-personal.css').read_bytes()).hexdigest()[:12]
+    text = re.sub(r'<link\b[^>]*href="/assets/fitness-personal\.css(?:\?[^"]*)?"[^>]*>',
+                  f'<link rel="stylesheet" href="/assets/trainers.css?v={shared_version}">'
+                  f'<link rel="stylesheet" href="/assets/fitness-personal.css?v={fitness_version}">', text, count=1)
+    path.write_text(text)
+
+    for trainer in trainers:
+        target = SITE / f'trainers/{trainer["id"]}/index.html'
+        if trainer['id'] in TRAINERS:
+            raise ValueError(f'Fitness profile would overwrite a gym trainer: {trainer["id"]}')
+        page = profile_metadata(text, trainer, 'https://liniyasporta.ru')
+        page = re.sub(r'(<main id="main">)[\s\S]*?(</main>)',
+                      lambda m: m.group(1) + profile(trainer, fitness=True) + m.group(2), page, count=1)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(page)
+
+
+if sys.argv[1:] == ['--fitness-only']:
+    refresh_fitness_trainers()
+    raise SystemExit
 
 
 directory_path = SITE / 'trainers/index.html'
@@ -180,16 +265,7 @@ for tid, t in TRAINERS.items():
                         if (SITE / f'trainers/{other}/index.html').exists())
         text = template.read_text()
         origin = re.search(r'<link rel="canonical" href="(https?://[^/\"]+)', text).group(1)
-        page_url = f'{origin}/trainers/{tid}/'
-        title = e(t['name'] + ' — Линия спорта')
-        text = re.sub(r'<title>[\s\S]*?</title>', lambda _: '<title>' + title + '</title>', text, count=1)
-        metadata = {'description': t['bio'], 'og:title': t['name'] + ' — Линия спорта',
-                    'og:description': t['bio'], 'og:url': page_url, 'og:image': origin + t['image']}
-        for key, value in metadata.items():
-            text = re.sub(rf'(<meta\b[^>]*(?:name|property)="{re.escape(key)}"[^>]*content=")[^\"]*(")',
-                          lambda m, value=value: m.group(1) + e(value, quote=True) + m.group(2), text, count=1)
-        text = re.sub(r'(<link rel="canonical" href=")[^\"]*(")',
-                      lambda m: m.group(1) + page_url + m.group(2), text, count=1)
+        text = profile_metadata(text, t, origin)
         path.parent.mkdir(parents=True, exist_ok=True)
     # Keep the current membership block; its offers are scoped to this trainer
     # by refresh-memberships.py after the current club assignments are written.
@@ -211,4 +287,5 @@ for path in SITE.rglob('*.html'):
 runpy.run_path(str(ROOT / '.github/scripts/refresh-memberships.py'), run_name='__main__')
 runpy.run_path(str(ROOT / '.github/scripts/refresh-trainer-passes.py'), run_name='__main__')
 runpy.run_path(str(ROOT / '.github/scripts/refresh-club-hours.py'), run_name='__main__')
+refresh_fitness_trainers()
 print('Rendered', len(TRAINERS), 'complete trainer profiles and', len(CLUBS), 'club rosters.')
