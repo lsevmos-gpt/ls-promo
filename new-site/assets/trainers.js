@@ -15,7 +15,9 @@
       let count = 0;
       cards.forEach(card => {
         const inClub = club === 'all' || card.dataset.trainerClubs.split(' ').includes(club);
-        card.hidden = !(inClub && normalize(card.textContent).includes(needle));
+        const surnameFirst = card.querySelector('h3').textContent.split(/\s+/).reverse().join(' ');
+        const matches = normalize(card.textContent).includes(needle) || normalize(surnameFirst).includes(needle);
+        card.hidden = !(inClub && matches);
         if (!card.hidden) count++;
       });
       filters.forEach(button => {

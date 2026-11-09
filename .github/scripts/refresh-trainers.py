@@ -150,11 +150,17 @@ def profile(t, *, fitness=False):
             '<span id="trainer-photo-count" aria-live="polite"></span><button type="button" data-trainer-photo-next aria-label="Следующее фото">→</button></div></dialog>')
 
 
-def profile_metadata(text, t, origin):
-    page_url = f'{origin}/trainers/{t["id"]}/'
+def profile_name_metadata(text, t):
     title = t['name'] + ' — Линия спорта'
     text = re.sub(r'<title>[\s\S]*?</title>', lambda _: f'<title>{e(title)}</title>', text, count=1)
-    metadata = {'description': t['bio'], 'og:title': title, 'og:description': t['bio'],
+    return re.sub(r'(<meta\b[^>]*property="og:title"[^>]*content=")[^"]*(")',
+                  lambda m: m.group(1) + e(title) + m.group(2), text, count=1)
+
+
+def profile_metadata(text, t, origin):
+    page_url = f'{origin}/trainers/{t["id"]}/'
+    text = profile_name_metadata(text, t)
+    metadata = {'description': t['bio'], 'og:description': t['bio'],
                 'og:url': page_url, 'og:image': origin + t['image']}
     for key, value in metadata.items():
         text = re.sub(rf'(<meta\b[^>]*(?:name|property)="{re.escape(key)}"[^>]*content=")[^"]*(")',
@@ -259,7 +265,7 @@ save(home_path, replace_section(home, r'id="team"', section))
 for tid, t in TRAINERS.items():
     path = SITE / f'trainers/{tid}/index.html'
     if path.exists():
-        text = path.read_text()
+        text = profile_name_metadata(path.read_text(), t)
     else:
         template = next(SITE / f'trainers/{other}/index.html' for other in TRAINERS
                         if (SITE / f'trainers/{other}/index.html').exists())
