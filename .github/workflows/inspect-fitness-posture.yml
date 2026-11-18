@@ -13,33 +13,31 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install ffmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-      - name: Inspect original frames without generation
+      - name: Render two real upright frame candidates with natural restoration
         shell: bash
         run: |
           set -euo pipefail
           video='new-site/assets/video/fitness-hero-0cfc68d445.mp4'
           test -s "$video"
-          ffprobe -v error -show_entries stream=width,height -of compact "$video"
-          timecodes=(0.72 0.80 1.98 2.06)
-          for i in "${!timecodes[@]}"; do
-            tc="${timecodes[i]}"
-            printf -v nn '%02d' "$i"
-            echo "FRAME_INDEX=$i TIMECODE=$tc"
-            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf 'scale=960:540:flags=lanczos' -q:v 4 "/tmp/ls-posture-$nn.jpg"
+          for pair in 'A 2.06' 'B 0.80'; do
+            set -- $pair
+            id="$1"; tc="$2"
+            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf "hqdn3d=1.1:1.1:2.8:2.8,curves=all='0/0 0.12/0.15 0.43/0.47 0.80/0.82 1/1',eq=contrast=1.035:saturation=1.075,unsharp=5:5:0.66:5:5:0.0" -q:v 2 "/tmp/fitness-upright-$id.jpg"
           done
-          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/ls-posture-*.jpg' -vf 'tile=2x2' -frames:v 1 -q:v 7 /tmp/ls-posture-contact-sheet.jpg
           python3 - <<'PY'
           import base64,hashlib
           from pathlib import Path
-          p=Path('/tmp/ls-posture-contact-sheet.jpg')
-          b=base64.b64encode(p.read_bytes()).decode('ascii')
-          print('POSTURE_SHEET_START')
-          for i in range(0,len(b),4000): print('POSTURE_B64 '+b[i:i+4000])
-          print('POSTURE_SHEET_END')
-          print('POSTURE_BYTES',p.stat().st_size)
+          for k in ('A','B'):
+            p=Path(f'/tmp/fitness-upright-{k}.jpg')
+            raw=p.read_bytes();b=base64.b64encode(raw).decode('ascii')
+            print(f'UPRIGHT_{k}_BEGIN')
+            for i in range(0,len(b),4000): print(f'UPRIGHT_{k}_B64 '+b[i:i+4000])
+            print(f'UPRIGHT_{k}_END')
+            print(f'UPRIGHT_{k}_BYTES',len(raw))
+            print(f'UPRIGHT_{k}_SHA256',hashlib.sha256(raw).hexdigest())
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: fitness-upright-selection
-          path: /tmp/ls-posture-contact-sheet.jpg
+          name: restored-upright-aerostretch-candidates
+          path: /tmp/fitness-upright-*.jpg
           retention-days: 1
