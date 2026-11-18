@@ -18,23 +18,20 @@ jobs:
         run: |
           set -euo pipefail
           test -s new-site/assets/video/fitness-hero-0cfc68d445.mp4
-          for sec in $(seq 0 15); do
-            printf -v stamp '%02d' "$sec"
-            ffmpeg -hide_banner -loglevel error -y -i new-site/assets/video/fitness-hero-0cfc68d445.mp4 -ss "$sec" -frames:v 1 -vf 'scale=440:248:flags=lanczos' -q:v 5 "/tmp/fitness-f-$stamp.jpg"
-          done
-          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/fitness-f-*.jpg' -vf 'tile=4x4' -frames:v 1 -q:v 7 /tmp/fitness-contact-grid.jpg
+          ffmpeg -hide_banner -loglevel error -y -i new-site/assets/video/fitness-hero-0cfc68d445.mp4 -ss 7.0 -frames:v 1 -vf 'eq=brightness=0.014:contrast=1.035:saturation=1.04,unsharp=5:5:0.35:5:5:0.0' -q:v 3 /tmp/fitness-final-real-frame.jpg
           python3 - <<'PY'
-          import base64
+          import base64,hashlib
           from pathlib import Path
-          p=Path('/tmp/fitness-contact-grid.jpg')
+          p=Path('/tmp/fitness-final-real-frame.jpg')
           data=base64.b64encode(p.read_bytes()).decode()
-          print('GRID_B64_BEGIN')
-          for i in range(0,len(data),4000):print('GRID_B64 '+data[i:i+4000])
-          print('GRID_B64_END')
-          print('GRID_BYTES',p.stat().st_size)
+          print('FINAL_B64_BEGIN')
+          for i in range(0,len(data),4000):print('FINAL_B64 '+data[i:i+4000])
+          print('FINAL_B64_END')
+          print('FINAL_BYTES',p.stat().st_size)
+          print('FINAL_SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: fitness-hero-timecode-grid
-          path: /tmp/fitness-contact-grid.jpg
+          name: fitness-hero-final-frame
+          path: /tmp/fitness-final-real-frame.jpg
           retention-days: 1
