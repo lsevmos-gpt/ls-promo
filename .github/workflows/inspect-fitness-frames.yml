@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Install video decoder
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Extract frame contact sheet from existing original video (no generation)
         shell: bash
         run: |
