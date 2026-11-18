@@ -20,14 +20,14 @@ jobs:
           video='new-site/assets/video/fitness-hero-0cfc68d445.mp4'
           test -s "$video"
           ffprobe -v error -show_entries stream=width,height -of compact "$video"
-          timecodes=(0.60 0.70 0.80 0.90 1.00 1.10 1.90 2.00 2.10 2.20 2.30 2.40)
+          timecodes=(0.72 0.80 1.98 2.06)
           for i in "${!timecodes[@]}"; do
             tc="${timecodes[i]}"
             printf -v nn '%02d' "$i"
             echo "FRAME_INDEX=$i TIMECODE=$tc"
-            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf 'scale=480:270:flags=lanczos' -q:v 4 "/tmp/ls-posture-$nn.jpg"
+            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf 'scale=960:540:flags=lanczos' -q:v 4 "/tmp/ls-posture-$nn.jpg"
           done
-          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/ls-posture-*.jpg' -vf 'tile=4x3' -frames:v 1 -q:v 7 /tmp/ls-posture-contact-sheet.jpg
+          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/ls-posture-*.jpg' -vf 'tile=2x2' -frames:v 1 -q:v 7 /tmp/ls-posture-contact-sheet.jpg
           python3 - <<'PY'
           import base64,hashlib
           from pathlib import Path
