@@ -19,6 +19,8 @@ ALLOWED = re.compile(r'new-site/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.(?:html|cs
 NEW_TRAINER_IMAGE = re.compile(r'new-site/assets/trainers/[A-Za-z0-9_.-]+-([a-f0-9]{10})\.(?:webp|jpg)')
 NEW_TRAINER_HTML = re.compile(r'new-site/trainers/[a-z0-9-]+/index\.html')
 NEW_CLUB_MEDIA = re.compile(r'new-site/assets/images/6d-(?:01|03|04|08|10|13|17|23|41|81|82|111)-[a-z0-9-]+-20261105\.jpg')
+NEW_FITNESS_POSTER = re.compile(r'new-site/assets/images/fitness-hero-([a-f0-9]{10})\.jpg')
+NEW_FITNESS_VIDEO = re.compile(r'new-site/assets/video/fitness-hero-([a-f0-9]{10})\.mp4')
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()
@@ -36,21 +38,29 @@ def prepare():
         source = ROOT / path
         new_trainer_image = status == 'A' and NEW_TRAINER_IMAGE.fullmatch(path)
         new_club_media = status == 'A' and NEW_CLUB_MEDIA.fullmatch(path)
-        new_image = new_trainer_image or new_club_media
+        new_fitness_poster = status == 'A' and NEW_FITNESS_POSTER.fullmatch(path)
+        new_fitness_video = status == 'A' and NEW_FITNESS_VIDEO.fullmatch(path)
+        new_image = new_trainer_image or new_club_media or new_fitness_poster
+        new_media = new_image or new_fitness_video
         new_profile = status == 'A' and NEW_TRAINER_HTML.fullmatch(path)
         existing_text = status == 'M' and ALLOWED.fullmatch(path)
-        if (not (existing_text or new_image or new_profile) or '..' in Path(path).parts
+        if (not (existing_text or new_media or new_profile) or '..' in Path(path).parts
                 or not source.is_file() or source.is_symlink()
                 or not source.resolve().is_relative_to(ROOT)):
             raise SystemExit('Unsupported text update path or change: ' + row)
         body = source.read_bytes()
-        if new_image or new_profile:
+        if new_media or new_profile:
             if new_image:
                 valid_webp = path.endswith('.webp') and body.startswith(b'RIFF') and body[8:12] == b'WEBP'
                 valid_jpeg = path.endswith('.jpg') and body.startswith(b'\xff\xd8') and body.endswith(b'\xff\xd9')
                 if (not (valid_webp or valid_jpeg)
-                        or (new_trainer_image and new_trainer_image.group(1) != sha256(body).hexdigest()[:10])):
-                    raise SystemExit('Invalid or incorrectly fingerprinted trainer image: ' + path)
+                        or (new_trainer_image and new_trainer_image.group(1) != sha256(body).hexdigest()[:10])
+                        or (new_fitness_poster and new_fitness_poster.group(1) != sha256(body).hexdigest()[:10])):
+                    raise SystemExit('Invalid or incorrectly fingerprinted trainer/fitness image: ' + path)
+            elif new_fitness_video:
+                if (len(body) < 32 or body[4:8] != b'ftyp'
+                        or new_fitness_video.group(1) != sha256(body).hexdigest()[:10]):
+                    raise SystemExit('Invalid or incorrectly fingerprinted fitness video: ' + path)
             elif (not body.startswith(b'<!doctype html>')
                   or b'<html lang="ru">' not in body
                   or (ORIGIN + '/trainers/' + source.parent.name + '/').encode() not in body):
@@ -65,15 +75,16 @@ def prepare():
                 if error.code != 404:
                     raise
         size += len(body)
-        per_file_limit = 2 * 1024 * 1024 if new_club_media else 512 * 1024
+        per_file_limit = (8 * 1024 * 1024 if new_fitness_video else
+                          2 * 1024 * 1024 if new_club_media else 512 * 1024)
         if len(body) > per_file_limit or size > 16 * 1024 * 1024:
             raise SystemExit('Bounded site update exceeds its size limit; use a full deployment.')
         files.append({'path': path, 'remote': path.removeprefix('new-site/'),
-                      'before_blob': None if (new_image or new_profile) else git('rev-parse', base + ':' + path),
+                      'before_blob': None if (new_media or new_profile) else git('rev-parse', base + ':' + path),
                       'sha256': sha256(body).hexdigest()})
     PLAN.write_text(json.dumps({'base': base, 'commit': commit, 'files': files}, indent=2))
     backup_commands, upload_commands = [], []
-    # Publish images before any page can reference them.
+    # Publish new media before any HTML/CSS/JS file can reference it.
     for item in sorted(files, key=lambda value: (value['before_blob'] is not None, value['remote'])):
         relative = item['remote']
         destination = BACKUP / relative
@@ -85,7 +96,7 @@ def prepare():
         upload_commands.append(f'put "{item["path"]}" -o "{relative}";')
     (ROOT / '_new_site_patch_backup.lftp').write_text('\n'.join(backup_commands) + '\n')
     (ROOT / '_new_site_patch_upload.lftp').write_text('\n'.join(upload_commands) + '\n')
-    print(f'Prepared {len(files)} public files, {size} bytes. New trainer images upload before text references.')
+    print(f'Prepared {len(files)} public files, {size} bytes. New images and video upload before text references.')
 
 def verify_backup():
     plan = json.loads(PLAN.read_text())

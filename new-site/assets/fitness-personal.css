@@ -225,3 +225,66 @@
     font-size: 14px;
   }
 }
+
+/* Hero video: consistent with the main site's poster-to-dialog interaction. */
+.fitness .fitness-hero-media {
+  min-height: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  align-self: center;
+  background: #1F1C1B;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 46px rgb(31 28 27 / .12);
+}
+.fitness .fitness-hero-media > img {
+  object-position: center center;
+  object-fit: cover;
+}
+.fitness .fitness-hero-media figcaption {
+  padding: 16px 18px;
+  gap: 12px;
+  background: rgb(31 28 27 / .88);
+  color: #FBF7F3;
+  backdrop-filter: blur(8px);
+}
+.fitness .fitness-hero-media figcaption > span {
+  color: #FBF7F3;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .07em;
+}
+.fitness .fitness-hero-media figcaption button {
+  flex-shrink: 0;
+  color: #FBF7F3;
+  cursor: pointer;
+  font-weight: 600;
+}
+.fitness .fitness-hero-media .play-icon {
+  width: 34px;
+  height: 34px;
+  border-color: #FBF7F3;
+  background: #914F4C;
+  color: #FBF7F3;
+}
+.fitness .fitness-hero-media figcaption button:focus-visible {
+  outline: 2px solid #FBF7F3;
+  outline-offset: 5px;
+}
+.fitness .fitness-hero-media .hero-photo-index {
+  background: rgb(31 28 27 / .85);
+  color: #FBF7F3;
+  border-radius: 4px;
+}
+@media (max-width: 760px) {
+  .fitness .fitness-hero-media {border-radius: 12px;}
+  .fitness .fitness-hero-media figcaption {padding: 11px 12px;gap: 8px;}
+  .fitness .fitness-hero-media figcaption > span {font-size: 10px;letter-spacing: .025em;}
+  .fitness .fitness-hero-media figcaption button {font-size: 12px;gap: 8px;}
+  .fitness .fitness-hero-media .play-icon {height: 30px;width: 30px;font-size: 12px;}
+  .fitness .fitness-hero-media .hero-photo-index {font-size: 10px;right: 12px;top: 12px;}
+}
+@media (max-width: 430px) {
+  .fitness .fitness-hero-media figcaption > span {max-width: 56%;}
+}
