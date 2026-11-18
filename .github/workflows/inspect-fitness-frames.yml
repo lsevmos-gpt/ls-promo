@@ -1,0 +1,34 @@
+name: Inspect real fitness hero video frames
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/inspect-fitness-frames.yml']
+permissions:
+  contents: read
+jobs:
+  frames:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract frame contact sheet from existing original video (no generation)
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s new-site/assets/video/fitness-hero-0cfc68d445.mp4
+          ffmpeg -hide_banner -loglevel error -y -i new-site/assets/video/fitness-hero-0cfc68d445.mp4 -vf 'fps=1/2,scale=440:248:flags=lanczos,tile=4x2' -frames:v 1 -q:v 7 /tmp/fitness-contact-sheet.jpg
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          p=Path('/tmp/fitness-contact-sheet.jpg')
+          data=base64.b64encode(p.read_bytes()).decode()
+          print('SHEET_B64_BEGIN')
+          for i in range(0,len(data),4000):print('SHEET_B64 '+data[i:i+4000])
+          print('SHEET_B64_END')
+          print('SHEET_BYTES',p.stat().st_size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fitness-hero-contact-sheet
+          path: /tmp/fitness-contact-sheet.jpg
+          retention-days: 1
