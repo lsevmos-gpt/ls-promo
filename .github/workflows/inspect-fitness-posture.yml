@@ -1,0 +1,45 @@
+name: Inspect fitness upright aerial split frames
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/inspect-fitness-posture.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Inspect original frames without generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          video='new-site/assets/video/fitness-hero-0cfc68d445.mp4'
+          test -s "$video"
+          ffprobe -v error -show_entries stream=width,height -of compact "$video"
+          timecodes=(0.60 0.70 0.80 0.90 1.00 1.10 1.90 2.00 2.10 2.20 2.30 2.40)
+          for i in "${!timecodes[@]}"; do
+            tc="${timecodes[i]}"
+            printf -v nn '%02d' "$i"
+            echo "FRAME_INDEX=$i TIMECODE=$tc"
+            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf 'scale=480:270:flags=lanczos' -q:v 4 "/tmp/ls-posture-$nn.jpg"
+          done
+          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/ls-posture-*.jpg' -vf 'tile=4x3' -frames:v 1 -q:v 7 /tmp/ls-posture-contact-sheet.jpg
+          python3 - <<'PY'
+          import base64,hashlib
+          from pathlib import Path
+          p=Path('/tmp/ls-posture-contact-sheet.jpg')
+          b=base64.b64encode(p.read_bytes()).decode('ascii')
+          print('POSTURE_SHEET_START')
+          for i in range(0,len(b),4000): print('POSTURE_B64 '+b[i:i+4000])
+          print('POSTURE_SHEET_END')
+          print('POSTURE_BYTES',p.stat().st_size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fitness-upright-selection
+          path: /tmp/ls-posture-contact-sheet.jpg
+          retention-days: 1
