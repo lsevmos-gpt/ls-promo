@@ -156,3 +156,72 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+/* Shared trainer-filter interaction in the fitness theme. */
+.fitness-team-section .fitness-trainer-filters {
+  margin: 30px 0 24px;
+}
+.fitness-team-section .team-club-filter {
+  min-height: 54px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: left;
+}
+.fitness-team-section .team-club-filter:hover:not(.active) {
+  background: var(--deep);
+  border-color: var(--green);
+}
+.fitness-team-section .team-club-filter.active {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: var(--paper);
+}
+.fitness-team-section .team-club-filter:focus-visible,
+.fitness-team-section .trainer-search > input:focus-visible {
+  outline: 3px solid var(--green-deep);
+  outline-offset: 3px;
+}
+.fitness-team-section .trainer-search {
+  max-width: 570px;
+  margin: 0 0 12px;
+}
+.fitness-team-section .trainer-search > input {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+}
+.fitness-team-section .trainer-search > input::placeholder {
+  color: var(--muted);
+  opacity: .85;
+}
+.fitness-team-section .team-result-count {
+  color: var(--muted);
+}
+.fitness-team-section .fitness-trainer-grid {
+  margin-top: 25px;
+}
+@media (max-width: 700px) {
+  .fitness-team-section .fitness-trainer-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .fitness-team-section .fitness-trainer-filters .team-club-filter:first-child {
+    grid-column: 1 / -1;
+  }
+  .fitness-team-section .fitness-trainer-filters .team-club-filter {
+    min-width: 0;
+    padding: 12px;
+    font-size: 14px;
+  }
+  .fitness-team-section .fitness-trainer-filters .team-club-filter > span {
+    font-size: 14px;
+  }
+}
