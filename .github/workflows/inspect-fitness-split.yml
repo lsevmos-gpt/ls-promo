@@ -19,27 +19,20 @@ jobs:
           set -euo pipefail
           video=new-site/assets/video/fitness-hero-0cfc68d445.mp4
           test -s "$video"
-          timecodes=(0.65 0.85 1.05 1.25 1.45 1.65 1.85 2.05 2.25 2.45 2.65 2.85)
-          for i in "${!timecodes[@]}"; do
-            tc="${timecodes[i]}"
-            printf -v nn '%02d' "$i"
-            echo "FRAME_INDEX=$i TIMECODE=$tc"
-            ffmpeg -hide_banner -loglevel error -y -i "$video" -ss "$tc" -frames:v 1 -vf 'scale=480:270:flags=lanczos' -q:v 4 "/tmp/ls-split-$nn.jpg"
-          done
-          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/ls-split-*.jpg' -vf 'tile=4x3' -frames:v 1 -q:v 8 /tmp/ls-split-contact-sheet.jpg
+          ffmpeg -hide_banner -loglevel error -y -i "$video" -ss 0.65 -frames:v 1 -vf 'eq=brightness=0.012:contrast=1.025:saturation=1.035,unsharp=5:5:0.25:5:5:0.0' -q:v 3 /tmp/ls-final-aerostretch-frame.jpg
           python3 - <<'PY'
           import base64,hashlib
           from pathlib import Path
-          p=Path('/tmp/ls-split-contact-sheet.jpg')
+          p=Path('/tmp/ls-final-aerostretch-frame.jpg')
           data=base64.b64encode(p.read_bytes()).decode()
-          print('SHEET_B64_BEGIN')
-          for i in range(0,len(data),4000): print('SHEET_B64 '+data[i:i+4000])
-          print('SHEET_B64_END')
-          print('SHEET_BYTES',p.stat().st_size)
-          print('SHEET_SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
+          print('FINAL_B64_BEGIN')
+          for i in range(0,len(data),4000): print('FINAL_B64 '+data[i:i+4000])
+          print('FINAL_B64_END')
+          print('FINAL_BYTES',p.stat().st_size)
+          print('FINAL_SHA256',hashlib.sha256(p.read_bytes()).hexdigest())
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: aero-stretch-frame-selection
-          path: /tmp/ls-split-contact-sheet.jpg
+          name: aero-stretch-full-res-candidate
+          path: /tmp/ls-final-aerostretch-frame.jpg
           retention-days: 1
