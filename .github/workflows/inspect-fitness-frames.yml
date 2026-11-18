@@ -18,19 +18,23 @@ jobs:
         run: |
           set -euo pipefail
           test -s new-site/assets/video/fitness-hero-0cfc68d445.mp4
-          ffmpeg -hide_banner -loglevel error -y -ss 6.0 -i new-site/assets/video/fitness-hero-0cfc68d445.mp4 -vf 'eq=brightness=0.014:contrast=1.04:saturation=1.04,unsharp=5:5:0.4:5:5:0.0' -frames:v 1 -q:v 3 /tmp/fitness-selected-frame.jpg
+          for sec in $(seq 0 15); do
+            printf -v stamp '%02d' "$sec"
+            ffmpeg -hide_banner -loglevel error -y -i new-site/assets/video/fitness-hero-0cfc68d445.mp4 -ss "$sec" -frames:v 1 -vf 'scale=440:248:flags=lanczos' -q:v 5 "/tmp/fitness-f-$stamp.jpg"
+          done
+          ffmpeg -hide_banner -loglevel error -y -framerate 1 -pattern_type glob -i '/tmp/fitness-f-*.jpg' -vf 'tile=4x4' -frames:v 1 -q:v 7 /tmp/fitness-contact-grid.jpg
           python3 - <<'PY'
           import base64
           from pathlib import Path
-          p=Path('/tmp/fitness-selected-frame.jpg')
+          p=Path('/tmp/fitness-contact-grid.jpg')
           data=base64.b64encode(p.read_bytes()).decode()
-          print('FRAME_B64_BEGIN')
-          for i in range(0,len(data),4000):print('FRAME_B64 '+data[i:i+4000])
-          print('FRAME_B64_END')
-          print('FRAME_BYTES',p.stat().st_size)
+          print('GRID_B64_BEGIN')
+          for i in range(0,len(data),4000):print('GRID_B64 '+data[i:i+4000])
+          print('GRID_B64_END')
+          print('GRID_BYTES',p.stat().st_size)
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: fitness-hero-candidate-frame
-          path: /tmp/fitness-selected-frame.jpg
+          name: fitness-hero-timecode-grid
+          path: /tmp/fitness-contact-grid.jpg
           retention-days: 1
