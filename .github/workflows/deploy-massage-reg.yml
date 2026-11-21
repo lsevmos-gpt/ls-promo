@@ -1,0 +1,80 @@
+name: Deploy massage.liniyasporta.ru to REG.RU
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: massage-liniyasporta-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Validate separate massage site
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s massage-site/index.html
+          test -s massage-site/styles.css
+          test -s massage-site/app.js
+          test -s massage-site/specialists/svetlana/index.html
+          test -s massage-site/specialists/anna/index.html
+          test -s massage-site/specialists/grigory/index.html
+          test -s massage-site/assets/LS_LOGO_HORIZONTAL_GREEN_WHITE_TRANSPARENT_MASTER.png
+
+      - name: Check REG.RU secrets (dedicated massage FTP user only)
+        env:
+          MASSAGE_FTP_USER: ${{ secrets.MASSAGE_FTP_USER }}
+          MASSAGE_FTP_PASSWORD: ${{ secrets.MASSAGE_FTP_PASSWORD }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$MASSAGE_FTP_USER" || { echo "::error::Set secret MASSAGE_FTP_USER"; exit 1; }
+          test -n "$MASSAGE_FTP_PASSWORD" || { echo "::error::Set secret MASSAGE_FTP_PASSWORD"; exit 1; }
+
+      - name: Install FTPS client
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload ONLY massage-site to isolated massage document root
+        env:
+          MASSAGE_FTP_USER: ${{ secrets.MASSAGE_FTP_USER }}
+          MASSAGE_FTP_PASSWORD: ${{ secrets.MASSAGE_FTP_PASSWORD }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # IMPORTANT: FTP account MUST be restricted on REG.RU to the massage subdomain's own document root.
+          lftp -u "$MASSAGE_FTP_USER","$MASSAGE_FTP_PASSWORD" "ftp://server169.hosting.reg.ru:21" -e "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate yes;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            mirror -R --verbose --exclude-glob .git* --exclude-glob .github* --exclude-glob *.md --exclude-glob CNAME massage-site/ ./;
+            bye
+          "
+
+      - name: Check live site via HTTPS
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            if curl -fsSL --connect-timeout 10 --max-time 35 \
+              -H 'Cache-Control: no-cache' \
+              "https://massage.liniyasporta.ru/?smoke=${GITHUB_SHA}" \
+              -o /tmp/massage-live.html; then break; fi
+            [ "$attempt" -eq 5 ] && exit 1
+            sleep 5
+          done
+          grep -Fqi 'Массаж' /tmp/massage-live.html
+          echo "Massage site live and responding over HTTPS."

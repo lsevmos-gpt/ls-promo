@@ -1,0 +1,245 @@
+{
+  "brand": "Линия спорта",
+  "subdomain": "massage.liniyasporta.ru",
+  "team": [
+    {
+      "slug": "anna",
+      "name": "Анна",
+      "first": "Анна",
+      "title": "Массажист",
+      "phone": "+7 978 130 91 14",
+      "tel": "+79781309114",
+      "promo": "Забота о теле в каждом движении. Профессиональный массаж для восстановления и гармонии.",
+      "bio": "Индивидуальный подход к целям и особенностям тела — от расслабления до восстановления после тренировок.",
+      "caption": "Индивидуальный подход",
+      "services": [
+        "Снятие напряжения",
+        "Восстановление после тренировок",
+        "Массаж для отдыха и расслабления"
+      ],
+      "prices": [],
+      "bg": "sand",
+      "address": "г. Симферополь, ул. Героев Сталинграда, 6Д",
+      "price_groups": [
+        {
+          "name": "Ручной массаж",
+          "rows": [
+            {
+              "name": "Ручной массаж",
+              "duration": "60 минут",
+              "description": "Ягодицы, спина, голова, руки, грудь",
+              "female": "2 000 ₽",
+              "male": "3 000 ₽"
+            },
+            {
+              "name": "Ручной массаж",
+              "duration": "90 минут",
+              "description": "Стопы, задняя поверхность ног, ягодицы, спина, голова, руки, грудь",
+              "female": "2 700 ₽",
+              "male": "3 700 ₽"
+            },
+            {
+              "name": "Банки",
+              "price": "500 ₽"
+            }
+          ]
+        },
+        {
+          "name": "Аппаратный массаж",
+          "rows": [
+            {
+              "name": "Вибромассаж + LPG",
+              "price": "2 000 ₽"
+            },
+            {
+              "name": "Вибромассаж",
+              "duration": "30 минут",
+              "female": "1 000 ₽",
+              "male": "1 500 ₽"
+            },
+            {
+              "name": "Вибромассаж",
+              "duration": "60 минут",
+              "female": "1 500 ₽",
+              "male": "2 500 ₽"
+            },
+            {
+              "name": "LPG + кавитация",
+              "price": "2 000 ₽"
+            },
+            {
+              "name": "LPG + горячий вакуум",
+              "price": "2 000 ₽"
+            },
+            {
+              "name": "LPG + RF-лифтинг",
+              "price": "2 000 ₽"
+            },
+            {
+              "name": "LPG",
+              "duration": "30 минут",
+              "price": "1 000 ₽"
+            },
+            {
+              "name": "LPG",
+              "duration": "60 минут",
+              "price": "1 500 ₽"
+            },
+            {
+              "name": "Горячий вакуум",
+              "duration": "30 минут",
+              "price": "1 000 ₽"
+            },
+            {
+              "name": "Обёртывание",
+              "price": "300 ₽"
+            }
+          ]
+        },
+        {
+          "name": "Абонементы",
+          "rows": [
+            {
+              "name": "6 сеансов",
+              "price": "10 000 ₽"
+            },
+            {
+              "name": "12 сеансов",
+              "price": "20 000 ₽"
+            }
+          ]
+        }
+      ],
+      "price_status": "DRAFT — цены из найденного PDF, имя специалиста в PDF не указано; требуется подтверждение принадлежности и актуальности",
+      "price_source": "Линия_спорта_ФИТНЕС_прайс_массаж_А4.pdf"
+    },
+    {
+      "slug": "grigory",
+      "name": "Григорий",
+      "first": "Григорий",
+      "title": "Массажист",
+      "phone": "+7 978 773-23-53",
+      "tel": "+79787732353",
+      "promo": "Массаж для отдыха, восстановления и внимания к своему самочувствию.",
+      "bio": "Проводит общий массаж, массаж спины, шиацу и расслабляющие техники.",
+      "caption": "Массаж и восстановление",
+      "services": [
+        "Массаж спины",
+        "Общий массаж",
+        "Массаж шиацу",
+        "Расслабляющий и тонизирующий массаж"
+      ],
+      "prices": [
+        [
+          "Массаж спины",
+          "30 мин",
+          "2 500 ₽",
+          "2 000 ₽",
+          ""
+        ],
+        [
+          "Общий массаж",
+          "60 мин",
+          "3 000 ₽",
+          "2 500 ₽",
+          "Женщины"
+        ],
+        [
+          "Общий массаж",
+          "60 мин",
+          "3 500 ₽",
+          "3 000 ₽",
+          "Мужчины"
+        ],
+        [
+          "Массаж шиацу",
+          "30 мин",
+          "3 000 ₽",
+          "2 500 ₽",
+          ""
+        ],
+        [
+          "Расслабляющий / тонизирующий",
+          "60 мин",
+          "3 000 ₽",
+          "2 500 ₽",
+          ""
+        ]
+      ],
+      "bg": "dark",
+      "address": ""
+    },
+    {
+      "slug": "svetlana",
+      "name": "Светлана Щетинина",
+      "first": "Светлана",
+      "title": "Массажист",
+      "phone": "+7 978 730-82-12",
+      "tel": "+79787308212",
+      "promo": "Помогаю заботиться о теле, восстанавливаться после нагрузок и поддерживать хорошее самочувствие.",
+      "bio": "Высшее образование и 6 лет практики. Работает с запросами на восстановление, расслабление и комфорт в теле.",
+      "caption": "Приём по воскресеньям",
+      "services": [
+        "Спортивный массаж",
+        "Оздоровительный массаж",
+        "Лимфодренажный массаж",
+        "Расслабляющий массаж",
+        "Антицеллюлитный массаж",
+        "Коррекция фигуры"
+      ],
+      "prices": [
+        [
+          "Общий массаж",
+          "70–75 мин",
+          "3 000 ₽",
+          "2 500 ₽",
+          ""
+        ],
+        [
+          "Массаж спины",
+          "40 мин",
+          "2 000 ₽",
+          "1 600 ₽",
+          ""
+        ],
+        [
+          "Антицеллюлитный массаж",
+          "60 мин",
+          "3 000 ₽",
+          "2 500 ₽",
+          ""
+        ]
+      ],
+      "bg": "spa",
+      "address": "",
+      "availability": "Только по воскресеньям",
+      "available_weekdays": [
+        "sunday"
+      ]
+    }
+  ],
+  "version": "9.0-grigory-centered",
+  "publication_status": "DRAFT — requires user design approval; Anna price list not assigned/confirmed; Grigory & Svetlana portrait materials still derived from supplied advertising designs; subdomain DNS/SSL/FTPS not deployed.",
+  "photo_layout_notes": "Фотографии не перерисованы: на главной и в карточках используются портретные пропорции и смещение изображения внутри оформленной подложки, чтобы центрировать лица и исключить обрезку голов.",
+  "photo_sources": {
+    "anna_square": "User-provided Уверенный портрет фитнес-тренера в студии(1).png — unaltered original in assets/anna-original-square.png, no cropping",
+    "anna_vertical": "User-provided Спортивный портрет в wellness-студии(1).png — unaltered original in assets/anna-original-portrait.png, no cropping",
+    "grigory": "User-provided Григорий Премиальный массажный кабинет — Линия  спорта(1).png; photograph cropped to avoid advertising text in assets/grigory-from-poster.png, no face alterations",
+    "svetlana": "Derived from provided promotional design; replace with original if provided, existing assets/svetlana-portrait.webp"
+  },
+  "design_sources": [
+    "lsevmos-gpt/ls-promo: promo-site/graphite-start/index.html",
+    "lsevmos-gpt/ls-docs: site/index.html, site/assets/site-v20.css",
+    "lsevmos-gpt/ls-new-heroes: site/index.html, site/assets/css/v5/v5-01-exact.css"
+  ],
+  "design_note": "Light-background adaptation of new promo/docs visual language. Do NOT use liniyasporta.ru as design reference (old design).",
+  "photo_assets": {
+    "anna_card": "anna-original-square.png",
+    "anna_profile": "anna-original-portrait.png",
+    "grigory_card": "grigory-card-centered-v9.png",
+    "grigory_profile": "grigory-profile-centered-v9.png",
+    "svetlana_card": "svetlana-card.png",
+    "svetlana_profile": "svetlana-profile.png"
+  },
+  "photo_note": "Grigory visually centered from supplied full poster, with only left-background advertising text removed; subject pixels unchanged. Source poster and former crops preserved."
+}

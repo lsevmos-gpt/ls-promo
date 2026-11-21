@@ -1,19 +1,40 @@
-# ls-promo
+# Линия спорта — веб-проекты (единый репозиторий)
 
-Private source repository for **promo.liniyasporta.ru**.
+> Имя репозитория пока **ls-promo**, чтобы не затрагивать существующие интеграции и ссылки. В дальнейшем, после проверки публикаций, можно переименовать в **ls-web**.
 
-## Structure
+## Сайты
 
-- `promo-site/` — files published to the web root of `promo.liniyasporta.ru`.
-- `.github/workflows/bootstrap-promo-live.yml` — imports the current live promo site over HTTPS into `promo-site/`.
-- `.github/workflows/deploy-promo-reg.yml` — deploys `promo-site/` to REG.RU by FTPS.
+| Поддомен / сайт | Папка | Публикация |
+| --- | --- | --- |
+| https://promo.liniyasporta.ru/ | `promo-site/` | Существующий `.github/workflows/deploy-promo-reg.yml` — **без изменений** |
+| https://massage.liniyasporta.ru/ | `massage-site/` | `.github/workflows/deploy-massage-reg.yml` — **пока только ручной запуск, НЕ опубликовано** |
 
-## REG.RU target
+Другие сайты (docs.liniyasporta.ru, ls-promo.ru и т. д.) пока работают из своих текущих репозиториев. Переносить их постепенно, только после резервных копий, сравнения рабочей версии и проверки доступа к хостингу. Никакого автоматического переключения сейчас нет.
 
-- Host: `server169.hosting.reg.ru`
-- FTPS port: `21`
-- User: `u3652448_promo`
-- Remote directory: `/` (dedicated promo FTP user)
-- GitHub Actions secret required for deployment: `PROMO_REG_PASSWORD`
+## Принцип монорепозитория
 
-Automatic deployment on push will be enabled after SFTP credentials are verified on this repository.
+Каждый сайт хранится **в отдельной папке**, имеет **свой корневой каталог на REG.RU**, **свой ограниченный FTP-пользователь** и **отдельный workflow**. Обновление одного сайта не должно изменять файлы других сайтов.
+
+```text
+promo-site/
+massage-site/
+.github/workflows/
+  deploy-promo-reg.yml
+  deploy-massage-reg.yml
+```
+
+### Массажисты — условия перед публикацией
+
+1. В REG.RU добавить сайт/поддомен `massage.liniyasporta.ru` с отдельной корневой папкой, проверить DNS и SSL.
+2. Создать **отдельного FTPS-пользователя, ограниченного корнем только массажного сайта**. Не использовать аккаунт `u3652448_promo`, принадлежащий промосайту.
+3. В secrets репозитория добавить `MASSAGE_FTP_USER` и `MASSAGE_FTP_PASSWORD`; пароли никогда не добавлять в код.
+4. **До публикации** заменить временные кадрированные портреты оригинальными фото, подтвердить прайсы, адреса, телефоны, юридические данные.
+5. После согласования запустить workflow `Deploy massage.liniyasporta.ru to REG.RU` вручную из GitHub Actions. Он переносит **только** `massage-site/` в корень пользователя, ограниченного этим поддоменом, и не удаляет другие серверные файлы.
+
+## Источники
+
+Действующие MASTER-логотипы и визуальные регламенты — Google Drive → «Линия спорта» → «00_ФИРМЕННЫЙ_СТИЛЬ_MASTER».
+
+Фото, прайсы и подготовленный комплект сайта — Google Drive → «Линия спорта» → «Массажисты» → «03_Сайт».
+
+**Статус massage-site: DRAFT, публичное размещение запрещено до проверки данных и фотографий.**
