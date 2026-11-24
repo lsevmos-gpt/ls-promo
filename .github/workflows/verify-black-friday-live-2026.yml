@@ -1,0 +1,68 @@
+name: Verify Black Friday 2026 public sites (read-only)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-black-friday-live-2026.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify pages, legal documents and approved offer preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/black-friday-qa
+          fetch_live() {
+            local key="$1" url="$2"
+            echo "CHECK $key $url"
+            curl -fsSL --retry 2 --retry-delay 3 --connect-timeout 10 --max-time 35 \
+              -H "Cache-Control: no-cache" \
+              "$url?verification=${GITHUB_SHA}" -o "/tmp/black-friday-qa/$key"
+            test -s "/tmp/black-friday-qa/$key"
+            echo "PASS $key"
+          }
+          fetch_live main-home https://liniyasporta.ru/
+          grep -Fq 'BLACK FRIDAY 2026 BEGIN' /tmp/black-friday-qa/main-home
+          grep -Fq 'hp3-discount' /tmp/black-friday-qa/main-home
+          grep -Fq 'hp3-friend' /tmp/black-friday-qa/main-home
+
+          fetch_live promo-home https://promo.liniyasporta.ru/
+          grep -Fq 'bf26-feature' /tmp/black-friday-qa/promo-home
+          grep -Fq 'campaign--discount' /tmp/black-friday-qa/promo-home
+          grep -Fq 'campaign--friend' /tmp/black-friday-qa/promo-home
+
+          fetch_live promo-campaign https://promo.liniyasporta.ru/black-friday-2026/
+          grep -Fq 'docs.liniyasporta.ru/black-friday-2026/' /tmp/black-friday-qa/promo-campaign
+          grep -Fq '27–28' /tmp/black-friday-qa/promo-campaign
+
+          fetch_live promo-rules https://promo.liniyasporta.ru/black-friday-2026/rules/
+          fetch_live promo-yagyaev https://promo.liniyasporta.ru/black-friday-2026/rules/yagyaev/
+          fetch_live promo-korshunov https://promo.liniyasporta.ru/black-friday-2026/rules/korshunov/
+
+          fetch_live docs-home https://docs.liniyasporta.ru/
+          grep -Fq 'Правила акции' /tmp/black-friday-qa/docs-home
+          fetch_live docs-rules https://docs.liniyasporta.ru/black-friday-2026/
+          grep -Fq 'Ягьяев' /tmp/black-friday-qa/docs-rules
+          grep -Fq 'Коршунов' /tmp/black-friday-qa/docs-rules
+          grep -Fq 'Торнадо' /tmp/black-friday-qa/docs-rules
+
+          fetch_live docs-yagyaev-docx https://docs.liniyasporta.ru/assets/documents/Pravila_Black_Friday_2026_yagyaev.docx
+          fetch_live docs-korshunov-docx https://docs.liniyasporta.ru/assets/documents/Pravila_Black_Friday_2026_korshunov.docx
+          python3 - <<'PY'
+          from pathlib import Path
+          for n in ['docs-yagyaev-docx','docs-korshunov-docx']:
+              b=(Path('/tmp/black-friday-qa')/n).read_bytes()
+              if b[:2]!=b'PK' or len(b)<10000: raise SystemExit('FAILED: Invalid DOCX '+n)
+              print('PASS word file',n,len(b))
+          PY
+
+          fetch_live promo-hero https://promo.liniyasporta.ru/assets/campaigns/black-friday-2026-hero.webp
+          fetch_live promo-mobile https://promo.liniyasporta.ru/assets/campaigns/black-friday-2026-mobile.webp
+          fetch_live main-hero https://liniyasporta.ru/assets/campaigns/black-friday-2026-hero.webp
+          fetch_live main-mobile https://liniyasporta.ru/assets/campaigns/black-friday-2026-mobile.webp
+          echo "PASS: All public Black Friday URLs, rules, both Word files and campaign images validated."
