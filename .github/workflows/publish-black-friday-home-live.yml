@@ -91,7 +91,6 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             cd /;
-            mkdir -p assets/campaigns;
             put new-site/assets/campaigns/black-friday-2026-card.webp -o assets/campaigns/black-friday-2026-card.webp;
             put new-site/assets/campaigns/black-friday-2026-mobile.webp -o assets/campaigns/black-friday-2026-mobile.webp;
             put new-site/assets/campaigns/black-friday-2026-hero.webp -o assets/campaigns/black-friday-2026-hero.webp;
