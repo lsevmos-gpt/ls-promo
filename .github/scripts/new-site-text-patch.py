@@ -19,6 +19,7 @@ ALLOWED = re.compile(r'new-site/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.(?:html|cs
 NEW_TRAINER_IMAGE = re.compile(r'new-site/assets/trainers/[A-Za-z0-9_.-]+-([a-f0-9]{10})\.(?:webp|jpg)')
 NEW_TRAINER_HTML = re.compile(r'new-site/trainers/[a-z0-9-]+/index\.html')
 NEW_CLUB_MEDIA = re.compile(r'new-site/assets/images/6d-(?:01|03|04|08|10|13|17|23|41|81|82|111)-[a-z0-9-]+-20261105\.jpg')
+NEW_CAMPAIGN_IMAGE = re.compile(r'new-site/assets/campaigns/black-friday-2026-(?:hero|card|mobile)\.webp')
 NEW_FITNESS_POSTER = re.compile(r'new-site/assets/images/fitness-hero-([a-f0-9]{10})\.jpg')
 NEW_FITNESS_VIDEO = re.compile(r'new-site/assets/video/fitness-hero-([a-f0-9]{10})\.mp4')
 
@@ -40,7 +41,8 @@ def prepare():
         new_club_media = status == 'A' and NEW_CLUB_MEDIA.fullmatch(path)
         new_fitness_poster = status == 'A' and NEW_FITNESS_POSTER.fullmatch(path)
         new_fitness_video = status == 'A' and NEW_FITNESS_VIDEO.fullmatch(path)
-        new_image = new_trainer_image or new_club_media or new_fitness_poster
+        new_campaign_image = status == 'A' and NEW_CAMPAIGN_IMAGE.fullmatch(path)
+        new_image = new_trainer_image or new_club_media or new_fitness_poster or new_campaign_image
         new_media = new_image or new_fitness_video
         new_profile = status == 'A' and NEW_TRAINER_HTML.fullmatch(path)
         existing_text = status == 'M' and ALLOWED.fullmatch(path)
@@ -91,6 +93,8 @@ def prepare():
         destination.parent.mkdir(parents=True, exist_ok=True)
         if item['before_blob'] is not None:
             backup_commands.append(f'get "{relative}" -o "_new_site_remote_backup/{relative}";')
+        if item['before_blob'] is None and relative.startswith('assets/campaigns/'):
+            upload_commands.append('mkdir -p "assets/campaigns";')
         if item['before_blob'] is None and relative.startswith('trainers/') and relative.endswith('/index.html'):
             upload_commands.append(f'mkdir -p "{Path(relative).parent.as_posix()}";')
         upload_commands.append(f'put "{item["path"]}" -o "{relative}";')

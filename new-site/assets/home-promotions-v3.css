@@ -156,3 +156,7 @@
   #promotions.home-promo-graphic .hp3-unit small,#promotions.home-promo-graphic .hp3-footer p span{font-size:14px}
   #promotions.home-promo-graphic .section-footer p{max-width:none}
 }
+
+
+/* BLACK FRIDAY 2026 main home extension: preserve existing paired hp3-grid */
+#promotions.home-promo-graphic .bf26-home-feature{position:relative;display:block;margin:0 0 24px;overflow:hidden;max-width:1280px;border:1px solid rgba(10,30,30,.12);border-radius:7px;background:#0A1E1E}#promotions.home-promo-graphic .bf26-home-feature picture,#promotions.home-promo-graphic .bf26-home-feature img{display:block;width:100%;height:auto}#promotions.home-promo-graphic .bf26-home-feature:focus-visible{outline:3px solid #0A1E1E;outline-offset:4px}
