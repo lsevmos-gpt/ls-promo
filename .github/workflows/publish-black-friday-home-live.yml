@@ -1,0 +1,119 @@
+name: Black Friday 2026 — targeted REG.RU homepage banner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-black-friday-home-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linea-sporta-new-site-ftps
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      REG_HOST: server169.hosting.reg.ru
+      REG_USER: u3652448_new
+      REG_PASSWORD: ${{ secrets.NEW_SITE_FTP_PASSWORD }}
+    steps:
+      - name: Check out approved banner and patcher
+        uses: actions/checkout@v4
+
+      - name: Verify publication target and archive assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$REG_PASSWORD"
+          test -s new-site/assets/campaigns/black-friday-2026-hero.webp
+          test -s .github/black-friday-2026/home-banner.html
+          test -s .github/black-friday-2026/home-banner.css
+          mkdir -p _bf_live_patch
+
+      - name: Install FTPS client
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Back up current live HTML and CSS (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            get .new-site-root.txt -o _bf_live_patch/remote-marker.txt;
+            get index.html -o _bf_live_patch/remote-index.html;
+            get assets/home-promotions-v3.css -o _bf_live_patch/remote-promotions.css;
+            bye
+          "
+          test "$(tr -d '\r\n' < _bf_live_patch/remote-marker.txt)" = "new.liniyasporta.ru"
+
+      - name: Verify public homepage matches the REG.RU source
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 2 --connect-timeout 10 --max-time 45 \
+            -H 'Cache-Control: no-cache' \
+            "https://liniyasporta.ru/?bf-precheck=${GITHUB_SHA}" -o _bf_live_patch/public-index.html
+          python3 .github/black-friday-2026/bf-live-apply.py
+
+      - name: Preserve remote originals as rollback artifact before writing
+        uses: actions/upload-artifact@v4
+        with:
+          name: black-friday-2026-main-site-originals-${{ github.run_id }}
+          path: |
+            _bf_live_patch/remote-index.html
+            _bf_live_patch/remote-promotions.css
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Upload only approved assets, CSS and homepage HTML
+        shell: bash
+        run: |
+          set -euo pipefail
+          lftp -u "$REG_USER","$REG_PASSWORD" "ftp://$REG_HOST:21" -e "
+            set cmd:fail-exit true;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:passive-mode true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 20;
+            cd /;
+            mkdir -p assets/campaigns;
+            put new-site/assets/campaigns/black-friday-2026-card.webp -o assets/campaigns/black-friday-2026-card.webp;
+            put new-site/assets/campaigns/black-friday-2026-mobile.webp -o assets/campaigns/black-friday-2026-mobile.webp;
+            put new-site/assets/campaigns/black-friday-2026-hero.webp -o assets/campaigns/black-friday-2026-hero.webp;
+            put _bf_live_patch/patched-promotions.css -o assets/home-promotions-v3.css;
+            put _bf_live_patch/patched-index.html -o index.html;
+            bye
+          "
+
+      - name: Verify exact published bytes and unchanged legacy offers
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --connect-timeout 10 --max-time 45 \
+            -H 'Cache-Control: no-cache' "https://liniyasporta.ru/?bf-live=${GITHUB_SHA}" -o _bf_live_patch/verified-index.html
+          cmp -s _bf_live_patch/patched-index.html _bf_live_patch/verified-index.html
+          curl -fsSL -H 'Cache-Control: no-cache' "https://liniyasporta.ru/assets/home-promotions-v3.css?bf-live=${GITHUB_SHA}" -o _bf_live_patch/verified.css
+          cmp -s _bf_live_patch/patched-promotions.css _bf_live_patch/verified.css
+          for img in hero card mobile; do
+            curl -fsSL -H 'Cache-Control: no-cache' "https://liniyasporta.ru/assets/campaigns/black-friday-2026-${img}.webp?bf-live=${GITHUB_SHA}" -o "_bf_live_patch/verified-${img}.webp"
+            cmp -s "new-site/assets/campaigns/black-friday-2026-${img}.webp" "_bf_live_patch/verified-${img}.webp"
+          done
+          grep -Fq '<!-- BLACK FRIDAY 2026 BEGIN' _bf_live_patch/verified-index.html
+          grep -Fq 'hp3-discount' _bf_live_patch/verified-index.html
+          grep -Fq 'hp3-friend' _bf_live_patch/verified-index.html
+          echo 'PASS: Black Friday banner is published on the public main website; original offers preserved.'
